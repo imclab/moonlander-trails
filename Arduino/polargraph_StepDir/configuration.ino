@@ -20,23 +20,41 @@ Comment out the blocks of code you don't need.
 // =================================================================
 // 1. Adafruit motorshield
 
-#include <AFMotor.h>
-const int stepType = INTERLEAVE;
+//#include <AFMotor.h>
+//const int stepType = INTERLEAVE;
 
-AF_Stepper afMotorA(motorStepsPerRev, 1);
-AF_Stepper afMotorB(motorStepsPerRev, 2);
+//AF_Stepper afMotorA(motorStepsPerRev, 1);
+//AF_Stepper afMotorB(motorStepsPerRev, 2);
 
-void forwarda() { afMotorA.onestep(FORWARD, stepType); }
-void backwarda() { afMotorA.onestep(BACKWARD, stepType); }
-AccelStepper motorA(forwarda, backwarda);
+//void forwarda() { afMotorA.onestep(FORWARD, stepType); }
+//void backwarda() { afMotorA.onestep(BACKWARD, stepType); }
+//AccelStepper motorA(forwarda, backwarda);
 
-void forwardb() { afMotorB.onestep(FORWARD, stepType); }
-void backwardb() { afMotorB.onestep(BACKWARD, stepType); }
-AccelStepper motorB(forwardb, backwardb);
+//void forwardb() { afMotorB.onestep(FORWARD, stepType); }
+//void backwardb() { afMotorB.onestep(BACKWARD, stepType); }
+//AccelStepper motorB(forwardb, backwardb);
+
+int motorAStepPin = 1; 
+int motorADirPin = 2; 
+int motorBStepPin = 3; 
+int motorBDirPin = 4; 
+
+AccelStepper motorA(AccelStepper::DRIVER, motorAStepPin, motorADirPin); 
+AccelStepper motorB(AccelStepper::DRIVER, motorBStepPin, motorBDirPin); 
 
 void configuration_motorSetup()
 {
-  // no initial setup for these kinds of motor drivers
+  // if we need to set an enable pin do it here. We may also need to check the code 
+  // calls enableOutputs and disableOutputs
+  // motorA.setEnablePin(...)  
+  
+  // Might also need to invert pins : 
+  //setPinsInverted	(	bool 	direction,
+      //bool 	step,
+      //bool 	enable = false
+  //)
+  
+  // see http://www.open.com.au/mikem/arduino/AccelStepper/classAccelStepper.html#a797b4bdb580d4ca7a1cfeabe3df0de35		
 }
 void configuration_setup()
 {
