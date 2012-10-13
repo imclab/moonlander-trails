@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12D593141625A84C00F07F97 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D593131625A84C00F07F97 /* Cocoa.framework */; };
+		12D5931E1625A84C00F07F97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12D5931C1625A84C00F07F97 /* InfoPlist.strings */; };
+		12D593201625A84C00F07F97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D5931F1625A84C00F07F97 /* main.m */; };
+		12D593241625A84C00F07F97 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 12D593221625A84C00F07F97 /* Credits.rtf */; };
+		12D593271625A84C00F07F97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D593261625A84C00F07F97 /* AppDelegate.m */; };
+		12D5932A1625A84C00F07F97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12D593281625A84C00F07F97 /* MainMenu.xib */; };
+		12D593321625A84C00F07F97 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D593311625A84C00F07F97 /* SenTestingKit.framework */; };
+		12D593331625A84C00F07F97 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D593131625A84C00F07F97 /* Cocoa.framework */; };
+		12D5933B1625A84C00F07F97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12D593391625A84C00F07F97 /* InfoPlist.strings */; };
+		12D5933E1625A84C00F07F97 /* LunarTrailsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D5933D1625A84C00F07F97 /* LunarTrailsTests.m */; };
+		12D593481625A86000F07F97 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D593471625A86000F07F97 /* WebKit.framework */; };
+		12D593621625BF1000F07F97 /* bender_italic-webfont.eot in Resources */ = {isa = PBXBuildFile; fileRef = 12D5934A1625BF1000F07F97 /* bender_italic-webfont.eot */; };
+		12D593631625BF1000F07F97 /* bender_italic-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 12D5934B1625BF1000F07F97 /* bender_italic-webfont.svg */; };
+		12D593641625BF1000F07F97 /* bender_italic-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12D5934C1625BF1000F07F97 /* bender_italic-webfont.ttf */; };
+		12D593651625BF1000F07F97 /* bender_italic-webfont.woff in Resources */ = {isa = PBXBuildFile; fileRef = 12D5934D1625BF1000F07F97 /* bender_italic-webfont.woff */; };
+		12D593661625BF1000F07F97 /* bender_light-webfont.eot in Resources */ = {isa = PBXBuildFile; fileRef = 12D5934E1625BF1000F07F97 /* bender_light-webfont.eot */; };
+		12D593671625BF1000F07F97 /* bender_light-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 12D5934F1625BF1000F07F97 /* bender_light-webfont.svg */; };
+		12D593681625BF1000F07F97 /* bender_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12D593501625BF1000F07F97 /* bender_light-webfont.ttf */; };
+		12D593691625BF1000F07F97 /* bender_light-webfont.woff in Resources */ = {isa = PBXBuildFile; fileRef = 12D593511625BF1000F07F97 /* bender_light-webfont.woff */; };
+		12D5936A1625BF1000F07F97 /* game.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593521625BF1000F07F97 /* game.js */; };
+		12D5936B1625BF1000F07F97 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 12D593531625BF1000F07F97 /* index.html */; };
+		12D5936C1625BF1000F07F97 /* InfoDisplay.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593541625BF1000F07F97 /* InfoDisplay.js */; };
+		12D5936D1625BF1000F07F97 /* KeyTracker.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593551625BF1000F07F97 /* KeyTracker.js */; };
+		12D5936E1625BF1000F07F97 /* Lander.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593561625BF1000F07F97 /* Lander.js */; };
+		12D5936F1625BF1000F07F97 /* LandscapeData.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593571625BF1000F07F97 /* LandscapeData.js */; };
+		12D593701625BF1000F07F97 /* audio.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593591625BF1000F07F97 /* audio.js */; };
+		12D593711625BF1000F07F97 /* jsfx.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D5935A1625BF1000F07F97 /* jsfx.js */; };
+		12D593721625BF1000F07F97 /* jsfxlib.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D5935B1625BF1000F07F97 /* jsfxlib.js */; };
+		12D593731625BF1000F07F97 /* rAF.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D5935C1625BF1000F07F97 /* rAF.js */; };
+		12D593741625BF1000F07F97 /* RequestAnimationFrame.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D5935D1625BF1000F07F97 /* RequestAnimationFrame.js */; };
+		12D593751625BF1000F07F97 /* Stats.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D5935E1625BF1000F07F97 /* Stats.js */; };
+		12D593761625BF1000F07F97 /* Vector2.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D5935F1625BF1000F07F97 /* Vector2.js */; };
+		12D593771625BF1000F07F97 /* Sounds.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593601625BF1000F07F97 /* Sounds.js */; };
+		12D593781625BF1000F07F97 /* TouchController.js in Sources */ = {isa = PBXBuildFile; fileRef = 12D593611625BF1000F07F97 /* TouchController.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12D593341625A84C00F07F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12D593061625A84C00F07F97 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12D5930E1625A84C00F07F97;
+			remoteInfo = LunarTrails;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12D5930F1625A84C00F07F97 /* LunarTrails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunarTrails.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12D593131625A84C00F07F97 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		12D593161625A84C00F07F97 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		12D593171625A84C00F07F97 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		12D593181625A84C00F07F97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		12D5931B1625A84C00F07F97 /* LunarTrails-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LunarTrails-Info.plist"; sourceTree = "<group>"; };
+		12D5931D1625A84C00F07F97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		12D5931F1625A84C00F07F97 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		12D593211625A84C00F07F97 /* LunarTrails-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LunarTrails-Prefix.pch"; sourceTree = "<group>"; };
+		12D593231625A84C00F07F97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		12D593251625A84C00F07F97 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		12D593261625A84C00F07F97 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		12D593291625A84C00F07F97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		12D593301625A84C00F07F97 /* LunarTrailsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunarTrailsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12D593311625A84C00F07F97 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		12D593381625A84C00F07F97 /* LunarTrailsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LunarTrailsTests-Info.plist"; sourceTree = "<group>"; };
+		12D5933A1625A84C00F07F97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		12D5933C1625A84C00F07F97 /* LunarTrailsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LunarTrailsTests.h; sourceTree = "<group>"; };
+		12D5933D1625A84C00F07F97 /* LunarTrailsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LunarTrailsTests.m; sourceTree = "<group>"; };
+		12D593471625A86000F07F97 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		12D5934A1625BF1000F07F97 /* bender_italic-webfont.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bender_italic-webfont.eot"; sourceTree = "<group>"; };
+		12D5934B1625BF1000F07F97 /* bender_italic-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "bender_italic-webfont.svg"; sourceTree = "<group>"; };
+		12D5934C1625BF1000F07F97 /* bender_italic-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bender_italic-webfont.ttf"; sourceTree = "<group>"; };
+		12D5934D1625BF1000F07F97 /* bender_italic-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bender_italic-webfont.woff"; sourceTree = "<group>"; };
+		12D5934E1625BF1000F07F97 /* bender_light-webfont.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bender_light-webfont.eot"; sourceTree = "<group>"; };
+		12D5934F1625BF1000F07F97 /* bender_light-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "bender_light-webfont.svg"; sourceTree = "<group>"; };
+		12D593501625BF1000F07F97 /* bender_light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bender_light-webfont.ttf"; sourceTree = "<group>"; };
+		12D593511625BF1000F07F97 /* bender_light-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bender_light-webfont.woff"; sourceTree = "<group>"; };
+		12D593521625BF1000F07F97 /* game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
+		12D593531625BF1000F07F97 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		12D593541625BF1000F07F97 /* InfoDisplay.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = InfoDisplay.js; sourceTree = "<group>"; };
+		12D593551625BF1000F07F97 /* KeyTracker.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = KeyTracker.js; sourceTree = "<group>"; };
+		12D593561625BF1000F07F97 /* Lander.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Lander.js; sourceTree = "<group>"; };
+		12D593571625BF1000F07F97 /* LandscapeData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = LandscapeData.js; sourceTree = "<group>"; };
+		12D593591625BF1000F07F97 /* audio.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = audio.js; sourceTree = "<group>"; };
+		12D5935A1625BF1000F07F97 /* jsfx.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jsfx.js; sourceTree = "<group>"; };
+		12D5935B1625BF1000F07F97 /* jsfxlib.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jsfxlib.js; sourceTree = "<group>"; };
+		12D5935C1625BF1000F07F97 /* rAF.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rAF.js; sourceTree = "<group>"; };
+		12D5935D1625BF1000F07F97 /* RequestAnimationFrame.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = RequestAnimationFrame.js; sourceTree = "<group>"; };
+		12D5935E1625BF1000F07F97 /* Stats.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Stats.js; sourceTree = "<group>"; };
+		12D5935F1625BF1000F07F97 /* Vector2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vector2.js; sourceTree = "<group>"; };
+		12D593601625BF1000F07F97 /* Sounds.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Sounds.js; sourceTree = "<group>"; };
+		12D593611625BF1000F07F97 /* TouchController.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TouchController.js; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12D5930C1625A84C00F07F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D593481625A86000F07F97 /* WebKit.framework in Frameworks */,
+				12D593141625A84C00F07F97 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12D5932C1625A84C00F07F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D593321625A84C00F07F97 /* SenTestingKit.framework in Frameworks */,
+				12D593331625A84C00F07F97 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12D593041625A84C00F07F97 = {
+			isa = PBXGroup;
+			children = (
+				12D593471625A86000F07F97 /* WebKit.framework */,
+				12D593191625A84C00F07F97 /* LunarTrails */,
+				12D593361625A84C00F07F97 /* LunarTrailsTests */,
+				12D593121625A84C00F07F97 /* Frameworks */,
+				12D593101625A84C00F07F97 /* Products */,
+				12D593491625BF1000F07F97 /* clientCanvas */,
+			);
+			sourceTree = "<group>";
+		};
+		12D593101625A84C00F07F97 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12D5930F1625A84C00F07F97 /* LunarTrails.app */,
+				12D593301625A84C00F07F97 /* LunarTrailsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12D593121625A84C00F07F97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12D593131625A84C00F07F97 /* Cocoa.framework */,
+				12D593311625A84C00F07F97 /* SenTestingKit.framework */,
+				12D593151625A84C00F07F97 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		12D593151625A84C00F07F97 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12D593161625A84C00F07F97 /* AppKit.framework */,
+				12D593171625A84C00F07F97 /* CoreData.framework */,
+				12D593181625A84C00F07F97 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		12D593191625A84C00F07F97 /* LunarTrails */ = {
+			isa = PBXGroup;
+			children = (
+				12D593251625A84C00F07F97 /* AppDelegate.h */,
+				12D593261625A84C00F07F97 /* AppDelegate.m */,
+				12D593281625A84C00F07F97 /* MainMenu.xib */,
+				12D5931A1625A84C00F07F97 /* Supporting Files */,
+			);
+			path = LunarTrails;
+			sourceTree = "<group>";
+		};
+		12D5931A1625A84C00F07F97 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				12D5931B1625A84C00F07F97 /* LunarTrails-Info.plist */,
+				12D5931C1625A84C00F07F97 /* InfoPlist.strings */,
+				12D5931F1625A84C00F07F97 /* main.m */,
+				12D593211625A84C00F07F97 /* LunarTrails-Prefix.pch */,
+				12D593221625A84C00F07F97 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		12D593361625A84C00F07F97 /* LunarTrailsTests */ = {
+			isa = PBXGroup;
+			children = (
+				12D5933C1625A84C00F07F97 /* LunarTrailsTests.h */,
+				12D5933D1625A84C00F07F97 /* LunarTrailsTests.m */,
+				12D593371625A84C00F07F97 /* Supporting Files */,
+			);
+			path = LunarTrailsTests;
+			sourceTree = "<group>";
+		};
+		12D593371625A84C00F07F97 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				12D593381625A84C00F07F97 /* LunarTrailsTests-Info.plist */,
+				12D593391625A84C00F07F97 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		12D593491625BF1000F07F97 /* clientCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				12D5934A1625BF1000F07F97 /* bender_italic-webfont.eot */,
+				12D5934B1625BF1000F07F97 /* bender_italic-webfont.svg */,
+				12D5934C1625BF1000F07F97 /* bender_italic-webfont.ttf */,
+				12D5934D1625BF1000F07F97 /* bender_italic-webfont.woff */,
+				12D5934E1625BF1000F07F97 /* bender_light-webfont.eot */,
+				12D5934F1625BF1000F07F97 /* bender_light-webfont.svg */,
+				12D593501625BF1000F07F97 /* bender_light-webfont.ttf */,
+				12D593511625BF1000F07F97 /* bender_light-webfont.woff */,
+				12D593521625BF1000F07F97 /* game.js */,
+				12D593531625BF1000F07F97 /* index.html */,
+				12D593541625BF1000F07F97 /* InfoDisplay.js */,
+				12D593551625BF1000F07F97 /* KeyTracker.js */,
+				12D593561625BF1000F07F97 /* Lander.js */,
+				12D593571625BF1000F07F97 /* LandscapeData.js */,
+				12D593581625BF1000F07F97 /* libs */,
+				12D593601625BF1000F07F97 /* Sounds.js */,
+				12D593611625BF1000F07F97 /* TouchController.js */,
+			);
+			name = clientCanvas;
+			path = ../Game/clientCanvas;
+			sourceTree = "<group>";
+		};
+		12D593581625BF1000F07F97 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				12D593591625BF1000F07F97 /* audio.js */,
+				12D5935A1625BF1000F07F97 /* jsfx.js */,
+				12D5935B1625BF1000F07F97 /* jsfxlib.js */,
+				12D5935C1625BF1000F07F97 /* rAF.js */,
+				12D5935D1625BF1000F07F97 /* RequestAnimationFrame.js */,
+				12D5935E1625BF1000F07F97 /* Stats.js */,
+				12D5935F1625BF1000F07F97 /* Vector2.js */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12D5930E1625A84C00F07F97 /* LunarTrails */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12D593411625A84C00F07F97 /* Build configuration list for PBXNativeTarget "LunarTrails" */;
+			buildPhases = (
+				12D5930B1625A84C00F07F97 /* Sources */,
+				12D5930C1625A84C00F07F97 /* Frameworks */,
+				12D5930D1625A84C00F07F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LunarTrails;
+			productName = LunarTrails;
+			productReference = 12D5930F1625A84C00F07F97 /* LunarTrails.app */;
+			productType = "com.apple.product-type.application";
+		};
+		12D5932F1625A84C00F07F97 /* LunarTrailsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12D593441625A84C00F07F97 /* Build configuration list for PBXNativeTarget "LunarTrailsTests" */;
+			buildPhases = (
+				12D5932B1625A84C00F07F97 /* Sources */,
+				12D5932C1625A84C00F07F97 /* Frameworks */,
+				12D5932D1625A84C00F07F97 /* Resources */,
+				12D5932E1625A84C00F07F97 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12D593351625A84C00F07F97 /* PBXTargetDependency */,
+			);
+			name = LunarTrailsTests;
+			productName = LunarTrailsTests;
+			productReference = 12D593301625A84C00F07F97 /* LunarTrailsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12D593061625A84C00F07F97 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Seb Lee-Delisle";
+			};
+			buildConfigurationList = 12D593091625A84C00F07F97 /* Build configuration list for PBXProject "LunarTrails" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 12D593041625A84C00F07F97;
+			productRefGroup = 12D593101625A84C00F07F97 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12D5930E1625A84C00F07F97 /* LunarTrails */,
+				12D5932F1625A84C00F07F97 /* LunarTrailsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12D5930D1625A84C00F07F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D5931E1625A84C00F07F97 /* InfoPlist.strings in Resources */,
+				12D593241625A84C00F07F97 /* Credits.rtf in Resources */,
+				12D5932A1625A84C00F07F97 /* MainMenu.xib in Resources */,
+				12D593621625BF1000F07F97 /* bender_italic-webfont.eot in Resources */,
+				12D593631625BF1000F07F97 /* bender_italic-webfont.svg in Resources */,
+				12D593641625BF1000F07F97 /* bender_italic-webfont.ttf in Resources */,
+				12D593651625BF1000F07F97 /* bender_italic-webfont.woff in Resources */,
+				12D593661625BF1000F07F97 /* bender_light-webfont.eot in Resources */,
+				12D593671625BF1000F07F97 /* bender_light-webfont.svg in Resources */,
+				12D593681625BF1000F07F97 /* bender_light-webfont.ttf in Resources */,
+				12D593691625BF1000F07F97 /* bender_light-webfont.woff in Resources */,
+				12D5936B1625BF1000F07F97 /* index.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12D5932D1625A84C00F07F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D5933B1625A84C00F07F97 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		12D5932E1625A84C00F07F97 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12D5930B1625A84C00F07F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D593201625A84C00F07F97 /* main.m in Sources */,
+				12D593271625A84C00F07F97 /* AppDelegate.m in Sources */,
+				12D5936A1625BF1000F07F97 /* game.js in Sources */,
+				12D5936C1625BF1000F07F97 /* InfoDisplay.js in Sources */,
+				12D5936D1625BF1000F07F97 /* KeyTracker.js in Sources */,
+				12D5936E1625BF1000F07F97 /* Lander.js in Sources */,
+				12D5936F1625BF1000F07F97 /* LandscapeData.js in Sources */,
+				12D593701625BF1000F07F97 /* audio.js in Sources */,
+				12D593711625BF1000F07F97 /* jsfx.js in Sources */,
+				12D593721625BF1000F07F97 /* jsfxlib.js in Sources */,
+				12D593731625BF1000F07F97 /* rAF.js in Sources */,
+				12D593741625BF1000F07F97 /* RequestAnimationFrame.js in Sources */,
+				12D593751625BF1000F07F97 /* Stats.js in Sources */,
+				12D593761625BF1000F07F97 /* Vector2.js in Sources */,
+				12D593771625BF1000F07F97 /* Sounds.js in Sources */,
+				12D593781625BF1000F07F97 /* TouchController.js in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12D5932B1625A84C00F07F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D5933E1625A84C00F07F97 /* LunarTrailsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12D593351625A84C00F07F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12D5930E1625A84C00F07F97 /* LunarTrails */;
+			targetProxy = 12D593341625A84C00F07F97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		12D5931C1625A84C00F07F97 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12D5931D1625A84C00F07F97 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		12D593221625A84C00F07F97 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12D593231625A84C00F07F97 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		12D593281625A84C00F07F97 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12D593291625A84C00F07F97 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		12D593391625A84C00F07F97 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12D5933A1625A84C00F07F97 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		12D5933F1625A84C00F07F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		12D593401625A84C00F07F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		12D593421625A84C00F07F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LunarTrails/LunarTrails-Prefix.pch";
+				INFOPLIST_FILE = "LunarTrails/LunarTrails-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		12D593431625A84C00F07F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LunarTrails/LunarTrails-Prefix.pch";
+				INFOPLIST_FILE = "LunarTrails/LunarTrails-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		12D593451625A84C00F07F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LunarTrails.app/Contents/MacOS/LunarTrails";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LunarTrails/LunarTrails-Prefix.pch";
+				INFOPLIST_FILE = "LunarTrailsTests/LunarTrailsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		12D593461625A84C00F07F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LunarTrails.app/Contents/MacOS/LunarTrails";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LunarTrails/LunarTrails-Prefix.pch";
+				INFOPLIST_FILE = "LunarTrailsTests/LunarTrailsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12D593091625A84C00F07F97 /* Build configuration list for PBXProject "LunarTrails" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12D5933F1625A84C00F07F97 /* Debug */,
+				12D593401625A84C00F07F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12D593411625A84C00F07F97 /* Build configuration list for PBXNativeTarget "LunarTrails" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12D593421625A84C00F07F97 /* Debug */,
+				12D593431625A84C00F07F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		12D593441625A84C00F07F97 /* Build configuration list for PBXNativeTarget "LunarTrailsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12D593451625A84C00F07F97 /* Debug */,
+				12D593461625A84C00F07F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12D593061625A84C00F07F97 /* Project object */;
+}

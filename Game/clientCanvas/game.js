@@ -21,7 +21,11 @@ var	WAITING = 0,
 	CRASHED = 3, 
 	GAMEOVER = 4,
 	
+	
 	gameState = GAMEOVER, 
+	mouseThrust = false, 
+	mouseTop = 0, 
+	mouseBottom = 0,
 	
 	score = 0, 
 	time = 0, 
@@ -61,7 +65,7 @@ window.addEventListener("load", init);
 function init() 
 {
 	
-	ws = new WebSocket("ws://moonlander.seb.ly"); 
+	ws = new WebSocket("ws://node.seb.ly:8001"); 
 	ws.onopen = function(e) { 
 		
 		console.log('connected'); 
@@ -85,10 +89,10 @@ function init()
 				players[msg.id].scale = lander.scale;
 			}
 			var player = players[msg.id]; 
-			player.pos.x = msg.posx/100; 
-			player.pos.y = msg.posy/100; 
-			player.rotation = msg.rotation; 
-			player.thrusting = (msg.thrusting == 1);
+			player.pos.x = msg.x/100; 
+			player.pos.y = msg.y/100; 
+			player.rotation = msg.a; 
+			player.thrusting = (msg.t == 1);
 			
 		} else if(msg.type=='leave') { 
 			// delete player object
@@ -110,7 +114,7 @@ function init()
 	
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.top = (SCREEN_HEIGHT-45)+'px';
-	document.body.appendChild( stats.domElement );
+	//document.body.appendChild( stats.domElement );
 	
 	infoDisplay = new InfoDisplay(SCREEN_WIDTH, SCREEN_HEIGHT); 
 	document.body.appendChild(infoDisplay.domElement); 
@@ -120,7 +124,25 @@ function init()
 
 	
 	document.body.addEventListener('mousedown', onMouseDown);
+	document.body.addEventListener('mousemove', onMouseMove);
 	document.body.addEventListener('touchstart', onTouchStart);
+	
+	KeyTracker.addKeyDownListener(KeyTracker.UP, function() { lander.thrust(1);});
+	KeyTracker.addKeyUpListener(KeyTracker.UP, function() { lander.thrust(0);});
+	
+	
+	KeyTracker.addKeyUpListener('0', function() { lander.thrust(0);});
+	KeyTracker.addKeyUpListener('1', function() { lander.thrust(0.11);});
+	KeyTracker.addKeyUpListener('2', function() { lander.thrust(0.22);});
+	KeyTracker.addKeyUpListener('3', function() { lander.thrust(0.33);});
+	KeyTracker.addKeyUpListener('4', function() { lander.thrust(0.44);});
+	KeyTracker.addKeyUpListener('5', function() { lander.thrust(0.55);});
+	KeyTracker.addKeyUpListener('6', function() { lander.thrust(0.66);});
+	KeyTracker.addKeyUpListener('7', function() { lander.thrust(0.77);});
+	KeyTracker.addKeyUpListener('8', function() { lander.thrust(0.88);});
+	KeyTracker.addKeyUpListener('9', function() { lander.thrust(1);});
+
+
 	
 	window.addEventListener('resize', resizeGame);
 	window.addEventListener('orientationchange', resizeGame);
@@ -138,9 +160,10 @@ function sendPosition() {
 		var update = {
 			type : 'update', 
 			id : wsID, 
-			posx : Math.round(lander.pos.x*100), 
-			posy : Math.round(lander.pos.y*100), 
-			rotation : Math.round(lander.rotation), 
+			x : Math.round(lander.pos.x*100), 
+			y : Math.round(lander.pos.y*100), 
+			a : Math.round(lander.rotation), 
+			t : lander.thrusting ? 1 :0
 		}
 		// if(lander.exploding) update.exploding = 1; 
 		// 	if(lander.thrusting) update.thrusting = 1; 
@@ -193,7 +216,7 @@ function loop() {
 
 		}
 	
-	stats.update(); 
+	//stats.update(); 
 
 	
 	if(gameState == PLAYING) { 
@@ -256,6 +279,13 @@ function render() {
 	if(counter%4==0) updateTextInfo(); 
 	
 	c.restore();
+	c.strokeStyle = 'white';
+	c.beginPath(); 
+	c.moveTo(0,mouseTop+HALF_HEIGHT); 
+	c.lineTo(50,mouseTop+HALF_HEIGHT); 
+	c.moveTo(0,mouseBottom+HALF_HEIGHT); 
+	c.lineTo(50,mouseBottom+HALF_HEIGHT); 
+	c.stroke(); 
 	
 	
 }
@@ -268,11 +298,6 @@ function checkKeys() {
 		lander.rotate(1); 
 	}
 
-	if(KeyTracker.isKeyDown(KeyTracker.UP)) {
-		lander.thrust(true); 
-	} else { 
-		lander.thrust(false); 
-	}	
 	
 	// SPEED MODE! 
 	if(KeyTracker.isKeyDown('S')) { 
@@ -399,7 +424,7 @@ function onTouchStart(e) {
 
 function newGame() { 
 	
-	lander.fuel = 3000;
+	lander.fuel = 1000;
 
 	time = 0;
 	score = 0;
@@ -573,7 +598,7 @@ function map(value, min1, max1, min2, max2) {
 }
 
 
-function onDocumentMouseMove( event ) 
+function onMouseMove( event ) 
 {
 	mouseX = ( event.clientX - HALF_WIDTH );
 	mouseY = ( event.clientY - HALF_HEIGHT );

@@ -36,9 +36,11 @@ boolean exec_executeBasicCommand(String &com)
   else if (com.startsWith(CMD_SETMOTORACCEL))
     exec_setMotorAcceleration();
   else if (com.startsWith(CMD_DRAWPIXEL))
-    pixel_drawSquarePixel();
+    //pixel_drawSquarePixel();
+    ;
   else if (com.startsWith(CMD_DRAWSCRIBBLEPIXEL))
-    pixel_drawScribblePixel();
+    ;
+    //pixel_drawScribblePixel();
 //  else if (com.startsWith(CMD_DRAWRECT))
 //    drawRectangle();
   else if (com.startsWith(CMD_CHANGEDRAWINGDIRECTION))
@@ -46,7 +48,8 @@ boolean exec_executeBasicCommand(String &com)
   else if (com.startsWith(CMD_SETPOSITION))
     exec_setPosition();
   else if (com.startsWith(CMD_TESTPENWIDTHSQUARE))
-    pixel_testPenWidth();
+    ;
+    //pixel_testPenWidth();
   else if (com.startsWith(CMD_PENDOWN))
     penlift_penDown();
   else if (com.startsWith(CMD_PENUP))

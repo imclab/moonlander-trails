@@ -20,34 +20,40 @@ Comment out the blocks of code you don't need.
 // =================================================================
 // 1. Adafruit motorshield
 
-//#include <AFMotor.h>
-//const int stepType = INTERLEAVE;
+#include <AFMotor.h>
+const int stepType = INTERLEAVE;
 
-//AF_Stepper afMotorA(motorStepsPerRev, 1);
-//AF_Stepper afMotorB(motorStepsPerRev, 2);
+AF_Stepper afMotorA(motorStepsPerRev, 1);
+AF_Stepper afMotorB(motorStepsPerRev, 2);
 
-//void forwarda() { afMotorA.onestep(FORWARD, stepType); }
-//void backwarda() { afMotorA.onestep(BACKWARD, stepType); }
-//AccelStepper motorA(forwarda, backwarda);
+void forwarda() { afMotorA.onestep(FORWARD, stepType); }
+void backwarda() { afMotorA.onestep(BACKWARD, stepType); }
+AccelStepper motorA(forwarda, backwarda);
 
-//void forwardb() { afMotorB.onestep(FORWARD, stepType); }
-//void backwardb() { afMotorB.onestep(BACKWARD, stepType); }
-//AccelStepper motorB(forwardb, backwardb);
+void forwardb() { afMotorB.onestep(FORWARD, stepType); }
+void backwardb() { afMotorB.onestep(BACKWARD, stepType); }
+AccelStepper motorB(forwardb, backwardb);
 
-int motorAStepPin = 1; 
-int motorADirPin = 2; 
-int motorBStepPin = 3; 
-int motorBDirPin = 4; 
+int motorAStepPin = 2; 
+int motorADirPin = 3; 
+int motorAEnablePin = 6; 
+int motorBStepPin = 4; 
+int motorBDirPin = 5; 
+int motorBEnablePin = 7; 
 
-AccelStepper motorA(AccelStepper::DRIVER, motorAStepPin, motorADirPin); 
-AccelStepper motorB(AccelStepper::DRIVER, motorBStepPin, motorBDirPin); 
+//AccelStepper motorA(AccelStepper::DRIVER, motorAStepPin, motorADirPin); 
+//AccelStepper motorB(AccelStepper::DRIVER, motorBStepPin, motorBDirPin); 
 
 void configuration_motorSetup()
 {
   // if we need to set an enable pin do it here. We may also need to check the code 
   // calls enableOutputs and disableOutputs
-  // motorA.setEnablePin(...)  
   
+  //motorA.setEnablePin(motorAEnablePin) ; 
+  //motorB.setEnablePin(motorBEnablePin) ; 
+  
+  
+ // motorA.setPinsInverted(true,true, true); 
   // Might also need to invert pins : 
   //setPinsInverted	(	bool 	direction,
       //bool 	step,
@@ -58,10 +64,10 @@ void configuration_motorSetup()
 }
 void configuration_setup()
 {
-  defaultMachineWidth = 650;
-  defaultMachineHeight = 650;
-  defaultMmPerRev = 95;
-  defaultStepsPerRev = 400;
+  defaultMachineWidth = 1600;
+  defaultMachineHeight = 1600;
+  defaultMmPerRev = 106;
+  defaultStepsPerRev = 2000;
   defaultStepMultiplier = 1;
   currentlyRunning = true;
   delay(500);

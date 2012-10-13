@@ -65,7 +65,7 @@ window.addEventListener("load", init);
 function init() 
 {
 	
-	ws = new WebSocket("ws://moonlander.seb.ly"); 
+	ws = new WebSocket("ws://node.seb.ly:8001"); 
 	ws.onopen = function(e) { 
 		
 		console.log('connected'); 

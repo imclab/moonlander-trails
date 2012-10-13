@@ -1,0 +1,234 @@
+TLunarTrails
+v5
+r1
+cCheck dependencies
+cProcessInfoPlistFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist LunarTrails/LunarTrails-Info.plist
+cProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails normal x86_64
+cGenerateDSYMFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
+cCopyStringsFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings LunarTrails/en.lproj/InfoPlist.strings
+cCpResource LunarTrails/en.lproj/Credits.rtf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
+cCompileXIB /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
+cTouch /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c000000004FF015DA00000000000000AA
+t1341134298
+s170
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
+c00000000502E133300000000000025C8
+t1345196851
+s9672
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
+c00000000502E133300000000000001E5
+t1345196851
+s485
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/WebKit.framework/WebKit
+c00000000502E1335000000000008671C
+t1345196853
+s550684
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/LunarTrails.LinkFileList
+c00000000507587420000000000000171
+t1349879618
+s369
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/PkgInfo
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/MainMenu.nib
+t2
+s0
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m
+c000000005075829800000000000001E5
+t1349878424
+s485
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Prefix.pch
+c00000000507570CC0000000000000096
+t1349873868
+s150
+i<Cocoa/Cocoa.h>
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/Credits.rtf
+c00000000507570CC00000000000001B4
+t1349873868
+s436
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/InfoPlist.strings
+c00000000507570CC000000000000002D
+t1349873868
+s45
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
+c0000000050757E0E0000000000025556
+t1349877262
+s152918
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m
+c00000000507570CC0000000000000104
+t1349873868
+s260
+
+NLunarTrails/LunarTrails-Info.plist
+c00000000507570CC000000000000044B
+t1349873868
+s1099
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciescf4e46c2be25b641^62f44cc2be25b641^---0#1#0#--18"Check dependencies36"854FCB92-1C2C-4A98-987D-128AEF350D3B-
+
+CCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371572418.921717
+e371572418.995115
+r1
+xCompileC
+xDerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m1b0decc2be25b641^4cc1fec2be25b641^---0#0#0#-19%DVTDocumentLocation2@105"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m0000000000000000^3834"CompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o LunarTrails/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -include /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o36"6E1AF883-A3B7-4CCD-929F-45D762ADD727-
+
+CCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371572418.921718
+e371572418.948503
+r1
+xCompileC
+xDerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection90"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.mfa0cecc2be25b641^6cd1f2c2be25b641^---0#0#0#-19%DVTDocumentLocation2@98"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m0000000000000000^3792"CompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o LunarTrails/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -include /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o36"45045CA4-378E-414C-A632-BED1F80ECAC4-
+
+CCompileXIB /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
+s371572419.086642
+e371572419.286792
+r1
+xCompileXIB
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Compiling /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xiba74016c3be25b641^876b49c3be25b641^---0#0#0#-19%DVTDocumentLocation2@113"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib0000000000000000^715"CompileXIB LunarTrails/en.lproj/MainMenu.xib    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/MainMenu.nib /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk36"C1896C87-6856-4F93-AD11-ACA6BA983778-
+
+CCopyStringsFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings LunarTrails/en.lproj/InfoPlist.strings
+s371572419.086625
+e371572419.091281
+r1
+xCopyStringsFile
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings
+xLunarTrails/en.lproj/InfoPlist.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection43"Copy LunarTrails/en.lproj/InfoPlist.strings463f16c3be25b641^745e17c3be25b641^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/InfoPlist.strings0000000000000000^522"CopyStringsFile DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings LunarTrails/en.lproj/InfoPlist.strings    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding UTF-16 --outdir /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj -- LunarTrails/en.lproj/InfoPlist.strings36"1C499633-08D1-4870-A0C5-66CE676D8A8F-
+
+CCpResource LunarTrails/en.lproj/Credits.rtf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
+s371572419.086634
+e371572419.090067
+r1
+xCpResource
+xLunarTrails/en.lproj/Credits.rtf
+xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtfcd3f16c3be25b641^e50e17c3be25b641^---0#0#0#-19%DVTDocumentLocation2@182"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf000000000080d041^708"CpResource LunarTrails/en.lproj/Credits.rtf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/Credits.rtf /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj36"3BB42E36-1047-409A-B35B-6FEE67769A85-
+
+CGenerateDSYMFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
+s371572419.054995
+e371572419.079234
+r1
+xGenerateDSYMFile
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection142"Generating /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM58200ec3be25b641^f54714c3be25b641^---0#0#0#-19%DVTDocumentLocation2@147"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM000000000080d041^635"GenerateDSYMFile DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM36"483FEC7B-7D39-4EEF-A6AB-4F6E9FA06596-
+
+CLd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails normal x86_64
+s371572419.001895
+e371572419.048222
+r1
+xLd
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection158"Link /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails548b00c3be25b641^ff580cc3be25b641^---0#0#0#--1122"Ld DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails normal x86_64    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -filelist /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/LunarTrails.LinkFileList -mmacosx-version-min=10.8 -fobjc-arc -fobjc-link-runtime -framework WebKit -framework Cocoa -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails36"92D038C2-B10E-4509-BC52-6A29E014B7E9-
+
+CProcessInfoPlistFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist LunarTrails/LunarTrails-Info.plist
+s371572418.304357
+e371572418.306682
+r1
+xProcessInfoPlistFile
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist
+xLunarTrails/LunarTrails-Info.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection42"Process LunarTrails/LunarTrails-Info.plist38f54dc2be25b641^0a834ec2be25b641^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Info.plist0000000000000000^618"ProcessInfoPlistFile DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist LunarTrails/LunarTrails-Info.plist    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-infoPlistUtility LunarTrails/LunarTrails-Info.plist -genpkginfo /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist36"790974E4-8B4A-41A8-9C9F-468C7D450163-
+
+CProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371572418.321672
+e371572418.914891
+r1
+xProcessPCH
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth
+xLunarTrails/LunarTrails-Prefix.pch
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection45"Precompile LunarTrails/LunarTrails-Prefix.pch518252c2be25b641^3b36eac2be25b641^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Prefix.pch0000000000000000^3706"ProcessPCH DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Prefix.pch -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.d36"87C62254-E870-4C93-B30E-6AEF83DBF00E-
+
+CProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Index/PrecompiledHeaders/LunarTrails-Prefix-gtehnrosqzuvbsgieoqybhnwkeha_ast/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CTouch /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
+s371572419.294244
+e371572419.300182
+r1
+xTouch
+x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"Touch /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app2c634bc3be25b641^40d94cc3be25b641^---0#0#0#--289"Touch DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    /usr/bin/touch -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app36"C343B680-F7A5-4C46-B0D7-8B9684BBBA30-
+

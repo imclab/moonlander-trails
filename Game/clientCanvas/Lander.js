@@ -6,7 +6,7 @@ Lander = function() {
 		bottomRight = this.bottomRight = new Vector2(0,0), 
 		thrustVec = new Vector2(0,0),
 		gravity = 0.0005,
-		thrust = 0.0015,
+		thrustAcceleration = 0.0015,
 		thrustBuild = 0,
 		topSpeed = 0.35, 
 		drag = 0.9997, 
@@ -18,7 +18,7 @@ Lander = function() {
 		counter = 0;  
 	
 	this.rotation = 0; 
-	this.thrusting = false;
+	this.thrusting = 0;
 	this.altitude = 0;
 	this.active = true; 
 	this.fuel = 0; 
@@ -64,8 +64,11 @@ Lander = function() {
 		}
 		
 	};
-	this.thrust = function (state) { 
-		this.thrusting = state; 
+	this.thrust = function (power) { 
+		this.thrusting = power; 
+		
+		//this.thrustBuild = power; 
+		
 	};
 	
 	this.update = function() { 
@@ -79,15 +82,39 @@ Lander = function() {
 		
 		if(this.active) { 
 			
-			if(this.thrusting && (this.fuel>0)) { // also check for fuel 
-				thrustBuild+=0.1; 
+			
+			if(mouseThrust) { 
+				if(mouseY<mouseTop) mouseTop = mouseY; 
+				if(mouseY>mouseBottom) mouseBottom = mouseY; 
+				if(this.fuel>0) {
+					thrustBuild = map(mouseY, mouseBottom, mouseTop,-0.1,1.1); 
+				} else { 
+					thrustBuild-=0.1; 
+				}
+				//mouseTop *-0.999; 
+				mouseTop += ((mouseTop-mouseY)*-0.0001); 
+				mouseBottom += ((mouseBottom-mouseY)*-0.0005); 
+				thrustBuild = clamp(thrustBuild, 0, 1); 
+				
+				
 			} else { 
-				thrustBuild-=0.1; 
+				if(this.fuel<=0) this.thrusting = 0; 
+			
+				thrustBuild += ((this.thrusting-thrustBuild)*0.2);
+				// if(this.thrusting && (this.fuel>0)) { // also check for fuel 
+				// 					thrustBuild+=0.1; 
+				// 				} else { 
+				// 					thrustBuild-=0.1; 
+				// 				}
+				
+				//console.log(thrustBuild, this.thrusting); 
 			}
-			thrustBuild = clamp(thrustBuild, 0, 1); 
+			
+			
+			
 		
 			if(thrustBuild>0) { 
-				thrustVec.reset(0,-thrust); 
+				thrustVec.reset(0,-thrustAcceleration*thrustBuild); 
 				thrustVec.rotate(this.rotation); 
 				vel.plusEq(thrustVec); 
 				this.fuel -= (0.2 * thrustBuild);
@@ -135,9 +162,11 @@ Lander = function() {
 			c.closePath(); 
 		}	
 		
+			
 		c.stroke(); 
-	
+		
 		c.restore(); 
+		
 		this.colour = 'white'; 
 		 
 	};

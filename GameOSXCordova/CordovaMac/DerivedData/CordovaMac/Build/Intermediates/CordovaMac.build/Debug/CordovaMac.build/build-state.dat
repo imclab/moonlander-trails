@@ -1,0 +1,452 @@
+TCordovaMac
+v5
+r1
+cCheck dependencies
+cProcessInfoPlistFile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Info.plist CordovaMac/CordovaMac-Info.plist
+cProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.pth CordovaMac/CordovaMac-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac normal x86_64
+cCopyStringsFile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/InfoPlist.strings CordovaMac/en.lproj/InfoPlist.strings
+cCompileXIB /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib
+cCpResource www DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www
+cCpResource CordovaMac/../Cordova.icns DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns
+cCpResource CordovaMac/en.lproj/Credits.rtf DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtf
+cTouch /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c000000004FF015DA00000000000000AA
+t1341134298
+s170
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
+c00000000502E133300000000000025C8
+t1345196851
+s9672
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/WebKit.framework/WebKit
+c00000000502E1335000000000008671C
+t1345196853
+s550684
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/../Cordova.icns
+c00000000503F72A0000000000001C9DC
+t1346335392
+s117212
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.h
+c00000000503F72A00000000000000428
+t1346335392
+s1064
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m
+c00000000503F72A00000000000000687
+t1346335392
+s1671
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.h
+c00000000503F72A00000000000000372
+t1346335392
+s882
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m
+c00000000503F72A00000000000000749
+t1346335392
+s1865
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.h
+c00000000503F72A00000000000000394
+t1346335392
+s916
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m
+c00000000503F72A00000000000000880
+t1346335392
+s2176
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.h
+c00000000503F72A0000000000000036E
+t1346335392
+s878
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m
+c00000000503F72A0000000000000082F
+t1346335392
+s2095
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Constants.h
+c00000000503F72A0000000000000034F
+t1346335392
+s847
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.h
+c00000000503F72A0000000000000040F
+t1346335392
+s1039
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m
+c00000000503F72A0000000000000084E
+t1346335392
+s2126
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/CordovaMac-Prefix.pch
+c00000000503F72A000000000000003DC
+t1346335392
+s988
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.h
+c00000000503F72A0000000000000045A
+t1346335392
+s1114
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m
+c00000000503F72A000000000000009D0
+t1346335392
+s2512
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.h
+c00000000503F72A00000000000000449
+t1346335392
+s1097
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m
+c00000000503F72A00000000000000A34
+t1346335392
+s2612
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/Credits.rtf
+c00000000503F72A000000000000007F5
+t1346335392
+s2037
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/InfoPlist.strings
+c00000000503F72A00000000000000338
+t1346335392
+s824
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib
+c00000000503F72A000000000000263F9
+t1346335392
+s156665
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m
+c00000000503F72A0000000000000037D
+t1346335392
+s893
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.o
+t1349880709
+s33236
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.o
+t1349880709
+s9076
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.o
+t1349880709
+s22468
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.o
+t1349880709
+s11048
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.o
+t1349880709
+s26244
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CordovaMac.LinkFileList
+c0000000050758B85000000000000061F
+t1349880709
+s1567
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.o
+t1349880709
+s25828
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.o
+t1349880709
+s29748
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.o
+t1349880709
+s2960
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.pth
+t1349880709
+s13717696
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app
+t1349880764
+s102
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Info.plist
+t1349880709
+s1468
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac
+t1349880709
+s56360
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/PkgInfo
+t1349880709
+s8
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns
+t1349880709
+s117212
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtf
+t1349880709
+s2037
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/InfoPlist.strings
+t1349880709
+s1650
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/MainMenu.nib
+t1349880710
+s29969
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www
+t1349880764
+s646
+
+N/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/www
+c0000000050758BB90000000000000286
+t1349880761
+s646
+
+NCordovaMac/CordovaMac-Info.plist
+c00000000503F72A0000000000000044B
+t1346335392
+s1099
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m
+r0
+
+CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies7862aedac525b641^438daedac525b641^---0#1#0#--18"Check dependencies36"66AC1951-18F4-4CF8-AB10-22603B438337-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620439
+e371573509.721300
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection110"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m45f59e05c325b641^0da7b805c325b641^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m0000000000000000^3919"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.o CordovaMac/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/AppDelegate.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/AppDelegate.o36"9C7D3CA7-25F2-46FA-89AE-C5E696CF15E9-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620773
+e371573509.685117
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection118"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.md40e9f05c325b641^b263af05c325b641^---0#0#0#-19%DVTDocumentLocation2@126"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m0000000000000000^3931"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.o CordovaMac/Commands/CDVConsole.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVConsole.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVConsole.o36"6A793514-153E-41D6-BB48-278CB232676E-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620527
+e371573509.693169
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+o/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m:30:82: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+o                                       otherButton:nil informativeTextWithFormat:message];
+o                                                                                 ^~~~~~~
+o1 warning generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection123"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m81069f05c325b641^1d74b105c325b641^-414"/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m:30:82: warning: format string is not a string literal (potentially insecure) [-Wformat-security]                                       otherButton:nil informativeTextWithFormat:message];                                                                                 ^~~~~~~1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@60"Format string is not a string literal (potentially insecure)-371573509#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@131"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m0000000000000000^29#81#29#81#1145#0#19"Format String Issue1(3@131"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m0000000000000000^29#81#29#88#1145#0#-0#0#0#-19%DVTDocumentLocation4@131"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m0000000000000000^3961"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.o CordovaMac/Commands/CDVNotification.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVNotification.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVNotification.o36"68CF0D55-F190-4D7B-9C2D-6189A8109A74-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620766
+e371573509.682318
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection116"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m4e0e9f05c325b641^96b0ae05c325b641^---0#0#0#-19%DVTDocumentLocation2@124"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m0000000000000000^3919"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.o CordovaMac/Commands/CDVSound.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Commands/CDVSound.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CDVSound.o36"16F35E67-0AC7-45D1-9A5D-63B0768831AF-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620423
+e371573509.727020
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection110"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m90f79e05c325b641^da1dba05c325b641^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m0000000000000000^3919"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.o CordovaMac/ContentView.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/ContentView.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/ContentView.o36"C2F0950D-866C-49E2-BF68-ABF3C21D3423-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620435
+e371573509.712552
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection104"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m66f59e05c325b641^876ab605c325b641^---0#0#0#-19%DVTDocumentLocation2@112"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m0000000000000000^3883"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.o CordovaMac/Utils.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/Utils.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/Utils.o36"45736B26-0EBC-46A0-89B5-53A15CFBEC41-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620416
+e371573509.725251
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection114"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m2a039f05c325b641^b9a9b905c325b641^---0#0#0#-19%DVTDocumentLocation2@122"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m0000000000000000^3943"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.o CordovaMac/WebViewDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/WebViewDelegate.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/WebViewDelegate.o36"B61EE543-2F88-45A3-8250-78D4C2701345-
+
+CCompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.620431
+e371573509.654799
+r1
+xCompileC
+xDerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.o
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection103"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m94f69e05c325b641^8d28a905c325b641^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m0000000000000000^3877"CompileC DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.o CordovaMac/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -include /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/main.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/main.o36"FFC51B54-CFBD-44AD-8869-46254A169A72-
+
+CCompileXIB /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib
+s371573509.798047
+e371573510.052944
+r1
+xCompileXIB
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection120"Compiling /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib6c5fcc05c325b641^a38f0d06c325b641^---0#0#0#-19%DVTDocumentLocation2@126"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib0000000000000000^751"CompileXIB CordovaMac/en.lproj/MainMenu.xib    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/MainMenu.nib /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/MainMenu.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk36"A2CAADC6-4734-4104-A0B4-0C9E604487BD-
+
+CCopyStringsFile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/InfoPlist.strings CordovaMac/en.lproj/InfoPlist.strings
+s371573509.798034
+e371573509.800300
+r1
+xCopyStringsFile
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/InfoPlist.strings
+xCordovaMac/en.lproj/InfoPlist.strings
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection42"Copy CordovaMac/en.lproj/InfoPlist.stringsf25bcc05c325b641^fce0cc05c325b641^---0#0#0#-19%DVTDocumentLocation2@131"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/InfoPlist.strings0000000000000000^540"CopyStringsFile DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/InfoPlist.strings CordovaMac/en.lproj/InfoPlist.strings    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding UTF-16 --outdir /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj -- CordovaMac/en.lproj/InfoPlist.strings36"9E4C11CB-2B82-47A3-90F6-A360CCFDB5D1-
+
+CCpResource CordovaMac/../Cordova.icns DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns
+s371573509.798060
+e371573509.803743
+r1
+xCpResource
+xCordovaMac/../Cordova.icns
+xDerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection95"Copy DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns4a5fcc05c325b641^2bc2cd05c325b641^---0#0#0#-19%DVTDocumentLocation2@184"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns000000000080d041^587"CpResource CordovaMac/../Cordova.icns DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/Cordova.icns    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/../Cordova.icns /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources36"200EE7A9-EABE-47C8-B184-DD0A83F1B039-
+
+CCpResource CordovaMac/en.lproj/Credits.rtf DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtf
+s371573509.798041
+e371573509.801215
+r1
+xCpResource
+xCordovaMac/en.lproj/Credits.rtf
+xDerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtf
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection103"Copy DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtfe25bcc05c325b641^151dcd05c325b641^---0#0#0#-19%DVTDocumentLocation2@192"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtf000000000080d041^614"CpResource CordovaMac/en.lproj/Credits.rtf DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj/Credits.rtf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/en.lproj/Credits.rtf /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/en.lproj36"520E0CBE-3742-4116-AAF0-D561C9E43699-
+
+CCpResource www DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www
+s371573564.077032
+e371573564.082183
+r1
+xCpResource
+xwww
+xDerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection86"Copy DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www04c9133cc325b641^bb0a153cc325b641^---0#0#0#-19%DVTDocumentLocation2@176"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www/0000000000000000^532"CpResource www DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources/www    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/www /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Resources36"A533BEBB-B5A3-47B3-B37F-4F7B93B6291B-
+
+CLd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac normal x86_64
+s371573509.734275
+e371573509.790269
+r1
+xLd
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac
+xnormal
+xx86_64
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection167"Link /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac33e0bc05c325b641^874fca05c325b641^---0#0#0#--1159"Ld DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac normal x86_64    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv MACOSX_DEPLOYMENT_TARGET 10.7    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug -filelist /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/Objects-normal/x86_64/CordovaMac.LinkFileList -mmacosx-version-min=10.7 -fobjc-link-runtime -framework WebKit -framework Cocoa -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/MacOS/CordovaMac36"20212D68-8CF9-4049-B154-5C05C590DA28-
+
+CProcessInfoPlistFile /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Info.plist CordovaMac/CordovaMac-Info.plist
+s371573509.062021
+e371573509.064687
+r1
+xProcessInfoPlistFile
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Info.plist
+xCordovaMac/CordovaMac-Info.plist
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection40"Process CordovaMac/CordovaMac-Info.plist07eb0f05c325b641^59a51005c325b641^---0#0#0#-19%DVTDocumentLocation2@126"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/CordovaMac-Info.plist0000000000000000^644"ProcessInfoPlistFile DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Info.plist CordovaMac/CordovaMac-Info.plist    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    builtin-infoPlistUtility CordovaMac/CordovaMac-Info.plist -genpkginfo /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app/Contents/Info.plist36"C7D6DB5A-8028-4CD2-AFE1-36A8BBF437C1-
+
+CProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.pth CordovaMac/CordovaMac-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s371573509.072648
+e371573509.613587
+r1
+xProcessPCH
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.pth
+xCordovaMac/CordovaMac-Prefix.pch
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection43"Precompile CordovaMac/CordovaMac-Prefix.pche2ae1205c325b641^a5139d05c325b641^---0#0#0#-19%DVTDocumentLocation2@126"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/CordovaMac-Prefix.pch0000000000000000^3786"ProcessPCH DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.pth CordovaMac/CordovaMac-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.7 -g -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/CordovaMac-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/CordovaMac.build/Debug/CordovaMac.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/CordovaMac/CordovaMac-Prefix.pch -o /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.pth -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Intermediates/PrecompiledHeaders/CordovaMac-Prefix-dkotpwmuyrigbqddglxnfnwacwtl/CordovaMac-Prefix.pch.d36"A9C34847-3096-4705-B695-A20C5F7F5FB9-
+
+CProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Index/PrecompiledHeaders/CordovaMac-Prefix-bbykmgfyluvdczagntmxfulkfexc_ast/CordovaMac-Prefix.pch.pth CordovaMac/CordovaMac-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CTouch /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app
+s371573564.090153
+e371573564.095402
+r1
+xTouch
+x/Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection142"Touch /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app9e26173cc325b641^2f6d183cc325b641^---0#0#0#--309"Touch DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app    cd /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac    /usr/bin/touch -c /Users/sebretina/Dropbox/projects/moonlander-trails/GameOSXCordova/CordovaMac/DerivedData/CordovaMac/Build/Products/Debug/CordovaMac.app36"01ED6748-A5D2-4720-A3A7-8D3511A141A2-
+

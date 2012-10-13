@@ -79,8 +79,8 @@ static int defaultStepMultiplier = 1;
 String machineName = "";
 const String DEFAULT_MACHINE_NAME = "PG01    ";
 
-float currentMaxSpeed = 800.0;
-float currentAcceleration = 400.0;
+float currentMaxSpeed = 40000.0;
+float currentAcceleration = 400000.0;
 boolean usingAcceleration = true;
 
 int startLengthMM = 800;

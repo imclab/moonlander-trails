@@ -14,6 +14,7 @@ the squarewave and scribble pixel styles.
 
 */
 
+/*
 void pixel_drawSquarePixel() 
 {
     long originA = multiplier(asLong(inParam1));
@@ -471,4 +472,4 @@ void pixel_flipWaveDirection()
     penWidth = oldPenWidth;
     globalDrawDirectionMode = tempDirectionMode;
   }    
-
+*/
