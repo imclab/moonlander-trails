@@ -20,11 +20,9 @@ Comment out the blocks of code you don't need.
 // =================================================================
 // 1. Adafruit motorshield
 
-//#include <AFMotor.h>
-//const int stepType = INTERLEAVE;
 
-/*
-// uncomment this for stepper motors
+#include <AFMotor.h>
+const int stepType = INTERLEAVE;
 
 AF_Stepper afMotorA(motorStepsPerRev, 1);
 AF_Stepper afMotorB(motorStepsPerRev, 2);
@@ -36,42 +34,24 @@ AccelStepper motorA(forwarda, backwarda);
 void forwardb() { afMotorB.onestep(FORWARD, stepType); }
 void backwardb() { afMotorB.onestep(BACKWARD, stepType); }
 AccelStepper motorB(forwardb, backwardb);
-*/
 
+/*
 
-int stepPinA =   4; 
-int dirPinA =    5; 
-int stepPinB =   8; 
-int dirPinB =    9; 
 
 
 AccelStepper motorA(AccelStepper::DRIVER, stepPinA, dirPinA); 
 AccelStepper motorB(AccelStepper::DRIVER, stepPinB, dirPinB); 
-
+*/
 void configuration_motorSetup()
 {
-  // if we need to set an enable pin do it here. We may also need to check the code 
-  // calls enableOutputs and disableOutputs
-  
-  //motorA.setEnablePin(motorAEnablePin) ; 
-  //motorB.setEnablePin(motorBEnablePin) ; 
-  
-  
- // motorA.setPinsInverted(true,true, true); 
-  // Might also need to invert pins : 
-  //setPinsInverted	(	bool 	direction,
-      //bool 	step,
-      //bool 	enable = false
-  //)
-  
-  // see http://www.open.com.au/mikem/arduino/AccelStepper/classAccelStepper.html#a797b4bdb580d4ca7a1cfeabe3df0de35		
+  // no initial setup for these kinds of motor drivers
 }
 void configuration_setup()
 {
-  defaultMachineWidth = 1600;
-  defaultMachineHeight = 1600;
-  defaultMmPerRev = 106;
-  defaultStepsPerRev = 2000;
+  defaultMachineWidth = 650;
+  defaultMachineHeight = 650;
+  defaultMmPerRev = 95;
+  defaultStepsPerRev = 400;
   defaultStepMultiplier = 1;
   currentlyRunning = true;
   delay(500);

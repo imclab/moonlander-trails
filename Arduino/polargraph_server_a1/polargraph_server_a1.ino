@@ -25,6 +25,7 @@ something like polargraph_server_a1.ino.
 #include <AccelStepper.h>
 #include <Servo.h>
 #include <EEPROM.h>
+#include <AnalogueMultiButton.h>
 
 /*  ===========================================================  
     These variables are common to all polargraph server builds
@@ -79,8 +80,8 @@ static int defaultStepMultiplier = 1;
 String machineName = "";
 const String DEFAULT_MACHINE_NAME = "PG01    ";
 
-float currentMaxSpeed = 40000.0;
-float currentAcceleration = 400000.0;
+float currentMaxSpeed = 800.0;
+float currentAcceleration = 400.0;
 boolean usingAcceleration = true;
 
 int startLengthMM = 800;
@@ -109,6 +110,9 @@ boolean acceleration = true;
 extern AccelStepper motorA;
 extern AccelStepper motorB;
 
+
+// ------- Not really sure what this is for. It's set straight away. 
+// I reckon it could be used for emergency stop. 
 boolean currentlyRunning = false;
 
 static String inCmd = "                                                  ";
@@ -187,16 +191,45 @@ const static String CMD_SETMOTORSPEED = "C31";
 const static String CMD_SETMOTORACCEL = "C32";
 const static String CMD_SETMACHINESTEPMULTIPLIER = "C37";
 
+
+
+
+
+
+
+AnalogueMultiButton multiButton; 
+
+int motorAUpButton; 
+int motorADownButton; 
+int motorBUpButton; 
+int motorBDownButton; 
+
+boolean motorARunning; 
+boolean motorBRunning; 
+
+
+
 void setup() 
 {
   Serial.begin(57600);           // set up Serial library at 57600 bps
   Serial.print(F("POLARGRAPH ON!"));
   Serial.println();
+
+
+  motorARunning = false; 
+  motorBRunning = false; 
+  
+  multiButton.init(A0);
+  
+  motorAUpButton   = multiButton.addButton(600,800);  
+  motorADownButton = multiButton.addButton(800,880);  
+  motorBUpButton   = multiButton.addButton(880,1000);  
+  motorBDownButton = multiButton.addButton(1000,1023);  
+  
+
   configuration_motorSetup();
   eeprom_loadMachineSpecFromEeprom();
-  //eeprom_resetEeprom(); 
   configuration_setup();
-  display_setup();
 
   motorA.setMaxSpeed(currentMaxSpeed);
   motorA.setAcceleration(currentAcceleration);  
@@ -209,10 +242,10 @@ void setup()
   readyString = READY;
   comms_establishContact();
 
+
   //testServoRange();
   penlift_movePenUp();
-  
- 
+
   delay(500);
   outputAvailableMemory();
 }
@@ -221,7 +254,6 @@ void loop()
 {
   lastCommand = comms_waitForNextCommand();
   comms_parseAndExecuteCommand(lastCommand);
-  display_update(); 
 }
 
 

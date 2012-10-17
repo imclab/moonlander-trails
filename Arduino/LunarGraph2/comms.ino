@@ -26,6 +26,10 @@ String comms_waitForNextCommand()
   // loop while there's no commands coming in
   while (inS.length() == 0)
   {
+    
+    
+    // --------  THIS HAPPENS WHILE WE'RE WAITING FOR A COMMAND
+    
     impl_runBackgroundProcesses();
     // idle time is spent in this loop.
     int timeSince = millis() - idleTime;
@@ -106,15 +110,10 @@ String comms_readCommand()
     }
     else
     {
-      Serial.println(F("Checksum not matched! : "));
-
+      Serial.print(F("Checksum not matched!:"));
+      Serial.println(calcCrc);
       commandConfirmed = false;
     }
-    
-      Serial.print(calcCrc);
-      Serial.print(" | "); 
-      Serial.println(checksum); 
-    
   }
   else
   {

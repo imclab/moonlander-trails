@@ -1,5 +1,5 @@
 #   ***  Polargraph properties file   ***  
-#Thu Oct 11 20:14:27 BST 2012
+#Mon Oct 15 20:15:49 BST 2012
 controller.pixel.samplearea=10.0
 controller.pictureframe.position.y=95
 controller.pictureframe.position.x=95
@@ -10,10 +10,10 @@ controller.window.width=1011
 controller.frame.colour=C80000
 controller.image.position.y=89
 controller.image.position.x=89
-machine.motors.accel=3999.0
+machine.motors.accel=2000.0
 controller.image.height=60
 controller.machine.serialport=4
-controller.window.height=788
+controller.window.height=810
 controller.maxSegmentLength=2
 controller.page.position.y=60
 controller.vector.scaling=100.0

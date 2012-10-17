@@ -25,6 +25,7 @@ something like polargraph_server_a1.ino.
 #include <AccelStepper.h>
 #include <Servo.h>
 #include <EEPROM.h>
+#include <AnalogueMultiButton.h>
 
 /*  ===========================================================  
     These variables are common to all polargraph server builds
@@ -50,11 +51,8 @@ const byte EEPROM_MACHINE_MM_PER_REV = 14;
 const byte EEPROM_MACHINE_STEPS_PER_REV = 16;
 const int EEPROM_MACHINE_STEP_MULTIPLIER = 18;
 
-// Pen raising servo
-Servo penHeight;
-int const UP_POSITION = 180;
-int const DOWN_POSITION = 90;
-int const PEN_HEIGHT_SERVO_PIN = 10;
+// pen up by default, when pin is low. 
+int const PEN_LIFT_SOLENOID_PIN = 12;
 boolean isPenUp = true;
 
 int motorStepsPerRev = 800;
@@ -79,8 +77,8 @@ static int defaultStepMultiplier = 1;
 String machineName = "";
 const String DEFAULT_MACHINE_NAME = "PG01    ";
 
-float currentMaxSpeed = 40000.0;
-float currentAcceleration = 400000.0;
+float currentMaxSpeed = 800.0;
+float currentAcceleration = 400.0;
 boolean usingAcceleration = true;
 
 int startLengthMM = 800;
@@ -108,6 +106,10 @@ boolean acceleration = true;
 
 extern AccelStepper motorA;
 extern AccelStepper motorB;
+
+
+// ------- Not really sure what this is for. It's set straight away. 
+// I reckon it could be used for emergency stop? 
 
 boolean currentlyRunning = false;
 
@@ -187,16 +189,44 @@ const static String CMD_SETMOTORSPEED = "C31";
 const static String CMD_SETMOTORACCEL = "C32";
 const static String CMD_SETMACHINESTEPMULTIPLIER = "C37";
 
+
+
+
+AnalogueMultiButton multiButton; 
+
+int motorAUpButton; 
+int motorADownButton; 
+int motorBUpButton; 
+int motorBDownButton; 
+
+boolean motorARunning; 
+boolean motorBRunning; 
+
+
+
 void setup() 
 {
   Serial.begin(57600);           // set up Serial library at 57600 bps
   Serial.print(F("POLARGRAPH ON!"));
   Serial.println();
+
+  pinMode(PEN_LIFT_SOLENOID_PIN, OUTPUT); 
+
+  motorARunning = false; 
+  motorBRunning = false; 
+  
+  multiButton.init(A0);
+  display_setup();
+  
+  motorAUpButton   = multiButton.addButton(600,800);  
+  motorADownButton = multiButton.addButton(800,880);  
+  motorBUpButton   = multiButton.addButton(880,1000);  
+  motorBDownButton = multiButton.addButton(1000,1023);  
+  
+
   configuration_motorSetup();
   eeprom_loadMachineSpecFromEeprom();
-  //eeprom_resetEeprom(); 
   configuration_setup();
-  display_setup();
 
   motorA.setMaxSpeed(currentMaxSpeed);
   motorA.setAcceleration(currentAcceleration);  
@@ -209,10 +239,10 @@ void setup()
   readyString = READY;
   comms_establishContact();
 
+  // pen should be up automatically...
   //testServoRange();
-  penlift_movePenUp();
-  
- 
+  //penlift_movePenUp();
+
   delay(500);
   outputAvailableMemory();
 }
@@ -221,7 +251,6 @@ void loop()
 {
   lastCommand = comms_waitForNextCommand();
   comms_parseAndExecuteCommand(lastCommand);
-  display_update(); 
 }
 
 

@@ -21,8 +21,6 @@ routines are here.
 boolean exec_executeBasicCommand(String &com)
 {
   boolean executed = true;
-  
-  Serial.println(com); 
   if (com.startsWith(CMD_CHANGELENGTH))
     exec_changeLength();
   else if (com.startsWith(CMD_CHANGELENGTHDIRECT))
@@ -37,21 +35,18 @@ boolean exec_executeBasicCommand(String &com)
     exec_setMotorSpeed();
   else if (com.startsWith(CMD_SETMOTORACCEL))
     exec_setMotorAcceleration();
-  //else if (com.startsWith(CMD_DRAWPIXEL))
-    //pixel_drawSquarePixel();
-  // ;
-  //else if (com.startsWith(CMD_DRAWSCRIBBLEPIXEL))
-  //  ;
-    //pixel_drawScribblePixel();
+  else if (com.startsWith(CMD_DRAWPIXEL))
+    pixel_drawSquarePixel();
+  else if (com.startsWith(CMD_DRAWSCRIBBLEPIXEL))
+    pixel_drawScribblePixel();
 //  else if (com.startsWith(CMD_DRAWRECT))
 //    drawRectangle();
-//  else if (com.startsWith(CMD_CHANGEDRAWINGDIRECTION))
-//    exec_changeDrawingDirection();
+  else if (com.startsWith(CMD_CHANGEDRAWINGDIRECTION))
+    exec_changeDrawingDirection();
   else if (com.startsWith(CMD_SETPOSITION))
     exec_setPosition();
-  //else if (com.startsWith(CMD_TESTPENWIDTHSQUARE))
-  //  ;
-    //pixel_testPenWidth();
+  else if (com.startsWith(CMD_TESTPENWIDTHSQUARE))
+    pixel_testPenWidth();
   else if (com.startsWith(CMD_PENDOWN))
     penlift_penDown();
   else if (com.startsWith(CMD_PENUP))
@@ -109,7 +104,7 @@ void exec_reportMachineSpec()
   Serial.println(CMD_END);
   
   Serial.print(F("PGSTEPMULTIPLIER,"));
-  Serial.print(stepMultiplier);
+  Serial.print(motorStepsPerRev);
   Serial.println(CMD_END);
 
 }
@@ -257,7 +252,6 @@ void exec_changeLengthDirect()
   }
   else
   {
-  Serial.println("dr.5");
     exec_drawBetweenPoints(startA, startB, endA, endB, maxSegmentLength);
   }
 }  
@@ -272,6 +266,7 @@ allowed to be.  1 is finest, slowest.  Use higher values for faster, wobblier.
 void exec_drawBetweenPoints(float p1a, float p1b, float p2a, float p2b, int maxSegmentLength)
 {
   // ok, we're going to plot some dots between p1 and p2.  Using maths. I know! Brave new world etc.
+  reportingPosition = false;
   
   // First, convert these values to cartesian coordinates
   // We're going to figure out how many segments the line
@@ -285,10 +280,12 @@ void exec_drawBetweenPoints(float p1a, float p1b, float p2a, float p2b, int maxS
   // test to see if it's on the page
   if (c2x > 20 && c2x<pageWidth-20 && c2y > 20 && c2y <pageHeight-20)
   {
-    reportingPosition = false;
     float deltaX = c2x-c1x;    // distance each must move (signed)
     float deltaY = c2y-c1y;
     float totalDistance = sqrt(sq(deltaX) + sq(deltaY));
+
+    // ------- CHANGE THIS TO USE VECTOR LENGTH
+
 
     int linesegs = 1;            // assume at least 1 line segment will get us there.
     if (abs(deltaX) > abs(deltaY))
@@ -312,10 +309,14 @@ void exec_drawBetweenPoints(float p1a, float p1b, float p2a, float p2b, int maxS
     deltaX = deltaX/linesegs;
     deltaY = deltaY/linesegs;
   
+    // --------  seems a bit clumsy how it's calculating acceleration... 
+    
     // render the line in N shorter segments
-    long runSpeed = 0;
-
-    usingAcceleration = false;
+    int accelSize = motorStepsPerRev / maxSegmentLength;; // how many segs should the accel portion take
+    int accelIncrement = currentMaxSpeed / accelSize;
+    int runSpeed = accelIncrement; // initial value
+  
+  
     while (linesegs > 0)
     {
       // compute next new location
@@ -327,11 +328,18 @@ void exec_drawBetweenPoints(float p1a, float p1b, float p2a, float p2b, int maxS
       float pB = getMachineB(c1x, c1y);
     
       // do the move
-      runSpeed = desiredSpeed(linesegs, runSpeed, currentAcceleration*4);
+      usingAcceleration = false;
       
-//      Serial.print("Runspeed:");
-//      Serial.println(runSpeed);
-      
+      if (linesegs < accelSize) // there's only a few segs left
+      {
+        // primitive deceleration
+        runSpeed = accelIncrement * linesegs;
+      }
+      else if (runSpeed < currentMaxSpeed)
+      {
+        // primitive acceleration
+        runSpeed += accelIncrement;
+      }
       motorA.setSpeed(runSpeed);
       motorB.setSpeed(runSpeed);
       changeLength(pA, pB);
@@ -354,57 +362,3 @@ void exec_drawBetweenPoints(float p1a, float p1b, float p2a, float p2b, int maxS
   }
   outputAvailableMemory();
 }
-
-// Work out and return a new speed.
-// Subclasses can override if they want
-// Implement acceleration, deceleration and max speed
-// Negative speed is anticlockwise
-// This is called:
-//  after each step
-//  after user changes:
-//   maxSpeed
-//   acceleration
-//   target position (relative or absolute)
-float desiredSpeed(long distanceTo, float currentSpeed, float acceleration)
-{
-    float requiredSpeed;
-
-    if (distanceTo == 0)
-	return 0.0f; // We're there
-
-    // sqrSpeed is the signed square of currentSpeed.
-    float sqrSpeed = sq(currentSpeed);
-    if (currentSpeed < 0.0)
-      sqrSpeed = -sqrSpeed;
-      
-    float twoa = 2.0f * acceleration; // 2ag
-    
-    // if v^^2/2as is the the left of target, we will arrive at 0 speed too far -ve, need to accelerate clockwise
-    if ((sqrSpeed / twoa) < distanceTo)
-    {
-	// Accelerate clockwise
-	// Need to accelerate in clockwise direction
-	if (currentSpeed == 0.0f)
-	    requiredSpeed = sqrt(twoa);
-	else
-	    requiredSpeed = currentSpeed + fabs(acceleration / currentSpeed);
-
-	if (requiredSpeed > currentMaxSpeed)
-	    requiredSpeed = currentMaxSpeed;
-    }
-    else
-    {
-	// Decelerate clockwise, accelerate anticlockwise
-	// Need to accelerate in clockwise direction
-	if (currentSpeed == 0.0f)
-	    requiredSpeed = -sqrt(twoa);
-	else
-	    requiredSpeed = currentSpeed - fabs(acceleration / currentSpeed);
-	if (requiredSpeed < -currentMaxSpeed)
-	    requiredSpeed = -currentMaxSpeed;
-    }
-    
-    //Serial.println(requiredSpeed);
-    return requiredSpeed;
-}
-
