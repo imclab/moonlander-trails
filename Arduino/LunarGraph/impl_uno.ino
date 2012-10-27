@@ -19,9 +19,20 @@ void impl_runBackgroundProcesses()
 
   //motorA.currentPosition(); 
   //motorB.currentPosition(); 
+  
+  // if error pin : 
+  // set error mode
+  // power up brake
+  
+  // if max/min pins 
+  // stop motors
+  // move back until not triggered
+  
 
 
   checkNudgeButtons();    
+  display_update(); 
+  
 
 }
 
@@ -32,6 +43,7 @@ void checkNudgeButtons() {
 
   if(!motorARunning){
     if(multiButton.isPressed(motorAUpButton)) { 
+      
       motorA.move(-jogSpeed); 
     } 
     else if(multiButton.isPressed(motorADownButton)) { 

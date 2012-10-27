@@ -71,7 +71,7 @@ function init()
 		console.log('connected'); 
 		wsConnected = true; 
 		
-	} 
+	};
 	ws.onmessage = function(e) { 
 	//	console.log(e.data); 
 		
@@ -102,11 +102,11 @@ function init()
 			
 			
 		
-	}
+	};
 	ws.onclose = function(e) { 
 		wsConnected = false; 
 		console.log("disconnected!"); 
-	}
+	};
 	
 	// CANVAS SET UP
 	
@@ -142,11 +142,8 @@ function init()
 	KeyTracker.addKeyUpListener('8', function() { lander.thrust(0.88);});
 	KeyTracker.addKeyUpListener('9', function() { lander.thrust(1);});
 
-
-	
 	window.addEventListener('resize', resizeGame);
 	window.addEventListener('orientationchange', resizeGame);
-	
 	
 	resizeGame();
 	restartLevel(); 
@@ -163,8 +160,10 @@ function sendPosition() {
 			x : Math.round(lander.pos.x*100), 
 			y : Math.round(lander.pos.y*100), 
 			a : Math.round(lander.rotation), 
-			t : lander.thrusting ? 1 :0
-		}
+			t : lander.thrusting 
+		};
+		
+	
 		// if(lander.exploding) update.exploding = 1; 
 		// 	if(lander.thrusting) update.thrusting = 1; 
 			
@@ -172,6 +171,39 @@ function sendPosition() {
 		//console.log(JSON.stringify(lander.pos));
 	}
 }
+
+function sendLanded() { 
+	var update = {
+		type : 'land', 
+		id : wsID	
+	};
+	ws.send(JSON.stringify(update)); 
+}
+	
+function sendCrashed() { 
+	var update = {
+		type : 'crash', 
+		id : wsID	
+	};
+	ws.send(JSON.stringify(update)); 
+}
+function sendGameOver() { 
+	var update = {
+		type : 'over', 
+		id : wsID,
+		sc : score
+	};
+	ws.send(JSON.stringify(update)); 
+}
+function sendRestart() { 
+	var update = {
+		type : 'restart', 
+		id : wsID,
+		sc : score
+	};
+	ws.send(JSON.stringify(update)); 
+}
+	
 
 
 //
@@ -279,13 +311,13 @@ function render() {
 	if(counter%4==0) updateTextInfo(); 
 	
 	c.restore();
-	c.strokeStyle = 'white';
-	c.beginPath(); 
-	c.moveTo(0,mouseTop+HALF_HEIGHT); 
-	c.lineTo(50,mouseTop+HALF_HEIGHT); 
-	c.moveTo(0,mouseBottom+HALF_HEIGHT); 
-	c.lineTo(50,mouseBottom+HALF_HEIGHT); 
-	c.stroke(); 
+	// c.strokeStyle = 'white';
+	// 	c.beginPath(); 
+	// 	c.moveTo(0,mouseTop+HALF_HEIGHT); 
+	// 	c.lineTo(50,mouseTop+HALF_HEIGHT); 
+	// 	c.moveTo(0,mouseBottom+HALF_HEIGHT); 
+	// 	c.lineTo(50,mouseBottom+HALF_HEIGHT); 
+	// 	c.stroke(); 
 	
 	
 }
@@ -368,6 +400,7 @@ function setLanded(line) {
 	score+=points; 
 	// TODO Show score
 	gameState = LANDED; 
+	sendLanded();
 	scheduleRestart(); 
 }
 
@@ -400,8 +433,10 @@ function setCrashed() {
 		
 		if(lander.fuel<=0) { 
 			gameState = GAMEOVER; 
+			sendGameOver(); 
 		} else {
-			gameState = CRASHED; 
+			gameState = CRASHED;
+			sendCrashed();  
 		}
 		
 		infoDisplay.showGameInfo(msg);
@@ -452,6 +487,7 @@ function restartLevel() {
 		//initGame(); 
 	} else {
 		gameState = PLAYING; 
+		sendRestart(); 
 		infoDisplay.hideGameInfo();
 	}
 	
@@ -615,7 +651,7 @@ function resizeGame (event) {
 	SCREEN_WIDTH = canvas.width = newWidth; 
 	SCREEN_HEIGHT = canvas.height = newHeight; 
 	
-	setZoom(zoomedIn ) 
+	setZoom(zoomedIn) ;
 	stats.domElement.style.top = (SCREEN_HEIGHT-45)+'px';
 	infoDisplay.arrangeBoxes(SCREEN_WIDTH, SCREEN_HEIGHT); 
 

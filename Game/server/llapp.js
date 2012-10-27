@@ -67,7 +67,11 @@ ws.attach(app).on('connection', function(sock){
 		if(data.type == 'update'){
 			broadcast(sock, msg);
 			sock.stream.write(data.x+','+data.y+','+data.a+','); 
-		} else if(data.type == 'register') { 
+		} else 	if((data.type == 'crash') || (data.type == 'land') || (data.type == 'over')|| (data.type == 'restart')){
+			broadcast(sock, msg);
+			//sock.stream.write(data.x+','+data.y+','+data.a+','); 
+		}
+		else if(data.type == 'register') { 
 			sock.viewer = true; 
 			
 			console.log('adding viewer to socket : '+sock.id); 

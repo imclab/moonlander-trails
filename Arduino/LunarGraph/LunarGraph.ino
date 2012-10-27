@@ -33,6 +33,44 @@ something like polargraph_server_a1.ino.
 
 const String FIRMWARE_VERSION_NO = "1.4";
 
+
+
+
+// pen up by default, when pin is low. 
+int const PEN_LIFT_SOLENOID_PIN = 12;
+
+// min and max switches for motors
+int const A_MIN_SWITCH_PIN   = 13; 
+int const A_MAX_SWITCH_PIN   = A0; 
+int const B_MIN_SWITCH_PIN   = A2; 
+int const B_MAX_SWITCH_PIN   = A3; 
+
+// calibration switch for home position
+int const A_CAL_SWITCH_PIN   = A1; 
+int const B_CAL_SWITCH_PIN   = A6; 
+
+// single analogue in for 4 jog buttons
+int const JOG_BUTTONS_PIN    = A7;
+
+int const A_STEP_PIN    =   4; 
+int const A_DIR_PIN     =   5; 
+int const B_STEP_PIN    =   8; 
+int const B_DIR_PIN     =   9; 
+
+// need to set these high for a second when the
+// machine first switches on. 
+int const A_ERROR_PIN   = 6; 
+int const B_ERROR_PIN   = 10; 
+
+// theses brakes lock the drum when unpowered. 
+// Power them high as long as there's no motor errors!
+int const A_BRAKE_SOLENOID_PIN = 7; 
+int const B_BRAKE_SOLENOID_PIN = 11; 
+
+
+
+
+
 // for working out CRCs
 static PROGMEM prog_uint32_t crc_table[16] = {
     0x00000000, 0x1db71064, 0x3b6e20c8, 0x26d930ac,
@@ -51,9 +89,10 @@ const byte EEPROM_MACHINE_MM_PER_REV = 14;
 const byte EEPROM_MACHINE_STEPS_PER_REV = 16;
 const int EEPROM_MACHINE_STEP_MULTIPLIER = 18;
 
-// pen up by default, when pin is low. 
-int const PEN_LIFT_SOLENOID_PIN = 12;
 boolean isPenUp = true;
+
+//int const MOTORA_MIN_
+
 
 int motorStepsPerRev = 800;
 float mmPerRev = 95;
@@ -191,7 +230,6 @@ const static String CMD_SETMACHINESTEPMULTIPLIER = "C37";
 
 
 
-
 AnalogueMultiButton multiButton; 
 
 int motorAUpButton; 
@@ -206,17 +244,18 @@ boolean motorBRunning;
 
 void setup() 
 {
+  display_setup();
+ 
   Serial.begin(57600);           // set up Serial library at 57600 bps
   Serial.print(F("POLARGRAPH ON!"));
   Serial.println();
-
+  // pinMode(
   pinMode(PEN_LIFT_SOLENOID_PIN, OUTPUT); 
 
   motorARunning = false; 
   motorBRunning = false; 
   
-  multiButton.init(A0);
-  display_setup();
+  multiButton.init(JOG_BUTTONS_PIN);
   
   motorAUpButton   = multiButton.addButton(600,800);  
   motorADownButton = multiButton.addButton(800,880);  
