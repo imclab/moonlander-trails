@@ -11,7 +11,7 @@ public :
 
     currentSpeed = targetSpeed = 0.0f; 
     acceleration = 0.0f; 
-    accelSpeed = 0.5f; 
+    accelSpeed = 0.1f; 
 
 
 
@@ -24,8 +24,8 @@ public :
     
   }
 
-  void initAFStepper(AF_Stepper* stepper, void (*forward)(), void (*backward)()){ 
-    afStepper = stepper;
+  void initAFStepper(int motorNum, void (*forward)(), void (*backward)()){ 
+    afStepper = &AF_Stepper(800, motorNum);
 
     accelStepper = AccelStepper(forward, backward);
     
@@ -37,9 +37,9 @@ public :
 
 
 
-  void update(boolean do33msUpdate) { 
+  void update(boolean do10msUpdate) { 
 
-    if(do33msUpdate) { 
+    if(do10msUpdate) { 
 
       // smoothstep smoothing technique on speed 
       if(targetSpeed!=currentSpeed) { 
@@ -61,12 +61,6 @@ public :
   void setSpeed(float targetspeed, float accelSpeed = -1) { 
 
     targetSpeed = targetspeed;  
-
-  }
-  
-  void setSpeedDirect(float targetspeed) { 
-
-    currentSpeed = targetSpeed = targetspeed;  
 
   }
   void stop() { 

@@ -8,14 +8,12 @@ public:
 
     now = 0; 
 
-    lastUpdate100ms = 0;
-    lastUpdate33ms = 0;  
+    lastUpdate100ms = 0; 
     lastUpdate10ms = 0; 
     lastUpdate1ms = 0; 
 
     do100msUpdate = false; 
     do10msUpdate = false; 
-    do33msUpdate = false; 
     do1msUpdate = false; 
 
 
@@ -31,14 +29,7 @@ public:
     else {
       do100msUpdate = false; 
     } 
-    
-    if((now - lastUpdate10ms > 33000) || (now<lastUpdate33ms)){
-      do33msUpdate = true; 
-      lastUpdate33ms = now; 
-    } 
-    else {
-      do33msUpdate = false; 
-    } 
+
 
     if((now - lastUpdate10ms > 10000) || (now<lastUpdate10ms)){
       do10msUpdate = true; 
@@ -62,12 +53,10 @@ public:
   unsigned long now; 
 
   unsigned long lastUpdate100ms; 
-  unsigned long lastUpdate33ms; 
   unsigned long lastUpdate10ms; 
   unsigned long lastUpdate1ms; 
 
   boolean do100msUpdate; 
-  boolean do33msUpdate; 
   boolean do10msUpdate; 
   boolean do1msUpdate; 
 

@@ -22,16 +22,16 @@ void setup() {
   //Serial.begin(9600); 
 
     motorA.setMinPulseWidth(1);
-    motorA.setMaxSpeed(10000.0);
-    motorA.setAcceleration(10000.0);
+    motorA.setMaxSpeed(100000.0);
+    motorA.setAcceleration(100000.0);
     motorA.setSpeed(1000);
-    motorA.moveTo(5000);
+    motorA.moveTo(2000);
     
     motorB.setMinPulseWidth(1);
-    motorB.setMaxSpeed(10000.0);
-    motorB.setAcceleration(10000.0);
+    motorB.setMaxSpeed(100000.0);
+    motorB.setAcceleration(100000.0);
     motorB.setSpeed(1000);
-    motorB.moveTo(5000);
+    motorB.moveTo(2000);
     reset(); 
   
 }

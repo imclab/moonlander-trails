@@ -28,7 +28,7 @@ void loop() {
   motor.step(100, FORWARD, INTERLEAVE); 
   motor.step(100, BACKWARD, INTERLEAVE); 
 
-  Serial.println("Micrsostep steps");
-  motor.step(100, FORWARD, MICROSTEP); 
-  motor.step(100, BACKWARD, MICROSTEP); 
+  /*Serial.println("Micrsostep steps");
+      motor.step(100, FORWARD, MICROSTEP); 
+      motor.step(100, BACKWARD, MICROSTEP); */
 }

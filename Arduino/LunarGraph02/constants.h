@@ -1,27 +1,30 @@
 
 
-#define USE_TEST_MACHINE
+//#define USE_TEST_MACHINE
 
 #ifdef USE_TEST_MACHINE
 
 // STEPPER MOTOR VERSION ------------------------------------
 
-int const A_JOG_UP_PIN   = A0; 
-int const A_JOG_DOWN_PIN = A1; 
-int const B_JOG_UP_PIN   = A2; 
-int const B_JOG_DOWN_PIN = A3; 
+int const A_JOG_UP_PIN   = A10; 
+int const A_JOG_DOWN_PIN = A11; 
+int const B_JOG_UP_PIN   = A12; 
+int const B_JOG_DOWN_PIN = A13; 
 
-int const RESET_BUTTON_PIN = A5; 
+int const RESET_BUTTON_PIN = 18; 
 
 // NOT CONNECTED IN THIS SETUP 
 
-int const A_END_STOP_MIN_PIN = 2; // pin 21
-int const A_END_STOP_MAX_PIN = 2; // pin 20
-int const B_END_STOP_MIN_PIN = 2; // pin 19
-int const B_END_STOP_MAX_PIN = 2; // pin 18
+int const A_END_STOP_MIN_PIN = 22; // pin 21
+int const A_END_STOP_MAX_PIN = 23; // pin 20
+int const B_END_STOP_MIN_PIN = 24; // pin 19
+int const B_END_STOP_MAX_PIN = 25; // pin 18
 
-int const A_CALIBRATION_PIN = 2;
-int const B_CALIBRATION_PIN = 2;
+//int const A_END_STOP_MIN_INTERRUPT = 2; // pin 21
+//int const A_END_STOP_MAX_INTERRUPT = 3; // pin 20
+//int const B_END_STOP_MIN_INTERRUPT = 4; // pin 19
+//int const B_END_STOP_MAX_INTERRUPT = 5; // pin 18
+
 
 
 #else
@@ -46,10 +49,6 @@ int const A_END_STOP_MIN_PIN = 3; // pin 21
 int const A_END_STOP_MAX_PIN = 2; // pin 20
 int const B_END_STOP_MIN_PIN = 17; // pin 19
 int const B_END_STOP_MAX_PIN = 9; // pin 18
-
-
-int const A_CALIBRATION_PIN = 6;
-int const B_CALIBRATION_PIN = 8;
 //
 //int const A_END_STOP_MIN_INTERRUPT = 1; // pin 21
 //int const A_END_STOP_MAX_INTERRUPT = 0; // pin 20
@@ -59,7 +58,8 @@ int const B_CALIBRATION_PIN = 8;
 
 #endif
 
-
+int const A_CALIBRATION_PIN = 6;
+int const B_CALIBRATION_PIN = 8;
 
 
 int const STATE_WAITING = 0; 

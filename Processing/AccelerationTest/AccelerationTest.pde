@@ -15,9 +15,9 @@ void draw() {
   background(0);
   if(mousePressed) { 
     if(mouseX>400) 
-      targetSpeed = 10; 
+      targetSpeed = 5; 
     else 
-      targetSpeed = -10; 
+      targetSpeed = -5; 
     
     
   } else { 

@@ -4,26 +4,20 @@ DynamicMotor motorB;
 
 
 #ifdef USE_TEST_MACHINE
-
-AF_Stepper stepperA = AF_Stepper(800,1); 
-AF_Stepper stepperB = AF_Stepper(800,2); 
-
-
-
 void forwardA() { 
-  stepperA.onestep(FORWARD, INTERLEAVE); 
+  motorA.stepperForward(); 
 }
 
 void backwardA() { 
- stepperA.onestep(BACKWARD, INTERLEAVE); 
+  motorA.stepperBackward(); 
 }
 
 void forwardB() { 
- stepperB.onestep(FORWARD, INTERLEAVE); 
+  motorB.stepperForward(); 
 }
 
 void backwardB() { 
-  stepperB.onestep(BACKWARD, INTERLEAVE); 
+  motorB.stepperBackward(); 
 }
 
 
@@ -37,10 +31,9 @@ void initMotors() {
   
   
 #ifdef USE_TEST_MACHINE  
-forwardA(); 
-forwardB(); 
-  motorA.initAFStepper(&stepperA,forwardA, backwardA); 
-  motorB.initAFStepper(&stepperB,forwardB, backwardB); 
+
+  motorA.initAFStepper(1,forwardA, backwardA); 
+  motorB.initAFStepper(2,forwardB, backwardB); 
 
 #else 
 

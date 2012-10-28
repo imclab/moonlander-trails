@@ -17,7 +17,7 @@ unsigned int calibrationProgressA = 0;
 unsigned int calibrationProgressB = 0; 
 
 
-float maxJogSpeed = 2000.0f; 
+float maxJogSpeed = 50000.0f; 
 
 Button jogUpButtonA   = Button(A_JOG_UP_PIN); 
 Button jogDownButtonA = Button(A_JOG_DOWN_PIN); 
@@ -73,7 +73,8 @@ void setup()  {
 void loop() { 
   // mechanism for doing regular updates no more than 100 times a second. 
   timerManager.update();
-  updateButtons(); 
+  
+  if(timerManager.do10msUpdate) updateButtons(); 
 
   if(state!=STATE_RESET) checkEndStops(); 
 
@@ -93,93 +94,20 @@ void loop() {
 
   } 
   else if(state == STATE_CALIBRATING) { 
+    
+    updateCalibration(); 
 
-
-    // if we haven't got both motors loose enough to unset the switches, 
-    // move them both down until they are
-    if((calibrationProgressA == 0) || (calibrationProgressB == 0)) {
-      if((calibrationProgressA == 0) && (calibrationButtonA.isPressed())) {
-        motorA.setSpeed(5000); 
-      } 
-      else { 
-        motorA.stop(); 
-        calibrationProgressA = 1; 
-      }
-
-      if((calibrationProgressB == 0) && (calibrationButtonB.isPressed())) {
-        motorB.setSpeed(5000); 
-      } 
-      else { 
-        motorB.stop(); 
-        calibrationProgressB = 1;
-
-      }
-    }
-
-    if(calibrationProgressA == 1) { 
-      if(calibrationButtonA.isPressed()) { 
-        motorA.stop(); 
-        calibrationProgressA = 2;   
-      } 
-      else { 
-        motorA.setSpeed(-5000); 
-      }
-    }
-
-    if(calibrationProgressB == 1) { 
-      if(calibrationButtonB.isPressed()) { 
-        motorB.stop(); 
-        calibrationProgressB = 2;   
-      } 
-      else { 
-        motorB.setSpeed(-5000); 
-      }
-    }
-
-    if(calibrationProgressA == 2) { 
-      if(calibrationButtonA.isPressed()) { 
-        motorA.setSpeed(500);    
-      } 
-      else { 
-        // CALIBRATION POINT IS HERE!
-        
-        Serial.print("MotorA calibration point : "); 
-        Serial.println(motorA.accelStepper.currentPosition()); 
-        
-        motorA.stop(); 
-        calibrationProgressA = 3; 
-      }
-    }
-
-    if(calibrationProgressB == 2) { 
-      if(calibrationButtonB.isPressed()) { 
-        motorB.setSpeed(500);  
-      } 
-      else { 
-        // CALIBRATION POINT IS HERE!
-        Serial.print("MotorB calibration point : "); 
-        Serial.println(motorB.accelStepper.currentPosition()); 
-        motorB.stop(); 
-        calibrationProgressB = 3; 
-      }
-    }
-
-    if((calibrationProgressA ==3) && ( calibrationProgressB ==3)) { 
-      changeState(STATE_WAITING);       
-    }
-
-  } 
-  else if(state == STATE_WAITING) { 
+  } else if(state == STATE_WAITING) { 
 
     if(resetButton.isPressed()) { 
       changeState(STATE_CALIBRATING); 
     }
-    if(timerManager.do100msUpdate) updateJogButtons(); 
+    updateJogButtons(); 
   }
 
 
-  motorA.update(timerManager.do100msUpdate); 
-  motorB.update(timerManager.do100msUpdate); 
+  motorA.update(timerManager.do10msUpdate); 
+  motorB.update(timerManager.do10msUpdate); 
 
   if(timerManager.do100msUpdate) { 
     //    
@@ -200,6 +128,8 @@ void loop() {
   }
 
 }
+
+void updateCalibration() {
 
 void checkEndStops() { 
 
@@ -309,15 +239,15 @@ void updateButtons() {
 
 void updateJogButtons() { 
 
-  
+
   if(jogUpButtonA.isPressed()) { 
 
     //jogSpeedA = mapEaseInOut((float)jogUpButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed);
-    motorA.setSpeedDirect(mapEaseInOut((float)jogUpButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed)); 
+    motorA.setSpeed(mapEaseInOut((float)jogUpButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed)); 
 
   } 
   else if(jogDownButtonA.isPressed()) { 
-    motorA.setSpeedDirect(mapEaseInOut((float)jogDownButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, maxJogSpeed)); 
+    motorA.setSpeed(mapEaseInOut((float)jogDownButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, maxJogSpeed)); 
   } 
   else { 
 
@@ -327,10 +257,10 @@ void updateJogButtons() {
 
 
   if(jogUpButtonB.isPressed()) { 
-    motorB.setSpeedDirect(mapEaseInOut((float)jogUpButtonB.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed)); 
+    motorB.setSpeed(mapEaseInOut((float)jogUpButtonB.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed)); 
   } 
   else if(jogDownButtonB.isPressed()) { 
-    motorB.setSpeedDirect(mapEaseInOut((float)jogDownButtonB.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, maxJogSpeed)); 
+    motorB.setSpeed(mapEaseInOut((float)jogDownButtonB.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, maxJogSpeed)); 
   } 
   else { 
     motorB.stop(); 
