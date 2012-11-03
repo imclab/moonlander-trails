@@ -23,7 +23,7 @@ int const B_END_STOP_MAX_PIN = 2; // pin 18
 int const A_CALIBRATION_PIN = 2;
 int const B_CALIBRATION_PIN = 2;
 
-boolean const CALIBRATABLE = FALSE; 
+boolean const CALIBRATABLE = false; 
 
 #else
 
@@ -61,10 +61,13 @@ boolean const CALIBRATABLE = true;
 
 
 int const STATE_WAITING = 0; 
-int const STATE_RESET = 1; 
-int const STATE_CALIBRATING = 2; 
-int const STATE_DRAWING = 3; 
-int const STATE_EMERGENCY_STOP = 4; 
+int const STATE_MOTOR_ERROR_RESET = 1; 
+int const STATE_CLEARING_ENDSTOPS = 2; 
+int const STATE_CALIBRATING = 3; 
+int const STATE_DRAWING = 4; 
+int const STATE_EMERGENCY_STOP = 5; 
+
+String const stateStrings[] = {"Waiting", "Motor error reset", "Clearing endstops", "Calibrating", "Drawing", "Emergency Stop"}; 
 
 
 

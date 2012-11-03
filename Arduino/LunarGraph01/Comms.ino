@@ -75,7 +75,7 @@ boolean insertNextNumberIntoBuffer() {
 
   int j = 0; 
 
-  while(incoming[incomingParsePos]>='.' & incoming[incomingParsePos]<='9'){ 
+  while((incoming[incomingParsePos]>='.' & incoming[incomingParsePos]<='9') || (incoming[incomingParsePos]=='-')){ 
 
     parseBuffer[j] = incoming[incomingParsePos]; 
     incomingParsePos++;
@@ -85,6 +85,15 @@ boolean insertNextNumberIntoBuffer() {
   return true; 
 
 }
+
+
+void sendReady() { 
+    if(numCommands<numStoredCommands) {
+    Serial.print("ready:");
+    Serial.println(numStoredCommands-numCommands); 
+  }
+}
+
 
 
 
