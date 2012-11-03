@@ -12,6 +12,9 @@ class Button {
     
     if(usePullUp) 
       digitalWrite(pinNum, HIGH); 
+      
+    pressed = false; 
+    firstTime = true; 
     
   };
   
@@ -24,8 +27,8 @@ class Button {
     
     if((pinState == LOW) && (!pressed) ) { 
         
-      if(lowCount>50) { 
-        pressed = true; 
+      if((lowCount>5)||(firstTime)) { 
+        pressed = true;  
         timeChanged = now; 
         timeSinceChange = 0;   
         lowCount = 0; 
@@ -35,7 +38,7 @@ class Button {
         
     } else if((pinState == HIGH) && (pressed)) { 
       
-      if(highCount>50) { 
+      if((highCount>5)||(firstTime)) { 
         pressed = false; 
         timeChanged = now; 
         timeSinceChange = 0;  
@@ -47,7 +50,7 @@ class Button {
     } else { 
       timeSinceChange = now - timeChanged; 
     }
-    
+    firstTime = false; 
   }
   
   boolean isPressed() { 
@@ -61,6 +64,7 @@ class Button {
   private :
   int pinNum; 
   boolean pressed; 
+  boolean firstTime; 
   unsigned long timeChanged;
   unsigned long timeSinceChange; 
   unsigned int lowCount; 

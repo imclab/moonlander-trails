@@ -7,17 +7,26 @@
 #include "DynamicMotor.h"
 #include "Motors.h"
 #include "Button.h"
+#include "Command.h"
 
 #include "TimerManager.h"
 
 TimerManager timerManager; 
 
 unsigned int state = STATE_WAITING; 
+
 unsigned int calibrationProgressA = 0; 
 unsigned int calibrationProgressB = 0; 
 
 
+const int numStoredCommands = 200; 
+Command commands[numStoredCommands]; 
+int numCommands = 0; 
+int currentCommand = 0; 
+
 float maxJogSpeed = 2000.0f; 
+
+boolean calibrated = false; 
 
 Button jogUpButtonA   = Button(A_JOG_UP_PIN); 
 Button jogDownButtonA = Button(A_JOG_DOWN_PIN); 
@@ -62,18 +71,75 @@ const int NUM_BUTTONS = 11;
 
 void setup()  { 
 
-  Serial.begin(9600); 
+  Serial.begin(115200); 
+
+  Serial.println(pageWidth); 
+  Serial.println(stepsPerMil); 
 
   initMotors(); 
   initEndStopInterrupts(); 
 
+
+  float middleX = pageWidth/2; 
+  float middleY = pageHeight/2; 
+  
+
+  
+  
+  // SOME TEST COMMANDS 
+//  float numlines = 20.0f; 
+//  
+//  for(int i = 1; i<=numlines; i++) { 
+//    
+//    float distanceX = middleX * i / numlines /2; 
+//    float distanceY = middleY * i/ numlines / 2; 
+//    addCommand(0, middleX - distance, middleY - distance); 
+//    addCommand(0, middle + distance, middle - distance); 
+//    addCommand(0, middle + distance, middle + distance); 
+//    addCommand(0, middle - distance - (middle/numlines), middle + distance); 
+//    
+//  }
+//  addCommand(0, middle , 0); 
+  
+  updateButtons(); 
+  
+  if((!calibrated) && (CALIBRATABLE)) { 
+      changeState(STATE_CALIBRATING); 
+    }
+  
+  
+  sendReady(); 
+  
+}
+
+
+void addCommand(int c, float p1, float p2) { 
+  
+  // check numCommands! 
+  
+  Command* cmd = &(commands[currentCommand+numCommands]); 
+  cmd->c = c; 
+  cmd->p1 = p1; 
+  cmd->p2 = p2; 
+  //currentCommand = (currentCommand+1)%numStoredCommands; 
+  numCommands++; 
+  
+  Serial.print("ADDING COMMAND ");
+  Serial.print(cmd->p1); 
+  Serial.print(" " ); 
+  Serial.println(cmd->p2); 
+   
 
 }
 
 void loop() { 
   // mechanism for doing regular updates no more than 100 times a second. 
   timerManager.update();
-  updateButtons(); 
+  checkIncoming(); 
+  
+ 
+ 
+  if(timerManager.do10msUpdate) updateButtons(); 
 
   if(state!=STATE_RESET) checkEndStops(); 
 
@@ -94,94 +160,102 @@ void loop() {
   } 
   else if(state == STATE_CALIBRATING) { 
 
-
-    // if we haven't got both motors loose enough to unset the switches, 
-    // move them both down until they are
-    if((calibrationProgressA == 0) || (calibrationProgressB == 0)) {
-      if((calibrationProgressA == 0) && (calibrationButtonA.isPressed())) {
-        motorA.setSpeed(5000); 
-      } 
-      else { 
-        motorA.stop(); 
-        calibrationProgressA = 1; 
-      }
-
-      if((calibrationProgressB == 0) && (calibrationButtonB.isPressed())) {
-        motorB.setSpeed(5000); 
-      } 
-      else { 
-        motorB.stop(); 
-        calibrationProgressB = 1;
-
-      }
-    }
-
-    if(calibrationProgressA == 1) { 
-      if(calibrationButtonA.isPressed()) { 
-        motorA.stop(); 
-        calibrationProgressA = 2;   
-      } 
-      else { 
-        motorA.setSpeed(-5000); 
-      }
-    }
-
-    if(calibrationProgressB == 1) { 
-      if(calibrationButtonB.isPressed()) { 
-        motorB.stop(); 
-        calibrationProgressB = 2;   
-      } 
-      else { 
-        motorB.setSpeed(-5000); 
-      }
-    }
-
-    if(calibrationProgressA == 2) { 
-      if(calibrationButtonA.isPressed()) { 
-        motorA.setSpeed(500);    
-      } 
-      else { 
-        // CALIBRATION POINT IS HERE!
-        
-        Serial.print("MotorA calibration point : "); 
-        Serial.println(motorA.accelStepper.currentPosition()); 
-        
-        motorA.stop(); 
-        calibrationProgressA = 3; 
-      }
-    }
-
-    if(calibrationProgressB == 2) { 
-      if(calibrationButtonB.isPressed()) { 
-        motorB.setSpeed(500);  
-      } 
-      else { 
-        // CALIBRATION POINT IS HERE!
-        Serial.print("MotorB calibration point : "); 
-        Serial.println(motorB.accelStepper.currentPosition()); 
-        motorB.stop(); 
-        calibrationProgressB = 3; 
-      }
-    }
+    updateCalibration(); 
 
     if((calibrationProgressA ==3) && ( calibrationProgressB ==3)) { 
-      changeState(STATE_WAITING);       
+      calibrated = true; 
+      //xPos = 1350.0f * stepsPerMil;
+      //yPos = 560.0f * stepsPerMil; 
+      
+      updateCartesianByLengths(); 
+      changeState(STATE_WAITING);   
+      
+      //setPosByCartesian(xPos, yPos); 
+      Serial.print("A length");      
+      Serial.print(motorPosA); 
+      Serial.print(" B length :"); 
+      Serial.print(motorPosB); 
+      Serial.println(""); 
+  
+      //addCommand(0, pageWidth/2, 0);     
     }
 
   } 
   else if(state == STATE_WAITING) { 
 
+      
+    
+    
     if(resetButton.isPressed()) { 
       changeState(STATE_CALIBRATING); 
     }
-    if(timerManager.do100msUpdate) updateJogButtons(); 
+    if(timerManager.do10msUpdate) updateJogButtons(); 
+    if((numCommands>0) && (motorA.currentSpeed==0) && (motorB.currentSpeed==0)) { 
+      nextCommand();   
+      
+    }
+
+  } 
+  else if(state == STATE_DRAWING) { 
+
+    progress = (float)(micros()- startTime) / (float)duration; 
+
+    if(progress>=1) {
+      changeState(STATE_WAITING); 
+      xPos = startPosX + vectorX; 
+      yPos = startPosY + vectorY;  
+      //drawLine(xPos, yPos, (xPos>0)? 0 : pageWidth, 0); 
+
+
+    } 
+    else { 
+      float t = easeInOut(progress); 
+      xPos = startPosX + (vectorX * t); 
+      yPos = startPosY + (vectorY * t); 
+    }
+
+    setPosByCartesian(xPos, yPos); 
+
+    while((motorA.accelStepper.currentPosition()!=motorPosA) || (motorB.accelStepper.currentPosition()!=motorPosB)) { 
+      if(motorA.accelStepper.currentPosition()<motorPosA) { 
+        forwardA(); 
+        //motorA.accelStepper.setCurrentPosition(motorA.accelStepper.currentPosition()+1); 
+      } 
+      else if(motorA.accelStepper.currentPosition()>motorPosA) {
+        backwardA();  
+        //motorA.accelStepper.setCurrentPosition(motorA.accelStepper.currentPosition()-1); 
+      }
+      if(motorB.accelStepper.currentPosition()<motorPosB) { 
+        forwardB();
+        //motorB.accelStepper.setCurrentPosition(motorB.accelStepper.currentPosition()+1);  
+      } 
+      else if(motorB.accelStepper.currentPosition()>motorPosB) {
+        backwardB();  
+        //motorB.accelStepper.setCurrentPosition(motorB.accelStepper.currentPosition()-1);
+      }    
+    }
+   
+
+    //Serial.println(progress); 
+
+
   }
 
-
-  motorA.update(timerManager.do100msUpdate); 
-  motorB.update(timerManager.do100msUpdate); 
+  updateMotors(); 
 
   if(timerManager.do100msUpdate) { 
+//    if(state == STATE_CALIBRATING) { 
+//      Serial.print(calibrationButtonA.isPressed());
+//      Serial.print(" " ); 
+//      Serial.print(calibrationButtonB.isPressed());
+//         
+//      Serial.print(" cal : "); 
+//      Serial.print(calibrationProgressA); 
+//      Serial.print(" "); 
+//      Serial.println(calibrationProgressB); 
+//    }
+    
+    
     //    
     //    Serial.println(state);
     //    Serial.print(" "); 
@@ -200,6 +274,89 @@ void loop() {
   }
 
 }
+
+
+boolean nextCommand() { 
+  if(numCommands==0) {
+    sendReady();
+    return false; 
+  }
+  
+  Serial.print("NEXT COMMAND "); 
+  Serial.print(numCommands); 
+  Serial.print(" " ); 
+  
+  Command * c = &(commands[currentCommand]); 
+  
+  
+  Serial.print(currentCommand); 
+    
+  Serial.print(" "); 
+  Serial.print(c->p1); 
+  Serial.print(" "); 
+  Serial.print(c->p2); 
+  Serial.println(" " ); 
+  
+  
+  currentCommand = (currentCommand+1)%numStoredCommands; 
+  
+  numCommands--; 
+  
+  
+  moveTo(c->p1, c->p2); 
+  
+  sendReady();
+   
+  return true; 
+  
+  
+}
+
+void sendReady() { 
+    if(numCommands<numStoredCommands) {
+    Serial.print("ready:");
+    Serial.println(numStoredCommands-numCommands); 
+  }
+}
+
+void updateMotors() { 
+  motorA.update(timerManager.do33msUpdate); 
+  motorB.update(timerManager.do33msUpdate); 
+}
+
+
+void lineTo(float x, float y) { 
+  // pendown
+  moveStraight(x, y); 
+  
+  
+}
+void moveTo(float x, float y) { 
+  //penup
+  moveStraight(x, y); 
+  
+  
+}
+
+void moveStraight(float x2, float y2) {
+
+  startPosX = xPos; 
+  startPosY = yPos; 
+  vectorX = x2-xPos; 
+  vectorY = y2-yPos; 
+  
+  duration = max(sqrt(sq(vectorX) + sq(vectorY)), 50.0f*stepsPerMil)  * drawSpeed; // in micros
+  
+  progress  = 0; 
+  startTime = micros(); 
+
+  changeState(STATE_DRAWING); 
+
+
+}
+
+
+
 
 void checkEndStops() { 
 
@@ -285,15 +442,18 @@ boolean changeState(int newState) {
     else { 
       calibrationProgressB = 1; 
     }
-
+  
 
 
   }  
 
   Serial.print("CHANGE STATE : ");   
   Serial.println(state);
-  //    Serial.print(" "); 
-  //    Serial.println(digitalRead(B_END_STOP_MAX_PIN)); 
+  
+  Serial.print(calibrationProgressA); 
+  Serial.print(" "); 
+  Serial.println(calibrationProgressB); 
+  
   return true; 
 }
 
@@ -309,10 +469,9 @@ void updateButtons() {
 
 void updateJogButtons() { 
 
-  
+
   if(jogUpButtonA.isPressed()) { 
 
-    //jogSpeedA = mapEaseInOut((float)jogUpButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed);
     motorA.setSpeedDirect(mapEaseInOut((float)jogUpButtonA.getTimeSinceChange(), 0.0f, 2000.0f, 0.0f, -maxJogSpeed)); 
 
   } 
@@ -363,6 +522,8 @@ void endStopMinTriggered() {
   state = STATE_EMERGENCY_STOP;  
 
 }
+
+
 
 
 

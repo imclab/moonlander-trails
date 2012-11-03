@@ -10,25 +10,6 @@ int incomingCharCount = 0;
 int incomingParsePos = 0; 
 
 
-void setup() { 
-
-
-  Serial.begin(115200); 
-  Serial.println("RESTART"); 
-  Serial.println("ready:50"); 
-
-
-
-}
-
-
-void loop() { 
-
-  checkIncoming(); 
-
-
-}
-
 
 
 void checkIncoming() { 
@@ -60,10 +41,11 @@ void checkIncoming() {
       Serial.print(p1); 
       Serial.print(" p2:");
       Serial.println(p2);  
-    
+      addCommand(cmd, p1, p2); 
       incoming[0] = '\0'; 
       incomingCharCount = 0; 
-      Serial.println("ready:1"); 
+      
+      //Serial.println("ready:1"); 
     } 
 
   }

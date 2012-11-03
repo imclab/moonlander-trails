@@ -21,7 +21,6 @@ var	WAITING = 0,
 	CRASHED = 3, 
 	GAMEOVER = 4,
 	
-	
 	gameState = GAMEOVER, 
 	mouseThrust = false, 
 	mouseTop = 0, 
@@ -34,8 +33,6 @@ var	WAITING = 0,
 	landscape = new Landscape(), 
 	players = {}, 
 	
-
-
 // canvas element and 2D context
 	canvas = document.createElement( 'canvas' ),
 	context = canvas.getContext( '2d' ),
@@ -65,7 +62,7 @@ window.addEventListener("load", init);
 function init() 
 {
 	
-	ws = new WebSocket("ws://node.seb.ly:8001"); 
+	ws = new WebSocket("ws://"+WEB_SOCKET_URL); 
 	ws.onopen = function(e) { 
 		
 		console.log('connected'); 

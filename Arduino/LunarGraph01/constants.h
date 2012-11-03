@@ -1,6 +1,6 @@
 
 
-#define USE_TEST_MACHINE
+//#define USE_TEST_MACHINE
 
 #ifdef USE_TEST_MACHINE
 
@@ -23,6 +23,7 @@ int const B_END_STOP_MAX_PIN = 2; // pin 18
 int const A_CALIBRATION_PIN = 2;
 int const B_CALIBRATION_PIN = 2;
 
+boolean const CALIBRATABLE = FALSE; 
 
 #else
 
@@ -50,12 +51,9 @@ int const B_END_STOP_MAX_PIN = 9; // pin 18
 
 int const A_CALIBRATION_PIN = 6;
 int const B_CALIBRATION_PIN = 8;
-//
-//int const A_END_STOP_MIN_INTERRUPT = 1; // pin 21
-//int const A_END_STOP_MAX_INTERRUPT = 0; // pin 20
-//int const B_END_STOP_MIN_INTERRUPT = 5; // pin 19
-//int const B_END_STOP_MAX_INTERRUPT = 4; // pin 18
 
+
+boolean const CALIBRATABLE = true; 
 
 #endif
 
@@ -65,7 +63,7 @@ int const B_CALIBRATION_PIN = 8;
 int const STATE_WAITING = 0; 
 int const STATE_RESET = 1; 
 int const STATE_CALIBRATING = 2; 
-int const STATE_BUSY = 3; 
+int const STATE_DRAWING = 3; 
 int const STATE_EMERGENCY_STOP = 4; 
 
 

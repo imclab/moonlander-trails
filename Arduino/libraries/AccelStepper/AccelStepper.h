@@ -330,7 +330,10 @@ public:
     /// \param[in] step      True for inverted step pin, false for non-inverted
     /// \param[in] enable    True for inverted enable pin, false (default) for non-inverted
     void    setPinsInverted(bool direction, bool step, bool enable = false);
-
+	
+	void stepForward(); 
+	void stepBackward(); 
+	
 protected:
 
     /// Forces the library to compute a new instantaneous speed and set that as

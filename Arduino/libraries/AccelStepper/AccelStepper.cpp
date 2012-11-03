@@ -289,6 +289,33 @@ void AccelStepper::step1(uint8_t step)
 
 }
 
+
+void AccelStepper :: stepForward() { 
+	
+	// _pin[0] is step, _pin[1] is direction
+    setOutputPins(0b11 ); // step HIGH
+    // Caution 200ns setup time 
+    // Delay the minimum allowed pulse width
+    delayMicroseconds(_minPulseWidth);
+    setOutputPins(0b10); // step LOW
+
+	_currentPos ++; 
+	
+	
+}
+
+void AccelStepper :: stepBackward() { 
+	// _pin[0] is step, _pin[1] is direction
+    setOutputPins( 0b01); // step HIGH
+    // Caution 200ns setup time 
+    // Delay the minimum allowed pulse width
+    delayMicroseconds(_minPulseWidth);
+    setOutputPins(0b00); // step LOW
+	
+	_currentPos--; 
+	
+}
+
 // 2 pin step function
 // This is passed the current step number (0 to 7)
 // Subclasses can override

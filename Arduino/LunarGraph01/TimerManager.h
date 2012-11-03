@@ -32,7 +32,7 @@ public:
       do100msUpdate = false; 
     } 
     
-    if((now - lastUpdate10ms > 33000) || (now<lastUpdate33ms)){
+    if((now - lastUpdate33ms > 33000) || (now<lastUpdate33ms)){
       do33msUpdate = true; 
       lastUpdate33ms = now; 
     } 
