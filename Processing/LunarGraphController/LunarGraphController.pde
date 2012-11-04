@@ -14,12 +14,10 @@ int counter = 0;
 int xPos = 0; 
 
 float angle = 0; 
-float radius = 1; 
+float radius = 5; 
 
-// reasonable defaults but nothing should happen until they're set 
-float pageWidth = 10000;  
-float pageHeight = 10000;
-float stepsPerMil = 20; 
+
+float pageWidth = 73076; 
 
 boolean started = false; 
 
@@ -37,10 +35,6 @@ void setup() {
   commands = new ArrayList(); 
   socket = new WebSocketP5(this,8080);
   frameRate(10); 
-
-  println(beginsWith("ready:100", "ready")) ;
-  println(getValueAfterChar("ready:100", ":")) ; 
-
 
   // joining the serial port that is called tty :) 
   String ports[] = Serial.list(); 
@@ -86,12 +80,12 @@ void draw() {
  }*/
  
  
- if((started) && (radius<200)){
+ if((started) && (radius<240)){
      
-   sendXYPos(400 + cos(angle) * radius, 200 + sin(angle) * radius); 
+   sendXYPos(500 + cos(angle) * radius, 100 + sin(angle) * radius); 
    
-   angle +=radians(1); 
-   radius += 0.01;
+   angle += PI/radius*0.3; 
+   radius = (0.3 * angle );
    
  }
 
@@ -152,7 +146,7 @@ void serialEvent(Serial serial) {
   if((inByte == 0) || (inByte == 10)) { 
     processMessage(); 
   
-  } else if((inByte>=32) && (inByte<=126)){ 
+  } else { 
     message = message + char(inByte);  
     //println(inByte); 
   }
@@ -164,39 +158,19 @@ void processMessage () {
   println("->" +message); 
   
   //println(message.substring(6,message.length()-1));
-  if(beginsWith(message, "ready")){
+  if((message.length()>6) &&( message.substring(0,6).equals("ready:"))){
    
-    numToSend = int(getValueAfterChar(message, ":"));   
+    numToSend = int(message.substring(6, message.length()-1));  
    
     println("ready to send "+numToSend); 
     
     // format = <cmdnum>,<cmd>,<p1>,<p2> 
     //serial.write(++counter + ",1,"+random(0,1000)+","+random(0,1000)+"\0"); 
   
-  } else if (beginsWith(message, "pagewidth")) { 
-    pageWidth = float(getValueAfterChar(message, ":"));   
-    println("pageWidth set : "+pageWidth);    
-  } else if (beginsWith(message, "pageheight")) { 
-    pageHeight = float(getValueAfterChar(message, ":"));   
-    println("pageHeight set : "+pageHeight);   
-  } else if (beginsWith(message, "stepspermil")) { 
-    pageHeight = float(getValueAfterChar(message, ":"));   
-    println("stepsPerMil set : "+stepsPerMil);   
-  }
+  } 
   
   message = "";  
   //println("------"); 
-  
-}
-
-boolean beginsWith(String source, String matchString) { 
- return ((source.length()>matchString.length()) && (source.substring(0,matchString.length()).equals(matchString)));
-}
-
-String getValueAfterChar(String source, String chr) { 
-  int index = source.indexOf(chr); 
-  if(index == -1) return ""; 
-  else return source.substring(index+1, source.length()); 
   
 }
 

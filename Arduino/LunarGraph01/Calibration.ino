@@ -6,7 +6,7 @@ void updateCalibration() {
   
   
   if((calibrationProgressA == 0) || (calibrationProgressB == 0)) {
-    if((calibrationProgressA == 0) && (calibrationButtonA.isPressed())) {
+    if((calibrationProgressA == 0) && (calibrationButtonA.isOn())) {
       motorA.setSpeed(5000); 
     } 
     else { 
@@ -15,7 +15,7 @@ void updateCalibration() {
      // Serial.println("CalA = 1"); 
     }
 
-    if((calibrationProgressB == 0) && (calibrationButtonB.isPressed())) {
+    if((calibrationProgressB == 0) && (calibrationButtonB.isOn())) {
       motorB.setSpeed(5000); 
     } 
     else { 
@@ -28,7 +28,7 @@ void updateCalibration() {
 
   else {
     if(calibrationProgressA == 1) { 
-      if(calibrationButtonA.isPressed()) { 
+      if(calibrationButtonA.isOn()) { 
         motorA.stop(); 
         calibrationProgressA = 2;   
       } 
@@ -38,7 +38,7 @@ void updateCalibration() {
     }
 
     if(calibrationProgressB == 1) { 
-      if(calibrationButtonB.isPressed()) { 
+      if(calibrationButtonB.isOn()) { 
         motorB.stop(); 
         calibrationProgressB = 2;   
       } 
@@ -48,7 +48,7 @@ void updateCalibration() {
     }
 
     if(calibrationProgressA == 2) { 
-      if(calibrationButtonA.isPressed()) { 
+      if(calibrationButtonA.isOn()) { 
         motorA.setSpeed(800);    
       } 
       else { 
@@ -68,7 +68,7 @@ void updateCalibration() {
     }
 
     if(calibrationProgressB == 2) { 
-      if(calibrationButtonB.isPressed()) { 
+      if(calibrationButtonB.isOn()) { 
         motorB.setSpeed(800);  
       } 
       else { 

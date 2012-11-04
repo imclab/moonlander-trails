@@ -2,18 +2,19 @@ class Button {
   
   public:
   
-  Button(int pinnum, boolean usePullUp = true){
+  Button(int pinnum, boolean usePullUp = true, boolean onstate = LOW){
     
+    onState = onstate;
     pinNum = pinnum; 
     pinMode(pinNum, INPUT);
     
-    lowCount = 0; 
-    highCount = 0; 
+    onCount = 0; 
+    offCount = 0; 
     
     if(usePullUp) 
       digitalWrite(pinNum, HIGH); 
       
-    pressed = false; 
+    on = false; 
     firstTime = true; 
     
   };
@@ -25,26 +26,26 @@ class Button {
     
     // should probably add some debouncing
     
-    if((pinState == LOW) && (!pressed) ) { 
+    if((pinState == onState) && (!on) ) { 
         
-      if((lowCount>5)||(firstTime)) { 
-        pressed = true;  
+      if((onCount>5)||(firstTime)) { 
+        on = true;  
         timeChanged = now; 
         timeSinceChange = 0;   
-        lowCount = 0; 
+        onCount = 0; 
       } else { 
-        lowCount ++ ; 
+        onCount ++ ; 
       }
         
-    } else if((pinState == HIGH) && (pressed)) { 
+    } else if((pinState != onState) && (on)) { 
       
-      if((highCount>5)||(firstTime)) { 
-        pressed = false; 
+      if((offCount>5)||(firstTime)) { 
+        on = false; 
         timeChanged = now; 
         timeSinceChange = 0;  
-        highCount = 0; 
+        offCount = 0; 
       } else { 
-        highCount ++; 
+        offCount ++; 
       }
       
     } else { 
@@ -53,8 +54,8 @@ class Button {
     firstTime = false; 
   }
   
-  boolean isPressed() { 
-    return pressed; 
+  boolean isOn() { 
+    return on; 
   }
   
   int getTimeSinceChange() { 
@@ -63,12 +64,13 @@ class Button {
 
   private :
   int pinNum; 
-  boolean pressed; 
+  boolean on; 
   boolean firstTime; 
+  boolean onState; 
   unsigned long timeChanged;
   unsigned long timeSinceChange; 
-  unsigned int lowCount; 
-  unsigned int highCount; 
+  unsigned int onCount; 
+  unsigned int offCount; 
 
 };
   

@@ -10,6 +10,60 @@ int incomingCharCount = 0;
 int incomingParsePos = 0; 
 
 
+void addCommand(int c, float p1, float p2) { 
+
+  // check numCommands! 
+
+  Command* cmd = &(commands[currentCommand+numCommands]); 
+  cmd->c = c; 
+  cmd->p1 = p1; 
+  cmd->p2 = p2; 
+  //currentCommand = (currentCommand+1)%numStoredCommands; 
+  numCommands++; 
+
+  Serial.print("ADDING COMMAND ");
+  Serial.print(cmd->p1); 
+  Serial.print(" " ); 
+  Serial.println(cmd->p2); 
+
+
+}
+
+boolean nextCommand() { 
+  if(numCommands==0) {
+    sendReady();
+    return false; 
+  }
+
+  Serial.print("NEXT COMMAND "); 
+  Serial.print(numCommands); 
+  Serial.print(" " ); 
+
+  Command * c = &(commands[currentCommand]); 
+
+
+  Serial.print(currentCommand); 
+
+  Serial.print(" "); 
+  Serial.print(c->p1); 
+  Serial.print(" "); 
+  Serial.print(c->p2); 
+  Serial.println(" " ); 
+
+
+  currentCommand = (currentCommand+1)%numStoredCommands; 
+
+  numCommands--; 
+
+
+  moveTo(c->p1, c->p2); 
+
+  sendReady();
+
+  return true; 
+
+
+}
 
 
 void checkIncoming() { 

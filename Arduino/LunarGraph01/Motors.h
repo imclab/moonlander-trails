@@ -188,25 +188,25 @@ void initMotors() {
 
 #else 
 
-  motorA.initGecko(A_STEP_PIN, A_DIR_PIN); 
-  motorB.initGecko(B_STEP_PIN, B_DIR_PIN); 
+  motorA.initGecko(A_STEP_PIN, A_DIR_PIN, A_ERR_RESET_PIN); 
+  motorB.initGecko(B_STEP_PIN, B_DIR_PIN, B_ERR_RESET_PIN); 
 
-
+  // reverse motorB so that it turns the same way to increase the length
   motorB.accelStepper.setPinsInverted(true, false); 
-  pinMode(A_ERR_RESET_PIN, OUTPUT); 
-  pinMode(B_ERR_RESET_PIN, OUTPUT); 
+//  pinMode(A_ERR_RESET_PIN, OUTPUT); 
+//  pinMode(B_ERR_RESET_PIN, OUTPUT); 
+//
+//  digitalWrite(A_ERR_RESET_PIN, HIGH); 
+//  digitalWrite(B_ERR_RESET_PIN, HIGH); 
 
-  digitalWrite(A_ERR_RESET_PIN, HIGH); 
-  digitalWrite(B_ERR_RESET_PIN, HIGH); 
-
-  delay(2000); 
+//  delay(2000); 
 
 
-  digitalWrite(A_ERR_RESET_PIN, LOW); 
-  digitalWrite(B_ERR_RESET_PIN, LOW); 
-
-  pinMode(A_ERR_RESET_PIN, INPUT); 
-  pinMode(B_ERR_RESET_PIN, INPUT); 
+//  digitalWrite(A_ERR_RESET_PIN, LOW); 
+//  digitalWrite(B_ERR_RESET_PIN, LOW); 
+//
+//  pinMode(A_ERR_RESET_PIN, INPUT); 
+//  pinMode(B_ERR_RESET_PIN, INPUT); 
 
 
 #endif
