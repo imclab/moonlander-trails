@@ -15,7 +15,7 @@ void addCommand(int c, float p1, float p2) {
   // check numCommands! 
 
   Command* cmd = &(commands[currentCommand+numCommands]); 
-  cmd->c = c; 
+  cmd->cmd = c; 
   cmd->p1 = p1; 
   cmd->p2 = p2; 
   //currentCommand = (currentCommand+1)%numStoredCommands; 
@@ -55,9 +55,12 @@ boolean nextCommand() {
 
   numCommands--; 
 
-
-  moveTo(c->p1, c->p2); 
-
+  if(c->cmd == COMMAND_MOVE) {
+    moveTo(c->p1, c->p2); 
+  } else if(c->cmd == COMMAND_DRAW) { 
+    lineTo(c->p1, c->p2); 
+  }
+  
   sendReady();
 
   return true; 

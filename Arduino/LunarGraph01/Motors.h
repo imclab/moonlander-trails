@@ -30,18 +30,18 @@ float stepsPerMil = stepsPerRev/circumference;
 // dimensions in steps 
 float machineWidth = 2675.0f * stepsPerMil;  
 float pageTop = 300.0f * stepsPerMil; 
-float sideMargin = 350.0f * stepsPerMil; 
+float sideMargin = 450.0f * stepsPerMil; 
 float pageWidth = machineWidth - (sideMargin*2); 
 float pageHeight = pageWidth/2; 
 
-float drawSpeed = 500; 
+float drawSpeed = 300; 
 
 #endif
 
 // caibration point only for actual machine 
 
-long calibrationLengthA = round(1600.0f * stepsPerMil); 
-long calibrationLengthB = round(1390.0f * stepsPerMil); 
+long calibrationLengthA = round(1525.0f * stepsPerMil); 
+long calibrationLengthB = round(1680.0f * stepsPerMil); 
 
 
 
@@ -53,13 +53,7 @@ long motorPosB = round (sqrt( sq(machineWidth/2) + sq(pageTop)));
 
 
 
-float startPosX = 0;
-float startPosY = 0;  
-float vectorX = 0; 
-float vectorY = 0; 
-float progress = 0; 
-float duration = 0; 
-unsigned long startTime; 
+
 
 
 long setPosByCartesian(float x, float y){ 

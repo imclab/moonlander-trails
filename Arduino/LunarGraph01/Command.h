@@ -8,7 +8,7 @@ class Command {
   
   Command (int _c, float _p1, float _p2) { 
     
-    c = _c; 
+    cmd = _c; 
     p1 = _p1; 
     p2 = _p2; 
     //p3 = _p3; 
@@ -17,7 +17,7 @@ class Command {
   
   
   
-  int c; 
+  int cmd; 
   float p1, p2; 
   
   

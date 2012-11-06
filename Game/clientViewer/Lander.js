@@ -18,7 +18,7 @@ Lander = function() {
 		  
 		
 		
-	
+	this.paused = false; 
 	this.rotation = 0; 
 	this.thrusting = 0;
 	this.scale = 0.8; 
@@ -75,6 +75,10 @@ Lander = function() {
 			this.rotation = rotations[currentPositionIndex];
 			thrustBuild = thrustLevels[currentPositionIndex];
 			lastUpdate = Date.now();
+			this.paused = false;
+		} else if(Date.now()-lastUpdate>2000) { 
+			//console.log("paused"); 
+		  this.paused = true; 	
 			
 		}
 		
@@ -104,11 +108,10 @@ Lander = function() {
 		}
 		c.strokeStyle = 'rgb(20,50,200)'; 
 		c.stroke(); 
-		c.globalCompositeOperation = 'source-over'; 
 		
 		// draw the latest data for the ship
 	//	console.log(positions.length);
-		if(positions.length>0) { 
+	/*	if(positions.length>0) { 
 			c.save(); 
 				
 			c.translate(positions[positions.length-1].x, positions[positions.length-1].y); 
@@ -125,7 +128,7 @@ Lander = function() {
 			c.stroke(); 
 		
 			c.restore(); 
-		}
+		 }*/
 		// draw the smoothed data
 		
 		c.save(); 
@@ -134,8 +137,14 @@ Lander = function() {
 		c.scale(this.scale, this.scale); 
 		c.lineWidth = 1/(this.scale * scale); 
 		c.rotate(this.rotation * TO_RADIANS); 
-		c.strokeStyle = this.colour; 
-		
+	//	c.strokeStyle = this.colour; 
+		if(this.paused) {
+			c.strokeStyle = '#444'; 
+		} else {
+				c.globalCompositeOperation = 'source-over'; 
+			
+			c.strokeStyle = this.colour; 
+		}
 		c.beginPath(); 
 		
 		this.renderShapes(c);
@@ -150,6 +159,7 @@ Lander = function() {
 		
 		c.restore(); 
 		
+			c.globalCompositeOperation = 'source-over'; 
 		
 		
 		

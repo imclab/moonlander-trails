@@ -7,7 +7,7 @@ void updateCalibration() {
   
   if((calibrationProgressA == 0) || (calibrationProgressB == 0)) {
     if((calibrationProgressA == 0) && (calibrationButtonA.isOn())) {
-      motorA.setSpeed(5000); 
+      motorA.setSpeed(3000); 
     } 
     else { 
       motorA.stop(); 
@@ -16,7 +16,7 @@ void updateCalibration() {
     }
 
     if((calibrationProgressB == 0) && (calibrationButtonB.isOn())) {
-      motorB.setSpeed(5000); 
+      motorB.setSpeed(3000); 
     } 
     else { 
       motorB.stop(); 
@@ -33,7 +33,7 @@ void updateCalibration() {
         calibrationProgressA = 2;   
       } 
       else { 
-        motorA.setSpeed(-2000); 
+        motorA.setSpeed(-800); 
       }
     }
 
@@ -43,13 +43,13 @@ void updateCalibration() {
         calibrationProgressB = 2;   
       } 
       else { 
-        motorB.setSpeed(-2000); 
+        motorB.setSpeed(-800); 
       }
     }
 
     if(calibrationProgressA == 2) { 
       if(calibrationButtonA.isOn()) { 
-        motorA.setSpeed(800);    
+        motorA.setSpeed(500);    
       } 
       else { 
         // CALIBRATION POINT IS HERE!
@@ -69,7 +69,7 @@ void updateCalibration() {
 
     if(calibrationProgressB == 2) { 
       if(calibrationButtonB.isOn()) { 
-        motorB.setSpeed(800);  
+        motorB.setSpeed(500);  
       } 
       else { 
         // CALIBRATION POINT IS HERE!

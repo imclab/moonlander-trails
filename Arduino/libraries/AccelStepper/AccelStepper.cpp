@@ -284,7 +284,7 @@ void AccelStepper::step1(uint8_t step)
     setOutputPins((_speed > 0) ? 0b11 : 0b01); // step HIGH
     // Caution 200ns setup time 
     // Delay the minimum allowed pulse width
-    delayMicroseconds(_minPulseWidth);
+    //delayMicroseconds(_minPulseWidth);
     setOutputPins((_speed > 0) ? 0b10 : 0b00); // step LOW
 
 }
@@ -296,7 +296,7 @@ void AccelStepper :: stepForward() {
     setOutputPins(0b11 ); // step HIGH
     // Caution 200ns setup time 
     // Delay the minimum allowed pulse width
-    delayMicroseconds(_minPulseWidth);
+    //delayMicroseconds(_minPulseWidth);
     setOutputPins(0b10); // step LOW
 
 	_currentPos ++; 
@@ -309,7 +309,7 @@ void AccelStepper :: stepBackward() {
     setOutputPins( 0b01); // step HIGH
     // Caution 200ns setup time 
     // Delay the minimum allowed pulse width
-    delayMicroseconds(_minPulseWidth);
+    //delayMicroseconds(_minPulseWidth);
     setOutputPins(0b00); // step LOW
 	
 	_currentPos--; 

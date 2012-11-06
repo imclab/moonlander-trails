@@ -52,11 +52,14 @@ public :
     } 
     else if(!errorState) { 
       if(do33msUpdate) { 
-        Serial.print(errorState);
-       Serial.print(" ");  
-      Serial.println(resetPinHighCount); 
-      
-        if(digitalRead(resetPin)==HIGH) resetPinHighCount++; 
+//        Serial.print(digitalRead(resetPin));
+//        Serial.print(" ");  
+//        Serial.print(errorState); 
+//        Serial.print(" ");  
+//        Serial.println(resetPinHighCount); 
+
+
+        if(digitalRead(resetPin)==LOW) resetPinHighCount++; 
         else resetPinHighCount = 0; 
 
         if(resetPinHighCount>2) { 
@@ -156,6 +159,7 @@ private:
 
 
 };
+
 
 
 

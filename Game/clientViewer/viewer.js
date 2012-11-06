@@ -1,7 +1,7 @@
 
 // screen size variables
-var SCREEN_WIDTH = window.innerWidth,
-	SCREEN_HEIGHT = window.innerHeight,
+var SCREEN_WIDTH = 0,
+	SCREEN_HEIGHT = 0,
 	HALF_WIDTH = window.innerWidth / 2,
 	HALF_HEIGHT = window.innerHeight / 2, 
 	touchable = "ontouchstart" in window, 
@@ -17,6 +17,8 @@ var ws,
 	
 	landscape = new Landscape(), 
 	players = {}, 
+	
+	currentDrawingPlayerId = -1,
 	
 
 
@@ -50,9 +52,10 @@ function init()
 {
 	
 	ws = new WebSocket("ws://node.seb.ly:8001"); 
+	console.log('opening socket to ws://node.seb.ly:8001'); 
 	ws.onopen = function(e) { 
 		
-		console.log('connected'); 
+		console.log('remote connected'); 
 		wsConnected = true; 
 		
 		ws.send(JSON.stringify({type:'register'}));
@@ -62,7 +65,7 @@ function init()
 	
 		
 		var msg = JSON.parse(e.data); 
-		
+	
 		if(msg.type=='connect') { 
 			wsID = msg.id;
 			
@@ -84,23 +87,41 @@ function init()
 				console.log(e.data); 
 			var player = players[msg.id]; 
 			if(player) player.crash(); 
+			
+			stopDrawing(msg.id);  
+			
 		}  else if(msg.type=='land') {
 			// add new player object
 				console.log(e.data); 
 			var player = players[msg.id]; 
 			if(player) player.land(); 
+			
+			stopDrawing(msg.id);  
+			
 		} else if(msg.type=='restart') {
-				console.log(e.data); 
+			console.log(e.data); 
+			
 			// add new player object
 			var player = players[msg.id]; 
 			if(player) player.reset(); 
+			
+			
+			startDrawing(msg.id); 
+			
+			
 		} else if(msg.type=='leave') { 
 		// delete player object
+			stopDrawing(msg.id); 
 			if(players[msg.id]) delete players[msg.id]; 
 				console.log(e.data); 
 		}
 			
-			
+		if(wslocal) { 
+			if(msg.id == currentDrawingPlayerId) { 
+		  		wslocal.send(e.data); 	
+			}
+		}
+		
 		
 	}
 	ws.onclose = function(e) { 
@@ -125,13 +146,26 @@ function init()
 	window.addEventListener('orientationchange', resizeGame);
 	
 	
+
 	resizeGame();
 	
 	loop();
 	
 }
 
-
+function startDrawing(id) { 
+	if(currentDrawingPlayerId!=-1) return; 
+	
+	console.log("starting to draw id : ", id); 
+	currentDrawingPlayerId = id; 
+	
+}
+function stopDrawing(id) { 
+	if(id!=currentDrawingPlayerId) return; 
+	
+	console.log("stopping drawing id : ", id); 
+	currentDrawingPlayerId = -1; 
+}
 
 //
 
@@ -186,6 +220,7 @@ function updatePlayers() {
 			var player = players[id]; 
 
 			player.update(); 
+			if((id == currentDrawingPlayerId) && (player.paused)) currentDrawingPlayerId = -1;  
 		}
 	
 	

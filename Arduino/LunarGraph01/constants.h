@@ -55,8 +55,9 @@ int const B_CALIBRATION_PIN = 8;
 
 boolean const CALIBRATABLE = true; 
 
-#endif
+int const PEN_DROP_PIN = 48; 
 
+#endif
 
 
 
@@ -66,7 +67,7 @@ int const STATE_RESETTING = 2;
 int const STATE_CALIBRATING = 3; 
 int const STATE_DRAWING = 4; 
 
-
 String const stateStrings[] = {"Waiting", "Error", "Resetting", "Calibrating", "Drawing"}; 
 
-
+int const COMMAND_MOVE = 0; 
+int const COMMAND_DRAW = 1; 

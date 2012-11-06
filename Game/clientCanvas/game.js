@@ -404,14 +404,20 @@ function setLanded(line) {
 function setCrashed() { 
 	lander.crash(); 
 	
+	// show crashed message
+	// subtract fuel
+	
+	var fuellost = Math.round(((Math.random() * 200) + 200));
+	lander.fuel -= fuellost;
+
+	
+	
 	if(lander.fuel<=0) { 
 		gameState = GAMEOVER; 
-		// show out of fuel message
-		infoDisplay.showGameInfo("OUT OF FUEL<br><br>GAME OVER");
-	} else { 
-		// show crashed message
-		// subtract fuel
+		sendGameOver(); 
+		msg = "OUT OF FUEL<br><br>GAME OVER";
 		
+	} else {
 		var rnd  = Math.random();
 		var msg ='';
 		if(rnd < 0.3){
@@ -421,23 +427,16 @@ function setCrashed() {
 		} else {
 			msg = "YOU CREATED A TWO MILE CRATER";
 		}
-		var fuellost = Math.round(((Math.random() * 200) + 200));
+		
 		msg = "AUXILIARY FUEL TANKS DESTROYED<br>" + fuellost + " FUEL UNITS LOST<br><br>" + msg;
 		
-		lander.fuel -= fuellost;
-
+		gameState = CRASHED;
+		sendCrashed();  
 		
-		
-		if(lander.fuel<=0) { 
-			gameState = GAMEOVER; 
-			sendGameOver(); 
-		} else {
-			gameState = CRASHED;
-			sendCrashed();  
-		}
-		
-		infoDisplay.showGameInfo(msg);
 	}
+	
+	infoDisplay.showGameInfo(msg);
+	
 	scheduleRestart(); 
 	
 	samples.explosion.play(); 
