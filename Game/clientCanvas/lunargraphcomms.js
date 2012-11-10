@@ -1,8 +1,8 @@
 	var wslocal = null;
 	var host = "sebair.local";
-	var port = 8081;
-	var socket = "p5websocket";
-	console.log('hello'); 
+	var port = 8086;
+	var socket = "";
+	//console.log('hello'); 
 
 	function ready(){
 		console.log("opening socket : "+"ws://"+host+":"+port+"/"+socket); 
@@ -11,8 +11,8 @@
 		wslocal.onopen = function(e) { 
 		
 			console.log('connected to local socket'); 
-			wsConnected = true; 
-			
+			wsLocalConnected = true; 
+			ws = wslocal; 
 			
 		
 		};
@@ -25,7 +25,7 @@
 		
 		};
 		wslocal.onclose = function(e) { 
-			wsConnected = false; 
+			wsLocalConnected = false; 
 			console.log("disconnected local!"); 
 			port++; 
 			if(port==8090) port = 8081; 

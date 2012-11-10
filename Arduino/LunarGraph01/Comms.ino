@@ -1,5 +1,6 @@
 
-char incoming[128]; 
+const int maxMessageLength = 256; 
+char incoming[256]; 
 char parseBuffer[15]; 
 int cmdNumber; 
 int cmd; 
@@ -59,6 +60,8 @@ boolean nextCommand() {
     moveTo(c->p1, c->p2); 
   } else if(c->cmd == COMMAND_DRAW) { 
     lineTo(c->p1, c->p2); 
+  }else if(c->cmd == COMMAND_DRAW_DIRECT) { 
+    lineToDirect(c->p1, c->p2); 
   }
   
   sendReady();
@@ -74,8 +77,13 @@ void checkIncoming() {
   if(Serial.available()>0) { 
 
     char c = Serial.read(); 
-    incoming[incomingCharCount] = c; 
-
+    if(incomingCharCount<maxMessageLength) {
+      incoming[incomingCharCount] = c; 
+    }
+    else {
+      Serial.println("MESSAGE TOO LONG! : "); 
+      Serial.println(incoming); 
+    }
     incomingCharCount++; 
 
     if(c=='\0') {

@@ -220,7 +220,10 @@ function updatePlayers() {
 			var player = players[id]; 
 
 			player.update(); 
-			if((id == currentDrawingPlayerId) && (player.paused)) currentDrawingPlayerId = -1;  
+			if((id == currentDrawingPlayerId) && (player.paused)) { 	
+				stopDrawing(currentDrawingPlayerId);  
+				console.log("player paused"); 
+			}
 		}
 	
 	

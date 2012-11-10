@@ -71,3 +71,4 @@ String const stateStrings[] = {"Waiting", "Error", "Resetting", "Calibrating", "
 
 int const COMMAND_MOVE = 0; 
 int const COMMAND_DRAW = 1; 
+int const COMMAND_DRAW_DIRECT = 2; 

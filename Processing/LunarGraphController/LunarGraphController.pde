@@ -1,122 +1,165 @@
+import processing.opengl.*;
 
 
 import processing.serial.*; 
-
 import org.json.*;
+import wsp5.*;
 
-import muthesius.net.*;
-import org.webbitserver.*;
 
-Serial serial; 
-boolean firstContact = false; 
-int[] serialInArray = new int[1000];    // Where we'll put what we receive
+int viewWidth = 1920; 
+int viewHeight = 1080; 
+float viewScale = 0.7;
 
-int numToSend = 0; 
-int counter = 0; 
-int xPos = 0; 
-float lineCounter = 0; 
 
-float angle = 0; 
-float radius = 1; 
+boolean fullSizePreview = false; 
+PVector renderOffset = new PVector(0,0); 
 
-// reasonable defaults but nothing should happen until they're set 
+//int xPos = 0; 
+int lunargraphState = -1; 
+String stateStrings[] = {
+  "WAITING", "ERROR", "RESETTING", "CALIBRATING", "DRAWING"
+}; 
+
+
+// reasonable defaults but nothing should happen until they're set by the LunarGraph Arduino
 float pageWidth = 10000;  
 float pageHeight = 10000;
 float stepsPerMil = 20; 
+float machineWidth = 14000; 
+float pageTop = 3000; 
+float pageSideMargin = 0; 
 
-float dataWidth = 895.275; 
-float dataHeight = 500; 
-
-boolean started = false; 
+float dataWidth = 895.275 * 1.2; // we wanna see the landscape cycle round 1.2 times.  
+//float dataHeight = 500; 
+float landscapeWidth; 
 
 ArrayList commands; 
 ArrayList landscapePoints; 
 
+ArrayList serialMessages; 
+ArrayList webSocketMessages; 
 
 PVector receivePosition; 
 PVector sentPosition; 
 PVector drawnPosition; 
 
+
+String switchNames[] = { 
+  "jogUpButtonA", 
+  "jogDownButtonA", 
+  "jogUpButtonB", 
+  "jogDownButtonB", 
+  "endStopMinButtonA", 
+  "endStopMaxButtonA", 
+  "endStopMinButtonB", 
+  "endStopMaxButtonB", 
+  "calibrationButtonA", 
+  "calibrationButtonB", 
+  "resetButton"
+}; 
+
+int jogUpButtonA = 0;
+int jogDownButtonA = 1;
+int jogUpButtonB = 2;
+int jogDownButtonB = 3;
+int endStopMinButtonA = 4;
+int endStopMaxButtonA = 5;
+int endStopMinButtonB = 6;
+int endStopMaxButtonB = 7;
+int calibrationButtonA =8 ;
+int calibrationButtonB= 9;
+int resetButtonSwitch = 10;
+
+boolean buttonStates[] = new boolean[11]; 
+
+
+
 boolean move = true; 
-
-WebSocketP5 socket;
-
-
-String message = ""; 
+PFont consoleFont; 
+PFont titleFont; 
 
 void setup() { 
 
-  size(800, 500, OPENGL);
+  size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
+
+//  if (frame != null) {
+//    frame.setResizable(true);
+//  }
+
+  consoleFont = loadFont("BitstreamVeraSansMono-Bold-12.vlw");
+  titleFont = loadFont("FuturaLTPro-Bold-48.vlw");
+  frameRate(60);
   commands = new ArrayList();
-  receivePosition = new PVector(0,0); 
-  sentPosition = new PVector(0,0); 
-  drawnPosition = new PVector(0,0); 
+  receivePosition = new PVector(0, 0); 
+  sentPosition = new PVector(0, 0); 
+  drawnPosition = new PVector(0, 0); 
   landscapePoints = new ArrayList();  
-  socket = new WebSocketP5(this, 8084);
-  frameRate(10); 
+  serialMessages = new ArrayList(); 
+  webSocketMessages = new ArrayList(); 
+  initLandscape(); 
 
-  println(beginsWith("ready:100", "ready")) ;
-  println(getStringAfterChar("landscape:100,200", ":")) ; 
+  initSerial(); 
+  initWebSocket();  
+  //frame.setResizable(true);
 
-
+  //frameRate(10); 
+  
+  smooth(); 
   // joining the serial port that is called tty :) 
-  String ports[] = Serial.list(); 
 
-  println(ports); 
-  for (int i = 0; i< ports.length; i++) { 
+  initButtons(); 
 
-    if (ports[i].indexOf("tty.usb")!=-1) { 
-      serial = new Serial(this, ports[i], 115200); 
-      println("joining port : " + ports[i] ); 
-      break;
-    }
-  }
   background(0); 
   stroke(255);
 }
 
 
 void mousePressed() { 
-  //serial.write(++counter+ ","+0+","+map((float)mouseX, 0, 1024,0,3939.0f)+","+map((float)mouseY, 0, 1024,0,3939.0f)+"\0"); 
-  //sendXYPos(mouseX, mouseY); 
-  started = true; 
-  xPos = 0;
-  background(0);
 
-  socket.broadcast("sendlandscape");
-  //drawLandscape();
+  checkButtons(); 
+  //socket.sendToAll("sendlandscape");
 }
 void draw() { 
 
-  /*
-  if ((started) && (xPos<width)) { 
-   
-   float gap = (sin(lineCounter)+1.0f)*5.0f+1.0f; 
-   println("gap = "+gap); 
-   for (int i = 0; i<=100; i+=100) { 
-   sendXYPos(xPos, i);
-   }
-   for (int i = 100; i>=0; i-=100) { 
-   sendXYPos((xPos+(gap/2.0f)), i);
-   }
-   
-   xPos+=gap;
-   }
-   lineCounter+=0.2; 
-   */
-  // 
-  // if((started) && (radius<200)){
-  //     
-  //   sendXYPos(400 + cos(angle) * radius, 200 + sin(angle) * radius); 
-  //   
-  //   angle +=radians(1); 
-  //   radius += 0.01;
-  //   
-  // }
-  //
 
   background(0); 
-  for (float offset = 0; offset<=dataWidth; offset+=dataWidth) { 
+
+  blendMode(ADD); 
+ pageSideMargin = (machineWidth - pageWidth)/2;
+
+  pushMatrix(); 
+  
+  if(fullSizePreview) { 
+    float xoffset = map(mouseX, 0, width, 0, width - viewWidth); 
+    float yoffset = map(mouseY, 0, height, 0, height - viewHeight); 
+    renderOffset.set(round(xoffset), round(yoffset), 0); 
+    translate(renderOffset.x, renderOffset.y); 
+    
+  } else { 
+    scale(viewScale); 
+  }
+  
+  textFont(titleFont); 
+  textAlign(CENTER, CENTER);
+  text ("LUNARGRAPH CONTROLLER", viewWidth/2, 75);  
+   
+  
+  textFont(buttonFont); 
+  if ((lunargraphState>=0) && (lunargraphState<stateStrings.length)) {
+    if((stateStrings[lunargraphState] == "WAITING") || (stateStrings[lunargraphState]=="DRAWING") || (frameCount%60>20)) {
+      text(stateStrings[lunargraphState], viewWidth/2, 135); 
+    } 
+  }
+
+  // draw data relative stuff
+  stroke(255);
+  pushMatrix(); 
+ 
+  //translate(0,80); 
+  scale(viewWidth/dataWidth * pageWidth/machineWidth); 
+  translate(map(pageSideMargin, 0, pageWidth, 0, dataWidth), 82);  // not sure about the magic number there... :/ 
+
+  for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
     for (int i = 1; i<landscapePoints.size(); i++) { 
 
       PVector p1 = ((PVector)landscapePoints.get(i-1)); 
@@ -125,29 +168,141 @@ void draw() {
       p2 = p2.get(); 
       p1.x+=offset; 
       p2.x+=offset; 
-      p1 = convertDataToScreen(p1); 
-      p2 = convertDataToScreen(p2); 
-      line(p1.x, p1.y, p2.x, p2.y);
+      if(p2.x<dataWidth) {
+        line(p1.x, p1.y, p2.x, p2.y);
+      } else { 
+        PVector v = p2.get(); 
+        v.sub(p1); 
+        v.mult((dataWidth-p1.x) / v.x); 
+        line(p1.x, p1.y, p1.x + v.x, p1.y + v.y);  
+        break;
+      } 
     }
   }
+  noFill();
+  ellipse(receivePosition.x, receivePosition.y, 6, 6); 
+  popMatrix(); 
 
-  ellipse(receivePosition.x,receivePosition.y, 10, 10); 
+
+  //now draw machine relative stuff
+  pushMatrix(); 
+
+  //translate(0,-100); 
+  float scalefactor = (float)viewWidth/machineWidth;///1.2;
+  translate((machineWidth - pageWidth)/ 2 * scalefactor , pageTop * scalefactor); 
+  
+  noFill(); 
+  stroke(50); 
+  rect(0,0,pageWidth*scalefactor, pageHeight*scalefactor); 
+  
+  //scale(scalefactor);  
+  //println("scaling : "+((float)viewWidth/pageWidth/1.2)); 
+  // strokeWeight(1/scalefactor);
+  
+  stroke(50); 
+  strokeWeight(4); 
+  line(-pageSideMargin*scalefactor, -pageTop*scalefactor, sentPosition.x*scalefactor, sentPosition.y*scalefactor); 
+  line(sentPosition.x*scalefactor, sentPosition.y*scalefactor, (pageWidth + pageSideMargin)*scalefactor, -pageTop*scalefactor); 
+  stroke(100);
+  strokeWeight(2);
+  fill(0);
+  ellipse(sentPosition.x*scalefactor, sentPosition.y*scalefactor, 20, 20); 
+  
+  //println(sentPosition.x*scalefactor +" "+sentPosition.y*scalefactor);
+  // strokeWeight(1);
+
+  stroke(10,20,120);
+  for (int i = 0; i< commands.size(); i++) { 
+    Command c = (Command) commands.get(i); 
+    point(c.p1*scalefactor, c.p2*scalefactor);
+  }
+
+  popMatrix();
+
+
+  renderConsoles();  
+  renderButtons(); 
+
   processQueue();
+  
+  popMatrix(); 
 }
 
+void renderConsoles() { 
+  
+  textFont(consoleFont); 
+  textAlign(LEFT, TOP); 
+  while (serialMessages.size ()>70) serialMessages.remove(0); 
+  int leading = 14; 
+
+  int textX = 100; 
+  int textY =  ((viewHeight- (serialMessages.size()) * leading)) - 50; 
+
+
+
+  for (int i = 0; i<serialMessages.size(); i++) { 
+    fill(100); 
+    if (i==serialMessages.size()-1) fill(255); 
+
+    String msg = (String)serialMessages.get(i); 
+    if (msg!=null) text(msg, textX, textY); 
+    textY+=leading;
+  } 
+
+  while (webSocketMessages.size ()>70) webSocketMessages.remove(0); 
+  textX = viewWidth-250; 
+  textY =  (viewHeight-(webSocketMessages.size() * leading)) - 50; 
+
+
+  for (int i = 0; i<webSocketMessages.size(); i++) { 
+    fill(100); 
+    if (i==webSocketMessages.size()-1) fill(255); 
+    String msg = (String)webSocketMessages.get(i); 
+    if (msg!=null) text(msg, textX, textY); 
+    textY+=leading;
+  } 
+
+  
+
+  // draw end stops 
+  drawSwitch(endStopMinButtonA, 40, 20);
+  drawSwitch(calibrationButtonA, 40, 40);
+  drawSwitch(endStopMaxButtonA, 40, 60);
+
+  drawSwitch(endStopMinButtonB, viewWidth-60, 20);
+  drawSwitch(calibrationButtonB, viewWidth-60, 40);
+  drawSwitch(endStopMaxButtonB, viewWidth-60, 60);
+
+
+
+}
+
+
+void drawSwitch(int buttonNum, float xpos, float ypos) { 
+  //noSmooth(); 
+  stroke(255); 
+  if (buttonStates[buttonNum]) fill(255); 
+  else noFill(); 
+  rect(xpos+0.5, ypos+0.5, 10, 10);
+  //smooth(); 
+}
+
+
+
+/*
 PVector convertDataToScreen(PVector p) { 
 
   PVector returnVector = p.get(); 
   returnVector.y-=100; 
-  returnVector.mult(width/dataWidth/1.2);  
+  returnVector.mult(viewWidth/dataWidth);  
   return returnVector;
-}
+}*/
 
 PVector convertDataToLunarGraph(PVector p) { 
 
   PVector returnVector = p.get(); 
   returnVector.y-=100; 
-  returnVector.mult(pageWidth/dataWidth/1.2);  
+  returnVector.mult(pageWidth/dataWidth);  
   return returnVector;
 }
 
@@ -155,18 +310,27 @@ void moveToXYPos(float xpos, float ypos) {
 
   commands.add(new Command(0, xpos, ypos));
 }
+void lineToXYPos(float xpos, float ypos, boolean direct) { 
+
+  commands.add(new Command(direct ? 2 : 1, xpos, ypos));
+}
 void lineToXYPos(float xpos, float ypos) { 
 
-  commands.add(new Command(1, xpos, ypos));
+  lineToXYPos(xpos, ypos, false); 
 }
 
 void moveToXYPos(PVector pos) { 
 
   commands.add(new Command(0, pos.x, pos.y));
 }
+void lineToXYPos(PVector pos, boolean direct) { 
+
+  commands.add(new Command(direct ? 2 : 1, pos.x, pos.y));
+}
+
 void lineToXYPos(PVector pos) { 
 
-  commands.add(new Command(1, pos.x, pos.y));
+  lineToXYPos( pos, false);
 }
 
 void processQueue() { 
@@ -174,70 +338,24 @@ void processQueue() {
   if ((numToSend>0) && (commands.size()>0)) { 
 
     Command cmd = (Command) commands.remove(0);
-    //float xpos = map(cmd.p1, 0.0f, width, 0.0f, pageWidth); 
-    //float ypos = map(cmd.p2, 0.0f, height, 0.0f, pageWidth);
+    //float xpos = map(cmd.p1, 0.0f, viewWidth, 0.0f, pageWidth); 
+    //float ypos = map(cmd.p2, 0.0f, viewHeight, 0.0f, pageWidth);
     float xpos = round(cmd.p1*100)/100.0f; 
     float ypos = round(cmd.p2*100)/100.0f;
 
 
-    String msg = counter+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
-    counter++; 
-    println("sending "+msg); 
-
-    serial.write(msg); 
+    String msg = serialMessageCount+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
+    serialMessageCount++; 
+    sentPosition.set(xpos, ypos, 0); 
+    println("sentPosition : "+ sentPosition); 
+    //println("sending "+msg); 
+    //serialMessages.add(">"+msg); 
+    sendSerial(msg); 
 
     numToSend =0;
   }
 }
 
-
-void serialEvent(Serial serial) { 
-
-  int inByte = serial.read(); 
-
-  if (!firstContact) {
-    firstContact = true; 
-    println("Connected!");
-  }
-
-  if ((inByte == 0) || (inByte == 10)) { 
-    processMessage();
-  } 
-  else if ((inByte>=32) && (inByte<=126)) { 
-    message = message + char(inByte);  
-    //println(inByte);
-  }
-}
-
-void processMessage () { 
-
-  println("->" +message); 
-
-  //println(message.substring(6,message.length()-1));
-  if (beginsWith(message, "ready")) {
-
-    numToSend = int(getStringAfterChar(message, ":"));   
-
-    println("ready to send "+numToSend); 
-
-    // format = <cmdnum>,<cmd>,<p1>,<p2> 
-    //serial.write(++counter + ",1,"+random(0,1000)+","+random(0,1000)+"\0");
-  } 
-  else if (beginsWith(message, "pagewidth")) { 
-    pageWidth = float(getStringAfterChar(message, ":"));   
-    println("pageWidth set : "+pageWidth);
-  } 
-  else if (beginsWith(message, "pageheight")) { 
-    pageHeight = float(getStringAfterChar(message, ":"));   
-    println("pageHeight set : "+pageHeight);
-  } 
-  else if (beginsWith(message, "stepspermil")) { 
-    stepsPerMil = float(getStringAfterChar(message, ":"));   
-    println("stepsPerMil set : "+stepsPerMil);
-  } 
-  message = "";  
-  //println("------");
-}
 
 boolean beginsWith(String source, String matchString) { 
   return ((source.length()>=matchString.length()) && (source.substring(0, matchString.length()).equals(matchString)));
@@ -251,120 +369,17 @@ String getStringAfterChar(String source, String chr) {
 
 
 
-void websocketOnMessage(WebSocketConnection con, String msg) {
-  println(msg);
-
-  if (beginsWith(msg, "landscapeend")) { 
-    drawLandscape();
-  } 
-  else if (beginsWith(msg, "landscape")) { 
-    PVector p = new PVector(0, 0); 
-    String numbers[] = getStringAfterChar(msg, ":").split(","); 
-
-    int index = int(numbers[0]); 
-
-    p.x = float(numbers[1]); 
-    p.y = float(numbers[2]); 
-
-    println(p);
-    //p.mult(0.5f);
-    if (landscapePoints.size()<=index) {
-      landscapePoints.add(p);
-    } 
-    else {
-      landscapePoints.set(index, p);
-    } 
-    //p.y-=100;
-    //p.mult(0.8);
-  } 
-  else if (beginsWith(msg, "{")) { 
-
-    try {
-      JSONObject msgJson = new JSONObject(msg);
-      String type = msgJson.getString("type");
-      println(type+" "+ (type == "update"));
-      if (type.equals("restart")) { 
-        move = true;
-      } 
-      else if (type.equals("update")) { 
-
-        PVector p1 = new PVector(msgJson.getInt("x"), msgJson.getInt("y")); 
-        p1.div(100); 
-      receivePosition = convertDataToScreen(p1); 
-        p1 = convertDataToLunarGraph(p1);  
-        if (move) {
-          moveToXYPos(p1);
-          move = false;
-        } 
-        else {  
-          lineToXYPos(p1);
-        }
-      }
-    }
-    catch(JSONException e) {
-    }
-  }
-}
-
-void drawLandscape() { 
-  println("drawing landscape..."); 
-  moveToXYPos(0, 500);
-  lineToXYPos(0, 0);
-  lineToXYPos(500, 0);
-  
-    moveToXYPos(pageWidth-500, 0);
-  lineToXYPos(pageWidth, 0);
-  lineToXYPos(pageWidth, 500);
-  //   
-  //  boolean move = true; 
-  //  for(float xpos = 0; xpos<pageWidth; xpos+=pageWidth/100) { 
-  //      moveToXYPos(xpos, 0);
-  //      lineToXYPos(xpos, 2000);
-  //  }
-  //  
-  //  
-  //  for(float xpos = pageWidth; xpos>0; xpos-=(pageWidth/100)) { 
-  //      moveToXYPos(xpos, 0);
-  //      lineToXYPos(xpos, 2000);
-  //  }
-
-
-  for (float offset = 0; offset<=dataWidth; offset+=dataWidth) { 
-
-    for (int i = 0; i<landscapePoints.size(); i++) { 
-
-      PVector p1 = ((PVector)landscapePoints.get(i)).get();
-      p1.x+=offset; 
-      
-      if(p1.x>dataWidth*1.2) break; 
-      
-      p1 = convertDataToLunarGraph(p1);  
-      if ((i==0) && (offset==0)) { 
-        moveToXYPos(p1);
-      } 
-      else { 
-        PVector p0 = (PVector)landscapePoints.get(i-1); 
-//        PVector v = PVector.sub(p1,p0); 
-//        for(float j = 0; j<1; j+=0.1) { 
-          lineToXYPos(p1);
-          //lineToXYPos(p0);
-          //lineToXYPos(p1);
-        //}
-      }
-    }
-  }
-}
-
-void websocketOnOpen(WebSocketConnection con) {
-  println("A client joined");
-}
-
-void websocketOnClosed(WebSocketConnection con) {
-  println("A client left");
-}
 
 void stop() {
-  socket.stop();
-  if(firstContact) serial.stop();
+  try { 
+    if (socket!=null) 
+      socket.stop();
+  } 
+  catch (IOException e) {
+  } 
+  finally {
+  }
+
+  if (firstContact) serial.stop();
 }
 

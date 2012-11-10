@@ -1,6 +1,6 @@
 	var wslocal = null;
 	var host = "sebair.local";
-	var port = 8083;
+	var port = 8086;
 	var socket = "p5websocket";
 	//console.log('hello'); 
 
@@ -31,7 +31,8 @@
 			if(port==8090) port = 8081; 
 			setTimeout(ready, 1000); 
 		};
-
+		
+		
 
 	}
 

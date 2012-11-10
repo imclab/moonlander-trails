@@ -35,7 +35,7 @@ Lander = function() {
 	
 	var reset = this.reset = function () { 
 		
-		vel.reset(0.4, 0); 
+		vel.reset(0.415, 0); 
 		pos.reset(110,150); 
 		this.rotation = targetRotation = -90; 
 		scale = 1; 

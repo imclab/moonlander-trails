@@ -32,7 +32,7 @@ float machineWidth = 2675.0f * stepsPerMil;
 float pageTop = 300.0f * stepsPerMil; 
 float sideMargin = 450.0f * stepsPerMil; 
 float pageWidth = machineWidth - (sideMargin*2); 
-float pageHeight = pageWidth/2; 
+float pageHeight = pageWidth*0.55; 
 
 float drawSpeed = 300; 
 
@@ -40,8 +40,8 @@ float drawSpeed = 300;
 
 // caibration point only for actual machine 
 
-long calibrationLengthA = round(1525.0f * stepsPerMil); 
-long calibrationLengthB = round(1680.0f * stepsPerMil); 
+long calibrationLengthA = round(1477.0f * stepsPerMil); 
+long calibrationLengthB = round(1703.0f * stepsPerMil); 
 
 
 

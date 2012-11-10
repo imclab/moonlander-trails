@@ -76,7 +76,7 @@ Lander = function() {
 			thrustBuild = thrustLevels[currentPositionIndex];
 			lastUpdate = Date.now();
 			this.paused = false;
-		} else if(Date.now()-lastUpdate>2000) { 
+		} else if(Date.now()-lastUpdate>10000) { 
 			//console.log("paused"); 
 		  this.paused = true; 	
 			

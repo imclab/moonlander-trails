@@ -30,8 +30,8 @@ boolean calibrated = false;
 boolean errorEndStopHit = false; 
 boolean errorMotorDrive = false; 
 boolean penIsUp = true; 
-int penMoveDownTime = 2000; 
-int penMoveUpTime = 2000; 
+int penMoveDownTime = 500; 
+int penMoveUpTime = 200; 
 
 
 float startPosX = 0;
@@ -39,6 +39,7 @@ float startPosY = 0;
 float vectorX = 0; 
 float vectorY = 0; 
 float progress = 0; 
+boolean easing = true;
 float duration = 0; 
 unsigned long startTime; 
 
@@ -85,7 +86,7 @@ const int NUM_BUTTONS = 11;
 
 void setup()  { 
 
-  Serial.begin(115200); 
+  Serial.begin(38400); 
   Serial.println(""); 
   Serial.print("pagewidth:"); 
   Serial.println(pageWidth); 
@@ -93,6 +94,8 @@ void setup()  {
   Serial.println(pageHeight); 
   Serial.print("stepspermil:"); 
   Serial.println(stepsPerMil, 20); 
+  Serial.print("pagetop:"); 
+  Serial.println(pageTop); 
 
   initMotors(); 
 
@@ -129,10 +132,10 @@ void setup()  {
   pinMode(PEN_DROP_PIN, OUTPUT); 
   digitalWrite(PEN_DROP_PIN, LOW); 
   penIsUp = true; 
-  
+
   pinMode(19, OUTPUT); 
   digitalWrite(19,LOW); 
-  
+
   sendReady(); 
 
 }
@@ -148,16 +151,18 @@ void loop() {
     checkEndStops(); 
     checkMotorErrors(); 
 
-    if((state!=STATE_RESETTING) &(errorEndStopHit || errorMotorDrive)) {
-      changeState(STATE_ERROR);  
-      Serial.print("ERROR : "); 
-      if(errorEndStopHit) { 
-        Serial.print("endstop hit "); 
-      } 
-      if(errorMotorDrive) { 
-        Serial.print("motor drive");  
+    //if((state!=STATE_RESETTING) &(errorEndStopHit || errorMotorDrive)) {
+    if((state!=STATE_RESETTING) &(errorMotorDrive)) {
+      if(changeState(STATE_ERROR)) {  
+        Serial.print("ERROR:"); 
+        if(errorEndStopHit) { 
+          Serial.print("endstop hit "); 
+        } 
+        if(errorMotorDrive) { 
+          Serial.print("motor drive");  
+        }
+        Serial.println(""); 
       }
-      Serial.println(""); 
     }
 
 
@@ -231,12 +236,12 @@ void loop() {
   else if(state == STATE_DRAWING) { 
 
     if(updateDrawing()) {
-     
-     if(numCommands>0) nextCommand();   
-     else changeState(STATE_WAITING); 
+
+      if(numCommands>0) nextCommand();   
+      else changeState(STATE_WAITING); 
 
     }
-    
+
 
 
   }
@@ -283,9 +288,9 @@ boolean updateDrawing() {
   progress = (float)(micros()- startTime) / (float)duration; 
 
   if(progress>=1) {
-    
+
     //if(numCommands==0) {
-      //changeState(STATE_WAITING); 
+    //changeState(STATE_WAITING); 
     //  liftPenUp(); 
     //}
     xPos = startPosX + vectorX; 
@@ -296,10 +301,10 @@ boolean updateDrawing() {
   } 
   else { 
     float t; 
-    //if(duration>200000) 
-    t = easeInOut(progress); 
-    //else 
-    //t = progress; 
+    if(easing) 
+      t = easeInOut(progress); 
+    else 
+      t = progress; 
     xPos = startPosX + (vectorX * t); 
     yPos = startPosY + (vectorY * t); 
   }
@@ -339,29 +344,43 @@ void updateMotors() {
 void lineTo(float x, float y) { 
   // pendown
   if(pushPenDown()) {  
-    moveStraight(x, y, penMoveDownTime); 
+    moveStraight(x, y, penMoveDownTime, 1, true); 
   } 
   else { 
 
-    moveStraight(x, y, 0); 
+    moveStraight(x, y, 0,1, true); 
 
   } 
 
 
 }
-void moveTo(float x, float y) { 
-  //penup
-  if(liftPenUp()) {  
-    moveStraight(x, y, penMoveUpTime); 
+void lineToDirect(float x, float y) { 
+  // pendown
+  if(pushPenDown()) {  
+    moveStraight(x, y, penMoveDownTime, 1, false); 
   } 
   else { 
 
-    moveStraight(x, y, 0); 
+    moveStraight(x, y, 0, 1, false); 
+
+  } 
+
+
+}
+
+void moveTo(float x, float y) { 
+  //penup
+  if(liftPenUp()) {  
+    moveStraight(x, y, penMoveUpTime, 0.5, true); 
+  } 
+  else { 
+
+    moveStraight(x, y, 0, 0.5, true); 
   }
 
 }
 
-void moveStraight(float x2, float y2, int delayMils) {
+void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean useEaseInOut) {
 
   updateCartesianByLengths();
 
@@ -375,18 +394,22 @@ void moveStraight(float x2, float y2, int delayMils) {
   vectorX = x2-xPos; 
   vectorY = y2-yPos; 
 
-  duration = max(sqrt(sq(vectorX) + sq(vectorY)), 20.0f*stepsPerMil)  * drawSpeed; // in micros
+
+  easing = useEaseInOut;
+
+  if (easing) duration = max(sqrt(sq(vectorX) + sq(vectorY)), 100.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
+  else  duration = max(sqrt(sq(vectorX) + sq(vectorY)), 10.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
 
   progress  = 0; 
   
- // unsigned long delayMicros = 500000; // (unsigned long)(delayMils)*1000; 
-  
-  startTime = micros();// +  500000;// + delayMicros; 
-  
-//  Serial.print("Now:"); 
-//  Serial.print(micros());
-//  Serial.print(" delay:");  
-//  Serial.println(delayMicros); 
+   unsigned long delayMicros =  (unsigned long)(delayMils)*1000; 
+
+  startTime = micros() +  delayMicros;// + delayMicros; 
+
+  //  Serial.print("Now:"); 
+  //  Serial.print(micros());
+  //  Serial.print(" delay:");  
+  //  Serial.println(delayMicros); 
   changeState(STATE_DRAWING); 
 
 }
@@ -529,23 +552,29 @@ boolean changeState(int newState) {
 
   }  
 
-  Serial.print("CHANGE STATE : ");   
+  Serial.print("CHANGE STATE:");   
+  Serial.print(state); 
+  Serial.print(","); 
   Serial.println(stateStrings[state]);
-
-  Serial.print(calibrationProgressA); 
-  Serial.print(" "); 
-  Serial.println(calibrationProgressB); 
 
   return true; 
 }
 
 
 void updateButtons() {  
-
+  boolean changed = false; 
   for(int i = 0; i< NUM_BUTTONS; i++) { 
-    buttons[i]->update(); 
+    if( buttons[i]->update() ) changed = true;  
   }
 
+  if(changed) { 
+    // send button data...  
+    Serial.print("buttons:"); 
+    for(int i = 0; i< NUM_BUTTONS; i++) { 
+      Serial.print(buttons[i]->isOn()); 
+    }
+    Serial.println(""); 
+  }
 }
 
 
@@ -580,6 +609,7 @@ void updateJogButtons() {
   }
 
 }
+
 
 
 

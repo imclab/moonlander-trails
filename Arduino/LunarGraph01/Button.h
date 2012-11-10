@@ -19,11 +19,11 @@ class Button {
     
   };
   
-  void update() { 
+  boolean update() { 
     
     boolean pinState = digitalRead(pinNum);
     int now = millis(); 
-    
+    boolean changed = false; 
     // should probably add some debouncing
     
     if((pinState == onState) && (!on) ) { 
@@ -33,6 +33,7 @@ class Button {
         timeChanged = now; 
         timeSinceChange = 0;   
         onCount = 0; 
+        changed = true; 
       } else { 
         onCount ++ ; 
       }
@@ -44,6 +45,7 @@ class Button {
         timeChanged = now; 
         timeSinceChange = 0;  
         offCount = 0; 
+        changed = true; 
       } else { 
         offCount ++; 
       }
@@ -52,6 +54,7 @@ class Button {
       timeSinceChange = now - timeChanged; 
     }
     firstTime = false; 
+    return changed; 
   }
   
   boolean isOn() { 

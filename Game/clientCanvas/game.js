@@ -61,50 +61,7 @@ window.addEventListener("load", init);
 
 function init() 
 {
-	
-	ws = new WebSocket("ws://"+WEB_SOCKET_URL); 
-	ws.onopen = function(e) { 
-		
-		console.log('connected'); 
-		wsConnected = true; 
-		
-	};
-	ws.onmessage = function(e) { 
-	//	console.log(e.data); 
-		
-		var msg = JSON.parse(e.data); 
-		
-		if(msg.type=='connect') { 
-			wsID = msg.id;
-			
-		} else if(msg.type=='join') {
-			// add new player object
-		} else if(msg.type=='update') { 
-			// update player object
-			if(!players[msg.id]) { 
-				players[msg.id] = new Lander(); 
-				players[msg.id].scale = lander.scale;
-			}
-			var player = players[msg.id]; 
-			player.pos.x = msg.x/100; 
-			player.pos.y = msg.y/100; 
-			player.rotation = msg.a; 
-			player.thrusting = (msg.t == 1);
-			
-		} else if(msg.type=='leave') { 
-			// delete player object
-			if(players[msg.id]) delete players[msg.id]; 
-
-		}
-			
-			
-		
-	};
-	ws.onclose = function(e) { 
-		wsConnected = false; 
-		console.log("disconnected!"); 
-	};
-	
+	initWebSocket(); 
 	// CANVAS SET UP
 	
 	document.body.appendChild(canvas); 
@@ -149,7 +106,63 @@ function init()
 	
 }
 
+function initWebSocket() { 
+	
+	if(WEB_SOCKET_URL!="") { 
+		ws = new WebSocket("ws://"+WEB_SOCKET_URL); 
+		console.log('Attempting connection '+WEB_SOCKET_URL); 
+		ws.onopen = function(e) { 
+		
+			console.log('Connected to '+WEB_SOCKET_URL); 
+			wsConnected = true; 
+		
+		};
+		ws.onmessage = function(e) { 
+		//	console.log(e.data); 
+		
+			var msg = JSON.parse(e.data); 
+		
+			if(msg.type=='connect') { 
+				wsID = msg.id;
+			
+			} else if(msg.type=='join') {
+				// add new player object
+			} else if(msg.type=='update') { 
+				// update player object
+				if(!players[msg.id]) { 
+					players[msg.id] = new Lander(); 
+					players[msg.id].scale = lander.scale;
+				}
+				var player = players[msg.id]; 
+				player.pos.x = msg.x/100; 
+				player.pos.y = msg.y/100; 
+				player.rotation = msg.a; 
+				player.thrusting = (msg.t == 1);
+			
+			} else if(msg.type=='leave') { 
+				// delete player object
+				if(players[msg.id]) delete players[msg.id]; 
+
+			}
+			
+			
+		
+		};
+		ws.onclose = function(e) { 
+			wsConnected = false; 
+			console.log("disconnected from "+WEB_SOCKET_URL); 
+			if(connectionRetryTimeout) { 
+				setTimeout(initWebSocket,connectionRetryTimeout);  
+			}
+		};
+	}
+	
+	
+}
+
+
 function sendPosition() {
+//	if(!ws) return; 
 	if(gameState==PLAYING) {
 		var update = {
 			type : 'update', 
@@ -170,6 +183,7 @@ function sendPosition() {
 }
 
 function sendLanded() { 
+	//if(!ws) return; 
 	var update = {
 		type : 'land', 
 		id : wsID	
@@ -178,6 +192,7 @@ function sendLanded() {
 }
 	
 function sendCrashed() { 
+	//if(!ws) return; 
 	var update = {
 		type : 'crash', 
 		id : wsID	
@@ -185,6 +200,7 @@ function sendCrashed() {
 	ws.send(JSON.stringify(update)); 
 }
 function sendGameOver() { 
+	//if(!ws) return; 
 	var update = {
 		type : 'over', 
 		id : wsID,
@@ -193,6 +209,7 @@ function sendGameOver() {
 	ws.send(JSON.stringify(update)); 
 }
 function sendRestart() { 
+	//	if(!ws) return; 
 	var update = {
 		type : 'restart', 
 		id : wsID,
