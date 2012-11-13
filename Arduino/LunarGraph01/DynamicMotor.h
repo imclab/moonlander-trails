@@ -10,17 +10,20 @@ public :
 
     currentSpeed = targetSpeed = 0.0f; 
     acceleration = 0.0f; 
-    accelSpeed = 0.5f; 
+    accelSpeed = 0.2f; 
     errorState = false; 
     resetting = false; 
 
   }
 
-  void initGecko(int steppin, int dirpin, int resetpin){
+  void initGecko(int steppin, int dirpin, int resetpin, int brakepin){
 
     accelStepper = AccelStepper(AccelStepper::DRIVER, steppin, dirpin); 
     accelStepper.setMaxSpeed(100000); 
     resetPin = resetpin; 
+    brakePin = brakepin; 
+    pinMode(brakePin, OUTPUT); 
+    turnBrakeOn(); 
 
     reset(); 
 
@@ -37,13 +40,21 @@ public :
     accelStepper.setAcceleration(2000); 
 
   }
+  
+  void turnBrakeOff() {
+    digitalWrite(brakePin, HIGH);  
+  } 
+  void turnBrakeOn() { 
+   digitalWrite(brakePin, LOW);   
+  }
+    
 
 
   void update(boolean do33msUpdate) { 
 
     if(resetting) { 
 
-      if(millis()-resetStartTime>1000) { 
+      if(millis()-resetStartTime>2000) { 
 
         finishResetting(); 
 
@@ -67,6 +78,7 @@ public :
           resetPinHighCount  =0;  
           setSpeedDirect(0); 
           Serial.println("MOTOR ERROR"); 
+          
 
         }
 
@@ -82,7 +94,13 @@ public :
         }
         //Serial.println(accelStepper.speed()); 
       }
-
+      
+      if(errorState) { 
+        turnBrakeOn(); 
+      } else { 
+        turnBrakeOff(); 
+      }
+    
       accelStepper.setSpeed(currentSpeed); 
       accelStepper.runSpeed(); 
     }
@@ -145,6 +163,7 @@ public :
   float targetSpeed; 
   float acceleration;
   float accelSpeed; 
+  int brakePin; 
 
   int resetPin; 
   boolean resetting; 

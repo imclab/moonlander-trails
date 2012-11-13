@@ -24,7 +24,7 @@ Command commands[numStoredCommands];
 int numCommands = 0; 
 int currentCommand = 0; 
 
-float maxJogSpeed = 1600.0f; 
+float maxJogSpeed = 3200.0f; 
 
 boolean calibrated = false; 
 boolean errorEndStopHit = false; 
@@ -48,24 +48,25 @@ Button jogDownButtonA = Button(A_JOG_DOWN_PIN);
 Button jogUpButtonB   = Button(B_JOG_UP_PIN); 
 Button jogDownButtonB = Button(B_JOG_DOWN_PIN); 
 Button resetButton    = Button(RESET_BUTTON_PIN);
+Button spareButton    = Button(SPARE_BUTTON_PIN);
 
-Button endStopMinButtonA = Button(A_END_STOP_MIN_PIN); 
-Button endStopMaxButtonA = Button(A_END_STOP_MAX_PIN); 
-Button calibrationButtonA = Button(A_CALIBRATION_PIN);
+Button endStopMinButtonA = Button(A_END_STOP_MIN_PIN, false, HIGH); 
+Button endStopMaxButtonA = Button(A_END_STOP_MAX_PIN, false, HIGH); 
+Button calibrationButtonA = Button(A_CALIBRATION_PIN, false, HIGH);
 
-#ifdef USE_TEST_MACHINE
+//#ifdef USE_TEST_MACHINE
+//
+//Button endStopMinButtonB = Button(B_END_STOP_MIN_PIN); 
+//Button endStopMaxButtonB = Button(B_END_STOP_MAX_PIN); 
+//Button calibrationButtonB = Button(B_CALIBRATION_PIN); 
+//
+//#else 
 
-Button endStopMinButtonB = Button(B_END_STOP_MIN_PIN); 
-Button endStopMaxButtonB = Button(B_END_STOP_MAX_PIN); 
-Button calibrationButtonB = Button(B_CALIBRATION_PIN); 
-
-#else 
-
-Button endStopMinButtonB = Button(B_END_STOP_MIN_PIN, false); 
+Button endStopMinButtonB = Button(B_END_STOP_MIN_PIN, false, HIGH); 
 Button endStopMaxButtonB = Button(B_END_STOP_MAX_PIN, false); 
 Button calibrationButtonB = Button(B_CALIBRATION_PIN, false); 
 
-#endif
+//#endif
 
 
 // DON'T FORGET to add to NUM_BUTTONS if you add to the array
@@ -81,13 +82,14 @@ Button* buttons[] = {
   &calibrationButtonA, 
   &calibrationButtonB,
   &resetButton,
+  &spareButton
 }; 
-const int NUM_BUTTONS = 11; 
+const int NUM_BUTTONS = 12; 
 
 void setup()  { 
 
   Serial.begin(38400); 
-  Serial.println(""); 
+  Serial.println("RESTARTING -----------------------------"); 
   Serial.print("pagewidth:"); 
   Serial.println(pageWidth); 
   Serial.print("pageheight:"); 
@@ -133,8 +135,9 @@ void setup()  {
   digitalWrite(PEN_DROP_PIN, LOW); 
   penIsUp = true; 
 
-  pinMode(19, OUTPUT); 
-  digitalWrite(19,LOW); 
+  // WHAT IS THIS? 
+  //pinMode(19, OUTPUT); 
+  //digitalWrite(19,LOW); 
 
   sendReady(); 
 
@@ -151,15 +154,18 @@ void loop() {
     checkEndStops(); 
     checkMotorErrors(); 
 
-    //if((state!=STATE_RESETTING) &(errorEndStopHit || errorMotorDrive)) {
-    if((state!=STATE_RESETTING) &(errorMotorDrive)) {
+    if((state!=STATE_RESETTING) &(errorEndStopHit || errorMotorDrive)) {
+    //if((state!=STATE_RESETTING) &(errorMotorDrive)) {
       if(changeState(STATE_ERROR)) {  
         Serial.print("ERROR:"); 
         if(errorEndStopHit) { 
           Serial.print("endstop hit "); 
         } 
         if(errorMotorDrive) { 
-          Serial.print("motor drive");  
+          Serial.print("motor drive ");
+          Serial.print(motorA.errorState);
+          Serial.print(" " ); 
+          Serial.print(motorB.errorState);
         }
         Serial.println(""); 
       }
@@ -277,6 +283,8 @@ void loop() {
 
 
   }
+  
+  //digitalWrite(PEN_DROP_PIN, digitalRead(SPARE_BUTTON_PIN)); 
 
 }
 

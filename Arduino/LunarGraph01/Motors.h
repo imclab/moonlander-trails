@@ -3,21 +3,21 @@ DynamicMotor motorA;
 DynamicMotor motorB; 
 
 #ifdef USE_TEST_MACHINE 
-
-float stepsPerRev = 800.0f; 
-// mm : 
-float diameter = 32.0f;
-float circumference = diameter * PI; 
-float stepsPerMil = stepsPerRev/circumference; 
-
-// dimensions in steps 
-float machineWidth = 495.0f * stepsPerMil;  
-float pageTop = 115.0f * stepsPerMil; 
-float sideMargin = 100.0f * stepsPerMil; 
-float pageWidth = machineWidth - (sideMargin*2); 
-float pageHeight = pageWidth; 
-
-float drawSpeed = 1000; 
+//
+//float stepsPerRev = 800.0f; 
+//// mm : 
+//float diameter = 32.0f;
+//float circumference = diameter * PI; 
+//float stepsPerMil = stepsPerRev/circumference; 
+//
+//// dimensions in steps 
+//float machineWidth = 495.0f * stepsPerMil;  
+//float pageTop = 115.0f * stepsPerMil; 
+//float sideMargin = 100.0f * stepsPerMil; 
+//float pageWidth = machineWidth - (sideMargin*2); 
+//float pageHeight = pageWidth; 
+//
+//float drawSpeed = 1000; 
 
 #else
 
@@ -29,7 +29,7 @@ float stepsPerMil = stepsPerRev/circumference;
 
 // dimensions in steps 
 float machineWidth = 2675.0f * stepsPerMil;  
-float pageTop = 300.0f * stepsPerMil; 
+float pageTop = 350.0f * stepsPerMil; 
 float sideMargin = 450.0f * stepsPerMil; 
 float pageWidth = machineWidth - (sideMargin*2); 
 float pageHeight = pageWidth*0.55; 
@@ -40,8 +40,8 @@ float drawSpeed = 300;
 
 // caibration point only for actual machine 
 
-long calibrationLengthA = round(1477.0f * stepsPerMil); 
-long calibrationLengthB = round(1703.0f * stepsPerMil); 
+long calibrationLengthA = round(1496.0f * stepsPerMil); 
+long calibrationLengthB = round(1654.0f * stepsPerMil); 
 
 
 
@@ -182,11 +182,18 @@ void initMotors() {
 
 #else 
 
-  motorA.initGecko(A_STEP_PIN, A_DIR_PIN, A_ERR_RESET_PIN); 
-  motorB.initGecko(B_STEP_PIN, B_DIR_PIN, B_ERR_RESET_PIN); 
+  motorA.initGecko(A_STEP_PIN, A_DIR_PIN, A_ERR_RESET_PIN, A_BRAKE_PIN); 
+  motorB.initGecko(B_STEP_PIN, B_DIR_PIN, B_ERR_RESET_PIN, B_BRAKE_PIN); 
 
   // reverse motorB so that it turns the same way to increase the length
   motorB.accelStepper.setPinsInverted(true, false); 
+  
+//  pinMode(A_BRAKE_PIN, OUTPUT); 
+//  pinMode(B_BRAKE_PIN, OUTPUT); 
+//  digitalWrite(A_BRAKE_PIN, HIGH);  
+//  digitalWrite(B_BRAKE_PIN, HIGH); 
+
+  
 //  pinMode(A_ERR_RESET_PIN, OUTPUT); 
 //  pinMode(B_ERR_RESET_PIN, OUTPUT); 
 //

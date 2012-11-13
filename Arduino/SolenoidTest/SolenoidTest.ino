@@ -7,17 +7,24 @@
  
 // Pin 13 has an LED connected on most Arduino boards.
 // give it a name:
-int led = 48;
+
+
+int const PEN_DROP_PIN = 42; // or 42? 
+int const A_BRAKE_PIN = 40;
+int const B_BRAKE_PIN = 51;
+
+int led = B_BRAKE_PIN;
 int counter = 0; 
+
 
 // the setup routine runs once when you press reset:
 void setup() {                
   // initialize the digital pin as an output.
   pinMode(led, OUTPUT);     
   
-  pinMode(19, OUTPUT); 
-  digitalWrite(19,LOW); 
- 
+//  pinMode(19, OUTPUT); 
+//  digitalWrite(19,LOW); 
+// 
 }
 
 // the loop routine runs over and over again forever:
