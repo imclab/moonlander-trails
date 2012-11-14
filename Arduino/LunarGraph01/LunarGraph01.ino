@@ -43,6 +43,8 @@ boolean easing = true;
 float duration = 0; 
 unsigned long startTime; 
 
+unsigned long stateChangeTime; 
+
 Button jogUpButtonA   = Button(A_JOG_UP_PIN); 
 Button jogDownButtonA = Button(A_JOG_DOWN_PIN); 
 Button jogUpButtonB   = Button(B_JOG_UP_PIN); 
@@ -228,11 +230,16 @@ void loop() {
 
   } 
   else if(state == STATE_WAITING) { 
-
+    
+    
     if(resetButton.isOn() & CALIBRATABLE) { 
       changeState(STATE_CALIBRATING); 
     }
-    if(timerManager.do10msUpdate) updateJogButtons(); 
+    if(timerManager.do10msUpdate) {
+      if(millis() - stateChangeTime > 5000) liftPenUp(); 
+    
+      updateJogButtons();
+    } 
     if((numCommands>0) && (motorA.currentSpeed==0) && (motorB.currentSpeed==0)) { 
       nextCommand();   
 
@@ -534,14 +541,20 @@ boolean clearEndStops() {
 
 boolean changeState(int newState) { 
   if(state == newState) return false; 
-  liftPenUp();
+  
   state = newState; 
   motorA.stop(); 
   motorB.stop(); 
 
+  if((state!=STATE_WAITING) && (state!=STATE_DRAWING)) { 
+    
+    liftPenUp(); 
+    
+    
+  }
 
   if(state == STATE_CALIBRATING) { 
-
+    
     if(calibrationButtonA.isOn()) { 
       calibrationProgressA = 0; 
     } 
@@ -564,7 +577,9 @@ boolean changeState(int newState) {
   Serial.print(state); 
   Serial.print(","); 
   Serial.println(stateStrings[state]);
-
+  
+  stateChangeTime = millis(); 
+  
   return true; 
 }
 
