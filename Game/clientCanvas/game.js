@@ -9,7 +9,12 @@ var SCREEN_WIDTH = window.innerWidth,
 	mpf = 1000/fps, 
 	counter = 0, 
 	gameStartTime = Date.now(), 
-	skippedFrames; 
+	skippedFrames, 
+	leftKey = KeyTracker.LEFT, 
+	rightKey = KeyTracker.RIGHT, 
+	startKey = ' '; 
+	selectKey = ''; 
+	abortKey = '';; 
 	
 var ws, 
 	wsID; 
@@ -85,16 +90,6 @@ function init()
 	KeyTracker.addKeyUpListener(KeyTracker.UP, function() { lander.thrust(0);});
 	
 	
-	KeyTracker.addKeyUpListener('0', function() { lander.thrust(0);});
-	KeyTracker.addKeyUpListener('1', function() { lander.thrust(0.11);});
-	KeyTracker.addKeyUpListener('2', function() { lander.thrust(0.22);});
-	KeyTracker.addKeyUpListener('3', function() { lander.thrust(0.33);});
-	KeyTracker.addKeyUpListener('4', function() { lander.thrust(0.44);});
-	KeyTracker.addKeyUpListener('5', function() { lander.thrust(0.55);});
-	KeyTracker.addKeyUpListener('6', function() { lander.thrust(0.66);});
-	KeyTracker.addKeyUpListener('7', function() { lander.thrust(0.77);});
-	KeyTracker.addKeyUpListener('8', function() { lander.thrust(0.88);});
-	KeyTracker.addKeyUpListener('9', function() { lander.thrust(1);});
 
 	window.addEventListener('resize', resizeGame);
 	window.addEventListener('orientationchange', resizeGame);
@@ -338,12 +333,14 @@ function render() {
 
 function checkKeys() { 
 	
-	if(KeyTracker.isKeyDown(KeyTracker.LEFT)) {
+	if(KeyTracker.isKeyDown(leftKey)) {
 		lander.rotate(-1);	
-	} else if(KeyTracker.isKeyDown(KeyTracker.RIGHT)) {	
+	} else if(KeyTracker.isKeyDown(rightKey)) {	
 		lander.rotate(1); 
 	}
-
+	if(KeyTracker.isKeyDown(abortKey)) { 
+		lander.abort();
+	}
 	
 	// SPEED MODE! 
 	if(KeyTracker.isKeyDown('S')) { 

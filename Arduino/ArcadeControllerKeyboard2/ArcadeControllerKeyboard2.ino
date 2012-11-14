@@ -5,26 +5,26 @@ const int THRUST_PIN = A0;
 const int THRUST_HIGH = A1; 
 const int THRUST_LOW = 3; 
 
-const int LEFT_PIN = 2; // light grey
-const int RIGHT_PIN = 9; // orange
-const int START_PIN = 8;
-const int SELECT_PIN = 11;
-const int ABORT_PIN = 7; 
+const int LEFT_PIN = 9; // Orange
+const int RIGHT_PIN = 10; // Yellow
+const int START_PIN = 8; // Green
+const int SELECT_PIN = 11; // Blue
+const int ABORT_PIN = 7; //Purple
 
-KeyButton leftButton   = KeyButton(LEFT_PIN, 'l'); 
-//KeyButton rightButton   = KeyButton(RIGHT_PIN, 'r', false); 
-//KeyButton startButton   = KeyButton(START_PIN, 't'); 
-//KeyButton selectButton   = KeyButton(SELECT_PIN, 'e' ); 
-//KeyButton abortButton   = KeyButton(ABORT_PIN, 'b'); 
+KeyButton leftButton   = KeyButton(LEFT_PIN, 'r'); 
+KeyButton rightButton   = KeyButton(RIGHT_PIN, 'l'); 
+KeyButton startButton   = KeyButton(START_PIN, 't'); 
+KeyButton selectButton   = KeyButton(SELECT_PIN, 'e' ); 
+KeyButton abortButton   = KeyButton(ABORT_PIN, 'b'); 
 
 KeyButton* buttons[] = { 
   &leftButton, 
-  //&rightButton, 
-  //&startButton, 
-  //&selectButton, 
-  //  &abortButton
+  &rightButton, 
+  &startButton, 
+  &selectButton, 
+    &abortButton
 }; 
-const int NUM_BUTTONS = 1; 
+const int NUM_BUTTONS = 5; 
 
 float topValue = 0; 
 float bottomValue = 1024; 
@@ -42,14 +42,6 @@ void setup() {
   digitalWrite(THRUST_LOW, LOW); 
   digitalWrite(THRUST_HIGH, HIGH); 
 
-  pinMode(LEFT_PIN, INPUT); 
-  pinMode(RIGHT_PIN, INPUT); 
-  pinMode(START_PIN, INPUT); 
-  pinMode(SELECT_PIN, INPUT); 
-  pinMode(ABORT_PIN, INPUT); 
-
-
-
   Serial.begin(38400); 
   Keyboard.begin(); 
   Mouse.end();
@@ -62,7 +54,7 @@ void loop() {
   updateButtons();
 
 
-  currentReading = 10;//analogRead(THRUST_PIN);
+  currentReading = analogRead(THRUST_PIN);
 
   if(topValue<currentReading) topValue = currentReading; 
   if(bottomValue>currentReading) bottomValue = currentReading; 
@@ -81,23 +73,33 @@ void loop() {
     currentKey = newKey; 
     pressKey(48+currentKey); 
     Serial.println(smoothReading);
-    Keyboard.releaseAll(); 
+    releaseNumberKeys(); 
     counter = 0; 
   } 
   else if (counter>5) {
-    Keyboard.releaseAll(); 
+    releaseNumberKeys(); 
 
   }
 
   counter++; 
 
   //Mouse.move(0,analogRead(thrustPin));
-  delay(10);  
+  delay(5);  
 
 }
 
+void releaseNumberKeys() { 
+  for (int i = 0; i<=9; i++) { 
+  
+  Keyboard.release(i+48); 
+  
+  }  
+  
+  
+  
+}
 void pressKey(int numkey) { 
-  //Keyboard.press(numkey); 
+  Keyboard.press(numkey); 
   Serial.println(char(numkey));  
 
 

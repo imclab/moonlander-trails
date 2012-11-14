@@ -15,7 +15,8 @@ Lander = function() {
 		targetRotation = 0,
 		
 		lastRotationTime = 0, 
-		counter = 0;  
+		counter = 0, 
+		abortCounter = -1;  
 	
 	this.rotation = 0; 
 	this.thrusting = 0;
@@ -34,7 +35,7 @@ Lander = function() {
 	
 	
 	var reset = this.reset = function () { 
-		
+		abortCounter = -1; 
 		vel.reset(0.415, 0); 
 		pos.reset(110,150); 
 		this.rotation = targetRotation = -90; 
@@ -70,6 +71,9 @@ Lander = function() {
 		//this.thrustBuild = power; 
 		
 	};
+	this.abort = function() { 
+		abortCounter = 100; 
+	}
 	
 	this.update = function() { 
 	
@@ -82,36 +86,19 @@ Lander = function() {
 		
 		if(this.active) { 
 			
-			
-			if(mouseThrust) { 
-				if(mouseY<mouseTop) mouseTop = mouseY; 
-				if(mouseY>mouseBottom) mouseBottom = mouseY; 
-				if(this.fuel>0) {
-					thrustBuild = map(mouseY, mouseBottom, mouseTop,-0.1,1.1); 
-				} else { 
-					thrustBuild-=0.1; 
-				}
-				//mouseTop *-0.999; 
-				mouseTop += ((mouseTop-mouseY)*-0.0001); 
-				mouseBottom += ((mouseBottom-mouseY)*-0.0005); 
-				thrustBuild = clamp(thrustBuild, 0, 1); 
+			if(abortCounter>-1) { 
+				 
+				targetRotation = 0; 
+					
 				
+				thrustBuild = 3; 
+				abortCounter --; 
 				
-			} else { 
-				if(this.fuel<=0) this.thrusting = 0; 
-			
-				thrustBuild += ((this.thrusting-thrustBuild)*0.2);
-				// if(this.thrusting && (this.fuel>0)) { // also check for fuel 
-				// 					thrustBuild+=0.1; 
-				// 				} else { 
-				// 					thrustBuild-=0.1; 
-				// 				}
-				
-				//console.log(thrustBuild, this.thrusting); 
 			}
 			
-			
-			
+			if(this.fuel<=0) this.thrusting = 0; 
+		
+			thrustBuild += ((this.thrusting-thrustBuild)*0.2);
 		
 			if(thrustBuild>0) { 
 				thrustVec.reset(0,-thrustAcceleration*thrustBuild); 
@@ -140,7 +127,7 @@ Lander = function() {
 			
 		}
 		if(this.fuel<0) this.fuel = 0; 
-		setThrustVolume(thrustBuild); 
+		setThrustVolume(Math.min(1,thrustBuild)); 
 		
 	};
 	
@@ -158,7 +145,7 @@ Lander = function() {
 		this.renderShapes(c);
 		
 		if((thrustBuild>0) && this.active) {
-			c.lineTo(0,11+(thrustBuild*20*((((counter>>1)%3)*0.2)+1)));
+			c.lineTo(0,11+(Math.min(thrustBuild,1)*20*((((counter>>1)%3)*0.2)+1)));
 			c.closePath(); 
 		}	
 		

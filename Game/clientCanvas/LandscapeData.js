@@ -121,12 +121,23 @@ function Landscape(){
 			
 	
 		}
-			
+		
+		var flickerAmount = Math.sin(counter*0.8)*0.5 + 0.5; 
+		
+		if(flickerAmount>0.5) { 
+					c.lineWidth = 2/view.scale; 
+					var channel = Math.round((flickerAmount-0.5)*(100)); 
+				  	c.strokeStyle = "rgb("+channel+","+channel+","+channel+")";
+					c.stroke(); 
+					
+				}	
 		c.strokeStyle = 'white'; 
-		var flickerAmount = Math.sin(flickerProgress+=0.8)*0.5 + 0.5; 
+		
+		
 		c.lineWidth = 1/view.scale * (flickerAmount*0.2+0.8); 
 		c.lineJoin = 'bevel';
 		c.stroke();	
+		
 		
 		for(var i=zoneInfoIndex; i<zoneInfos.length; i++) { 
 			zoneInfos[i].hide(); 

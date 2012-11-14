@@ -74,23 +74,20 @@ void onWsMessage(WebSocket con, String msg) {
 void drawLandscape() { 
   println("drawing landscape..."); 
 
-  float gap = pageWidth/20;
-  float lineheight = pageHeight/4; 
-  
-  for (float x = 0; x<pageWidth; x+=gap) { 
-    lineToXYPos(x, lineheight*0.1); 
-    lineToXYPos(x, lineheight); 
-    lineToXYPos(x+(gap/2), lineheight); 
-    lineToXYPos(x+(gap/2), lineheight*0.1); 
-    
-    
-    
-    
-  }
-  return; 
-} 
+//  float gap = pageWidth/20;
+//  float lineheight = pageHeight/4; 
+//  
+//  for (float x = 0; x<pageWidth; x+=gap) { 
+//    lineToXYPos(x, lineheight*0.1); 
+//    lineToXYPos(x, lineheight); 
+//    lineToXYPos(x+(gap/2), lineheight); 
+//    lineToXYPos(x+(gap/2), lineheight*0.1); 
+//    
+//    
+//    
+//    
+//  }
 
-void drawland2() { 
   // draw corners
   int cornerSize = round(50 * stepsPerMil); 
  
