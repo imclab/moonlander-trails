@@ -19,6 +19,6 @@ KeyTracker.addKeyUpListener(startKey, onStartKey);
 
 function onStartKey() { 
 	
-		if(gameState==WAITING) newGame(); 
-		
-	}
+	if(gameState==WAITING) newGame(); 
+	
+}
