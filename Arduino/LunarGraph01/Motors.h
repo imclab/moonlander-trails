@@ -32,7 +32,7 @@ float machineWidth = 2675.0f * stepsPerMil;
 float pageTop = 350.0f * stepsPerMil; 
 float sideMargin = 450.0f * stepsPerMil; 
 float pageWidth = machineWidth - (sideMargin*2); 
-float pageHeight = pageWidth*0.55; 
+float pageHeight = pageWidth*0.70; 
 
 float drawSpeed = 300; 
 

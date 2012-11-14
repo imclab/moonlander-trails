@@ -301,7 +301,7 @@ PVector convertDataToScreen(PVector p) {
 PVector convertDataToLunarGraph(PVector p) { 
 
   PVector returnVector = p.get(); 
-  returnVector.y-=100; 
+  returnVector.y+=100; 
   returnVector.mult(pageWidth/dataWidth);  
   return returnVector;
 }

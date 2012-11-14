@@ -27,9 +27,10 @@
 		wslocal.onclose = function(e) { 
 			wsLocalConnected = false; 
 			console.log("disconnected local!"); 
+			console.log(e);
 			port++; 
 			if(port==8090) port = 8081; 
-			setTimeout(ready, 1000); 
+			setTimeout(ready, 100); 
 		};
 		
 		

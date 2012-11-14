@@ -89,7 +89,7 @@ void drawLandscape() {
 //  }
 
   // draw corners
-  int cornerSize = round(50 * stepsPerMil); 
+  int cornerSize = round(10 * stepsPerMil); 
  
   moveToXYPos(0, cornerSize);
   lineToXYPos(0, 0);
@@ -98,6 +98,14 @@ void drawLandscape() {
   moveToXYPos(pageWidth-cornerSize, 0);
   lineToXYPos(pageWidth, 0);
   lineToXYPos(pageWidth, cornerSize);
+  
+  moveToXYPos(0, pageHeight - cornerSize);
+  lineToXYPos(0, pageHeight);
+  lineToXYPos(cornerSize, pageHeight);
+
+  moveToXYPos(pageWidth-cornerSize, pageHeight);
+  lineToXYPos(pageWidth, pageHeight);
+  lineToXYPos(pageWidth, pageHeight - cornerSize);
 
   for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
 
