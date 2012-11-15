@@ -389,11 +389,11 @@ void lineToDirect(float x, float y) {
 void moveTo(float x, float y) { 
   //penup
   if(liftPenUp()) {  
-    moveStraight(x, y, penMoveUpTime, 0.5, true); 
+    moveStraight(x, y, penMoveUpTime, 1, true); 
   } 
   else { 
 
-    moveStraight(x, y, 0, 0.5, true); 
+    moveStraight(x, y, 0, 1, true); 
   }
 
 }
@@ -417,7 +417,7 @@ void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean us
 
   easing = useEaseInOut;
 
-  if (easing) duration = max(sqrt(sq(vectorX) + sq(vectorY)), 100.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
+  if (easing) duration = max(sqrt(sq(vectorX) + sq(vectorY)), 35.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
   else  duration = max(sqrt(sq(vectorX) + sq(vectorY)), 10.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
 
   progress  = 0; 

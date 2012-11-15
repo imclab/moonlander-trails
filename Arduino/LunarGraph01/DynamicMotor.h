@@ -40,14 +40,14 @@ public :
     accelStepper.setAcceleration(2000); 
 
   }
-  
+
   void turnBrakeOff() {
     digitalWrite(brakePin, HIGH);  
   } 
   void turnBrakeOn() { 
-   digitalWrite(brakePin, LOW);   
+    digitalWrite(brakePin, LOW);   
   }
-    
+
 
 
   void update(boolean do33msUpdate) { 
@@ -63,11 +63,11 @@ public :
     } 
     else if(!errorState) { 
       if(do33msUpdate) { 
-//        Serial.print(digitalRead(resetPin));
-//        Serial.print(" ");  
-//        Serial.print(errorState); 
-//        Serial.print(" ");  
-//        Serial.println(resetPinHighCount); 
+        //        Serial.print(digitalRead(resetPin));
+        //        Serial.print(" ");  
+        //        Serial.print(errorState); 
+        //        Serial.print(" ");  
+        //        Serial.println(resetPinHighCount); 
 
 
         if(digitalRead(resetPin)==LOW) resetPinHighCount++; 
@@ -78,7 +78,7 @@ public :
           resetPinHighCount  =0;  
           setSpeedDirect(0); 
           Serial.println("MOTOR ERROR"); 
-          
+          reset();
 
         }
 
@@ -94,13 +94,14 @@ public :
         }
         //Serial.println(accelStepper.speed()); 
       }
-      
+
       if(errorState) { 
         turnBrakeOn(); 
-      } else { 
+      } 
+      else { 
         turnBrakeOff(); 
       }
-    
+
       accelStepper.setSpeed(currentSpeed); 
       accelStepper.runSpeed(); 
     }
@@ -178,6 +179,7 @@ private:
 
 
 };
+
 
 
 

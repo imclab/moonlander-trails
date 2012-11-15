@@ -13,7 +13,7 @@ int const PEN_DROP_PIN = 42; // or 42?
 int const A_BRAKE_PIN = 40;
 int const B_BRAKE_PIN = 51;
 
-int led = B_BRAKE_PIN;
+int led = PEN_DROP_PIN;
 int counter = 0; 
 
 

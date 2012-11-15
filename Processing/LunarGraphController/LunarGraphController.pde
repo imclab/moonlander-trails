@@ -8,7 +8,7 @@ import wsp5.*;
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
-float viewScale = 0.8;
+float viewScale = 1;
 
 
 boolean fullSizePreview = false; 
@@ -157,7 +157,7 @@ void draw() {
  
   //translate(0,80); 
   scale(viewWidth/dataWidth * pageWidth/machineWidth); 
-  translate(map(pageSideMargin, 0, pageWidth, 0, dataWidth), 82);  // not sure about the magic number there... :/ 
+  translate(map(pageSideMargin, 0, pageWidth, 0, dataWidth), 165);  // not sure about the magic number there... :/ 
 
   for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
     for (int i = 1; i<landscapePoints.size(); i++) { 
@@ -189,7 +189,7 @@ void draw() {
 
   //translate(0,-100); 
   float scalefactor = (float)viewWidth/machineWidth;///1.2;
-  translate((machineWidth - pageWidth)/ 2 * scalefactor , pageTop * scalefactor); 
+  translate((machineWidth - pageWidth)/ 2 * scalefactor , (pageTop * scalefactor) - 150); 
   
   noFill(); 
   stroke(50); 
