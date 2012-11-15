@@ -80,7 +80,7 @@ PFont titleFont;
 
 void setup() { 
 
-  size(round(viewWidth*viewScale), round(viewHeight*viewScale),OPENGL);
+  size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
 
 //  if (frame != null) {
 //    frame.setResizable(true);
@@ -181,6 +181,14 @@ void draw() {
   }
   noFill();
   ellipse(receivePosition.x, receivePosition.y, 6, 6); 
+  textAlign(LEFT, CENTER);
+  textFont(consoleFont);
+  fill(255); 
+  translate(receivePosition.x, receivePosition.y); 
+  scale(1/ (viewWidth/dataWidth * pageWidth/machineWidth)); 
+  
+  text("PLAYER POSITION", 10,0); 
+
   popMatrix(); 
 
 
@@ -207,6 +215,11 @@ void draw() {
   strokeWeight(2);
   fill(0);
   ellipse(sentPosition.x*scalefactor, sentPosition.y*scalefactor, 20, 20); 
+  
+  textAlign(LEFT, CENTER);
+  textFont(consoleFont);
+  fill(255); 
+  text("PEN POSITION", sentPosition.x*scalefactor+30, sentPosition.y*scalefactor); 
   
   //println(sentPosition.x*scalefactor +" "+sentPosition.y*scalefactor);
   // strokeWeight(1);

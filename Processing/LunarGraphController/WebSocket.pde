@@ -55,8 +55,12 @@ void onWsMessage(WebSocket con, String msg) {
         
         readablemsg+=": "+p1.x+", "+p1.y; 
         receivePosition = p1.get(); 
-        p1 = convertDataToLunarGraph(p1);  
-        if (move) {
+        p1 = convertDataToLunarGraph(p1); 
+       
+        if((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
+          move = true; 
+         
+        } else if (move) {
           moveToXYPos(p1);
           move = false;
         } 
