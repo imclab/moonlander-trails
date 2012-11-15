@@ -33,7 +33,7 @@ void updateCalibration() {
         calibrationProgressA = 2;   
       } 
       else { 
-        motorA.setSpeed(-800); 
+        motorA.setSpeed(-1400); 
       }
     }
 
@@ -43,7 +43,7 @@ void updateCalibration() {
         calibrationProgressB = 2;   
       } 
       else { 
-        motorB.setSpeed(-800); 
+        motorB.setSpeed(-1400); 
       }
     }
 

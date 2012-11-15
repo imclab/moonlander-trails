@@ -262,8 +262,12 @@ void loop() {
   }
 
   updateMotors(); 
+  
+  //updateCartesianByLengths(); 
 
   if(timerManager.do100msUpdate) { 
+  //updateCartesianByLengths(); 
+
     //    if(state == STATE_CALIBRATING) { 
     //      Serial.print(calibrationButtonA.isOn());
     //      Serial.print(" " ); 
@@ -393,11 +397,11 @@ void lineToDirect(float x, float y) {
 void moveTo(float x, float y) { 
   //penup
   if(liftPenUp()) {  
-    moveStraight(x, y, penMoveUpTime, 1, true); 
+    moveStraight(x, y, penMoveUpTime, 0.5, true); 
   } 
   else { 
 
-    moveStraight(x, y, 0, 1, true); 
+    moveStraight(x, y, 0, 0.5, true); 
   }
 
 }
@@ -421,7 +425,7 @@ void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean us
 
   easing = useEaseInOut;
 
-  if (easing) duration = max(sqrt(sq(vectorX) + sq(vectorY)), 35.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
+  if (easing) duration = max(sqrt(sq(vectorX) + sq(vectorY)), 50.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
   else  duration = max(sqrt(sq(vectorX) + sq(vectorY)), 10.0f*stepsPerMil)  * drawSpeed * speedMult; // in micros
 
   progress  = 0; 

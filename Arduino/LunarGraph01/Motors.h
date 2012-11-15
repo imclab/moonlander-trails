@@ -64,7 +64,8 @@ long setPosByCartesian(float x, float y){
 }
 
 void updateCartesianByLengths() { 
-
+  motorPosA = motorA.accelStepper.currentPosition(); 
+  motorPosB = motorB.accelStepper.currentPosition(); 
   xPos = (sq(machineWidth*0.01) - sq(motorPosB*0.01) + sq(motorPosA*0.01)) / (machineWidth*0.01*2); 
   yPos = sqrt(sq(motorPosA*0.01) - sq(xPos)); 
   xPos*=100; 
@@ -72,15 +73,15 @@ void updateCartesianByLengths() {
   xPos-=sideMargin; 
   yPos-=pageTop; 
 
-  Serial.print("xPos:"); 
-  Serial.print(xPos); 
-  Serial.print(" yPos:" );
-  Serial.print(yPos); 
-  Serial.print(" lengthA:"); 
-  Serial.print(motorPosA); 
-  Serial.print(" lengthB:"); 
-  Serial.print(motorPosB); 
-  Serial.println(""); 
+//  Serial.print("xPos:"); 
+//  Serial.print(xPos); 
+//  Serial.print(" yPos:" );
+//  Serial.print(yPos); 
+//  Serial.print(" lengthA:"); 
+//  Serial.print(motorPosA); 
+//  Serial.print(" lengthB:"); 
+//  Serial.print(motorPosB); 
+//  Serial.println(""); 
 
 }
 
