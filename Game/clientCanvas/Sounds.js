@@ -13,6 +13,7 @@ var samples = jsfxlib.createWaves(audioLibParams);
 //samples.thruster.loop = true; 
 //samples.thruster.play(); 
 
+samples.beep.volume = 0.5; 
 var thrustSound = samples.thruster; 
 var thrustInterval = 0; 
 var thrustPlaying = false; 
