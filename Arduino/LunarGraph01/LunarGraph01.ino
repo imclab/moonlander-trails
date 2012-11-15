@@ -372,7 +372,9 @@ void lineTo(float x, float y) {
 }
 void lineToDirect(float x, float y) { 
   // pendown
-  if(justCalibrated || (!penIsUp)) {
+  if(justCalibrated) {
+   moveStraight(x, y, 0, 1, true); 
+  } else if (!penIsUp) {
     moveStraight(x, y, 0, 1, false); 
   } else { 
     
@@ -400,7 +402,7 @@ void moveTo(float x, float y) {
 
 void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean useEaseInOut) {
   
-  justCalibrated = true; 
+  justCalibrated = false; 
   
   updateCartesianByLengths();
 
