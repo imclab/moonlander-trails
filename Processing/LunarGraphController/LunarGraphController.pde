@@ -183,7 +183,7 @@ void draw() {
   ellipse(receivePosition.x, receivePosition.y, 6, 6); 
   textAlign(LEFT, CENTER);
   textFont(consoleFont);
-  fill(255); 
+  fill(125); 
   translate(receivePosition.x, receivePosition.y); 
   scale(1/ (viewWidth/dataWidth * pageWidth/machineWidth)); 
   
@@ -218,7 +218,8 @@ void draw() {
   
   textAlign(LEFT, CENTER);
   textFont(consoleFont);
-  fill(255); 
+  fill(125); 
+  stroke(10); 
   text("PEN POSITION", sentPosition.x*scalefactor+30, sentPosition.y*scalefactor); 
   
   //println(sentPosition.x*scalefactor +" "+sentPosition.y*scalefactor);

@@ -93,24 +93,26 @@ void drawLandscape() {
 //  }
 
   // draw corners
-  int cornerSize = round(10 * stepsPerMil); 
+  int cornerSize = round(3 * stepsPerMil); 
  
-  moveToXYPos(0, cornerSize);
-  lineToXYPos(0, 0);
-  lineToXYPos(cornerSize, 0);
+//  moveToXYPos(0, cornerSize);
+//  lineToXYPos(0, 0);
+//  lineToXYPos(cornerSize, 0);
+//
+//  moveToXYPos(pageWidth-cornerSize, 0);
+//  lineToXYPos(pageWidth, 0);
+//  lineToXYPos(pageWidth, cornerSize);
+//  
+//  moveToXYPos(0, pageHeight - cornerSize);
+//  lineToXYPos(0, pageHeight);
+//  lineToXYPos(cornerSize, pageHeight);
+//
+//  moveToXYPos(pageWidth-cornerSize, pageHeight);
+//  lineToXYPos(pageWidth, pageHeight);
+//  lineToXYPos(pageWidth, pageHeight - cornerSize);
 
-  moveToXYPos(pageWidth-cornerSize, 0);
-  lineToXYPos(pageWidth, 0);
-  lineToXYPos(pageWidth, cornerSize);
+  PVector lastPos = new PVector(); 
   
-  moveToXYPos(0, pageHeight - cornerSize);
-  lineToXYPos(0, pageHeight);
-  lineToXYPos(cornerSize, pageHeight);
-
-  moveToXYPos(pageWidth-cornerSize, pageHeight);
-  lineToXYPos(pageWidth, pageHeight);
-  lineToXYPos(pageWidth, pageHeight - cornerSize);
-
   for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
 
     for (int i = 0; i<landscapePoints.size(); i++) { 
@@ -126,7 +128,11 @@ void drawLandscape() {
       } 
       else { 
         lineToXYPos(p1);
+        lineToXYPos(lastPos.x, lastPos.y); 
+        lineToXYPos(p1.x, p1.y); 
+        //lineToXYPos(p1); 
       }
+      lastPos = p1.get(); 
     }
   }
 }
