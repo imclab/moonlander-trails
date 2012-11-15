@@ -33,6 +33,7 @@ boolean penIsUp = true;
 int penMoveDownTime = 500; 
 int penMoveUpTime = 200; 
 
+boolean justCalibrated = false; 
 
 float startPosX = 0;
 float startPosY = 0;  
@@ -241,6 +242,7 @@ void loop() {
       updateJogButtons();
     } 
     if((numCommands>0) && (motorA.currentSpeed==0) && (motorB.currentSpeed==0)) { 
+      updateCartesianByLengths(); 
       nextCommand();   
 
     }
@@ -358,27 +360,28 @@ void updateMotors() {
 
 void lineTo(float x, float y) { 
   // pendown
-  if(pushPenDown()) {  
-    moveStraight(x, y, penMoveDownTime, 1, true); 
+  if(justCalibrated || (!penIsUp)) {
+     moveStraight(x, y, 0,1, true); 
   } 
   else { 
-
-    moveStraight(x, y, 0,1, true); 
-
+    pushPenDown(); 
+    moveStraight(x, y, penMoveDownTime, 1, true); 
   } 
 
 
 }
 void lineToDirect(float x, float y) { 
   // pendown
-  if(pushPenDown()) {  
+  if(justCalibrated || (!penIsUp)) {
+    moveStraight(x, y, 0, 1, false); 
+  } else { 
+    
+    pushPenDown(); 
     moveStraight(x, y, penMoveDownTime, 1, false); 
   } 
-  else { 
+    
 
-    moveStraight(x, y, 0, 1, false); 
-
-  } 
+  
 
 
 }
@@ -396,7 +399,9 @@ void moveTo(float x, float y) {
 }
 
 void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean useEaseInOut) {
-
+  
+  justCalibrated = true; 
+  
   updateCartesianByLengths();
 
   if(x2<0) x2 = 0; 
@@ -568,9 +573,9 @@ boolean changeState(int newState) {
     else { 
       calibrationProgressB = 1; 
     }
-
-
-
+    
+    justCalibrated = true; 
+    
   }  
 
   Serial.print("CHANGE STATE:");   

@@ -80,7 +80,7 @@ PFont titleFont;
 
 void setup() { 
 
-  size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
+  size(round(viewWidth*viewScale), round(viewHeight*viewScale));
 
 //  if (frame != null) {
 //    frame.setResizable(true);
