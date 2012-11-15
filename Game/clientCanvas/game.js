@@ -17,7 +17,8 @@ var SCREEN_WIDTH = window.innerWidth,
 	abortKey = '';; 
 	
 var ws, 
-	wsID; 
+	wsID, 
+	wsConnected = false; 
 	
 // game states
 var	WAITING = 0, 
@@ -155,6 +156,13 @@ function initWebSocket() {
 	
 }
 
+function sendSocket(msg) { 
+	if(wsConnected ) 
+		ws.send(msg); 
+		
+	
+}
+
 
 function sendPosition() {
 //	if(!ws) return; 
@@ -172,7 +180,7 @@ function sendPosition() {
 		// if(lander.exploding) update.exploding = 1; 
 		// 	if(lander.thrusting) update.thrusting = 1; 
 			
-		ws.send(JSON.stringify(update)); 
+		sendSocket(JSON.stringify(update)); 
 		//console.log(JSON.stringify(lander.pos));
 	}
 }
@@ -183,7 +191,7 @@ function sendLanded() {
 		type : 'land', 
 		id : wsID	
 	};
-	ws.send(JSON.stringify(update)); 
+	sendSocket(JSON.stringify(update)); 
 }
 	
 function sendCrashed() { 
@@ -192,7 +200,7 @@ function sendCrashed() {
 		type : 'crash', 
 		id : wsID	
 	};
-	ws.send(JSON.stringify(update)); 
+	sendSocket(JSON.stringify(update)); 
 }
 function sendGameOver() { 
 	//if(!ws) return; 
@@ -201,7 +209,7 @@ function sendGameOver() {
 		id : wsID,
 		sc : score
 	};
-	ws.send(JSON.stringify(update)); 
+	sendSocket(JSON.stringify(update)); 
 }
 function sendRestart() { 
 	//	if(!ws) return; 
@@ -210,7 +218,7 @@ function sendRestart() {
 		id : wsID,
 		sc : score
 	};
-	ws.send(JSON.stringify(update)); 
+	sendSocket(JSON.stringify(update)); 
 }
 	
 
@@ -333,9 +341,9 @@ function render() {
 
 function checkKeys() { 
 	
-	if(KeyTracker.isKeyDown(leftKey)) {
+	if((KeyTracker.isKeyDown(leftKey))||(KeyTracker.isKeyDown(KeyTracker.LEFT))) {
 		lander.rotate(-1);	
-	} else if(KeyTracker.isKeyDown(rightKey)) {	
+	} else if((KeyTracker.isKeyDown(rightKey))||(KeyTracker.isKeyDown(KeyTracker.RIGHT))) {	
 		lander.rotate(1); 
 	}
 	if(KeyTracker.isKeyDown(abortKey)) { 
@@ -411,6 +419,8 @@ function setLanded(line) {
 	score+=points; 
 	// TODO Show score
 	gameState = LANDED; 
+	//ARCADE AMENDMENT
+	gameState = GAMEOVER;
 	sendLanded();
 	scheduleRestart(); 
 }
@@ -445,6 +455,8 @@ function setCrashed() {
 		msg = "AUXILIARY FUEL TANKS DESTROYED<br>" + fuellost + " FUEL UNITS LOST<br><br>" + msg;
 		
 		gameState = CRASHED;
+		//ARCADE AMENDMENT
+		gameState = GAMEOVER;
 		sendCrashed();  
 		
 	}
@@ -600,17 +612,17 @@ function updateTextInfo() {
 }
 
 function showStartMessage() {
-	infoDisplay.showGameInfo("INSERT COINS<br><br>CLICK TO PLAY<br>ARROW KEYS TO MOVE");
+	infoDisplay.showGameInfo("PLAY LUNAR LANDER<br><br>PRESS START BUTTON<br>");
 }
 
 function setZoom(zoom ) 
 {
 	if(zoom){
-		view.scale = SCREEN_HEIGHT/700*6;				
+		view.scale = SCREEN_HEIGHT/700*5;				
 		zoomedIn = true;
 		view.x = -lander.pos.x * view.scale + (SCREEN_WIDTH / 2);
 		view.y = -lander.pos.y * view.scale + (SCREEN_HEIGHT * 0.25);
-		lander.scale = 0.25;
+		lander.scale = 0.3;
 	
 	} 
 	else {

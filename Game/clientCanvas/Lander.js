@@ -36,6 +36,7 @@ Lander = function() {
 	
 	var reset = this.reset = function () { 
 		abortCounter = -1; 
+		lastAbort = Date.now(); 
 		vel.reset(0.415, 0); 
 		pos.reset(110,150); 
 		this.rotation = targetRotation = -90; 
@@ -71,8 +72,14 @@ Lander = function() {
 		//this.thrustBuild = power; 
 		
 	};
-	this.abort = function() { 
-		abortCounter = 100; 
+	this.abort = function() {
+		var now = Date.now(); 
+		
+		if(now-lastAbort > 10000) { 
+		 
+			abortCounter = 100;
+			lastAbort = now; 
+		} 
 	}
 	
 	this.update = function() { 
@@ -91,8 +98,9 @@ Lander = function() {
 				targetRotation = 0; 
 					
 				
-				thrustBuild = 3; 
+				if(this.fuel>0) thrustBuild = 3; 
 				abortCounter --; 
+				this.fuel-=1; 
 				
 			}
 			
