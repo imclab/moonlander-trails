@@ -8,7 +8,7 @@ import wsp5.*;
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
-float viewScale =0.4;
+float viewScale =1;
 
 
 boolean fullSizePreview = false; 
@@ -80,7 +80,7 @@ PFont titleFont;
 
 void setup() { 
 
-  size(round(viewWidth*viewScale), round(viewHeight*viewScale));
+  size(round(viewWidth*viewScale), round(viewHeight*viewScale),OPENGL);
 
 //  if (frame != null) {
 //    frame.setResizable(true);

@@ -31,7 +31,7 @@ boolean errorEndStopHit = false;
 boolean errorMotorDrive = false; 
 boolean penIsUp = true; 
 int penMoveDownTime = 500; 
-int penMoveUpTime = 200; 
+int penMoveUpTime = 1000; 
 
 boolean justCalibrated = false; 
 
@@ -362,6 +362,7 @@ void lineTo(float x, float y) {
   // pendown
   if(justCalibrated || (!penIsUp)) {
      moveStraight(x, y, 0,1, true); 
+     justCalibrated = false; 
   } 
   else { 
     pushPenDown(); 
@@ -373,6 +374,7 @@ void lineTo(float x, float y) {
 void lineToDirect(float x, float y) { 
   // pendown
   if(justCalibrated) {
+    justCalibrated = false; 
    moveStraight(x, y, 0, 1, true); 
   } else if (!penIsUp) {
     moveStraight(x, y, 0, 1, false); 
@@ -576,7 +578,7 @@ boolean changeState(int newState) {
       calibrationProgressB = 1; 
     }
     
-    justCalibrated = true; 
+   // justCalibrated = true; 
     
   }  
 
