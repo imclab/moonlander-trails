@@ -61,7 +61,7 @@ void onWsMessage(WebSocket con, String msg) {
           move = false;
         } 
         else {  
-          lineToXYPos(p1); // add true for non-smooth drawing. 
+          lineToXYPos(p1,true); // add true for non-smooth drawing. 
         }
       }
       webSocketMessages.add(readablemsg);

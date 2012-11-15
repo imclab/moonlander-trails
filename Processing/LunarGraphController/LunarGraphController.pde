@@ -8,7 +8,7 @@ import wsp5.*;
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
-float viewScale = 1;
+float viewScale =0.4;
 
 
 boolean fullSizePreview = false; 
