@@ -23,6 +23,16 @@ void keyPressed() {
   }
   if(key == 'l') { 
     drawLandscape(); 
+  } else if(key == 'p') { 
+    if(state == STATE_PAUSED)  {
+      state = STATE_RUNNING; 
+    } else if (state == STATE_PAUSE_NEXT) { 
+      state = STATE_PAUSED; 
+    } else { 
+      state = STATE_PAUSE_NEXT; 
+    }
+    
   }
+  
 }
 

@@ -8,7 +8,7 @@ import wsp5.*;
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
-float viewScale =1;
+float viewScale =0.5;
 
 
 boolean fullSizePreview = false; 
@@ -16,9 +16,17 @@ PVector renderOffset = new PVector(0,0);
 
 //int xPos = 0; 
 int lunargraphState = -1; 
-String stateStrings[] = {
+String lunargraphStateStrings[] = {
   "WAITING", "ERROR", "RESETTING", "CALIBRATING", "DRAWING"
 }; 
+
+int state = 0; 
+final int STATE_RUNNING = 0; 
+final int STATE_PAUSE_NEXT = 1; 
+final int STATE_PAUSED = 2; 
+String stateStrings[] = { "RUNNING", "PAUSE_NEXT", "PAUSED" }; 
+
+PVector homePosition = new PVector(); 
 
 
 // reasonable defaults but nothing should happen until they're set by the LunarGraph Arduino
@@ -141,13 +149,19 @@ void draw() {
   
   textFont(titleFont); 
   textAlign(CENTER, CENTER);
-  text ("LUNARGRAPH CONTROLLER", viewWidth/2, 75);  
-   
+  text ("LUNAR TRAILS", viewWidth/2, 75);  
+  
   
   textFont(buttonFont); 
-  if ((lunargraphState>=0) && (lunargraphState<stateStrings.length)) {
-    if((stateStrings[lunargraphState] == "WAITING") || (stateStrings[lunargraphState]=="DRAWING") || (frameCount%60>20)) {
-      text(stateStrings[lunargraphState], viewWidth/2, 135); 
+  if ((lunargraphState>=0) && (lunargraphState<lunargraphStateStrings.length)) {
+    if((lunargraphStateStrings[lunargraphState] == "WAITING") || (lunargraphStateStrings[lunargraphState]=="DRAWING") || (frameCount%60>20)) {
+      if(lunargraphStateStrings[lunargraphState] == "DRAWING") { 
+        text("DRAWING CURRENT PLAYER : "+stateStrings[state] , viewWidth/2, 145); 
+      } else if (lunargraphStateStrings[lunargraphState] == "WAITING") {
+        text("PLAY THE ARCADE GAME AND YOUR TRAIL WILL BE DRAWN", viewWidth/2, 145); 
+      } else {
+        text(lunargraphStateStrings[lunargraphState], viewWidth/2, 145); 
+      }
     } 
   }
 
@@ -322,11 +336,11 @@ PVector convertDataToLunarGraph(PVector p) {
 
 void moveToXYPos(float xpos, float ypos) { 
 
-  commands.add(new Command(0, xpos, ypos));
+  commands.add(new Command(COMMAND_MOVE, xpos, ypos));
 }
 void lineToXYPos(float xpos, float ypos, boolean direct) { 
 
-  commands.add(new Command(direct ? 2 : 1, xpos, ypos));
+  commands.add(new Command(direct ? COMMAND_DRAW_DIRECT : COMMAND_DRAW, xpos, ypos));
 }
 void lineToXYPos(float xpos, float ypos) { 
 
@@ -335,11 +349,11 @@ void lineToXYPos(float xpos, float ypos) {
 
 void moveToXYPos(PVector pos) { 
 
-  commands.add(new Command(0, pos.x, pos.y));
+  commands.add(new Command(COMMAND_MOVE, pos.x, pos.y));
 }
 void lineToXYPos(PVector pos, boolean direct) { 
 
-  commands.add(new Command(direct ? 2 : 1, pos.x, pos.y));
+  commands.add(new Command(direct ? COMMAND_DRAW_DIRECT : COMMAND_DRAW, pos.x, pos.y));
 }
 
 void lineToXYPos(PVector pos) { 
@@ -348,25 +362,36 @@ void lineToXYPos(PVector pos) {
 }
 
 void processQueue() { 
-
+  
+  if(state == STATE_PAUSED) return; 
+  
   if ((numToSend>0) && (commands.size()>0)) { 
 
     Command cmd = (Command) commands.remove(0);
     //float xpos = map(cmd.p1, 0.0f, viewWidth, 0.0f, pageWidth); 
     //float ypos = map(cmd.p2, 0.0f, viewHeight, 0.0f, pageWidth);
-    float xpos = round(cmd.p1*100)/100.0f; 
-    float ypos = round(cmd.p2*100)/100.0f;
+    
+    if(cmd.c == COMMAND_RESTART) { 
+      if(state == STATE_PAUSE_NEXT) { 
+        state = STATE_PAUSED; 
+      }
+      
+    } else { 
+      
+      float xpos = round(cmd.p1*100)/100.0f; 
+      float ypos = round(cmd.p2*100)/100.0f;
+  
+      
+      String msg = serialMessageCount+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
+      serialMessageCount++; 
+      sentPosition.set(xpos, ypos, 0); 
+      println("sentPosition : "+ sentPosition); 
+      //println("sending "+msg); 
+      //serialMessages.add(">"+msg); 
+      sendSerial(msg); 
 
-
-    String msg = serialMessageCount+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
-    serialMessageCount++; 
-    sentPosition.set(xpos, ypos, 0); 
-    println("sentPosition : "+ sentPosition); 
-    //println("sending "+msg); 
-    //serialMessages.add(">"+msg); 
-    sendSerial(msg); 
-
-    numToSend =0;
+      numToSend =0;  
+    }
   }
 }
 

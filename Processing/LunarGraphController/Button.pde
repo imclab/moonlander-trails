@@ -13,11 +13,11 @@ void initButtons() {
   float spacing = 30; 
   float buttonWidth = 170; 
   
-  buttons[0] = pauseButton = new Button("PAUSE", 0, 100, buttonWidth, 50); 
-  buttons[1] = clearButton = new Button("CLEAR", 0, 100, buttonWidth, 50); 
-  buttons[2] = resetButton = new Button("RESET", 0, 100, buttonWidth, 50); 
-  buttons[3] = penDropButton = new Button("PEN CHANGE", 0, 100, buttonWidth, 50);
-  buttons[4] = landscapeButton = new Button("DRAW LAND", 0, 100, buttonWidth, 50);
+  buttons[0] = pauseButton = new Button("PAUSE (P)", 0, 100, buttonWidth, 50); 
+  buttons[1] = clearButton = new Button("CLEAR (C)", 0, 100, buttonWidth, 50); 
+  buttons[2] = resetButton = new Button("RESET (R)", 0, 100, buttonWidth, 50); 
+  buttons[3] = penDropButton = new Button("PEN CHANGE (N)", 0, 100, buttonWidth, 50);
+  buttons[4] = landscapeButton = new Button("DRAW LAND (L)", 0, 100, buttonWidth, 50);
  
   
  
@@ -89,19 +89,20 @@ class Button {
   
   void render() { 
     stroke(255); 
-    strokeWeight(2); 
-    if(isMouseOver()) { 
-      fill(255); 
- 
-      rect(x, y,w, h);
-      fill(0); 
-    } else { 
-      
-      noFill(); 
-      rect(x, y,w, h);
-        fill(255); 
-    }
-    
+//    strokeWeight(2); 
+//    if(isMouseOver()) { 
+//      fill(255); 
+// 
+//      rect(x, y,w, h);
+//      fill(0); 
+//    } else { 
+//      
+//      noFill(); 
+//      rect(x, y,w, h);
+//        fill(255); 
+//    }
+//    
+    fill(255); 
     textAlign(CENTER, CENTER); 
     textFont(buttonFont); 
     text(label, x+(w/2), y+(h/2)); 

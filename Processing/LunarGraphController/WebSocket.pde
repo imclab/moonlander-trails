@@ -1,6 +1,10 @@
 WsServer socket;
 int port = 8087; 
 
+boolean messageRestart = false;  // so we know where the home position is
+boolean firstRestartReceived = false; // so we don't draw anyone half way through a game
+
+
 boolean initWebSocket() { 
   println("starting WebSocket server on port "+port); 
   socket = new WsServer(this, port);
@@ -45,27 +49,36 @@ void onWsMessage(WebSocket con, String msg) {
       readablemsg+=type+" "; 
       if (type.equals("restart")) { 
         move = true;
+        commands.add(new Command(COMMAND_RESTART, 0,0));
+        messageRestart = true; 
+        firstRestartReceived = true; 
       } 
       else if (type.equals("update")) { 
-
-        PVector p1 = new PVector(msgJson.getInt("x"), msgJson.getInt("y")); 
-
-        p1.div(100);  // messages from the clients are multiplied by 100 to avoid floating points. 
-        
-        
-        readablemsg+=": "+p1.x+", "+p1.y; 
-        receivePosition = p1.get(); 
-        p1 = convertDataToLunarGraph(p1); 
-       
-        if((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
-          move = true; 
+      
+        if(firstRestartReceived) { 
+          
          
-        } else if (move) {
-          moveToXYPos(p1);
-          move = false;
-        } 
-        else {  
-          lineToXYPos(p1,true); // add true for non-smooth drawing. 
+          PVector p1 = new PVector(msgJson.getInt("x"), msgJson.getInt("y")); 
+
+          p1.div(100);  // messages from the clients are multiplied by 100 to avoid floating points. 
+          
+          
+          readablemsg+=": "+p1.x+", "+p1.y; 
+          receivePosition = p1.get(); 
+          p1 = convertDataToLunarGraph(p1); 
+          
+          if(messageRestart) homePosition = p1.get(); 
+          
+          if((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
+            move = true; 
+           
+          } else if (move) {
+            moveToXYPos(p1);
+            move = false;
+          } 
+          else {  
+            lineToXYPos(p1,true); // add true for non-smooth drawing. 
+          }
         }
       }
       webSocketMessages.add(readablemsg);
