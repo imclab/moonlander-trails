@@ -1,6 +1,6 @@
 
-/*
-WsServer socket;
+
+WebSocketP5 socket;
 int port = 8087; 
 
 boolean messageRestart = false;  // so we know where the home position is
@@ -9,11 +9,11 @@ boolean firstRestartReceived = false; // so we don't draw anyone half way throug
 
 boolean initWebSocket() { 
   println("starting WebSocket server on port "+port); 
-  socket = new WsServer(this, port);
+  socket = new WebSocketP5(this, port);
   return true;
 }
 
-void onWsMessage(WebSocket con, String msg) {
+void websocketOnMessage(WebSocketConnection con, String msg) {
   //println(msg);
 
   //  if (beginsWith(msg, "landscapeend")) { 
@@ -152,14 +152,13 @@ void drawLandscape() {
   }
 }
 
-void onWSOpen(WebSocket con) {
+void websocketOnOpen(WebSocketConnection con) {
   println("WebSocket client joined");
   webSocketMessages.add("WebSocket client joined");
 }
 
-void onWSClose(WebSocket con) {
+void websocketOnClosed(WebSocketConnection con) {
   println("WebSocket client left");
   webSocketMessages.add("WebSocket client left");
 }
 
-*/

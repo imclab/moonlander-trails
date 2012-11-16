@@ -1,14 +1,16 @@
-import processing.opengl.*;
-
 
 import processing.serial.*; 
 import org.json.*;
-import wsp5.*;
+//import wsp5.*;
+
+
+import muthesius.net.*;
+import org.webbitserver.*;
 
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
-float viewScale =0.5;
+float viewScale =0.6;
 
 
 boolean fullSizePreview = false; 
@@ -87,7 +89,7 @@ PFont consoleFont;
 PFont titleFont; 
 
 void setup() { 
-
+  //size(displayWidth, displayHeight);
   size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
 
 //  if (frame != null) {
@@ -149,8 +151,11 @@ void draw() {
   
   textFont(titleFont); 
   textAlign(CENTER, CENTER);
-  text ("LUNAR TRAILS", viewWidth/2, 75);  
-  
+  if(!focused) { 
+    text ("PRESS MOUSE TO START", viewWidth/2, 75);  
+  } else { 
+    text ("LUNAR TRAILS", viewWidth/2, 75);  
+  }  
   
   textFont(buttonFont); 
   if ((lunargraphState>=0) && (lunargraphState<lunargraphStateStrings.length)) {
@@ -164,6 +169,10 @@ void draw() {
       }
     } 
   }
+   textFont(consoleFont); 
+  textAlign(LEFT, TOP);
+ 
+  text(stateStrings[state], 100,20);
 
   // draw data relative stuff
   stroke(255);
@@ -414,8 +423,7 @@ void stop() {
     if (socket!=null) 
       socket.stop();
   } 
-  catch (IOException e) {
-  } 
+
   finally {
   }
 

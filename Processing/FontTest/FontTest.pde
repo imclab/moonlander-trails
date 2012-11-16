@@ -1,5 +1,10 @@
-PFont font; 
 
+
+import processing.serial.*; 
+import org.json.*;
+
+
+PFont font; 
 
 void setup() { 
   font = loadFont("Monaco-11.vlw"); 
