@@ -82,11 +82,11 @@ int resetButtonSwitch = 10;
 
 boolean buttonStates[] = new boolean[11]; 
 
-
-
 boolean move = true; 
 PFont consoleFont; 
 PFont titleFont; 
+
+
 
 void setup() { 
   //size(displayWidth, displayHeight);
@@ -131,7 +131,8 @@ void mousePressed() {
 }
 void draw() { 
 
-
+  if(frameCount - mouseLastMoved>60) noCursor(); 
+  
   background(0); 
 
   blendMode(ADD); 
@@ -416,7 +417,14 @@ String getStringAfterChar(String source, String chr) {
 }
 
 
+int mouseLastMoved = 0; 
 
+void mouseMoved() { 
+  
+  mouseLastMoved = frameCount; 
+  cursor(); 
+  
+}
 
 void stop() {
   try { 
