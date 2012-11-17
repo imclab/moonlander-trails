@@ -26,7 +26,7 @@ void draw() {
   // if it can be split, then work out best layout
 
     String line = "Lunar Trails - GAME exhibition at the Dublin Science Gallery 17/11/12".toUpperCase(); 
-
+ 
   float glyphScaleFactor = 2;
   // println("Scale factor: " + glyphScaleFactor);
   glyphWidth *= glyphScaleFactor;
