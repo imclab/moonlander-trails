@@ -11,11 +11,11 @@
 	<key>CFBundleIconFile</key>
 	<string>applet</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.ScriptEditor.id.GameApp</string>
+	<string>com.apple.ScriptEditor.id.ViewerApp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>GameApp</string>
+	<string>ViewerApp</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
@@ -36,9 +36,9 @@
 		<key>name</key>
 		<string>ScriptWindowState</string>
 		<key>positionOfDivider</key>
-		<real>333</real>
+		<real>512</real>
 		<key>savedFrame</key>
-		<string>630 281 602 597 0 0 1440 878 </string>
+		<string>3 182 746 876 0 0 1920 1058 </string>
 		<key>selectedTabView</key>
 		<string>result</string>
 	</dict>
