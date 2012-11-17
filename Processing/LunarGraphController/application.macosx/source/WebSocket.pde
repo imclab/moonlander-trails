@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-/*
-
-=======
 
 /*
->>>>>>> app
 WsServer socket;
 int port = 8087; 
 

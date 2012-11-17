@@ -10,19 +10,11 @@ import org.webbitserver.*;
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
-<<<<<<< HEAD
-float viewScale =0.6;
-
-
-boolean fullSizePreview = false; 
-PVector renderOffset = new PVector(0, 0); 
-=======
 float viewScale =1;
 
 
 boolean fullSizePreview = false; 
 PVector renderOffset = new PVector(0,0); 
->>>>>>> app
 
 //int xPos = 0; 
 int lunargraphState = -1; 
@@ -34,13 +26,7 @@ int state = 0;
 final int STATE_RUNNING = 0; 
 final int STATE_PAUSE_NEXT = 1; 
 final int STATE_PAUSED = 2; 
-<<<<<<< HEAD
-String stateStrings[] = { 
-  "RUNNING", "PAUSE_NEXT", "PAUSED"
-}; 
-=======
 String stateStrings[] = { "RUNNING", "PAUSE_NEXT", "PAUSED" }; 
->>>>>>> app
 
 PVector homePosition = new PVector(); 
 
@@ -96,25 +82,19 @@ int resetButtonSwitch = 10;
 
 boolean buttonStates[] = new boolean[11]; 
 
-
-
 boolean move = true; 
 PFont consoleFont; 
 PFont titleFont; 
+
+
 
 void setup() { 
   //size(displayWidth, displayHeight);
   size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
 
-<<<<<<< HEAD
-  //  if (frame != null) {
-  //    frame.setResizable(true);
-  //  }
-=======
 //  if (frame != null) {
 //    frame.setResizable(true);
 //  }
->>>>>>> app
 
   consoleFont = loadFont("BitstreamVeraSansMono-Bold-12.vlw");
   titleFont = loadFont("FuturaLTPro-Bold-48.vlw");
@@ -133,11 +113,7 @@ void setup() {
   //frame.setResizable(true);
 
   //frameRate(10); 
-<<<<<<< HEAD
-
-=======
   
->>>>>>> app
   smooth(); 
   // joining the serial port that is called tty :) 
 
@@ -155,53 +131,11 @@ void mousePressed() {
 }
 void draw() { 
 
-
+  if(frameCount - mouseLastMoved>60) noCursor(); 
+  
   background(0); 
 
   blendMode(ADD); 
-<<<<<<< HEAD
-  pageSideMargin = (machineWidth - pageWidth)/2;
-
-  pushMatrix(); 
-
-  if (fullSizePreview) { 
-    float xoffset = map(mouseX, 0, width, 0, width - viewWidth); 
-    float yoffset = map(mouseY, 0, height, 0, height - viewHeight); 
-    renderOffset.set(round(xoffset), round(yoffset), 0); 
-    translate(renderOffset.x, renderOffset.y);
-  } 
-  else { 
-    scale(viewScale);
-  }
-
-  textFont(titleFont); 
-  textAlign(CENTER, CENTER);
-  if (!focused) { 
-    text ("PRESS MOUSE TO START", viewWidth/2, 75);
-  } 
-  else { 
-    text ("LUNAR TRAILS", viewWidth/2, 75);
-  }  
-
-  textFont(buttonFont); 
-  if ((lunargraphState>=0) && (lunargraphState<lunargraphStateStrings.length)) {
-    if ((lunargraphStateStrings[lunargraphState] == "WAITING") || (lunargraphStateStrings[lunargraphState]=="DRAWING") || (frameCount%60>20)) {
-      if (lunargraphStateStrings[lunargraphState] == "DRAWING") { 
-        text("DRAWING CURRENT PLAYER : "+stateStrings[state], viewWidth/2, 145);
-      } 
-      else if (lunargraphStateStrings[lunargraphState] == "WAITING") {
-        text("PLAY THE ARCADE GAME AND YOUR TRAIL WILL BE DRAWN", viewWidth/2, 145);
-      } 
-      else {
-        text(lunargraphStateStrings[lunargraphState], viewWidth/2, 145);
-      }
-    }
-  }
-  textFont(consoleFont); 
-  textAlign(LEFT, TOP);
-
-  text(stateStrings[state], 100, 20);
-=======
  pageSideMargin = (machineWidth - pageWidth)/2;
 
   pushMatrix(); 
@@ -240,16 +174,11 @@ void draw() {
   textAlign(LEFT, TOP);
  
   text(stateStrings[state], 100,20);
->>>>>>> app
 
   // draw data relative stuff
   stroke(255);
   pushMatrix(); 
-<<<<<<< HEAD
-
-=======
  
->>>>>>> app
   //translate(0,80); 
   scale(viewWidth/dataWidth * pageWidth/machineWidth); 
   translate(map(pageSideMargin, 0, pageWidth, 0, dataWidth), 165);  // not sure about the magic number there... :/ 
@@ -263,26 +192,15 @@ void draw() {
       p2 = p2.get(); 
       p1.x+=offset; 
       p2.x+=offset; 
-<<<<<<< HEAD
-      if (p2.x<dataWidth) {
-        line(p1.x, p1.y, p2.x, p2.y);
-      } 
-      else { 
-=======
       if(p2.x<dataWidth) {
         line(p1.x, p1.y, p2.x, p2.y);
       } else { 
->>>>>>> app
         PVector v = p2.get(); 
         v.sub(p1); 
         v.mult((dataWidth-p1.x) / v.x); 
         line(p1.x, p1.y, p1.x + v.x, p1.y + v.y);  
         break;
-<<<<<<< HEAD
-      }
-=======
       } 
->>>>>>> app
     }
   }
   noFill();
@@ -292,13 +210,8 @@ void draw() {
   fill(125); 
   translate(receivePosition.x, receivePosition.y); 
   scale(1/ (viewWidth/dataWidth * pageWidth/machineWidth)); 
-<<<<<<< HEAD
-
-  text("PLAYER POSITION", 10, 0); 
-=======
   
   text("PLAYER POSITION", 10,0); 
->>>>>>> app
 
   popMatrix(); 
 
@@ -308,18 +221,6 @@ void draw() {
 
   //translate(0,-100); 
   float scalefactor = (float)viewWidth/machineWidth;///1.2;
-<<<<<<< HEAD
-  translate((machineWidth - pageWidth)/ 2 * scalefactor, (pageTop * scalefactor) - 150); 
-
-  noFill(); 
-  stroke(50); 
-  rect(0, 0, pageWidth*scalefactor, pageHeight*scalefactor); 
-
-  //scale(scalefactor);  
-  //println("scaling : "+((float)viewWidth/pageWidth/1.2)); 
-  // strokeWeight(1/scalefactor);
-
-=======
   translate((machineWidth - pageWidth)/ 2 * scalefactor , (pageTop * scalefactor) - 150); 
   
   noFill(); 
@@ -330,7 +231,6 @@ void draw() {
   //println("scaling : "+((float)viewWidth/pageWidth/1.2)); 
   // strokeWeight(1/scalefactor);
   
->>>>>>> app
   stroke(50); 
   strokeWeight(4); 
   line(-pageSideMargin*scalefactor, -pageTop*scalefactor, sentPosition.x*scalefactor, sentPosition.y*scalefactor); 
@@ -339,29 +239,17 @@ void draw() {
   strokeWeight(2);
   fill(0);
   ellipse(sentPosition.x*scalefactor, sentPosition.y*scalefactor, 20, 20); 
-<<<<<<< HEAD
-
-=======
   
->>>>>>> app
   textAlign(LEFT, CENTER);
   textFont(consoleFont);
   fill(125); 
   stroke(10); 
   text("PEN POSITION", sentPosition.x*scalefactor+30, sentPosition.y*scalefactor); 
-<<<<<<< HEAD
-
-  //println(sentPosition.x*scalefactor +" "+sentPosition.y*scalefactor);
-  // strokeWeight(1);
-
-  stroke(10, 20, 120);
-=======
   
   //println(sentPosition.x*scalefactor +" "+sentPosition.y*scalefactor);
   // strokeWeight(1);
 
   stroke(10,20,120);
->>>>>>> app
   for (int i = 0; i< commands.size(); i++) { 
     Command c = (Command) commands.get(i); 
     point(c.p1*scalefactor, c.p2*scalefactor);
@@ -374,21 +262,12 @@ void draw() {
   renderButtons(); 
 
   processQueue();
-<<<<<<< HEAD
-
-  popMatrix();
-}
-
-void renderConsoles() { 
-
-=======
   
   popMatrix(); 
 }
 
 void renderConsoles() { 
   
->>>>>>> app
   textFont(consoleFont); 
   textAlign(LEFT, TOP); 
   while (serialMessages.size ()>70) serialMessages.remove(0); 
@@ -421,11 +300,7 @@ void renderConsoles() {
     textY+=leading;
   } 
 
-<<<<<<< HEAD
-
-=======
   
->>>>>>> app
 
   // draw end stops 
   drawSwitch(endStopMinButtonA, 40, 20);
@@ -435,12 +310,9 @@ void renderConsoles() {
   drawSwitch(endStopMinButtonB, viewWidth-60, 20);
   drawSwitch(calibrationButtonB, viewWidth-60, 40);
   drawSwitch(endStopMaxButtonB, viewWidth-60, 60);
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> app
 }
 
 
@@ -450,32 +322,19 @@ void drawSwitch(int buttonNum, float xpos, float ypos) {
   if (buttonStates[buttonNum]) fill(255); 
   else noFill(); 
   rect(xpos+0.5, ypos+0.5, 10, 10);
-<<<<<<< HEAD
-  //smooth();
-=======
   //smooth(); 
->>>>>>> app
 }
 
 
 
 /*
 PVector convertDataToScreen(PVector p) { 
-<<<<<<< HEAD
- 
- PVector returnVector = p.get(); 
- returnVector.y-=100; 
- returnVector.mult(viewWidth/dataWidth);  
- return returnVector;
- }*/
-=======
 
   PVector returnVector = p.get(); 
   returnVector.y-=100; 
   returnVector.mult(viewWidth/dataWidth);  
   return returnVector;
 }*/
->>>>>>> app
 
 PVector convertDataToLunarGraph(PVector p) { 
 
@@ -495,11 +354,7 @@ void lineToXYPos(float xpos, float ypos, boolean direct) {
 }
 void lineToXYPos(float xpos, float ypos) { 
 
-<<<<<<< HEAD
-  lineToXYPos(xpos, ypos, false);
-=======
   lineToXYPos(xpos, ypos, false); 
->>>>>>> app
 }
 
 void moveToXYPos(PVector pos) { 
@@ -517,34 +372,14 @@ void lineToXYPos(PVector pos) {
 }
 
 void processQueue() { 
-<<<<<<< HEAD
-
-  if (state == STATE_PAUSED) return; 
-
-=======
   
   if(state == STATE_PAUSED) return; 
   
->>>>>>> app
   if ((numToSend>0) && (commands.size()>0)) { 
 
     Command cmd = (Command) commands.remove(0);
     //float xpos = map(cmd.p1, 0.0f, viewWidth, 0.0f, pageWidth); 
     //float ypos = map(cmd.p2, 0.0f, viewHeight, 0.0f, pageWidth);
-<<<<<<< HEAD
-
-    if (cmd.c == COMMAND_RESTART) { 
-      if (state == STATE_PAUSE_NEXT) { 
-        state = STATE_PAUSED;
-      }
-    } 
-    else { 
-
-      float xpos = round(cmd.p1*100)/100.0f; 
-      float ypos = round(cmd.p2*100)/100.0f;
-
-
-=======
     
     if(cmd.c == COMMAND_RESTART) { 
       if(state == STATE_PAUSE_NEXT) { 
@@ -557,7 +392,6 @@ void processQueue() {
       float ypos = round(cmd.p2*100)/100.0f;
   
       
->>>>>>> app
       String msg = serialMessageCount+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
       serialMessageCount++; 
       sentPosition.set(xpos, ypos, 0); 
@@ -566,11 +400,7 @@ void processQueue() {
       //serialMessages.add(">"+msg); 
       sendSerial(msg); 
 
-<<<<<<< HEAD
-      numToSend =0;
-=======
       numToSend =0;  
->>>>>>> app
     }
   }
 }
@@ -587,18 +417,21 @@ String getStringAfterChar(String source, String chr) {
 }
 
 
+int mouseLastMoved = 0; 
 
+void mouseMoved() { 
+  
+  mouseLastMoved = frameCount; 
+  cursor(); 
+  
+}
 
 void stop() {
   try { 
     if (socket!=null) 
       socket.stop();
   } 
-<<<<<<< HEAD
- // catch(IOException e) {}  
-=======
 
->>>>>>> app
   finally {
   }
 
