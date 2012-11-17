@@ -44,6 +44,8 @@ boolean easing = true;
 float duration = 0; 
 unsigned long startTime; 
 
+unsigned long lastHeartbeatSent = 0; 
+
 unsigned long stateChangeTime; 
 
 Button jogUpButtonA   = Button(A_JOG_UP_PIN); 
@@ -266,6 +268,14 @@ void loop() {
   //updateCartesianByLengths(); 
 
   if(timerManager.do100msUpdate) { 
+    
+    if(millis() - lastHeartbeatSent > 5000) { 
+      Serial.println("*"); 
+      lastHeartbeatSent = millis(); 
+    }
+    
+    
+    
   //updateCartesianByLengths(); 
 
     //    if(state == STATE_CALIBRATING) { 
@@ -307,6 +317,8 @@ boolean updateDrawing() {
   if(startTime>micros()) return false; 
   boolean finished = false; 
   progress = (float)(micros()- startTime) / (float)duration; 
+
+  if(progress<0) progress = 0; 
 
   if(progress>=1) {
 
@@ -430,9 +442,16 @@ void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean us
 
   progress  = 0; 
   
-   unsigned long delayMicros =  (unsigned long)(delayMils)*1000; 
+  unsigned long delayMicros =  (unsigned long)(delayMils)*1000; 
 
-  startTime = micros() +  delayMicros;// + delayMicros; 
+  unsigned long now = micros(); 
+  startTime = now +  delayMicros;// + delayMicros; 
+
+  // if we're going over the maximum value storable in a ulong, best start over
+  if(startTime < now) { 
+    startTime = 0;   
+    Serial.println("CLOCK RESETTING -----------------------"); 
+  }
 
   //  Serial.print("Now:"); 
   //  Serial.print(micros());

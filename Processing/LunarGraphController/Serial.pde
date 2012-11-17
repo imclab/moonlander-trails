@@ -74,9 +74,14 @@ void processMessage () {
 
   //println("->" +serialMessage); 
 
-  serialMessages.add(serialMessage); 
+ 
 
-  //println(serialMessage.substring(6,serialMessage.length()-1));
+  if(beginsWith(serialMessage, "*")) { 
+    lastHeartbeat = millis(); 
+  } else { 
+     serialMessages.add(serialMessage); 
+  }
+ 
   if (beginsWith(serialMessage, "ready")) {
 
     numToSend = int(getStringAfterChar(serialMessage, ":"));   

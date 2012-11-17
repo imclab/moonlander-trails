@@ -1,7 +1,13 @@
 
 void keyPressed() {
   if (key == 'r') { 
-    sendSerial("reset");
+//    if (socket!=null) 
+//      socket.stop();
+//      
+    closeSerial(); 
+    initSerial();
+    
+//    initWebSocket(8087); 
   }
   if (key == 'f') { 
     //resize(displayWidth, displayHeight);  
@@ -35,9 +41,7 @@ void keyPressed() {
       state = STATE_PAUSE_NEXT;
     }
   } 
-  else if (key == 's') { 
-    closeSerial(); 
-    initSerial();
+  else if (key == 's') {
   }
 }
 

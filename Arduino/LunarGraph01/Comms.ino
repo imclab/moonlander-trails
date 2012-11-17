@@ -10,7 +10,7 @@ float p2;
 int incomingCharCount = 0; 
 int incomingParsePos = 0; 
 
-unsigned long lastMessageSent = 0; 
+
 
 
 void addCommand(int c, float p1, float p2) { 
@@ -33,9 +33,9 @@ void addCommand(int c, float p1, float p2) {
 }
 
 boolean nextCommand() { 
-  if((numCommands==0) || (millis()-lastMessageSent > 5000)) {
+  if(numCommands==0) {
     sendReady();
-    lastMessageSent = millis(); 
+   
     return false; 
   }
 
