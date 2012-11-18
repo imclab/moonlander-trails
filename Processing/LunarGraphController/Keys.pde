@@ -6,7 +6,7 @@ void keyPressed() {
 //      
     closeSerial(); 
     initSerial();
-    
+    firstRestartReceived = false; 
 //    initWebSocket(8087); 
   }
   if (key == 'f') { 
@@ -30,7 +30,7 @@ void keyPressed() {
   if (key == 'l') { 
     drawLandscape();
   } 
-  else if (key == 'p') { 
+  else if (key == 'p')  { 
     if (state == STATE_PAUSED) {
       state = STATE_RUNNING;
     } 
@@ -41,7 +41,23 @@ void keyPressed() {
       state = STATE_PAUSE_NEXT;
     }
   } 
-  else if (key == 's') {
+  else if ((key == 'n')|| (key==' ')){ 
+       
+     if(state == STATE_RUNNING) { 
+       state = STATE_PEN_CHANGE_NEXT; 
+       //insertPenMoveIntoQueue(); 
+     
+     }  else if(state == STATE_PEN_CHANGE) { 
+        state = STATE_RUNNING; 
+        lastPenChange = millis(); 
+       
+     }   else if(state == STATE_PEN_CHANGE_NEXT) {
+        state = STATE_RUNNING; 
+     } 
+     
+     
+   
+    
   }
 }
 

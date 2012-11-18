@@ -2,6 +2,7 @@ final int COMMAND_MOVE = 0;
 final int COMMAND_DRAW = 1; 
 final int COMMAND_DRAW_DIRECT = 2; 
 final int COMMAND_RESTART = 3; 
+final int COMMAND_FINISH = 4; 
 
 
 class Command { 

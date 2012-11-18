@@ -28,13 +28,18 @@ final int STATE_PAUSE_NEXT = 1;
 final int STATE_PAUSED = 2; 
 final int STATE_PEN_CHANGE_NEXT = 3; 
 final int STATE_PEN_CHANGE = 4; 
+
+//boolean penChanging = false; 
+
 String stateStrings[] = { 
   "RUNNING", "PAUSE_NEXT", "PAUSED", "PEN_CHANGE_NEXT", "PEN_CHANGE"
 }; 
 
-PVector homePosition = new PVector(); 
+PVector homePosition; 
 
 int lastHeartbeat = 0; 
+int lastPenChange = 0; 
+int penChangeFrequency = 120 * 60 * 1000; 
 
 // reasonable defaults but nothing should happen until they're set by the LunarGraph Arduino
 float pageWidth = 10000;  
@@ -280,6 +285,9 @@ void draw() {
   textAlign(LEFT, TOP);
   fill(255); 
   text("LUNARGRAPH HEALTH", 75, 20); 
+  
+  float penchangemillis = penChangeFrequency - (millis() - lastPenChange); 
+  text("PEN CHANGE IN "+floor(penchangemillis/1000/60) + ":"+floor((penchangemillis/1000) % 60), 60,60); 
 
   processQueue();
 
@@ -390,7 +398,7 @@ void lineToXYPos(PVector pos) {
 
 void processQueue() { 
 
-  if (state == STATE_PAUSED) return; 
+  if ((state == STATE_PAUSED) || (state == STATE_PEN_CHANGE)) return; 
 
   if ((numToSend>0) && (commands.size()>0)) { 
 
@@ -398,12 +406,19 @@ void processQueue() {
     //float xpos = map(cmd.p1, 0.0f, viewWidth, 0.0f, pageWidth); 
     //float ypos = map(cmd.p2, 0.0f, viewHeight, 0.0f, pageWidth);
 
-    if (cmd.c == COMMAND_RESTART) { 
+    if (cmd.c == COMMAND_FINISH) { 
       if (state == STATE_PAUSE_NEXT) { 
         state = STATE_PAUSED;
       }
+      else if (state == STATE_PEN_CHANGE_NEXT) { 
+        cmd.c = COMMAND_MOVE; 
+        cmd.p1 = pageWidth/2; 
+        cmd.p2 = pageHeight*0.8; 
+        state = STATE_PEN_CHANGE; 
+      }
     } 
-    else { 
+    
+    if(cmd.c!=COMMAND_FINISH) { 
 
       float xpos = round(cmd.p1*100)/100.0f; 
       float ypos = round(cmd.p2*100)/100.0f;
