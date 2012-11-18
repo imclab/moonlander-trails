@@ -170,7 +170,7 @@ void draw() {
     text ("PRESS MOUSE TO START", viewWidth/2, 75);
   } 
   else if(state == STATE_PEN_CHANGE) { 
-    text ("CHANGE PEN", viewWidth/2, 75);
+    text ("CHANGE PEN AND HIT SPACE", viewWidth/2, 75);
   }  else  { 
     text ("LUNAR TRAILS", viewWidth/2, 75);
   }  
