@@ -32,7 +32,7 @@ public:
 
     if((pinState == onState) && (!on) ) { 
 
-      if((onCount>2)||(firstTime)) { 
+      if((onCount>0)||(firstTime)) { 
         on = true;  
         timeChanged = now; 
         timeSinceChange = 0;   
@@ -47,12 +47,13 @@ public:
     } 
     else if((pinState != onState) && (on)) { 
 
-      if((offCount>2)||(firstTime)) { 
+      if((offCount>0)||(firstTime)) { 
         on = false; 
         timeChanged = now; 
         timeSinceChange = 0;  
         offCount = 0; 
         changed = true; 
+        Keyboard.release(keyNum); 
       } 
       else { 
         offCount ++; 
@@ -76,7 +77,7 @@ public:
 
 
   void pressKey(int numkey) { 
-    //Keyboard.press(numkey); 
+    Keyboard.press(numkey); 
     Serial.println(char(numkey));  
 
 
