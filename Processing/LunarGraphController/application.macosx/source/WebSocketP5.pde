@@ -49,7 +49,15 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
       String type = msgJson.getString("type");
       //println(type+" "+ (type == "update"));
       readablemsg+=type+" "; 
-      if (type.equals("restart")) { 
+      if((type.equals("land")) || (type.equals("crash")) || (type.equals("over"))) { 
+        
+        commands.add(new Command(COMMAND_FINISH, 0,0)); 
+        
+        if(homePosition!=null) 
+          moveToXYPos(homePosition); 
+      
+      }
+      else if (type.equals("restart"))  { 
         move = true;
         commands.add(new Command(COMMAND_RESTART, 0,0));
         messageRestart = true; 
@@ -69,7 +77,10 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
           receivePosition = p1.get(); 
           p1 = convertDataToLunarGraph(p1); 
           
-          if(messageRestart) homePosition = p1.get(); 
+          if(messageRestart) {
+            homePosition = p1.get(); 
+            messageRestart = false; 
+          }
           
           if((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
             move = true; 

@@ -167,7 +167,9 @@ void draw() {
   if (!focused) { 
     text ("PRESS MOUSE TO START", viewWidth/2, 75);
   } 
-  else { 
+  else if(state == STATE_PEN_CHANGE) { 
+    text ("CHANGE PEN", viewWidth/2, 75);
+  }  else  { 
     text ("LUNAR TRAILS", viewWidth/2, 75);
   }  
 
@@ -287,8 +289,17 @@ void draw() {
   text("LUNARGRAPH HEALTH", 75, 20); 
   
   float penchangemillis = penChangeFrequency - (millis() - lastPenChange); 
-  text("PEN CHANGE IN "+floor(penchangemillis/1000/60) + ":"+floor((penchangemillis/1000) % 60), 60,60); 
+ 
+  if(penchangemillis<=0) { 
+    if(state == STATE_RUNNING) { 
+      changePen(); 
+    }  
+    penchangemillis = 0; 
+  }
+  
+   text("PEN CHANGE IN "+floor(penchangemillis/1000/60) + ":"+floor((penchangemillis/1000) % 60), 60,60); 
 
+  
   processQueue();
 
   popMatrix();

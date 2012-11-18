@@ -39,12 +39,13 @@ void keyPressed() {
     } 
     else { 
       state = STATE_PAUSE_NEXT;
+
     }
   } 
   else if ((key == 'n')|| (key==' ')){ 
        
      if(state == STATE_RUNNING) { 
-       state = STATE_PEN_CHANGE_NEXT; 
+       changePen(); 
        //insertPenMoveIntoQueue(); 
      
      }  else if(state == STATE_PEN_CHANGE) { 
@@ -61,3 +62,13 @@ void keyPressed() {
   }
 }
 
+
+void changePen() { 
+    state = STATE_PEN_CHANGE_NEXT; 
+         //    println(commands.size()); 
+    if(commands.size()==0) {
+       commands.add(new Command(COMMAND_FINISH,0, 0));
+    }
+  
+  
+}
