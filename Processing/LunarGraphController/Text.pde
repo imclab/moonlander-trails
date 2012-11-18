@@ -1,29 +1,9 @@
 
 float glyphWidth = 4, glyphHeight = 6, glyphSpacing = 2;
 
-String text = "ABCDEFGHIJKLMNOP /.: 1234567890".toUpperCase();
-
-void setup() {
-  size(1024, 768);
-  noFill();
-}
-
 PVector letterOffset = new PVector(); 
 PVector letterScale = new PVector(1,1); 
 PVector letterPoint = new PVector(0,0); 
-
-void draw() {
-
-
- 
-  background(0);
-
-  stroke(255, 0, 0);
- 
-
-  plotText("Lunar Trails - at the Dublin Science Gallery GAME Exhibition 17/11/12", 0,0,mouseX *0.01 );  
-
-}
 
 
 void plotText(String textToPlot, float xpos, float ypos, float scaleFactor) { 
@@ -308,14 +288,16 @@ void drawLetter(char letter) {
 }
 
 void plotLine(float x1, float y1, float x2, float y2) { 
-  line(x1*letterScale.x + letterOffset.x, y1*letterScale.y + letterOffset.y, x2*letterScale.x + letterOffset.x, y2*letterScale.y + letterOffset.y) ; 
+  //line(x1*letterScale.x + letterOffset.x, y1*letterScale.y + letterOffset.y, x2*letterScale.x + letterOffset.x, y2*letterScale.y + letterOffset.y) ; 
   
   PVector p1 = new PVector(x1*letterScale.x + letterOffset.x, y1*letterScale.y + letterOffset.y); 
   PVector p2 = new PVector(x2*letterScale.x + letterOffset.x, y2*letterScale.y + letterOffset.y); 
   if(!p1.equals(letterPoint)) { 
     // moveTo p1; 
+    moveToXYPos(p1); 
   } 
-  // lineTo p2; 
+  // lineTo p2;
+     lineToXYPos(p2);  
   letterPoint.set(p2);
 }
 

@@ -14,7 +14,7 @@ void initButtons() {
   float buttonWidth = 170; 
   
   buttons[0] = pauseButton = new Button("PAUSE (P)", 0, 100, buttonWidth, 50); 
-  buttons[1] = clearButton = new Button("CLEAR (C)", 0, 100, buttonWidth, 50); 
+  buttons[1] = clearButton = new Button("WRITE TITLE (K)", 0, 100, buttonWidth, 50); 
   buttons[2] = resetButton = new Button("RESET (R)", 0, 100, buttonWidth, 50); 
   buttons[3] = penDropButton = new Button("PEN CHANGE (N)", 0, 100, buttonWidth, 50);
   buttons[4] = landscapeButton = new Button("DRAW LAND (L)", 0, 100, buttonWidth, 50);

@@ -7,6 +7,7 @@ void keyPressed() {
     closeSerial(); 
     initSerial();
     firstRestartReceived = false; 
+    commands.clear();
 //    initWebSocket(8087); 
   }
   if (key == 'f') { 
@@ -30,6 +31,10 @@ void keyPressed() {
   if (key == 'l') { 
     drawLandscape();
   } 
+  else if (key == 'k') {  
+    plotText("Lunar Trails - Dublin Science Gallery GAME Exhibition "+day()+"/"+month()+"/"+year(), 50,pageHeight-150,14);  
+    plotText("seb.ly", pageWidth - 550 ,pageHeight-150,14);   
+  }
   else if (key == 'p')  { 
     if (state == STATE_PAUSED) {
       state = STATE_RUNNING;
