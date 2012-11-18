@@ -62,7 +62,7 @@ void loop() {
   smoothReading += ((currentReading-smoothReading)*0.1f);
   int newKey;
   if(abs(smoothReading - bottomValue)<10) newKey = 0;
-  else newKey = round(map(smoothReading, bottomValue, topValue, 0.5, 10));
+  else newKey = round(map(smoothReading, bottomValue, topValue, 0.8, 10));
   if(newKey<0) newKey = 0; 
   if(newKey>9) newKey = 9; 
 
