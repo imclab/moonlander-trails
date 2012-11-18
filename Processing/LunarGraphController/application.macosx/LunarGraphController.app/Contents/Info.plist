@@ -36,7 +36,7 @@
     <key>Java</key>
     <dict>
       <key>VMOptions</key>
-      <string></string>
+      <string> -Xms64m -Xmx2048m</string>
 
       <key>MainClass</key>
       <string>LunarGraphController</string>

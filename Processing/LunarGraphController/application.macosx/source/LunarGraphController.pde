@@ -2,7 +2,7 @@
 import processing.serial.*; 
 import org.json.*;
 //import wsp5.*;
-
+import java.awt.Toolkit;
 
 import muthesius.net.*;
 import org.webbitserver.*;
@@ -39,14 +39,15 @@ PVector homePosition;
 
 int lastHeartbeat = 0; 
 int lastPenChange = 0; 
+// 2 hours for each pen
 int penChangeFrequency = 120 * 60 * 1000; 
 
 // reasonable defaults but nothing should happen until they're set by the LunarGraph Arduino
 float pageWidth = 10000;  
-float pageHeight = 10000;
+float pageHeight = 6000;
 float stepsPerMil = 20; 
 float machineWidth = 14000; 
-float pageTop = 3000; 
+float pageTop = 2000; 
 float pageSideMargin = 0; 
 
 float dataWidth = 895.275 * 1.2; // we wanna see the landscape cycle round 1.2 times.  
@@ -174,6 +175,19 @@ void draw() {
   }  else  { 
     text ("LUNAR TRAILS", viewWidth/2, 75);
   }  
+  
+  float penchangemillis =  (millis() - lastPenChange); 
+ 
+  if(penchangemillis>penChangeFrequency) { 
+    if(frameCount%60>20) { 
+      //changePen(); 
+      text ("INK DRY - CHANGE PEN", viewWidth/2, 180);
+    }  
+    if(frameCount%120 == 20) { 
+      Toolkit.getDefaultToolkit().beep();
+    }
+   // penchangemillis = 0; 
+  }
 
   textFont(buttonFont); 
   if ((lunargraphState>=0) && (lunargraphState<lunargraphStateStrings.length)) {
@@ -270,9 +284,17 @@ void draw() {
   // strokeWeight(1);
 
   stroke(10, 20, 120);
+  PVector lastpoint = new PVector(); 
   for (int i = 0; i< commands.size(); i++) { 
     Command c = (Command) commands.get(i); 
     point(c.p1*scalefactor, c.p2*scalefactor);
+    if(c.c == COMMAND_MOVE) {
+      lastpoint.set(c.p1, c.p2, 0) ;
+    } else if((c.c == COMMAND_DRAW)||(c.c == COMMAND_DRAW_DIRECT)) { 
+      line(lastpoint.x*scalefactor, lastpoint.y*scalefactor, c.p1*scalefactor, c.p2*scalefactor); 
+      lastpoint.set(c.p1, c.p2, 0); 
+      
+    }
   }
 
   popMatrix();
@@ -290,17 +312,11 @@ void draw() {
   fill(255); 
   text("LUNARGRAPH HEALTH", 75, 20); 
   
-  float penchangemillis = penChangeFrequency - (millis() - lastPenChange); 
- 
-  if(penchangemillis<=0) { 
-    if(state == STATE_RUNNING) { 
-      changePen(); 
-    }  
-    penchangemillis = 0; 
-  }
   
-   text("PEN CHANGE IN "+floor(penchangemillis/1000/60) + ":"+floor((penchangemillis/1000) % 60), 60,60); 
-
+    String secs = floor((penchangemillis/1000) % 60)+""; 
+    if(secs.length()<2) secs = "0"+secs;
+   text("LAST PEN CHANGE "+floor(penchangemillis/1000/60) + ":"+secs, 60,60); 
+    
   
   processQueue();
 

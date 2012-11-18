@@ -4,6 +4,7 @@ import processing.opengl.*;
 
 import processing.serial.*; 
 import org.json.*; 
+import java.awt.Toolkit; 
 import muthesius.net.*; 
 import org.webbitserver.*; 
 
@@ -64,14 +65,15 @@ PVector homePosition;
 
 int lastHeartbeat = 0; 
 int lastPenChange = 0; 
+// 2 hours for each pen
 int penChangeFrequency = 120 * 60 * 1000; 
 
 // reasonable defaults but nothing should happen until they're set by the LunarGraph Arduino
 float pageWidth = 10000;  
-float pageHeight = 10000;
+float pageHeight = 6000;
 float stepsPerMil = 20; 
 float machineWidth = 14000; 
-float pageTop = 3000; 
+float pageTop = 2000; 
 float pageSideMargin = 0; 
 
 float dataWidth = 895.275f * 1.2f; // we wanna see the landscape cycle round 1.2 times.  
@@ -199,6 +201,19 @@ public void draw() {
   }  else  { 
     text ("LUNAR TRAILS", viewWidth/2, 75);
   }  
+  
+  float penchangemillis =  (millis() - lastPenChange); 
+ 
+  if(penchangemillis>penChangeFrequency) { 
+    if(frameCount%60>20) { 
+      //changePen(); 
+      text ("INK DRY - CHANGE PEN", viewWidth/2, 180);
+    }  
+    if(frameCount%120 == 20) { 
+      Toolkit.getDefaultToolkit().beep();
+    }
+   // penchangemillis = 0; 
+  }
 
   textFont(buttonFont); 
   if ((lunargraphState>=0) && (lunargraphState<lunargraphStateStrings.length)) {
@@ -295,9 +310,17 @@ public void draw() {
   // strokeWeight(1);
 
   stroke(10, 20, 120);
+  PVector lastpoint = new PVector(); 
   for (int i = 0; i< commands.size(); i++) { 
     Command c = (Command) commands.get(i); 
     point(c.p1*scalefactor, c.p2*scalefactor);
+    if(c.c == COMMAND_MOVE) {
+      lastpoint.set(c.p1, c.p2, 0) ;
+    } else if((c.c == COMMAND_DRAW)||(c.c == COMMAND_DRAW_DIRECT)) { 
+      line(lastpoint.x*scalefactor, lastpoint.y*scalefactor, c.p1*scalefactor, c.p2*scalefactor); 
+      lastpoint.set(c.p1, c.p2, 0); 
+      
+    }
   }
 
   popMatrix();
@@ -315,17 +338,11 @@ public void draw() {
   fill(255); 
   text("LUNARGRAPH HEALTH", 75, 20); 
   
-  float penchangemillis = penChangeFrequency - (millis() - lastPenChange); 
- 
-  if(penchangemillis<=0) { 
-    if(state == STATE_RUNNING) { 
-      changePen(); 
-    }  
-    penchangemillis = 0; 
-  }
   
-   text("PEN CHANGE IN "+floor(penchangemillis/1000/60) + ":"+floor((penchangemillis/1000) % 60), 60,60); 
-
+    String secs = floor((penchangemillis/1000) % 60)+""; 
+    if(secs.length()<2) secs = "0"+secs;
+   text("LAST PEN CHANGE "+floor(penchangemillis/1000/60) + ":"+secs, 60,60); 
+    
   
   processQueue();
 
@@ -526,7 +543,7 @@ public void initButtons() {
   float buttonWidth = 170; 
   
   buttons[0] = pauseButton = new Button("PAUSE (P)", 0, 100, buttonWidth, 50); 
-  buttons[1] = clearButton = new Button("CLEAR (C)", 0, 100, buttonWidth, 50); 
+  buttons[1] = clearButton = new Button("WRITE TITLE (K)", 0, 100, buttonWidth, 50); 
   buttons[2] = resetButton = new Button("RESET (R)", 0, 100, buttonWidth, 50); 
   buttons[3] = penDropButton = new Button("PEN CHANGE (N)", 0, 100, buttonWidth, 50);
   buttons[4] = landscapeButton = new Button("DRAW LAND (L)", 0, 100, buttonWidth, 50);
@@ -665,6 +682,7 @@ public void keyPressed() {
     closeSerial(); 
     initSerial();
     firstRestartReceived = false; 
+    commands.clear();
 //    initWebSocket(8087); 
   }
   if (key == 'f') { 
@@ -688,6 +706,10 @@ public void keyPressed() {
   if (key == 'l') { 
     drawLandscape();
   } 
+  else if (key == 'k') {  
+    plotText("Lunar Trails - Dublin Science Gallery GAME Exhibition "+day()+"/"+month()+"/"+year(), 50,pageHeight-150,14);  
+    plotText("seb.ly", pageWidth - 550 ,pageHeight-150,14);   
+  }
   else if (key == 'p')  { 
     if (state == STATE_PAUSED) {
       state = STATE_RUNNING;
@@ -1029,6 +1051,310 @@ public void processMessage () {
   serialMessage = "";  
   //println("------");
 }
+
+
+float glyphWidth = 4, glyphHeight = 6, glyphSpacing = 2;
+
+PVector letterOffset = new PVector(); 
+PVector letterScale = new PVector(1,1); 
+PVector letterPoint = new PVector(0,0); 
+
+
+public void plotText(String textToPlot, float xpos, float ypos, float scaleFactor) { 
+  
+  glyphWidth = 4 * scaleFactor; 
+  glyphHeight = 6 * scaleFactor; 
+  glyphSpacing = 2 * scaleFactor;
+
+  
+  textToPlot = textToPlot.toUpperCase();
+  for ( int i = 0; i < textToPlot.length(); i++ ) {
+    drawGlyph(textToPlot.charAt(i),  xpos ,  ypos);
+    xpos += glyphWidth + glyphSpacing;
+  }
+  
+}
+
+
+public void drawGlyph(char glyph, float posX, float posY) {
+  
+  letterOffset.set(posX, posY, 0); 
+
+  
+  stroke(255);
+  strokeWeight(1);
+  letterScale.set(glyphWidth / 4.0f, glyphHeight / 6.0f, 0);
+  drawLetter(glyph);
+}
+
+public void drawLetter(char letter) {
+  if ( letter == 'A' ) {
+    plotLine(0, 6, 0, 1);
+    plotLine(0, 1, 2, 0);
+    plotLine(2, 0, 4, 1);
+    plotLine(4, 1, 4, 3);
+    plotLine(4, 3, 0, 3);
+    plotLine(4, 3, 4, 6);
+  }
+
+  if ( letter == 'B' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 3, 6);
+    plotLine(0, 0, 3, 0);
+    plotLine(3, 0, 4, 1);
+    plotLine(4, 1, 4, 2);
+    plotLine(4, 2, 3, 3);
+    plotLine(3, 3, 0, 3);
+    plotLine(3, 3, 4, 4);
+    plotLine(4, 4, 4, 5);
+    plotLine(4, 5, 3, 6);
+  }
+  if ( letter == 'C' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(4, 0, 0, 0);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'D' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 0, 3, 0);
+    plotLine(3, 0, 4, 2);
+    plotLine(4, 2, 4, 4);
+    plotLine(4, 4, 3, 6);
+    plotLine(0, 6, 3, 6);
+  }
+  if ( letter == 'E' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(4, 0, 0, 0);
+    plotLine(4, 3, 0, 3);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'F' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(0, 3, 4, 3);
+    plotLine(0, 0, 0, 6);
+  }
+  if ( letter == 'G' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 1);
+    plotLine(2, 3, 4, 3);
+    plotLine(4, 3, 4, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'H' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 3, 4, 3);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == 'I' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(2, 0, 2, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'J' ) {
+    plotLine(0, 4, 1, 6);
+    plotLine(2, 0, 4, 0);
+    plotLine(4, 0, 4, 6);
+    plotLine(1, 6, 4, 6);
+  }
+  if ( letter == 'K' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 3, 4, 0);
+    plotLine(0, 3, 4, 6);
+  }
+  if ( letter == 'L' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'M' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 0, 2, 2);
+    plotLine(2, 2, 4, 0);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == 'N' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 1, 4, 5);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == 'O' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'P' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 3);
+    plotLine(0, 3, 4, 3);
+  }
+  if ( letter == 'Q' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 4);
+    plotLine(4, 4, 2, 6);
+    plotLine(2, 6, 0, 6);
+    plotLine(0, 6, 0, 0);
+    plotLine(2, 4, 4, 6);
+  }
+  if ( letter == 'R' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 3);
+    plotLine(4, 3, 0, 3);
+    plotLine(0, 3, 4, 6);
+  }
+  if ( letter == 'S' ) {
+    plotLine(0, 0, 0, 3);
+    plotLine(0, 0, 4, 0);
+    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 4, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == 'T' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(2, 0, 2, 6);
+  }
+  if ( letter == 'U' ) {
+    plotLine(0, 0, 0, 5);
+    plotLine(0, 5, 1, 6);
+    plotLine(1, 6, 3, 6);
+    plotLine(4, 0, 4, 5);
+    plotLine(4, 5, 3, 6);
+  }
+  if ( letter == 'V' ) {
+    plotLine(0, 0, 2, 6);
+    plotLine(4, 0, 2, 6);
+  }
+  if ( letter == 'W' ) {
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 2, 4);
+    plotLine(2, 4, 4, 6);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == 'X' ) {
+    plotLine(0, 0, 2, 3);
+    plotLine(2, 3, 0, 6);
+    plotLine(4, 0, 2, 3);
+    plotLine(2, 3, 4, 6);
+  }
+  if ( letter == 'Y' ) {
+    plotLine(0, 0, 2, 2);
+    plotLine(2, 2, 4, 0);
+    plotLine(2, 2, 2, 6);
+  }
+  if ( letter == 'Z' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 0, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '0' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 6);
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 4, 0);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '1' ) {
+    plotLine(0, 0, 2, 0);
+    plotLine(2, 0, 2, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '2' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 3);
+    plotLine(4, 3, 0, 3);
+    plotLine(0, 3, 0, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '3' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 6);
+    plotLine(0, 3, 4, 3);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '4' ) {
+    plotLine(0, 0, 0, 3);
+    plotLine(0, 3, 4, 3);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == '5' ) {
+    plotLine(0, 0, 0, 0);
+    plotLine(0, 0, 4, 0);
+    plotLine(0, 0, 0, 3);
+    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 4, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '6' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(0, 0, 0, 6);
+    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 4, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '7' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == '8' ) {
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 3);
+    plotLine(4, 3, 0, 3);
+    plotLine(0, 3, 0, 0);
+    plotLine(4, 6, 4, 3);
+    plotLine(0, 3, 0, 6);
+    plotLine(0, 6, 4, 6);
+  }
+  if ( letter == '9' ) {
+    plotLine(0, 0, 0, 3);
+    plotLine(0, 3, 4, 3);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 6);
+  }
+  if ( letter == '!' ) {
+    plotLine(2, 0, 2, 4);
+    plotLine(2, 5, 2, 6);
+  }
+  if ( letter == ':' ) {
+    plotLine(2, 1, 2, 3);
+    plotLine(2, 4, 2, 6);
+  }
+  if ( letter == '.' ) {
+    plotLine(2, 5, 2, 6);
+  }
+  if ( letter ==',') {
+    plotLine(2, 5, 2, 7);
+  }
+  if (letter == '#') {
+    plotLine(1, 1, 1, 5);
+    plotLine(0, 2, 4, 2);
+    plotLine(0, 4, 4, 4);
+    plotLine(3, 1, 3, 5);
+  }
+  if (letter =='-') {
+    plotLine(1, 3, 3, 3);
+  }
+
+  if (letter == '/') {
+    plotLine(0, 6, 4, 0);
+  }
+}
+
+public void plotLine(float x1, float y1, float x2, float y2) { 
+  //line(x1*letterScale.x + letterOffset.x, y1*letterScale.y + letterOffset.y, x2*letterScale.x + letterOffset.x, y2*letterScale.y + letterOffset.y) ; 
+  
+  PVector p1 = new PVector(x1*letterScale.x + letterOffset.x, y1*letterScale.y + letterOffset.y); 
+  PVector p2 = new PVector(x2*letterScale.x + letterOffset.x, y2*letterScale.y + letterOffset.y); 
+  if(!p1.equals(letterPoint)) { 
+    // moveTo p1; 
+    moveToXYPos(p1); 
+  } 
+  // lineTo p2;
+     lineToXYPos(p2);  
+  letterPoint.set(p2);
+}
+
 
 
 /*
