@@ -32,8 +32,8 @@ void keyPressed() {
     drawLandscape();
   } 
   else if (key == 'k') {  
-    plotText("Lunar Trails - Dublin Science Gallery GAME Exhibition "+day()+"/"+month()+"/"+year(), 50,pageHeight-150,14);  
-    plotText("seb.ly", pageWidth - 550 ,pageHeight-150,14);   
+    plotText("Lunar Trails - Dublin Science Gallery GAME Exhibition "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
+    plotText("seb.ly", pageWidth - 3300 ,pageHeight-900,85);   
   }
   else if (key == 'p')  { 
     if (state == STATE_PAUSED) {
