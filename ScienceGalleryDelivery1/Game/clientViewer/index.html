@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Lunar Lander</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		
+		<style type="text/css">
+			
+
+		@font-face {
+		    font-family: 'BenderLight';
+		    src: url('bender_light-webfont.eot');
+		    src: url('bender_light-webfont.eot?#iefix') format('embedded-opentype'),
+		         url('bender_light-webfont.woff') format('woff'),
+		         url('bender_light-webfont.ttf') format('truetype'),
+		         url('bender_light-webfont.svg#BenderLight') format('svg');
+		    font-weight: normal;
+		    font-style: normal;
+
+		}
+			
+			body {
+				background-color: #000022;
+				margin: 0px;
+				overflow: hidden;
+			
+			}
+			
+			#title, #subtitle { 
+				width:100%;
+				margin:auto;
+				position:absolute;
+				font-family: 'Futura LT Pro';
+				font-weight:bold;
+				color:white; 
+				text-transform:uppercase;
+				font-size:72pt; 
+				text-align:center;
+				letter-spacing: 0.05em ;
+				
+				top:30px; 
+				
+			}
+			#subtitle { 
+				font-size:18pt; 
+				top:30px; 
+			}
+			.infoBox{ 
+				font-family: 'BenderLight';
+				font-size:13pt;
+				letter-spacing : 0.2em;
+				line-height:1.7em; 
+				color:white;
+				text-transform:uppercase;
+				
+			}
+		
+			a {
+				color:#0078ff;
+			}
+			/*Touch stuff - TODO: look into non webkit prefixes */ 
+			* {
+			  -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+			  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+			/* make transparent link selection, adjust last value opacity 0 to 1.0 */
+			  -webkit-tap-highlight-color: rgba(0,0,0,0); 
+			  -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+			  -webkit-tap-highlight-color: rgba(0,0,0,0); 
+			}
+			
+			
+@media only screen and (max-width: 650px) {
+	.infoBox{ 
+	
+		font-size:6pt;
+	
+	}			
+
+			
+		</style>
+	</head>
+	<body>
+		<script src="libs/Vector2.js"></script>
+		<script src="libs/Stats.js"></script>
+		<script src="KeyTracker.js"></script>
+		<script src="LandscapeData.js"></script>
+		<script src="InfoDisplay.js"></script>
+		<script src="Lander.js"></script>
+		<!-- requestAnimationFrame shim --> 
+		<script src="libs/rAF.js"> </script>
+		<!-- jsfxr audio sound generator --> 
+		<script src="libs/audio.js"></script>
+		<script src="libs/jsfx.js"></script>
+		<script src="libs/jsfxlib.js"></script>	
+		<script src="Sounds.js"></script>
+		<script src="viewer.js"></script>
+		<script src="lunargraphcomms.js"></script> 
+		<!--<div ><p id='title'>
+				LUNAR TRAILS </p></div>-->
+		<div ><p id='subtitle'>
+		now playing live at www.moonlander.seb.ly
+		</p></div>
+	</body>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-809606-12']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	
+</html>

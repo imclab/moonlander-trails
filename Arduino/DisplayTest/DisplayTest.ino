@@ -1,4 +1,4 @@
-/*************************************************** 
+ /*************************************************** 
   This is a library for our I2C LED Backpacks
 
   Designed specifically to work with the Adafruit LED 7-Segment backpacks 
@@ -21,35 +21,29 @@
  ****************************************************/
  
 #include <Wire.h>
-#include "Adafruit_7Seg.h"
-//#include "Adafruit_GFX.h"
+#include "Adafruit_LEDBackpack.h"
+#include "Adafruit_GFX.h"
 
 Adafruit_7segment matrix = Adafruit_7segment();
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(57600);
   Serial.println("7 Segment Backpack Test");
 
   matrix.begin(0x70);
-  matrix.setBrightness(15); 
-
 }
 
 void loop() {
-
-  
   // try to print a number thats too long
-  
-  
   matrix.print(10000, DEC);
   matrix.writeDisplay();
   delay(500);
-  
 
   // print a hex number
-  matrix.print(0xFEED, HEX);
+  matrix.print(0xBEEF, HEX);
   matrix.writeDisplay();
   delay(500);
+ Serial.println("testing");
 
   // print a floating point 
   /* this isnt working yet, still hacking on it!
@@ -62,9 +56,8 @@ void loop() {
   for (uint16_t counter = 0; counter < 9999; counter++) {
     matrix.println(counter);
     matrix.writeDisplay();
-    //matrix.setBrightness((sin((float)counter*0.01f)+1.0f)*7.5f); 
-
-    delay(1);
+     Serial.println("testing");
+    delay(50);
   }
 
   // method #2 - draw each digit

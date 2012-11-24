@@ -1,540 +1,0 @@
-TLunarTrails
-v5
-r1
-cCheck dependencies
-cProcessInfoPlistFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist LunarTrails/LunarTrails-Info.plist
-cProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails normal x86_64
-cGenerateDSYMFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
-cCopyStringsFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings LunarTrails/en.lproj/InfoPlist.strings
-cCompileXIB /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
-cCpResource ../Game/clientCanvas/bender_italic-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot
-cCpResource ../Game/clientCanvas/bender_italic-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff
-cCpResource ../Game/clientCanvas/bender_light-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot
-cCpResource LunarTrails/en.lproj/Credits.rtf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
-cCpResource ../Game/clientCanvas/bender_italic-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf
-cCpResource ../Game/clientCanvas/bender_italic-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg
-cCpResource ../Game/clientCanvas/bender_light-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg
-cCpResource ../Game/clientCanvas/bender_light-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf
-cCpResource ../Game/clientCanvas/bender_light-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff
-cCpResource ../Game/clientCanvas/index.html DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html
-cTouch /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
-c000000004FF015DA00000000000000AA
-t1341134298
-s170
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
-c00000000502E133300000000000025C8
-t1345196851
-s9672
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
-c00000000502E133300000000000001E5
-t1345196851
-s485
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/WebKit.framework/WebKit
-c00000000502E1335000000000008671C
-t1345196853
-s550684
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.eot
-c00000000504CA6B30000000000003EA9
-t1347200691
-s16041
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.svg
-c00000000504CA6B30000000000008B35
-t1347200691
-s35637
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.ttf
-c00000000504CA6B30000000000009FF8
-t1347200691
-s40952
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.woff
-c00000000504CA6B30000000000004A70
-t1347200691
-s19056
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.eot
-c00000000504CA6B3000000000000381D
-t1347200691
-s14365
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.svg
-c00000000504CA6B3000000000000812A
-t1347200691
-s33066
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.ttf
-c00000000504CA6B3000000000000870C
-t1347200691
-s34572
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.woff
-c00000000504CA6B300000000000042FC
-t1347200691
-s17148
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/index.html
-c00000000504CA6B30000000000000912
-t1347200691
-s2322
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o
-t1349880106
-s32184
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/LunarTrails.LinkFileList
-c00000000507587420000000000000171
-t1349879618
-s369
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o
-t1349879618
-s3000
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth
-t1349879618
-s13730448
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
-t1349880106
-s102
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM
-t1349880106
-s102
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist
-t1349879618
-s1389
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
-t1349880106
-s15528
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/PkgInfo
-t1349879618
-s8
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot
-t1349879723
-s16041
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg
-t1349879723
-s35637
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf
-t1349879723
-s40952
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff
-t1349879723
-s19056
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot
-t1349879723
-s14365
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg
-t1349879723
-s33066
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf
-t1349879723
-s34572
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff
-t1349879723
-s17148
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
-t1349879619
-s436
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings
-t1349879619
-s92
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/MainMenu.nib
-t1349879619
-s28951
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html
-t1349879723
-s2322
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.eot
-c00000000504CA6B30000000000003EA9
-t1347200691
-s16041
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.svg
-c00000000504CA6B30000000000008B35
-t1347200691
-s35637
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.ttf
-c00000000504CA6B30000000000009FF8
-t1347200691
-s40952
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.woff
-c00000000504CA6B30000000000004A70
-t1347200691
-s19056
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.eot
-c00000000504CA6B3000000000000381D
-t1347200691
-s14365
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.svg
-c00000000504CA6B3000000000000812A
-t1347200691
-s33066
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.ttf
-c00000000504CA6B3000000000000870C
-t1347200691
-s34572
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.woff
-c00000000504CA6B300000000000042FC
-t1347200691
-s17148
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/index.html
-c00000000504CA6B30000000000000912
-t1347200691
-s2322
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.h
-c0000000050757C57000000000000018D
-t1349876823
-s397
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m
-c00000000507589420000000000000316
-t1349880130
-s790
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Prefix.pch
-c00000000507570CC0000000000000096
-t1349873868
-s150
-i<Cocoa/Cocoa.h>
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/Credits.rtf
-c00000000507570CC00000000000001B4
-t1349873868
-s436
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/InfoPlist.strings
-c00000000507570CC000000000000002D
-t1349873868
-s45
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
-c0000000050757E0E0000000000025556
-t1349877262
-s152918
-
-N/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m
-c00000000507570CC0000000000000104
-t1349873868
-s260
-
-NLunarTrails/LunarTrails-Info.plist
-c00000000507570CC000000000000044B
-t1349873868
-s1099
-
-CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m
-r0
-
-CBuild AST from /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m
-r0
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies80b5a2c2c025b641^88f5a2c2c025b641^-1958"warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/game.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/InfoDisplay.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/KeyTracker.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/Lander.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/LandscapeData.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/audio.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/jsfx.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/jsfxlib.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/rAF.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/RequestAnimationFrame.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/Stats.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/Vector2.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/Sounds.js' of type sourcecode.javascript for architecture x86_64warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/TouchController.js' of type sourcecode.javascript for architecture x86_6414(21%IDEActivityLogMessage2@132"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/game.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@139"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/InfoDisplay.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@138"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/KeyTracker.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@134"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/Lander.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@141"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/LandscapeData.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@138"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/audio.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@137"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/jsfx.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@140"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/jsfxlib.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@136"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/rAF.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@154"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/RequestAnimationFrame.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@138"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/Stats.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@140"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/libs/Vector2.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@134"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/Sounds.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--2@143"Warning: no rule to process file '$(PROJECT_DIR)/../Game/clientCanvas/TouchController.js' of type sourcecode.javascript for architecture x86_64-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.LogMessage-27"Dependency Analysis Warning--0#1#0#--18"Check dependencies36"BE71C2AE-42EF-4C0D-BC5F-B849FF80776A-
-
-CCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s371572930.666702
-e371572930.736865
-r1
-xCompileC
-xDerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-o/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m:19:12: warning: unused variable 'urlString' [-Wunused-variable]
-o        NSString *urlString = @"http://moonlander.seb.ly";
-o                  ^
-o1 warning generated.
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m2ac5aac2c025b641^4fafbcc2c025b641^-254"/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m:19:12: warning: unused variable 'urlString' [-Wunused-variable]        NSString *urlString = @"http://moonlander.seb.ly";                  ^1 warning generated.1(36%IDEClangDiagnosticActivityLogMessage2@27"Unused variable 'urlString'-371572930#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@105"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m0000000000000000^18#11#18#11#331#0#19"Unused Entity Issue--0#0#0#-19%DVTDocumentLocation4@105"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m0000000000000000^3834"CompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o LunarTrails/AppDelegate.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -include /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/AppDelegate.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/AppDelegate.o36"4D0B9225-B954-4562-ABCF-5CA5418DC355-
-
-CCompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s371572418.921718
-e371572418.948503
-r1
-xCompileC
-xDerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection90"Compile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.mfa0cecc2be25b641^6cd1f2c2be25b641^---0#0#0#-19%DVTDocumentLocation2@98"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m0000000000000000^3792"CompileC DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o LunarTrails/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -include /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/main.m -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/main.o36"45045CA4-378E-414C-A632-BED1F80ECAC4-
-
-CCompileXIB /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
-s371572419.086642
-e371572419.286792
-r1
-xCompileXIB
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Compiling /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xiba74016c3be25b641^876b49c3be25b641^---0#0#0#-19%DVTDocumentLocation2@113"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib0000000000000000^715"CompileXIB LunarTrails/en.lproj/MainMenu.xib    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/MainMenu.nib /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/MainMenu.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk36"C1896C87-6856-4F93-AD11-ACA6BA983778-
-
-CCopyStringsFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings LunarTrails/en.lproj/InfoPlist.strings
-s371572419.086625
-e371572419.091281
-r1
-xCopyStringsFile
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings
-xLunarTrails/en.lproj/InfoPlist.strings
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection43"Copy LunarTrails/en.lproj/InfoPlist.strings463f16c3be25b641^745e17c3be25b641^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/InfoPlist.strings0000000000000000^522"CopyStringsFile DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/InfoPlist.strings LunarTrails/en.lproj/InfoPlist.strings    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding UTF-16 --outdir /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj -- LunarTrails/en.lproj/InfoPlist.strings36"1C499633-08D1-4870-A0C5-66CE676D8A8F-
-
-CCpResource ../Game/clientCanvas/bender_italic-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot
-s371572523.666650
-e371572523.669160
-r1
-xCpResource
-x../Game/clientCanvas/bender_italic-webfont.eot
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot5ebdaa2bbf25b641^2236ac2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot0000000000000000^732"CpResource ../Game/clientCanvas/bender_italic-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.eot /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"9DC1B081-FAE2-435F-9C27-999727403660-
-
-CCpResource ../Game/clientCanvas/bender_italic-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg
-s371572523.666821
-e371572523.670386
-r1
-xCpResource
-x../Game/clientCanvas/bender_italic-webfont.svg
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svgfbcbaa2bbf25b641^4739ac2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg0000000000000000^732"CpResource ../Game/clientCanvas/bender_italic-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.svg /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"B104254C-BF3E-4CE0-9F78-75F9D6B21B3F-
-
-CCpResource ../Game/clientCanvas/bender_italic-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf
-s371572523.666976
-e371572523.672900
-r1
-xCpResource
-x../Game/clientCanvas/bender_italic-webfont.ttf
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf2fdbaa2bbf25b641^a54aac2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf0000000000000000^732"CpResource ../Game/clientCanvas/bender_italic-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.ttf /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"2D855831-2195-4721-83C6-4BC5C5AE46A8-
-
-CCpResource ../Game/clientCanvas/bender_italic-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff
-s371572523.666984
-e371572523.672572
-r1
-xCpResource
-x../Game/clientCanvas/bender_italic-webfont.woff
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection113"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woffd9cfaa2bbf25b641^b247ac2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@188"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff0000000000000000^735"CpResource ../Game/clientCanvas/bender_italic-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_italic-webfont.woff /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"3F9CE456-5938-40D0-A42E-86BB8DA6C50E-
-
-CCpResource ../Game/clientCanvas/bender_light-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot
-s371572523.667049
-e371572523.673928
-r1
-xCpResource
-x../Game/clientCanvas/bender_light-webfont.eot
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection111"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot96eaaa2bbf25b641^0e88ac2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@186"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot0000000000000000^729"CpResource ../Game/clientCanvas/bender_light-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.eot /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"9ECF2026-E2C1-4CAE-8407-6091B4DBD3C6-
-
-CCpResource ../Game/clientCanvas/bender_light-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg
-s371572523.667157
-e371572523.674963
-r1
-xCpResource
-x../Game/clientCanvas/bender_light-webfont.svg
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection111"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svgaef4aa2bbf25b641^79ccac2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@186"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg0000000000000000^729"CpResource ../Game/clientCanvas/bender_light-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.svg /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"4942FBC3-630A-4B15-B4E1-3952E2E3B72E-
-
-CCpResource ../Game/clientCanvas/bender_light-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf
-s371572523.667329
-e371572523.677144
-r1
-xCpResource
-x../Game/clientCanvas/bender_light-webfont.ttf
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection111"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf6900ab2bbf25b641^f35aad2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@186"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf0000000000000000^729"CpResource ../Game/clientCanvas/bender_light-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.ttf /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"74259E60-E66A-407E-9F83-1076F8163934-
-
-CCpResource ../Game/clientCanvas/bender_light-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff
-s371572523.667516
-e371572523.675959
-r1
-xCpResource
-x../Game/clientCanvas/bender_light-webfont.woff
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.wofff8feaa2bbf25b641^950bad2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff0000000000000000^732"CpResource ../Game/clientCanvas/bender_light-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/bender_light-webfont.woff /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"906B99C3-809F-47A2-803B-BEE8CADA6427-
-
-CCpResource ../Game/clientCanvas/index.html DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html
-s371572523.670530
-e371572523.678260
-r1
-xCpResource
-x../Game/clientCanvas/index.html
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html91b8ab2bbf25b641^3ba7ad2bbf25b641^---0#0#0#-19%DVTDocumentLocation2@172"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html0000000000000000^687"CpResource ../Game/clientCanvas/index.html DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/../Game/clientCanvas/index.html /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"B6CD7F62-55A8-432E-949D-49DD2F84DA30-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot
-s371572507.175101
-e371572507.178888
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_italic-webfont.eot
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eotb4e52c1bbf25b641^21cc2d1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot000000000080d041^762"CpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.eot    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.eot /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"BE6F367C-79D1-47D7-899B-7F8EAEA6F34B-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg
-s371572507.175115
-e371572507.179271
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_italic-webfont.svg
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg82e52c1bbf25b641^d6e42d1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg000000000080d041^762"CpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.svg    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.svg /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"AE2F095F-70CD-4E21-AB4E-9F6946934370-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf
-s371572507.175124
-e371572507.180316
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_italic-webfont.ttf
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf53e82c1bbf25b641^95292e1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf000000000080d041^762"CpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.ttf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.ttf /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"3B3C8066-4907-4AD8-A2DC-0EAC1C06F73A-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff
-s371572507.175131
-e371572507.180994
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_italic-webfont.woff
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection113"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff21e82c1bbf25b641^e3552e1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@188"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff000000000080d041^765"CpResource LunarTrails/../../Game/clientCanvas/bender_italic-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_italic-webfont.woff    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_italic-webfont.woff /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"5DEF5C18-C258-40C8-B884-E1F49F071991-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot
-s371572507.175213
-e371572507.181855
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_light-webfont.eot
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection111"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot07ea2c1bbf25b641^c18f2e1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@186"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot000000000080d041^759"CpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.eot DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.eot    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.eot /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"53D0FA5B-446A-404B-BA17-2A7F92FD98BC-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg
-s371572507.176370
-e371572507.183272
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_light-webfont.svg
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection111"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svgbd342d1bbf25b641^b3eb2e1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@186"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg000000000080d041^759"CpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.svg DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.svg    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.svg /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"F384498E-5DF3-445D-A815-A596423A57AF-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf
-s371572507.176407
-e371572507.184618
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_light-webfont.ttf
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection111"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf2f362d1bbf25b641^63432f1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@186"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf000000000080d041^759"CpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.ttf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.ttf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.ttf /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"FA1C3586-77F8-4A3F-9DF6-E2438542BD2E-
-
-CCpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff
-s371572507.176418
-e371572507.185279
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/bender_light-webfont.woff
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woffa8392d1bbf25b641^f46f2f1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@187"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff000000000080d041^762"CpResource LunarTrails/../../Game/clientCanvas/bender_light-webfont.woff DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/bender_light-webfont.woff    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/bender_light-webfont.woff /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"3339C371-0ABD-4E12-AA15-A26AB2F5FD95-
-
-CCpResource LunarTrails/../../Game/clientCanvas/index.html DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html
-s371572507.180077
-e371572507.185872
-r1
-xCpResource
-xLunarTrails/../../Game/clientCanvas/index.html
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection97"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html89282e1bbf25b641^70952f1bbf25b641^---0#0#0#-19%DVTDocumentLocation2@172"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html000000000080d041^717"CpResource LunarTrails/../../Game/clientCanvas/index.html DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/index.html    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/../../Game/clientCanvas/index.html /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources36"B11C5457-38F6-48AB-843B-8C8794BD6167-
-
-CCpResource LunarTrails/en.lproj/Credits.rtf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
-s371572419.086634
-e371572419.090067
-r1
-xCpResource
-xLunarTrails/en.lproj/Credits.rtf
-xDerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Copy DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtfcd3f16c3be25b641^e50e17c3be25b641^---0#0#0#-19%DVTDocumentLocation2@182"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf000000000080d041^708"CpResource LunarTrails/en.lproj/Credits.rtf DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj/Credits.rtf    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/en.lproj/Credits.rtf /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Resources/en.lproj36"3BB42E36-1047-409A-B35B-6FEE67769A85-
-
-CGenerateDSYMFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
-s371572930.781165
-e371572930.793619
-r1
-xGenerateDSYMFile
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection142"Generating /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM4e0dc8c2c025b641^e02acbc2c025b641^---0#0#0#-19%DVTDocumentLocation2@148"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM/0000000000000000^635"GenerateDSYMFile DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app.dSYM36"E189B5D5-63B1-4FE7-8A53-0313CA96C547-
-
-CLd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails normal x86_64
-s371572930.743178
-e371572930.774392
-r1
-xLd
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails
-xnormal
-xx86_64
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection158"Link /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrailsdf4ebec2c025b641^af3ec6c2c025b641^---0#0#0#--1122"Ld DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails normal x86_64    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release -filelist /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/Objects-normal/x86_64/LunarTrails.LinkFileList -mmacosx-version-min=10.8 -fobjc-arc -fobjc-link-runtime -framework WebKit -framework Cocoa -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/MacOS/LunarTrails36"46772724-2BCE-4186-8E12-A66E779E728E-
-
-CProcessInfoPlistFile /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist LunarTrails/LunarTrails-Info.plist
-s371572418.304357
-e371572418.306682
-r1
-xProcessInfoPlistFile
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist
-xLunarTrails/LunarTrails-Info.plist
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection42"Process LunarTrails/LunarTrails-Info.plist38f54dc2be25b641^0a834ec2be25b641^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Info.plist0000000000000000^618"ProcessInfoPlistFile DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist LunarTrails/LunarTrails-Info.plist    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    builtin-infoPlistUtility LunarTrails/LunarTrails-Info.plist -genpkginfo /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app/Contents/Info.plist36"790974E4-8B4A-41A8-9C9F-468C7D450163-
-
-CProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s371572418.321672
-e371572418.914891
-r1
-xProcessPCH
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth
-xLunarTrails/LunarTrails-Prefix.pch
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection45"Precompile LunarTrails/LunarTrails-Prefix.pch518252c2be25b641^3b36eac2be25b641^---0#0#0#-19%DVTDocumentLocation2@114"file://localhost/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Prefix.pch0000000000000000^3706"ProcessPCH DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-generated-files.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-own-target-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-all-target-headers.hmap -iquote /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/LunarTrails-project-headers.hmap -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources/x86_64 -I/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/LunarTrails.build/Release/LunarTrails.build/DerivedSources -F/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release --serialize-diagnostics /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.dia -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/LunarTrails/LunarTrails-Prefix.pch -o /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.pth -MMD -MT dependencies -MF /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Intermediates/PrecompiledHeaders/LunarTrails-Prefix-cxrehkpoebxmnhcwjufnrlmksssp/LunarTrails-Prefix.pch.d36"87C62254-E870-4C93-B30E-6AEF83DBF00E-
-
-CProcessPCH /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Index/PrecompiledHeaders/LunarTrails-Prefix-gtehnrosqzuvbsgieoqybhnwkeha_ast/LunarTrails-Prefix.pch.pth LunarTrails/LunarTrails-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
-r0
-
-CTouch /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
-s371572930.810379
-e371572930.816316
-r1
-xTouch
-x/Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection132"Touch /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app3480cfc2c025b641^1426d4c2c025b641^---0#0#0#--289"Touch DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app    cd /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails    /usr/bin/touch -c /Users/sebretina/Dropbox/projects/moonlander-trails/LunarTrails/DerivedData/LunarTrails/Build/Products/Release/LunarTrails.app36"3F5A26B7-48EC-4867-88F2-C19D045DF82D-
-
