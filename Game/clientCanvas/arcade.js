@@ -16,9 +16,16 @@ selectKey = 'E';
 abortKey = 'B'; 
 KeyTracker.addKeyUpListener(startKey, onStartKey); 
 
+startMessage = "PLAY LUNAR LANDER<br><br>PRESS START BUTTON<br>";
+singlePlayMode = true; 
 
 function onStartKey() { 
 	
-	if(gameState==WAITING) newGame(); 
-	
+	if(gameState==WAITING) 
+		newGame(); 
+	else {
+		gameState=GAMEOVER;
+		sendGameOver();
+		restartLevel();
+	}
 }

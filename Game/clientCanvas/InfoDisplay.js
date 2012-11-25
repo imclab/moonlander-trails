@@ -31,7 +31,7 @@ function InfoDisplay(width, height) {
 		vertSpeed = this.vertSpeed = makeInfoBox("000", RIGHT), 
 		
 		messages = this.messages = makeInfoBox("TEST", CENTRE, 300) ;
-		
+		messages.domElement.className = "titleBox";
 		  
 	this.arrangeBoxes = arrangeBoxes; 
 	

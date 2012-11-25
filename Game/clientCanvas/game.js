@@ -12,13 +12,14 @@ var SCREEN_WIDTH = window.innerWidth,
 	skippedFrames, 
 	leftKey = KeyTracker.LEFT, 
 	rightKey = KeyTracker.RIGHT, 
-	startKey = ' '; 
-	selectKey = ''; 
-	abortKey = '';; 
-	
-var ws, 
-	wsID, 
-	wsConnected = false; 
+	startKey = ' ',
+	selectKey = '', 
+	abortKey = '',
+	startMessage = "INSERT COINS<br><br>CLICK TO PLAY<br>ARROW KEYS TO MOVE", 
+	singlePlayMode = false, // for arcade machine  
+	lastMouseMove = Date.now(), 
+	lastMouseHide =0, 
+	mouseHidden = false; 
 	
 // game states
 var	WAITING = 0, 
@@ -37,7 +38,7 @@ var	WAITING = 0,
 	
 	lander = new Lander(),
 	landscape = new Landscape(), 
-	players = {}, 
+	testPoints = [],
 	
 // canvas element and 2D context
 	canvas = document.createElement( 'canvas' ),
@@ -87,7 +88,7 @@ function init()
 	document.body.addEventListener('mousemove', onMouseMove);
 	document.body.addEventListener('touchstart', onTouchStart);
 	
-	KeyTracker.addKeyDownListener(KeyTracker.UP, function() { lander.thrust(1);});
+	KeyTracker.addKeyDownListener(KeyTracker.UP, function() { if(gameState==PLAYING) lander.thrust(1);});
 	KeyTracker.addKeyUpListener(KeyTracker.UP, function() { lander.thrust(0);});
 	
 	
@@ -102,70 +103,9 @@ function init()
 	
 }
 
-function initWebSocket() { 
-	
-	if(WEB_SOCKET_URL!="") { 
-		ws = new WebSocket("ws://"+WEB_SOCKET_URL); 
-		console.log('Attempting connection '+WEB_SOCKET_URL); 
-		ws.onopen = function(e) { 
-		
-			console.log('Connected to '+WEB_SOCKET_URL); 
-			wsConnected = true; 
-		
-		};
-		ws.onmessage = function(e) { 
-		//	console.log(e.data); 
-		
-			var msg = JSON.parse(e.data); 
-		
-			if(msg.type=='connect') { 
-				wsID = msg.id;
-			
-			} else if(msg.type=='join') {
-				// add new player object
-			} else if(msg.type=='update') { 
-				// update player object
-				if(!players[msg.id]) { 
-					players[msg.id] = new Lander(); 
-					players[msg.id].scale = lander.scale;
-				}
-				var player = players[msg.id]; 
-				player.pos.x = msg.x/100; 
-				player.pos.y = msg.y/100; 
-				player.rotation = msg.a; 
-				player.thrusting = (msg.t == 1);
-			
-			} else if(msg.type=='leave') { 
-				// delete player object
-				if(players[msg.id]) delete players[msg.id]; 
-
-			}
-			
-			
-		
-		};
-		ws.onclose = function(e) { 
-			wsConnected = false; 
-			console.log("disconnected from "+WEB_SOCKET_URL); 
-			if(connectionRetryTimeout) { 
-				setTimeout(initWebSocket,connectionRetryTimeout);  
-			}
-		};
-	}
-	
-	
-}
-
-function sendSocket(msg) { 
-	if(wsConnected ) 
-		ws.send(msg); 
-		
-	
-}
-
 
 function sendPosition() {
-//	if(!ws) return; 
+
 	if(gameState==PLAYING) {
 		var update = {
 			type : 'update', 
@@ -175,18 +115,14 @@ function sendPosition() {
 			a : Math.round(lander.rotation), 
 			t : lander.thrusting 
 		};
-		
-	
-		// if(lander.exploding) update.exploding = 1; 
-		// 	if(lander.thrusting) update.thrusting = 1; 
-			
+					
 		sendSocket(JSON.stringify(update)); 
-		//console.log(JSON.stringify(lander.pos));
+
 	}
 }
 
 function sendLanded() { 
-	//if(!ws) return; 
+
 	var update = {
 		type : 'land', 
 		id : wsID	
@@ -195,7 +131,7 @@ function sendLanded() {
 }
 	
 function sendCrashed() { 
-	//if(!ws) return; 
+
 	var update = {
 		type : 'crash', 
 		id : wsID	
@@ -203,7 +139,7 @@ function sendCrashed() {
 	sendSocket(JSON.stringify(update)); 
 }
 function sendGameOver() { 
-	//if(!ws) return; 
+
 	var update = {
 		type : 'over', 
 		id : wsID,
@@ -212,7 +148,6 @@ function sendGameOver() {
 	sendSocket(JSON.stringify(update)); 
 }
 function sendRestart() { 
-	//	if(!ws) return; 
 	var update = {
 		type : 'restart', 
 		id : wsID,
@@ -239,32 +174,32 @@ function loop() {
 	var renderedTime = counter*mpf; 
 		
 	if(elapsedFrames<counter) {
-			c.fillStyle = 'green'; 
-			c.fillRect(0,0,10,10);
+			// c.fillStyle = 'green'; 
+			// 		c.fillRect(0,0,10,10);
 		counter--;
 		return; 
 	}
 	
 	while(elapsedFrames > counter) {
-			lander.update(); 
-			if((counter%6)==0){
-				sendPosition(); 
-
-			}
-			
-			
-			counter++; 
-		
-			skippedFrames ++; 
-			if (skippedFrames>30) {
-				//set to paused
-				counter = elapsedFrames; 
-			} 
-			
-			
+		lander.update(); 
+		if((counter%6)==0){
+			sendPosition(); 
 
 		}
+		
+		
+		counter++; 
 	
+		skippedFrames ++; 
+		if (skippedFrames>30) {
+			//set to paused
+			counter = elapsedFrames; 
+		} 
+		
+		
+
+	}
+
 	//stats.update(); 
 
 	
@@ -289,20 +224,27 @@ function loop() {
 	
 	updateView(); 
 	render(); 
-	
+	if((!mouseHidden) && (Date.now() - lastMouseMove >1000)){
+		 document.body.style.cursor = "none"; 
+		lastMouseHide = Date.now();
+		mouseHidden = true; 
+	}
 }
 
 function render() { 
 	
 	var c = context; 
 	
-	//c.fillStyle="rgb(0,0,0)";
+	//c.fillStyle="rgba(0,0,0, 0.4)";
+	//c.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	c.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	
 	//c.fillRect(lander.left, lander.top, lander.right-lander.left, lander.bottom-lander.top);
-	if(skippedFrames>0) { 
-		c.fillStyle = 'green'; 
-		c.fillRect(0,0,10*skippedFrames,10);
-	}
+	// if(skippedFrames>0) { 
+	// 		c.fillStyle = 'green'; 
+	// 		c.fillRect(0,0,10*skippedFrames,10);
+	// 	}
+	
 	c.save(); 
 	c.translate(view.x, view.y); 
 	c.scale(view.scale, view.scale); 
@@ -317,13 +259,13 @@ function render() {
 	// 	c.stroke();
 	// 	
 
+
 	landscape.render(context, view);
 	lander.render(context, view.scale);
-	
-	for (var id in players) {
-		var player = players[id]; 
-		player.render(context, view.scale); 
-	}
+		
+	// for(var i =0; i<testPoints.length; i++) { 
+	// 		c.fillRect(testPoints[i].x, testPoints[i].y, 1,1); 		
+	// 	}
 	
 	if(counter%4==0) updateTextInfo(); 
 	
@@ -365,7 +307,7 @@ function updateView()
 		margintop = SCREEN_HEIGHT * 0.2,
 		marginbottom = SCREEN_HEIGHT * 0.3;
 	
-	if((!zoomedIn) && (lander.altitude < 60)) {
+	if((!zoomedIn) && (lander.altitude < 70)) {
 		setZoom(true);
 	} else if((zoomedIn) && (lander.altitude > 160)) {
 		setZoom(false);	
@@ -404,11 +346,11 @@ function setLanded(line) {
 	lander.land(); 
 	
 	var points = 0; 
-	if(lander.vel.y<0.04) { 
+	if(lander.vel.y<0.075) { 
 		points = 50 * multiplier; 
 		// show message - "a perfect landing"; 
 		infoDisplay.showGameInfo("CONGRATULATIONS<br>A PERFECT LANDING\n" + points + " POINTS");
-		
+		lander.fuel+=50;
 	} else {
 		points = 15 * multiplier; 
 		// YOU LANDED HARD
@@ -417,10 +359,12 @@ function setLanded(line) {
 	}
 	
 	score+=points; 
+
 	// TODO Show score
 	gameState = LANDED; 
 	//ARCADE AMENDMENT
-	gameState = GAMEOVER;
+	if(singlePlayMode) gameState = GAMEOVER;
+
 	sendLanded();
 	scheduleRestart(); 
 }
@@ -436,7 +380,7 @@ function setCrashed() {
 
 	
 	
-	if(lander.fuel<=0) { 
+	if(lander.fuel<1) { 
 		gameState = GAMEOVER; 
 		sendGameOver(); 
 		msg = "OUT OF FUEL<br><br>GAME OVER";
@@ -456,7 +400,8 @@ function setCrashed() {
 		
 		gameState = CRASHED;
 		//ARCADE AMENDMENT
-		gameState = GAMEOVER;
+		if(singlePlayMode) gameState = GAMEOVER;
+		
 		sendCrashed();  
 		
 	}
@@ -506,6 +451,7 @@ function restartLevel() {
 		gameState = WAITING; 
 		showStartMessage(); 
 		lander.vel.x = 2; 
+		
 		//initGame(); 
 	} else {
 		gameState = PLAYING; 
@@ -525,6 +471,7 @@ function checkCollisions() {
 			right+=landscape.tileWidth; 
 			left += landscape.tileWidth; 
 		}
+
 		
 	for(var i=0; i<lines.length; i++ ) { 
 		line = lines[i]; 
@@ -533,31 +480,33 @@ function checkCollisions() {
 		if(!((right<line.p1.x) || (left>line.p2.x))){ 
 		
 			lander.altitude = line.p1.y-lander.bottom; 
+				line.checked = true;
 			
 			// if the line's horizontal 
 			if(line.landable) { 
-				line.checked = true;
 				// and the lander's bottom is overlapping the line
 				if(lander.bottom>=line.p1.y) { 
-					console.log('lander overlapping ground'); 
+					//console.log('lander overlapping ground'); 
 					// and the lander is completely within the line
 					if((left>line.p1.x) && (right<line.p2.x)) {
 						//console.log('lander within line', lander.rotation, lander.vel.y);
 						// and we're horizontal and moving slowly
-						if((lander.rotation==0) && (lander.vel.y<0.07)) {
-							console.log('horizontal and slow');
+						if((lander.rotation==0) && (lander.vel.y<0.15)) {
+							//console.log('horizontal and slow');
 							setLanded(line);
 						} else {
 							setCrashed(); 
 						} 
 					} else {
-						// if we're note within the line
+						// if we're not within the line
 						setCrashed(); 
 					}
 				}
 				// if lander's bottom is below either of the two y positions
 			} else if(( lander.bottom > line.p2.y) || (lander.bottom > line.p1.y)) {
-				
+				lander.bottomRight.x = right; 
+				lander.bottomLeft.x = left; 
+			
 				if( pointIsLessThanLine(lander.bottomLeft, line.p1, line.p2) || 	
 						pointIsLessThanLine(lander.bottomRight, line.p1, line.p2)) {
 				
@@ -576,10 +525,16 @@ function pointIsLessThanLine(point, linepoint1, linepoint2) {
 	// first of all find out how far along the xaxis the point is
 	var dist = (point.x - linepoint1.x) / (linepoint2.x - linepoint1.x);
 	var yhitpoint  = linepoint1.y + ((linepoint2.y - linepoint1.y) * dist);
-	
+//	addTestPoint(point.x, yhitpoint); 
 	return ((dist > 0) && (dist < 1) && (yhitpoint <= point.y)) ;
 }
-
+// 
+// function addTestPoint(x, y) { 
+// 	
+// 	testPoints.push(new Vector2(x,y)); 
+// 	if(testPoints.length>2) testPoints.shift();
+// 	
+// }
 function updateTextInfo() {
 	
 	infoDisplay.updateBoxInt('score', score, 4); 
@@ -612,7 +567,7 @@ function updateTextInfo() {
 }
 
 function showStartMessage() {
-	infoDisplay.showGameInfo("PLAY LUNAR LANDER<br><br>PRESS START BUTTON<br>");
+	infoDisplay.showGameInfo(startMessage);
 }
 
 function setZoom(zoom ) 
@@ -622,7 +577,7 @@ function setZoom(zoom )
 		zoomedIn = true;
 		view.x = -lander.pos.x * view.scale + (SCREEN_WIDTH / 2);
 		view.y = -lander.pos.y * view.scale + (SCREEN_HEIGHT * 0.25);
-		lander.scale = 0.3;
+		lander.scale = 0.25;
 	
 	} 
 	else {
@@ -633,11 +588,11 @@ function setZoom(zoom )
 		view.x = 0;
 		view.y = 0;
 	}
-	
+	/*
 	for (var id in players) { 
 		var player = players[id]; 
 		player.scale = lander.scale; 
-	}
+	}*/
 	
 	
 }
@@ -651,7 +606,25 @@ function clamp(value, min, max) {
 	return (value<min) ? min : (value>max) ? max : value; 
 }
 
-function map(value, min1, max1, min2, max2) { 
+function map(value, min1, max1, min2, max2, clamp) { 
+	clamp = typeof clamp !== 'undefined' ? clamp : false;
+	
+	
+	if(clamp) {
+		if(min1>max1) { 
+			var tmp = min1; 
+			min1 = max1;
+			max1 = tmp; 
+			tmp = min2; 
+			min2 = max2; 
+			max2 = tmp;  
+			
+		}
+		if (value<=min1) return min2; 
+		else if(value>=max1) return max2; 
+	}
+	
+	
 	return (((value-min1)/(max1-min1)) * (max2-min2))+min2;
 }
 
@@ -660,6 +633,13 @@ function onMouseMove( event )
 {
 	mouseX = ( event.clientX - HALF_WIDTH );
 	mouseY = ( event.clientY - HALF_HEIGHT );
+	if((mouseHidden) && (Date.now() - lastMouseHide> 400)){
+		document.body.style.cursor = "default"; 
+		
+		mouseHidden = false; 
+	//	console.log("mouse move "+ canvas.style.cursor); 
+	}
+	lastMouseMove = Date.now(); 
 }
 	
 function resizeGame (event) { 

@@ -162,10 +162,17 @@ function Landscape(){
 		
 		while((star = stars[i]).x+offset<view.right) { 
 		
+			var starx = star.x+offset; 
+			var stary = star.y; 
+			while(view.bottom<stary) stary-=600; 
 			
-			c.rect(star.x+offset, star.y, (1/view.scale),(1/view.scale));
-			//c.lineTo(star.x+offset+(1/view.scale), star.y);
-		
+			c.rect(starx, stary, (1/view.scale),(1/view.scale));
+			if(stary-600>view.top) { 
+				stary-=600; 
+				c.rect(starx, stary, (1/view.scale),(1/view.scale));
+				
+			}
+			
 			i++; 
 			if(i>=stars.length) {
 				i=0; 
@@ -180,15 +187,21 @@ function Landscape(){
 		
 		//code to check landable... 
 		// c.beginPath(); 
-		// 		for(var i=0; i<lines.length; i++) { 
-		// 			var line = lines[i]; 
-		// 			if(line.multiplier>1) { 
-		// 				c.moveTo(line.p1.x, line.p1.y);	
-		// 				c.lineTo(line.p2.x, line.p2.y);
-		// 			}		
-		// 		}	
-		// 		c.strokeStyle = 'red'; 
-		// 		c.stroke(); 
+		// for(var i=0; i<lines.length; i++) { 
+		// 	var line = lines[i]; 
+		// 	if(line.checked) { 
+		// 		c.moveTo(line.p1.x, line.p1.y);	
+		// 		c.lineTo(line.p2.x, line.p2.y);
+		// 		
+		// 		if(line.p2.x+rightedge < view.right) { 
+		// 				c.moveTo(line.p1.x+rightedge, line.p1.y);	
+		// 				c.lineTo(line.p2.x+rightedge, line.p2.y);
+		// 			
+		// 		}
+		// 	}		
+		// }	
+		// c.strokeStyle = 'red'; 
+		// c.stroke(); 
 	
 	};
 	

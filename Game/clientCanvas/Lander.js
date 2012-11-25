@@ -35,6 +35,7 @@ Lander = function() {
 	
 	
 	var reset = this.reset = function () { 
+	
 		abortCounter = -1; 
 		lastAbort = Date.now(); 
 		vel.reset(0.415, 0); 
@@ -48,6 +49,7 @@ Lander = function() {
 		for(var i=0; i<shapePos.length; i++) { 
 			shapePos[i].reset(0,0); 
 		}
+		this.thrusting = 0; 
 		
 	};
 		
@@ -152,7 +154,7 @@ Lander = function() {
 		
 		this.renderShapes(c);
 		
-		if((thrustBuild>0) && this.active) {
+		if((thrustBuild>0) && (this.active)) {
 			c.lineTo(0,11+(Math.min(thrustBuild,1)*20*((((counter>>1)%3)*0.2)+1)));
 			c.closePath(); 
 		}	
@@ -162,6 +164,11 @@ Lander = function() {
 		
 		c.restore(); 
 		
+		// c.beginPath(); 
+		// 	c.moveTo(bottomLeft.x, bottomLeft.y); 
+		// 	c.lineTo(bottomRight.x, bottomRight.y); 
+		// 	c.stroke(); 
+		// 	
 		this.colour = 'white'; 
 		 
 	};
