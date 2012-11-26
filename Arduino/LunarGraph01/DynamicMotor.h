@@ -79,13 +79,19 @@ public :
           errorState = true;  
           resetPinHighCount  =0;  
           setSpeedDirect(0); 
-          Serial.println("MOTOR ERROR"); 
+          
           if(millis() - lastResetTime > 5*60*1000 ) { // five minutes
             autoResetCount = 0; 
           }
           autoResetCount++; 
           
-          if(autoResetCount<=3) reset();
+          if(autoResetCount<=3) {
+            Serial.print("MOTOR ERROR - auto reset "); 
+            Serial.println(autoResetCount); 
+            reset();
+          } else { 
+            Serial.println("MOTOR ERROR"); 
+          }
 
         }
 
