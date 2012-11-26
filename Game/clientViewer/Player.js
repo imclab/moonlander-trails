@@ -1,4 +1,4 @@
-Lander = function() { 
+Player = function() { 
 	
 	var pos = this.pos = new Vector2(0,0),
 	
@@ -8,12 +8,15 @@ Lander = function() {
 		exploding = false, 
 	
 		counter = 0, 
-		positions = [], 
-		rotations = [], 
-		thrustLevels = [],
-		currentPositionIndex = 0, 
-		lastUpdate = Date.now(), 
-		smoothedPos =new Vector2();
+		 positions = [],
+	//	currentPositionIndex = 0,  
+		// 	rotations = [], 
+		// 	thrustLevels = [],
+		updates = [],
+		currentUpdateIndex = 0, 
+		
+		smoothedPos = this.smoothedPos = new Vector2(), 
+		targetRotation = 0;
 		
 		  
 		
@@ -23,6 +26,14 @@ Lander = function() {
 	this.thrusting = 0;
 	this.scale = 0.8; 
 	this.colour = 'white';
+	this.lat = 0; 
+	this.long = 0; 
+	this.city = ""; 
+	this.country = ""; 
+	this.current = true;
+	this.lastUpdate = Date.now();
+	this.positions = positions; 
+	
 	var shapes = this.shapes = [],
 		shapePos = this.shapePos = [],
 		shapeVels = this.shapeVels = []; 
@@ -46,45 +57,65 @@ Lander = function() {
 	
 
 	
-	this.rotate = function(direction) { 
-		var now = new Date().getTime(); 
-		if(now - lastRotationTime > 80) {
-			
-			targetRotation+=direction*15; 
-			targetRotation = clamp(targetRotation, -90, 90); 
-			
-			lastRotationTime = now; 
-		}
-		
-	};
-
-	this.updatePosition = function(x, y, rotation, thrust) { 
-		positions.push(new Vector2(x,y)); 
-		rotations.push(rotation);
-		thrustLevels.push(thrust);
-		
+	// this.rotate = function(direction) { 
+	// 	var now = new Date().getTime(); 
+	// 	if(now - lastRotationTime > 80) {
+	// 		
+	// 		targetRotation+=direction*15; 
+	// 		targetRotation = clamp(targetRotation, -90, 90); 
+	// 		
+	// 		lastRotationTime = now; 
+	// 	}
+	// 	
+	// };
+	this.addUpdate = function(updateObj) { 
+		updates.push(updateObj); 
 	}
+	// this.updatePosition = function(x, y, rotation, thrust) { 
+	// 	positions.push(new Vector2(x,y)); 
+	// 	rotations.push(rotation);
+	// 	thrustLevels.push(thrust);
+	// 	
+	// }
+
 	this.update = function() { 
 	//	console.log(currentPositionIndex, positions.length);
 		// updates should come through every 100 ms
-		if((currentPositionIndex<positions.length-1)&&(Date.now()-lastUpdate>=80)) { 
-			currentPositionIndex++; 
+		if((currentUpdateIndex<updates.length-1)&&(Date.now()-this.lastUpdate>=80)) { 
+			currentUpdateIndex++; 
 			//console.log(pos, positions[currentPositionIndex], currentPositionIndex); 
+			do {
+				var update = updates[currentUpdateIndex]; 
 			
-			pos.copyFrom(positions[currentPositionIndex]); 
-			this.rotation = rotations[currentPositionIndex];
-			thrustBuild = thrustLevels[currentPositionIndex];
-			lastUpdate = Date.now();
-			this.paused = false;
-		} else if(Date.now()-lastUpdate>10000) { 
+				if(update.type == 'update') { 
+					pos.reset(update.x/100, update.y/100); 
+					targetRotation = update.a;
+				
+					thrustBuild = update.t;
+					this.lastUpdate = Date.now();
+					this.paused = false;
+					positions.push(pos.clone()); 
+				} else if(update.type == 'crashed') { 
+					this.crash();
+					smoothedPos.copyFrom(pos); 
+					
+				} 
+			
+				//console.log(update);
+				currentUpdateIndex++; 
+			} while ((update.type!='update') || (currentUpdateIndex<updates.length-1)); 
+			
+		} else if(Date.now()-this.lastUpdate>10000) { 
 			//console.log("paused"); 
 		  this.paused = true; 	
-			
-		}
+
+		}	
 		
 		var diff = pos.minusNew(smoothedPos); 
 		diff.multiplyEq(0.1); 
 		smoothedPos.plusEq(diff);
+		
+		this.rotation += ((targetRotation-this.rotation)*0.2);
 		
 		counter++; 
 		
@@ -99,78 +130,86 @@ Lander = function() {
 	this.render = function(c, scale) { 
 		c.globalCompositeOperation = 'lighter'; 
 		
-		c.beginPath(); 
-		for(var i = 0; i<currentPositionIndex; i++) { 
-			var p = positions[i]; 
-			c.moveTo(p.x, p.y); 
-			c.lineTo(p.x+1, p.y); 
-			
-		}
-		c.strokeStyle = 'rgb(20,50,200)'; 
-		c.stroke(); 
-		
+	
 		// draw the latest data for the ship
 	//	console.log(positions.length);
-	/*	if(positions.length>0) { 
+		// if((positions.length>0) && (this.current)) { 
+		// 	c.save(); 
+		// 		
+		// 	c.translate(positions[positions.length-1].x, positions[positions.length-1].y); 
+		// 	c.scale(this.scale, this.scale); 
+		// 	c.lineWidth = 1/(this.scale * scale); 
+		// //	c.rotate(rotations[rotations.length-1] * TO_RADIANS); 
+		// 	c.strokeStyle = 'green'; 
+		// 
+		// 	c.beginPath(); 
+		// 
+		// 	//this.renderShapes(c);
+		// 	c.arc(0,0,5,0,Math.PI*2,true); 
+		// 		
+		// 	c.stroke(); 
+		// 
+		// 	c.restore(); 
+		//  }
+		// draw the smoothed data
+		if(this.current) {
 			c.save(); 
-				
-			c.translate(positions[positions.length-1].x, positions[positions.length-1].y); 
+			//console.log(pos.x, pos.y);
+			c.translate(smoothedPos.x, smoothedPos.y); 
 			c.scale(this.scale, this.scale); 
 			c.lineWidth = 1/(this.scale * scale); 
-			c.rotate(rotations[rotations.length-1] * TO_RADIANS); 
-			c.strokeStyle = 'green'; 
+			c.rotate(this.rotation * TO_RADIANS); 
+		//	c.strokeStyle = this.colour; 
+			if(this.paused) {
+				c.strokeStyle = '#444'; 
+			} else {
+				c.globalCompositeOperation = 'source-over'; 
+				c.strokeStyle = this.colour; 
+			}
 		
+	
 			c.beginPath(); 
 		
-			this.renderShapes(c);
+			 this.renderShapes(c);
 		
-				
+			if((thrustBuild>0) &&(!exploding)) {
+				c.lineTo(0,11+(thrustBuild*20*((((counter>>1)%3)*0.2)+1)));
+				c.closePath(); 
+			}	
+		
+			
 			c.stroke(); 
-		
 			c.restore(); 
-		 }*/
-		// draw the smoothed data
-		
-		c.save(); 
-		//console.log(pos.x, pos.y);
-		c.translate(smoothedPos.x, smoothedPos.y); 
-		c.scale(this.scale, this.scale); 
-		c.lineWidth = 1/(this.scale * scale); 
-		c.rotate(this.rotation * TO_RADIANS); 
-	//	c.strokeStyle = this.colour; 
-		if(this.paused) {
-			c.strokeStyle = '#444'; 
-		} else {
-				c.globalCompositeOperation = 'source-over'; 
-			
-			c.strokeStyle = this.colour; 
 		}
-		c.beginPath(); 
 		
-		this.renderShapes(c);
+	
 		
-		if(thrustBuild>0) {
-			c.lineTo(0,11+(thrustBuild*20*((((counter>>1)%3)*0.2)+1)));
-			c.closePath(); 
-		}	
-		
-			
-		c.stroke(); 
-		
-		c.restore(); 
-		
-			c.globalCompositeOperation = 'source-over'; 
-		
-		
+		c.globalCompositeOperation = 'source-over'; 
 		
 		this.colour = 'white'; 
 		 
 	};
+	
+	this.addPositionsToPath = function(c, view) { 
+		var w = 1.5/view.scale; 
+		var numpositions = positions.length; 
+		for(var i = 0; i<numpositions; i++) { 
+			var p = positions[i]; 
+			if((p.x>view.left) && (p.x<view.right) && (p.y>view.top) &&(p.y<view.bottom)){
+				c.moveTo(p.x, p.y); 
+				c.lineTo(p.x+w, p.y); 
+			}
+		}
+	
+	
+	}
+	
 	this.crash = function () { 
 		this.rotation = targetRotation = 0; 
 		this.active = false; 
 		exploding = true; 
 		thrustBuild = 0; 
+		thrusting = 0;
 		
 	};
 	this.land = function () { 

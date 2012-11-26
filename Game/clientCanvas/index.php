@@ -92,11 +92,28 @@
 		</style>
 	</head>
 	<body>
-	
+	<script src="http://ip-geo.appspot.com/geo_data.js"></script>
 	<script> 
 	
 	var WEB_SOCKET_URL = "node.seb.ly:8001";
-	
+<?php
+
+function getIP() { 
+$ip; 
+if (getenv("HTTP_CLIENT_IP")) 
+$ip = getenv("HTTP_CLIENT_IP"); 
+else if(getenv("HTTP_X_FORWARDED_FOR")) 
+$ip = getenv("HTTP_X_FORWARDED_FOR"); 
+else if(getenv("REMOTE_ADDR")) 
+$ip = getenv("REMOTE_ADDR"); 
+else 
+$ip = "UNKNOWN";
+return $ip; 
+}
+?>	
+	var IP_ADDRESS = "<?php echo getIP(); ?>";
+	var pos = geo.getPosition();
+	var loc = geo.getLocation();
 	
 	</script>
 	

@@ -15,13 +15,14 @@ function Landscape(){
 
 
 	rightedge = this.tileWidth = points[points.length - 1].x * landscale ;
+	this.bottom = 0; 
 	
 	for (var i = 0; i<points.length; i++){
 		var p = points[i];
 		p.x *= landscale;
 		p.y *= landscale;
 		p.y -= 50;
-
+		if(this.bottom<p.y) this.bottom = p.y; 
 	}
 	
 	for(var i = 1;i < points.length; i++){

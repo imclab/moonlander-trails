@@ -1,7 +1,9 @@
 var ws, 
 	wsID, 
 	wsConnected = false, 
-	players = {};
+	players = {},
+	connectionRetryTimeout = 1000; 
+	
 
 	function initWebSocket() { 
 
@@ -12,19 +14,22 @@ var ws,
 
 				console.log('Connected to '+WEB_SOCKET_URL); 
 				wsConnected = true; 
+				
+			
 
 			};
 			
 			// not sure we need this for the normal client... 
 			ws.onmessage = function(e) { 
-			//	console.log(e.data); 
-				/*
+				//console.log(e.data); 
+				
 				var msg = JSON.parse(e.data); 
 
 				if(msg.type=='connect') { 
 					wsID = msg.id;
+					sendLocation();
 
-				} else if(msg.type=='join') {
+				} /*else if(msg.type=='join') {
 					// add new player object
 				} else if(msg.type=='update') { 
 					// update player object
@@ -42,9 +47,9 @@ var ws,
 					// delete player object
 					if(players[msg.id]) delete players[msg.id]; 
 
-				}
+				}*/
 
-				*/
+				
 
 			};
 			ws.onclose = function(e) { 
@@ -59,8 +64,35 @@ var ws,
 
 	}
 
-	function sendSocket(msg) { 
-		if(wsConnected ) 
-			ws.send(msg); 
+	function sendObject(obj) { 
+		sendSocket(JSON.stringify(obj)); 
+		
+	}
 
+	function sendSocket(msg) { 
+		if(wsConnected ) {
+			ws.send(msg); 
+		//	console.log(msg); 
+		}
+
+	}
+	function sendLocation() { 
+		var sendit = false; 
+		
+		var update = {id:wsID, type:'location'}; 
+		
+		if(typeof IP_ADDRESS!='undefined') { 
+			update.ip = IP_ADDRESS; 
+			sendit = true; 
+		}
+		if(typeof loc!='undefined') { 
+			update.lat = loc.lat; 
+			update.lon = loc.long;
+			update.city = loc.city; 
+			update.country = loc.country;
+			sendit = true; 
+		}
+		
+		if(sendit) sendObject(update);	
+		
 	}

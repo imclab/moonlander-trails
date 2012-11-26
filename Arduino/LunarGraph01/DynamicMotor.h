@@ -13,6 +13,8 @@ public :
     accelSpeed = 0.2f; 
     errorState = false; 
     resetting = false; 
+    lastResetTime = millis(); 
+    autoResetCount = 0; 
 
   }
 
@@ -78,7 +80,12 @@ public :
           resetPinHighCount  =0;  
           setSpeedDirect(0); 
           Serial.println("MOTOR ERROR"); 
-          reset();
+          if(millis() - lastResetTime > 5*60*1000 ) { // five minutes
+            autoResetCount = 0; 
+          }
+          autoResetCount++; 
+          
+          if(autoResetCount<=3) reset();
 
         }
 
@@ -143,6 +150,7 @@ public :
   void reset() { 
     resetting = true; 
     resetStartTime = millis();   
+    lastResetTime = millis(); 
     pinMode(resetPin, OUTPUT); 
     digitalWrite(resetPin, HIGH); 
     Serial.println("MOTOR RESET"); 
@@ -169,6 +177,8 @@ public :
   int resetPin; 
   boolean resetting; 
   unsigned long resetStartTime; 
+  unsigned long lastResetTime; 
+  int autoResetCount; 
   int resetPinHighCount; 
   boolean errorState; 
 

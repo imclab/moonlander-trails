@@ -116,7 +116,7 @@ function sendPosition() {
 			t : lander.thrusting 
 		};
 					
-		sendSocket(JSON.stringify(update)); 
+		sendObject(update); 
 
 	}
 }
@@ -127,7 +127,7 @@ function sendLanded() {
 		type : 'land', 
 		id : wsID	
 	};
-	sendSocket(JSON.stringify(update)); 
+	sendObject(update); 
 }
 	
 function sendCrashed() { 
@@ -136,7 +136,7 @@ function sendCrashed() {
 		type : 'crash', 
 		id : wsID	
 	};
-	sendSocket(JSON.stringify(update)); 
+	sendObject(update); 
 }
 function sendGameOver() { 
 
@@ -145,7 +145,7 @@ function sendGameOver() {
 		id : wsID,
 		sc : score
 	};
-	sendSocket(JSON.stringify(update)); 
+	sendObject(update); 
 }
 function sendRestart() { 
 	var update = {
@@ -153,7 +153,8 @@ function sendRestart() {
 		id : wsID,
 		sc : score
 	};
-	sendSocket(JSON.stringify(update)); 
+	sendObject(update); 
+	sendLocation();
 }
 	
 
@@ -363,8 +364,9 @@ function setLanded(line) {
 	// TODO Show score
 	gameState = LANDED; 
 	//ARCADE AMENDMENT
-	if(singlePlayMode) gameState = GAMEOVER;
-
+	if(singlePlayMode) {
+		setGameOver();
+	}
 	sendLanded();
 	scheduleRestart(); 
 }
@@ -378,11 +380,10 @@ function setCrashed() {
 	var fuellost = Math.round(((Math.random() * 200) + 200));
 	lander.fuel -= fuellost;
 
-	
+	sendCrashed();  
 	
 	if(lander.fuel<1) { 
-		gameState = GAMEOVER; 
-		sendGameOver(); 
+		setGameOver(); 
 		msg = "OUT OF FUEL<br><br>GAME OVER";
 		
 	} else {
@@ -400,9 +401,10 @@ function setCrashed() {
 		
 		gameState = CRASHED;
 		//ARCADE AMENDMENT
-		if(singlePlayMode) gameState = GAMEOVER;
-		
-		sendCrashed();  
+		if(singlePlayMode) {
+			setGameOver()
+		}
+	
 		
 	}
 	
@@ -411,6 +413,13 @@ function setCrashed() {
 	scheduleRestart(); 
 	
 	samples.explosion.play(); 
+}
+
+
+function setGameOver() { 
+	
+		gameState = GAMEOVER; 
+		sendGameOver();
 }
 
 function onMouseDown(e) {
