@@ -16,6 +16,7 @@ Player = function() {
 		currentUpdateIndex = 0, 
 		
 		smoothedPos = this.smoothedPos = new Vector2(), 
+		vel = this.vel = new Vector2(),
 		targetRotation = 0;
 		
 		  
@@ -27,7 +28,7 @@ Player = function() {
 	this.scale = 0.8; 
 	this.colour = 'white';
 	this.lat = 0; 
-	this.long = 0; 
+	this.lon = 0; 
 	this.city = ""; 
 	this.country = ""; 
 	this.current = true;
@@ -70,13 +71,13 @@ Player = function() {
 	// };
 	this.addUpdate = function(updateObj) { 
 		updates.push(updateObj); 
-	}
+	};
 	// this.updatePosition = function(x, y, rotation, thrust) { 
 	// 	positions.push(new Vector2(x,y)); 
 	// 	rotations.push(rotation);
 	// 	thrustLevels.push(thrust);
 	// 	
-	// }
+	// };
 
 	this.update = function() { 
 	//	console.log(currentPositionIndex, positions.length);
@@ -84,7 +85,7 @@ Player = function() {
 		if((currentUpdateIndex<updates.length-1)&&(Date.now()-this.lastUpdate>=80)) { 
 			currentUpdateIndex++; 
 			//console.log(pos, positions[currentPositionIndex], currentPositionIndex); 
-			do {
+			//do {
 				var update = updates[currentUpdateIndex]; 
 			
 				if(update.type == 'update') { 
@@ -95,25 +96,30 @@ Player = function() {
 					this.lastUpdate = Date.now();
 					this.paused = false;
 					positions.push(pos.clone()); 
-				} else if(update.type == 'crashed') { 
+				} else if((update.type == 'landed')||(update.type == 'crashed')) { 
 					this.crash();
 					smoothedPos.copyFrom(pos); 
+					vel.reset(0,0);
 					
 				} 
 			
 				//console.log(update);
 				currentUpdateIndex++; 
-			} while ((update.type!='update') || (currentUpdateIndex<updates.length-1)); 
-			
+			//} while ((update.type!='update') || (currentUpdateIndex<updates.length-1)); 
+			this.lastUpdate = Date.now();
 		} else if(Date.now()-this.lastUpdate>10000) { 
 			//console.log("paused"); 
 		  this.paused = true; 	
 
 		}	
 		
+		vel.multiplyEq(0.9);
 		var diff = pos.minusNew(smoothedPos); 
-		diff.multiplyEq(0.1); 
-		smoothedPos.plusEq(diff);
+		
+		diff.multiplyEq(0.01); 
+		vel.plusEq(diff); 
+		smoothedPos.plusEq(vel);
+		
 		
 		this.rotation += ((targetRotation-this.rotation)*0.2);
 		
@@ -133,24 +139,24 @@ Player = function() {
 	
 		// draw the latest data for the ship
 	//	console.log(positions.length);
-		// if((positions.length>0) && (this.current)) { 
-		// 	c.save(); 
-		// 		
-		// 	c.translate(positions[positions.length-1].x, positions[positions.length-1].y); 
-		// 	c.scale(this.scale, this.scale); 
-		// 	c.lineWidth = 1/(this.scale * scale); 
-		// //	c.rotate(rotations[rotations.length-1] * TO_RADIANS); 
-		// 	c.strokeStyle = 'green'; 
-		// 
-		// 	c.beginPath(); 
-		// 
-		// 	//this.renderShapes(c);
-		// 	c.arc(0,0,5,0,Math.PI*2,true); 
-		// 		
-		// 	c.stroke(); 
-		// 
-		// 	c.restore(); 
-		//  }
+		 if((positions.length>0) && (this.current)) { 
+			c.save(); 
+					
+				c.translate(positions[positions.length-1].x, positions[positions.length-1].y); 
+				c.scale(this.scale, this.scale); 
+				c.lineWidth = 1/(this.scale * scale); 
+			//	c.rotate(rotations[rotations.length-1] * TO_RADIANS); 
+				c.strokeStyle = 'green'; 
+			
+				c.beginPath(); 
+			
+				//this.renderShapes(c);
+				c.arc(0,0,5,0,Math.PI*2,true); 
+					
+				c.stroke(); 
+			
+				c.restore(); 
+			 }
 		// draw the smoothed data
 		if(this.current) {
 			c.save(); 
@@ -202,7 +208,7 @@ Player = function() {
 		}
 	
 	
-	}
+	};
 	
 	this.crash = function () { 
 		this.rotation = targetRotation = 0; 
