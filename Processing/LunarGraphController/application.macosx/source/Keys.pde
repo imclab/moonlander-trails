@@ -31,8 +31,11 @@ void keyPressed() {
   if (key == 'l') { 
     drawLandscape();
   } 
+  else if (key == 'c') { 
+    drawRectangle();
+  } 
   else if (key == 'k') {  
-    plotText("Lunar Trails - Dublin Science Gallery GAME Exhibition "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
+    plotText("Lunar Trails - Bozar Night Brussels "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
     plotText("seb.ly", pageWidth - 3300 ,pageHeight-900,85);   
   }
   else if (key == 'p')  { 

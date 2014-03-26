@@ -146,8 +146,8 @@ const int dirPin = 12;
 const int pwmPin = 3; 
 
 // reversed... 
-const int aPin = A2; 
-const int bPin = A3; 
+const int aPin = 20; 
+const int bPin = 21; 
 
 boolean aState, bState; 
 
@@ -155,7 +155,8 @@ double position, targetPosition, motorPower;
 
 long counter = 0; 
 
-PID myPID(&position, &motorPower, &targetPosition,0.02,0.4,0.02,DIRECT);
+//PID myPID(&position, &motorPower, &targetPosition,0.02,0.4,0.02,DIRECT);
+PID myPID(&position, &motorPower, &targetPosition,0.1,0.6,0.1,DIRECT);
 
 
 void setup() { 
@@ -181,7 +182,7 @@ void setup() {
 
   myPID.SetOutputLimits(-255,255); 
  myPID.SetMode(AUTOMATIC);
- myPID.SetSampleTime(5);
+ myPID.SetSampleTime(1);
  
   Serial.begin(38400); 
 }
@@ -192,7 +193,7 @@ void loop() {
 
   myPID.Compute(); //Serial.println(position); 
 
-targetPosition = round(sin(millis()*0.001f) * 500.0f); 
+  targetPosition = round(sin(millis()*0.001f) * 5.0f); 
   
   /*    motorPower = map(targetPosition-position, -500,500,-500,500); //sin(counter*0.001f) * 100.0f; 
    if(motorPower>255) motorPower = 255;
@@ -202,8 +203,7 @@ targetPosition = round(sin(millis()*0.001f) * 500.0f);
   analogWrite(pwmPin, abs(round(motorPower))); 
   digitalWrite(dirPin, motorPower<0 ? HIGH : LOW);  
 
-  
-  if(counter%10 == 0 ) Serial.println(PINC & B100 ); 
+  //if(counter%10 == 0 ) Serial.println(PINC & B100 ); 
   //delay(1); 
   counter++; 
 }

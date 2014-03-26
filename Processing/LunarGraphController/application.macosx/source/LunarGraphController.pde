@@ -1,6 +1,7 @@
 
 import processing.serial.*; 
-import org.json.*;
+import org.json.JSONObject;
+import org.json.JSONException;
 //import wsp5.*;
 import java.awt.Toolkit;
 
@@ -10,6 +11,8 @@ import org.webbitserver.*;
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
+//int viewWidth = 1440; 
+//int viewHeight = 900; 
 float viewScale;
 
 
@@ -76,7 +79,8 @@ String switchNames[] = {
   "endStopMaxButtonB", 
   "calibrationButtonA", 
   "calibrationButtonB", 
-  "resetButton"
+  "resetButton",
+   "spareButton"
 }; 
 
 int jogUpButtonA = 0;
@@ -90,6 +94,7 @@ int endStopMaxButtonB = 7;
 int calibrationButtonA =8 ;
 int calibrationButtonB= 9;
 int resetButtonSwitch = 10;
+int spareButtonSwitch = 11;
 
 boolean buttonStates[] = new boolean[11]; 
 
@@ -102,7 +107,7 @@ PFont titleFont;
 void setup() { 
   //size(displayWidth, displayHeight);
 
-  viewScale =(float)displayWidth/viewWidth;
+  viewScale = (float)displayWidth/viewWidth;
   size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
 
   //  if (frame != null) {
@@ -316,7 +321,7 @@ void draw() {
     String secs = floor((penchangemillis/1000) % 60)+""; 
     if(secs.length()<2) secs = "0"+secs;
    text("LAST PEN CHANGE "+floor(penchangemillis/1000/60) + ":"+secs, 60,60); 
-    
+
   
   processQueue();
 

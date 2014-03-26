@@ -14,7 +14,7 @@ boolean initSerial() {
   }
 
   String ports[] = Serial.list(); 
-
+println(ports);
   for (int i = 0; i< ports.length; i++) { 
 
     if (ports[i].indexOf("tty.usb")!=-1) { 
@@ -72,7 +72,7 @@ void sendSerial(String msg) {
 }
 void processMessage () { 
 
-  //println("->" +serialMessage); 
+  println("->" +serialMessage); 
 
  
 
@@ -123,6 +123,6 @@ void processMessage () {
     
   }
   serialMessage = "";  
-  //println("------");
+  println("------");
 }
 

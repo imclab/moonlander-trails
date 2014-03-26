@@ -1,31 +1,29 @@
 import processing.core.*; 
 import processing.data.*; 
+import processing.event.*; 
 import processing.opengl.*; 
 
 import processing.serial.*; 
-import org.json.*; 
+import org.json.JSONObject; 
+import org.json.JSONException; 
 import java.awt.Toolkit; 
 import muthesius.net.*; 
 import org.webbitserver.*; 
 
-import java.applet.*; 
-import java.awt.Dimension; 
-import java.awt.Frame; 
-import java.awt.event.MouseEvent; 
-import java.awt.event.KeyEvent; 
-import java.awt.event.FocusEvent; 
-import java.awt.Image; 
-import java.io.*; 
-import java.net.*; 
-import java.text.*; 
-import java.util.*; 
-import java.util.zip.*; 
-import java.util.regex.*; 
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
 
 public class LunarGraphController extends PApplet {
 
 
  
+
 
 //import wsp5.*;
 
@@ -36,6 +34,8 @@ public class LunarGraphController extends PApplet {
 
 int viewWidth = 1920; 
 int viewHeight = 1080; 
+//int viewWidth = 1440; 
+//int viewHeight = 900; 
 float viewScale;
 
 
@@ -102,7 +102,8 @@ String switchNames[] = {
   "endStopMaxButtonB", 
   "calibrationButtonA", 
   "calibrationButtonB", 
-  "resetButton"
+  "resetButton",
+   "spareButton"
 }; 
 
 int jogUpButtonA = 0;
@@ -116,6 +117,7 @@ int endStopMaxButtonB = 7;
 int calibrationButtonA =8 ;
 int calibrationButtonB= 9;
 int resetButtonSwitch = 10;
+int spareButtonSwitch = 11;
 
 boolean buttonStates[] = new boolean[11]; 
 
@@ -128,7 +130,7 @@ PFont titleFont;
 public void setup() { 
   //size(displayWidth, displayHeight);
 
-  viewScale =(float)displayWidth/viewWidth;
+  viewScale = (float)displayWidth/viewWidth;
   size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
 
   //  if (frame != null) {
@@ -342,7 +344,7 @@ public void draw() {
     String secs = floor((penchangemillis/1000) % 60)+""; 
     if(secs.length()<2) secs = "0"+secs;
    text("LAST PEN CHANGE "+floor(penchangemillis/1000/60) + ":"+secs, 60,60); 
-    
+
   
   processQueue();
 
@@ -706,8 +708,11 @@ public void keyPressed() {
   if (key == 'l') { 
     drawLandscape();
   } 
+  else if (key == 'c') { 
+    drawRectangle();
+  } 
   else if (key == 'k') {  
-    plotText("Lunar Trails - Dublin Science Gallery GAME Exhibition "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
+    plotText("Lunar Trails - Bozar Night Brussels "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
     plotText("seb.ly", pageWidth - 3300 ,pageHeight-900,85);   
   }
   else if (key == 'p')  { 
@@ -940,7 +945,7 @@ public boolean initSerial() {
   }
 
   String ports[] = Serial.list(); 
-
+println(ports);
   for (int i = 0; i< ports.length; i++) { 
 
     if (ports[i].indexOf("tty.usb")!=-1) { 
@@ -998,7 +1003,7 @@ public void sendSerial(String msg) {
 }
 public void processMessage () { 
 
-  //println("->" +serialMessage); 
+  println("->" +serialMessage); 
 
  
 
@@ -1049,7 +1054,7 @@ public void processMessage () {
     
   }
   serialMessage = "";  
-  //println("------");
+  println("------");
 }
 
 
@@ -1088,58 +1093,62 @@ public void drawGlyph(char glyph, float posX, float posY) {
 }
 
 public void drawLetter(char letter) {
-  if ( letter == 'A' ) {
+ 
+ if ( letter == 'A' ) {
     plotLine(0, 6, 0, 1);
     plotLine(0, 1, 2, 0);
     plotLine(2, 0, 4, 1);
-    plotLine(4, 1, 4, 3);
+    plotLine(4, 1, 4, 6);
     plotLine(4, 3, 0, 3);
-    plotLine(4, 3, 4, 6);
   }
 
   if ( letter == 'B' ) {
     plotLine(0, 0, 0, 6);
     plotLine(0, 6, 3, 6);
-    plotLine(0, 0, 3, 0);
-    plotLine(3, 0, 4, 1);
-    plotLine(4, 1, 4, 2);
-    plotLine(4, 2, 3, 3);
+    plotLine(3, 6, 4, 5);
+    plotLine(4, 5, 4, 4);
+    plotLine(4, 4, 3, 3);
     plotLine(3, 3, 0, 3);
-    plotLine(3, 3, 4, 4);
-    plotLine(4, 4, 4, 5);
-    plotLine(4, 5, 3, 6);
+    plotLine(0, 3, 3, 3);
+    plotLine(3, 3, 4, 2);
+    plotLine(4, 2, 4, 1);
+    plotLine(4, 1, 3, 0);
+    plotLine(3, 0, 0, 0);
+
+    
   }
   if ( letter == 'C' ) {
-    plotLine(0, 0, 0, 6);
     plotLine(4, 0, 0, 0);
+    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 6);
   }
   if ( letter == 'D' ) {
-    plotLine(0, 0, 0, 6);
     plotLine(0, 0, 3, 0);
     plotLine(3, 0, 4, 2);
     plotLine(4, 2, 4, 4);
     plotLine(4, 4, 3, 6);
-    plotLine(0, 6, 3, 6);
+    plotLine(3, 6, 0, 6);
+    plotLine(0, 6, 0, 0);
   }
   if ( letter == 'E' ) {
-    plotLine(0, 0, 0, 6);
+
     plotLine(4, 0, 0, 0);
-    plotLine(4, 3, 0, 3);
+    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 3, 0, 3);
   }
   if ( letter == 'F' ) {
-    plotLine(0, 0, 4, 0);
-    plotLine(0, 3, 4, 3);
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 6);
+    plotLine(0, 3, 4, 3);
   }
   if ( letter == 'G' ) {
+    plotLine(4, 1, 4, 0);
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 6);
-    plotLine(0, 0, 4, 0);
-    plotLine(4, 0, 4, 1);
-    plotLine(2, 3, 4, 3);
-    plotLine(4, 3, 4, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 4, 3);
+    plotLine(4, 3, 2, 3);
   }
   if ( letter == 'H' ) {
     plotLine(0, 0, 0, 6);
@@ -1153,9 +1162,9 @@ public void drawLetter(char letter) {
   }
   if ( letter == 'J' ) {
     plotLine(0, 4, 1, 6);
-    plotLine(2, 0, 4, 0);
-    plotLine(4, 0, 4, 6);
     plotLine(1, 6, 4, 6);
+    plotLine(4, 6, 4, 0);
+    plotLine(4, 0, 2, 0);
   }
   if ( letter == 'K' ) {
     plotLine(0, 0, 0, 6);
@@ -1167,27 +1176,29 @@ public void drawLetter(char letter) {
     plotLine(0, 6, 4, 6);
   }
   if ( letter == 'M' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
     plotLine(0, 0, 2, 2);
     plotLine(2, 2, 4, 0);
     plotLine(4, 0, 4, 6);
   }
   if ( letter == 'N' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
+    plotLine(0, 0, 0, 1);
     plotLine(0, 1, 4, 5);
-    plotLine(4, 0, 4, 6);
+    plotLine(4, 5, 4, 6);
+    plotLine( 4, 6, 4, 0);
   }
   if ( letter == 'O' ) {
-    plotLine(0, 0, 0, 6);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 0, 6);
+    plotLine(0, 6, 0, 0);
   }
   if ( letter == 'P' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 3);
-    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 0, 3);
   }
   if ( letter == 'Q' ) {
     plotLine(0, 0, 4, 0);
@@ -1198,18 +1209,18 @@ public void drawLetter(char letter) {
     plotLine(2, 4, 4, 6);
   }
   if ( letter == 'R' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 3);
     plotLine(4, 3, 0, 3);
     plotLine(0, 3, 4, 6);
   }
   if ( letter == 'S' ) {
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 3);
-    plotLine(0, 0, 4, 0);
     plotLine(0, 3, 4, 3);
     plotLine(4, 3, 4, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 0, 6);
   }
   if ( letter == 'T' ) {
     plotLine(0, 0, 4, 0);
@@ -1219,18 +1230,18 @@ public void drawLetter(char letter) {
     plotLine(0, 0, 0, 5);
     plotLine(0, 5, 1, 6);
     plotLine(1, 6, 3, 6);
-    plotLine(4, 0, 4, 5);
-    plotLine(4, 5, 3, 6);
+    plotLine(3, 6, 4, 5);
+    plotLine(4, 5, 4, 0);
   }
   if ( letter == 'V' ) {
     plotLine(0, 0, 2, 6);
-    plotLine(4, 0, 2, 6);
+    plotLine(2, 6, 4, 0);
   }
   if ( letter == 'W' ) {
     plotLine(0, 0, 0, 6);
     plotLine(0, 6, 2, 4);
     plotLine(2, 4, 4, 6);
-    plotLine(4, 0, 4, 6);
+    plotLine(4, 6, 4, 0);
   }
   if ( letter == 'X' ) {
     plotLine(0, 0, 2, 3);
@@ -1249,11 +1260,11 @@ public void drawLetter(char letter) {
     plotLine(0, 6, 4, 6);
   }
   if ( letter == '0' ) {
-    plotLine(0, 0, 4, 0);
-    plotLine(4, 0, 4, 6);
-    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 0);
+    plotLine(4, 0, 0, 0);
+    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 4, 0);
   }
   if ( letter == '1' ) {
     plotLine(0, 0, 2, 0);
@@ -1270,8 +1281,8 @@ public void drawLetter(char letter) {
   if ( letter == '3' ) {
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
+    plotLine(4, 6, 0, 6);
     plotLine(0, 3, 4, 3);
-    plotLine(0, 6, 4, 6);
   }
   if ( letter == '4' ) {
     plotLine(0, 0, 0, 3);
@@ -1279,36 +1290,37 @@ public void drawLetter(char letter) {
     plotLine(4, 0, 4, 6);
   }
   if ( letter == '5' ) {
-    plotLine(0, 0, 0, 0);
-    plotLine(0, 0, 4, 0);
+    //plotLine(0, 0, 0, 0);
+
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 3);
     plotLine(0, 3, 4, 3);
     plotLine(4, 3, 4, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 0, 6);
   }
   if ( letter == '6' ) {
-    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 6);
-    plotLine(0, 3, 4, 3);
-    plotLine(4, 3, 4, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 4, 3);
+    plotLine(4, 3, 0, 3 );
   }
   if ( letter == '7' ) {
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
   }
   if ( letter == '8' ) {
-    plotLine(0, 0, 4, 0);
-    plotLine(4, 0, 4, 3);
     plotLine(4, 3, 0, 3);
     plotLine(0, 3, 0, 0);
-    plotLine(4, 6, 4, 3);
-    plotLine(0, 3, 0, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 3);
+    plotLine(4, 3, 4, 6);
+    plotLine(4, 6, 0, 6);
+    plotLine(0, 6, 0, 3);
   }
   if ( letter == '9' ) {
-    plotLine(0, 0, 0, 3);
-    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 0, 3);
+    plotLine(0, 3, 0, 0);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
   }
@@ -1317,8 +1329,8 @@ public void drawLetter(char letter) {
     plotLine(2, 5, 2, 6);
   }
   if ( letter == ':' ) {
-    plotLine(2, 1, 2, 3);
-    plotLine(2, 4, 2, 6);
+    plotLine(2, 1.5f, 2, 2.5f);
+    plotLine(2, 4.5f, 2, 5.5f);
   }
   if ( letter == '.' ) {
     plotLine(2, 5, 2, 6);
@@ -1335,10 +1347,14 @@ public void drawLetter(char letter) {
   if (letter =='-') {
     plotLine(1, 3, 3, 3);
   }
+  if (letter =='_') {
+    plotLine(0, 6, 4, 6);
+  }
 
   if (letter == '/') {
     plotLine(0, 6, 4, 0);
   }
+
 }
 
 public void plotLine(float x1, float y1, float x2, float y2) { 
@@ -1356,171 +1372,6 @@ public void plotLine(float x1, float y1, float x2, float y2) {
 }
 
 
-
-/*
-WsServer socket;
-int port = 8087; 
-
-boolean messageRestart = false;  // so we know where the home position is
-boolean firstRestartReceived = false; // so we don't draw anyone half way through a game
-
-
-boolean initWebSocket() { 
-  println("starting WebSocket server on port "+port); 
-  socket = new WsServer(this, port);
-  return true;
-}
-
-void onWsMessage(WebSocket con, String msg) {
-  //println(msg);
-
-  //  if (beginsWith(msg, "landscapeend")) { 
-  //    drawLandscape();
-  //  } 
-  //  else if (beginsWith(msg, "landscape")) { 
-  //    PVector p = new PVector(0, 0); 
-  //    String numbers[] = getStringAfterChar(msg, ":").split(","); 
-  //
-  //    int index = int(numbers[0]); 
-  //
-  //    p.x = float(numbers[1]); 
-  //    p.y = float(numbers[2]); 
-  //
-  //    println(p);
-  //    //p.mult(0.5f);
-  //    if (landscapePoints.size()<=index) {
-  //      landscapePoints.add(p);
-  //    } 
-  //    else {
-  //      landscapePoints.set(index, p);
-  //    } 
-  //    //p.y-=100;
-  //    //p.mult(0.8);
-  //  } 
-  //  else 
-  if (beginsWith(msg, "{")) { 
-
-    try {
-      String readablemsg = ""; 
-
-      JSONObject msgJson = new JSONObject(msg);
-      String type = msgJson.getString("type");
-      //println(type+" "+ (type == "update"));
-      readablemsg+=type+" "; 
-      if (type.equals("restart")) { 
-        move = true;
-        commands.add(new Command(COMMAND_RESTART, 0,0));
-        messageRestart = true; 
-        firstRestartReceived = true; 
-      } 
-      else if (type.equals("update")) { 
-      
-        if(firstRestartReceived) { 
-          
-         
-          PVector p1 = new PVector(msgJson.getInt("x"), msgJson.getInt("y")); 
-
-          p1.div(100);  // messages from the clients are multiplied by 100 to avoid floating points. 
-          
-          
-          readablemsg+=": "+p1.x+", "+p1.y; 
-          receivePosition = p1.get(); 
-          p1 = convertDataToLunarGraph(p1); 
-          
-          if(messageRestart) homePosition = p1.get(); 
-          
-          if((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
-            move = true; 
-           
-          } else if (move) {
-            moveToXYPos(p1);
-            move = false;
-          } 
-          else {  
-            lineToXYPos(p1,true); // add true for non-smooth drawing. 
-          }
-        }
-      }
-      webSocketMessages.add(readablemsg);
-    }
-    catch(JSONException e) {
-    }
-  }
-}
-
-void drawLandscape() { 
-  println("drawing landscape..."); 
-
-//  float gap = pageWidth/20;
-//  float lineheight = pageHeight/4; 
-//  
-//  for (float x = 0; x<pageWidth; x+=gap) { 
-//    lineToXYPos(x, lineheight*0.1); 
-//    lineToXYPos(x, lineheight); 
-//    lineToXYPos(x+(gap/2), lineheight); 
-//    lineToXYPos(x+(gap/2), lineheight*0.1); 
-//    
-//    
-//    
-//    
-//  }
-
-  // draw corners
-  int cornerSize = round(3 * stepsPerMil); 
- 
-//  moveToXYPos(0, cornerSize);
-//  lineToXYPos(0, 0);
-//  lineToXYPos(cornerSize, 0);
-//
-//  moveToXYPos(pageWidth-cornerSize, 0);
-//  lineToXYPos(pageWidth, 0);
-//  lineToXYPos(pageWidth, cornerSize);
-//  
-//  moveToXYPos(0, pageHeight - cornerSize);
-//  lineToXYPos(0, pageHeight);
-//  lineToXYPos(cornerSize, pageHeight);
-//
-//  moveToXYPos(pageWidth-cornerSize, pageHeight);
-//  lineToXYPos(pageWidth, pageHeight);
-//  lineToXYPos(pageWidth, pageHeight - cornerSize);
-
-  PVector lastPos = new PVector(); 
-  
-  for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
-
-    for (int i = 0; i<landscapePoints.size(); i++) { 
-
-      PVector p1 = ((PVector)landscapePoints.get(i)).get();
-      p1.x+=offset; 
-
-      if (p1.x>dataWidth) break; 
-
-      p1 = convertDataToLunarGraph(p1);  
-      if ((i==0) && (offset==0)) { 
-        moveToXYPos(p1);
-      } 
-      else { 
-        lineToXYPos(p1);
-        lineToXYPos(lastPos.x, lastPos.y); 
-        lineToXYPos(p1.x, p1.y); 
-        //lineToXYPos(p1); 
-      }
-      lastPos = p1.get(); 
-    }
-  }
-}
-
-void onWSOpen(WebSocket con) {
-  println("WebSocket client joined");
-  webSocketMessages.add("WebSocket client joined");
-}
-
-void onWSClose(WebSocket con) {
-  println("WebSocket client left");
-  webSocketMessages.add("WebSocket client left");
-}
-
-*/
 
 
 WebSocketP5 socket;
@@ -1568,7 +1419,7 @@ public void websocketOnMessage(WebSocketConnection con, String msg) {
     try {
       String readablemsg = ""; 
 
-      JSONObject msgJson = new JSONObject(msg);
+      JSONObject msgJson = new org.json.JSONObject(msg);
       String type = msgJson.getString("type");
       //println(type+" "+ (type == "update"));
       readablemsg+=type+" "; 
@@ -1642,8 +1493,8 @@ public void drawLandscape() {
 //  }
 
   // draw corners
-  int cornerSize = round(3 * stepsPerMil); 
- 
+//  int cornerSize = round(3 * stepsPerMil); 
+// 
 //  moveToXYPos(0, cornerSize);
 //  lineToXYPos(0, 0);
 //  lineToXYPos(cornerSize, 0);
@@ -1685,6 +1536,24 @@ public void drawLandscape() {
     }
   }
 }
+
+public void drawRectangle() { 
+  
+ 
+  moveToXYPos(0, 0);
+  lineToXYPos(pageWidth, 0);
+  
+ 
+  lineToXYPos(pageWidth, pageHeight);
+  
+   lineToXYPos(0, pageHeight);
+
+  lineToXYPos(0, 0);  
+  
+  
+}
+
+
 
 public void websocketOnOpen(WebSocketConnection con) {
   println("WebSocket client joined");

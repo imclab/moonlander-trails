@@ -32,6 +32,7 @@ function setThrustVolume(vol) {
 }
 
 function playThruster() { 
+	if(touchable) return; 
 	if(thrustInterval) clearInterval(thrustInterval); 
 	if(thrustPlaying) {
 		thrustSound.pause(); 
@@ -45,6 +46,7 @@ function playThruster() {
 }
 
 function updateThruster(e) { 
+	if(touchable) return; 
 	if(thrustSound.currentTime>8.5) thrustSound.currentTime=0.1; 
 	if(thrustVolume!=thrustTargetVolume){
 		thrustVolume+=((thrustTargetVolume-thrustVolume)*0.1); 
@@ -57,6 +59,7 @@ function updateThruster(e) {
 	
 }
 function stopThruster() {
+	if(touchable) return; 
 
 	if(!thrustPlaying) return; 
 	

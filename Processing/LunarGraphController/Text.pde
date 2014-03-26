@@ -34,58 +34,62 @@ void drawGlyph(char glyph, float posX, float posY) {
 }
 
 void drawLetter(char letter) {
-  if ( letter == 'A' ) {
+ 
+ if ( letter == 'A' ) {
     plotLine(0, 6, 0, 1);
     plotLine(0, 1, 2, 0);
     plotLine(2, 0, 4, 1);
-    plotLine(4, 1, 4, 3);
+    plotLine(4, 1, 4, 6);
     plotLine(4, 3, 0, 3);
-    plotLine(4, 3, 4, 6);
   }
 
   if ( letter == 'B' ) {
     plotLine(0, 0, 0, 6);
     plotLine(0, 6, 3, 6);
-    plotLine(0, 0, 3, 0);
-    plotLine(3, 0, 4, 1);
-    plotLine(4, 1, 4, 2);
-    plotLine(4, 2, 3, 3);
+    plotLine(3, 6, 4, 5);
+    plotLine(4, 5, 4, 4);
+    plotLine(4, 4, 3, 3);
     plotLine(3, 3, 0, 3);
-    plotLine(3, 3, 4, 4);
-    plotLine(4, 4, 4, 5);
-    plotLine(4, 5, 3, 6);
+    plotLine(0, 3, 3, 3);
+    plotLine(3, 3, 4, 2);
+    plotLine(4, 2, 4, 1);
+    plotLine(4, 1, 3, 0);
+    plotLine(3, 0, 0, 0);
+
+    
   }
   if ( letter == 'C' ) {
-    plotLine(0, 0, 0, 6);
     plotLine(4, 0, 0, 0);
+    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 6);
   }
   if ( letter == 'D' ) {
-    plotLine(0, 0, 0, 6);
     plotLine(0, 0, 3, 0);
     plotLine(3, 0, 4, 2);
     plotLine(4, 2, 4, 4);
     plotLine(4, 4, 3, 6);
-    plotLine(0, 6, 3, 6);
+    plotLine(3, 6, 0, 6);
+    plotLine(0, 6, 0, 0);
   }
   if ( letter == 'E' ) {
-    plotLine(0, 0, 0, 6);
+
     plotLine(4, 0, 0, 0);
-    plotLine(4, 3, 0, 3);
+    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 3, 0, 3);
   }
   if ( letter == 'F' ) {
-    plotLine(0, 0, 4, 0);
-    plotLine(0, 3, 4, 3);
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 6);
+    plotLine(0, 3, 4, 3);
   }
   if ( letter == 'G' ) {
+    plotLine(4, 1, 4, 0);
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 6);
-    plotLine(0, 0, 4, 0);
-    plotLine(4, 0, 4, 1);
-    plotLine(2, 3, 4, 3);
-    plotLine(4, 3, 4, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 4, 3);
+    plotLine(4, 3, 2, 3);
   }
   if ( letter == 'H' ) {
     plotLine(0, 0, 0, 6);
@@ -99,9 +103,9 @@ void drawLetter(char letter) {
   }
   if ( letter == 'J' ) {
     plotLine(0, 4, 1, 6);
-    plotLine(2, 0, 4, 0);
-    plotLine(4, 0, 4, 6);
     plotLine(1, 6, 4, 6);
+    plotLine(4, 6, 4, 0);
+    plotLine(4, 0, 2, 0);
   }
   if ( letter == 'K' ) {
     plotLine(0, 0, 0, 6);
@@ -113,27 +117,29 @@ void drawLetter(char letter) {
     plotLine(0, 6, 4, 6);
   }
   if ( letter == 'M' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
     plotLine(0, 0, 2, 2);
     plotLine(2, 2, 4, 0);
     plotLine(4, 0, 4, 6);
   }
   if ( letter == 'N' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
+    plotLine(0, 0, 0, 1);
     plotLine(0, 1, 4, 5);
-    plotLine(4, 0, 4, 6);
+    plotLine(4, 5, 4, 6);
+    plotLine( 4, 6, 4, 0);
   }
   if ( letter == 'O' ) {
-    plotLine(0, 0, 0, 6);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 0, 6);
+    plotLine(0, 6, 0, 0);
   }
   if ( letter == 'P' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 3);
-    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 0, 3);
   }
   if ( letter == 'Q' ) {
     plotLine(0, 0, 4, 0);
@@ -144,18 +150,18 @@ void drawLetter(char letter) {
     plotLine(2, 4, 4, 6);
   }
   if ( letter == 'R' ) {
-    plotLine(0, 0, 0, 6);
+    plotLine(0, 6, 0, 0);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 3);
     plotLine(4, 3, 0, 3);
     plotLine(0, 3, 4, 6);
   }
   if ( letter == 'S' ) {
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 3);
-    plotLine(0, 0, 4, 0);
     plotLine(0, 3, 4, 3);
     plotLine(4, 3, 4, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 0, 6);
   }
   if ( letter == 'T' ) {
     plotLine(0, 0, 4, 0);
@@ -165,18 +171,18 @@ void drawLetter(char letter) {
     plotLine(0, 0, 0, 5);
     plotLine(0, 5, 1, 6);
     plotLine(1, 6, 3, 6);
-    plotLine(4, 0, 4, 5);
-    plotLine(4, 5, 3, 6);
+    plotLine(3, 6, 4, 5);
+    plotLine(4, 5, 4, 0);
   }
   if ( letter == 'V' ) {
     plotLine(0, 0, 2, 6);
-    plotLine(4, 0, 2, 6);
+    plotLine(2, 6, 4, 0);
   }
   if ( letter == 'W' ) {
     plotLine(0, 0, 0, 6);
     plotLine(0, 6, 2, 4);
     plotLine(2, 4, 4, 6);
-    plotLine(4, 0, 4, 6);
+    plotLine(4, 6, 4, 0);
   }
   if ( letter == 'X' ) {
     plotLine(0, 0, 2, 3);
@@ -195,11 +201,11 @@ void drawLetter(char letter) {
     plotLine(0, 6, 4, 6);
   }
   if ( letter == '0' ) {
-    plotLine(0, 0, 4, 0);
-    plotLine(4, 0, 4, 6);
-    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 0);
+    plotLine(4, 0, 0, 0);
+    plotLine(0, 0, 0, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 4, 0);
   }
   if ( letter == '1' ) {
     plotLine(0, 0, 2, 0);
@@ -216,8 +222,8 @@ void drawLetter(char letter) {
   if ( letter == '3' ) {
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
+    plotLine(4, 6, 0, 6);
     plotLine(0, 3, 4, 3);
-    plotLine(0, 6, 4, 6);
   }
   if ( letter == '4' ) {
     plotLine(0, 0, 0, 3);
@@ -225,36 +231,37 @@ void drawLetter(char letter) {
     plotLine(4, 0, 4, 6);
   }
   if ( letter == '5' ) {
-    plotLine(0, 0, 0, 0);
-    plotLine(0, 0, 4, 0);
+    //plotLine(0, 0, 0, 0);
+
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 3);
     plotLine(0, 3, 4, 3);
     plotLine(4, 3, 4, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 0, 6);
   }
   if ( letter == '6' ) {
-    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 0, 0);
     plotLine(0, 0, 0, 6);
-    plotLine(0, 3, 4, 3);
-    plotLine(4, 3, 4, 6);
     plotLine(0, 6, 4, 6);
+    plotLine(4, 6, 4, 3);
+    plotLine(4, 3, 0, 3 );
   }
   if ( letter == '7' ) {
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
   }
   if ( letter == '8' ) {
-    plotLine(0, 0, 4, 0);
-    plotLine(4, 0, 4, 3);
     plotLine(4, 3, 0, 3);
     plotLine(0, 3, 0, 0);
-    plotLine(4, 6, 4, 3);
-    plotLine(0, 3, 0, 6);
-    plotLine(0, 6, 4, 6);
+    plotLine(0, 0, 4, 0);
+    plotLine(4, 0, 4, 3);
+    plotLine(4, 3, 4, 6);
+    plotLine(4, 6, 0, 6);
+    plotLine(0, 6, 0, 3);
   }
   if ( letter == '9' ) {
-    plotLine(0, 0, 0, 3);
-    plotLine(0, 3, 4, 3);
+    plotLine(4, 3, 0, 3);
+    plotLine(0, 3, 0, 0);
     plotLine(0, 0, 4, 0);
     plotLine(4, 0, 4, 6);
   }
@@ -263,8 +270,8 @@ void drawLetter(char letter) {
     plotLine(2, 5, 2, 6);
   }
   if ( letter == ':' ) {
-    plotLine(2, 1, 2, 3);
-    plotLine(2, 4, 2, 6);
+    plotLine(2, 1.5, 2, 2.5);
+    plotLine(2, 4.5, 2, 5.5);
   }
   if ( letter == '.' ) {
     plotLine(2, 5, 2, 6);
@@ -281,10 +288,14 @@ void drawLetter(char letter) {
   if (letter =='-') {
     plotLine(1, 3, 3, 3);
   }
+  if (letter =='_') {
+    plotLine(0, 6, 4, 6);
+  }
 
   if (letter == '/') {
     plotLine(0, 6, 4, 0);
   }
+
 }
 
 void plotLine(float x1, float y1, float x2, float y2) { 

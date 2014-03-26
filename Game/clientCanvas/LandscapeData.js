@@ -59,6 +59,10 @@ function Landscape(){
 
 		var offset = 0; 
 		
+		// figure out the start offset for the lines. 
+		// offset is the amount to offset each line so 
+		// it's in the right place
+		
 		while(view.left-offset>rightedge) { 
 			offset+=rightedge; 
 		}
@@ -67,7 +71,13 @@ function Landscape(){
 			offset-=rightedge;
 		}
 		
+		// store the start offset so that we can re-use it for 
+		// the stars
+		
 		var startOffset = offset; 
+		
+		// now figure out where along the landscape data we 
+		// should be (i) 
 		
 		var i = 0; 
 		
@@ -79,10 +89,12 @@ function Landscape(){
 			}
 		}
 		
+		// draw the lines
 		c.beginPath(); 
 		
 		var line = lines[i];
 		var offsetY = 0; 
+		// slight wiggliness in the line? 
 		if(Math.random()<0.3) { 
 			offset+=(0.2/view.scale); 
 			offsetY = (0.2/view.scale); 
@@ -90,7 +102,8 @@ function Landscape(){
 		c.moveTo(line.p1.x + offset, line.p1.y + offsetY);  
 		
 		var zoneInfoIndex = 0; 
-
+		
+		// keep going as long as we are within the lines
 		while((line = lines[i]).p1.x+offset<view.right) { 
 			
 			var point = line.p2; 

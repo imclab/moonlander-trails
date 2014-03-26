@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Lunartrails data view</title>
+	<style>
+		body { 
+			background:black; 
+		}
+		canvas { 
+			position : absolute; 
+			top : 0px; 
+			left : 0px; 
+			
+		}
+	</style>
+</head>
+<body>
+	<script>
+	
+
+var canvas = document.createElement('canvas'); 
+var canvas2 = document.createElement('canvas'); 
+document.body.appendChild(canvas); 
+document.body.appendChild(canvas2); 
+var c = canvas.getContext('2d'); 
+var c2 = canvas2.getContext('2d'); 
+
+canvas.width = canvas2.width = window.innerWidth; 
+canvas.height = canvas2.height = window.innerHeight; 
+
+
+var fileNames = [];
+var sessions = []; 
+var currentFileIndex = 0; 
+var startMils = 0; 
+var endMils = 0;
+var startMilsOffset = 0; 
+
+
+var client = new XMLHttpRequest();
+client.open('GET', 'http://node.seb.ly:8002/fileList.json', true);
+client.onreadystatechange = function() {
+	if(client.readyState == client.DONE) { 
+		console.log(client.responseText);
+		
+		fileListLoaded(JSON.parse(client.responseText)); 
+		
+	}
+
+}
+client.send();
+
+	
+function fileListLoaded(data) { 
+	console.log(data);
+	fileNames = data.files; 
+	
+	loadData(0); 
+	
+	
+}
+
+function loadData(index) { 
+
+	var client = new XMLHttpRequest();
+	client.open('GET', 'http://node.seb.ly:8002/'+fileNames[index], true);
+	client.onreadystatechange = function() {
+		if(client.readyState == client.DONE) { 
+			//console.log(client.responseText);
+
+			showData(JSON.parse(client.responseText)); 
+
+		}
+
+	}
+	client.send();
+	
+	currentFileIndex = index; 
+	
+	
+}
+
+function showData(data) { 
+	//console.log("SHOW DATA"); 
+	//console.log(data);
+	
+	sessions = [];
+	
+	for(var i = 0; i<data.sessions.length; i++) { 
+		
+		sessions.push(new Session(data.sessions[i])); 
+		
+		console.log(new Date(data.sessions[i].time)); 
+		
+	}
+	
+	var startDate = new Date(data.sessions[0].time); 
+	
+	startDate.setHours(0,0,0,0)
+	startMils = startDate.getTime(); 
+	endMils = startMils + ( 1000 * 60 * 60 * 24 ); // 24 hours in mils
+	console.log(startDate, startMils, new Date(endMils)); 
+	startMilsOffset = Date.now(); 
+	
+}
+
+
+
+setInterval(update, 1000/30); 
+
+
+function update() { 
+	
+	var speed = 100; 
+	var currentTime = (Date.now() - startMilsOffset)*speed + startMils; 
+	
+	c2.save(); 
+	//c2.globalCompositeOperation = 'lighter'; 
+	
+	c2.clearRect(0,0,canvas2.width, canvas2.height); 
+	//c2.scale(0.75,0.75); 
+	//c2.translate(600,400); 
+	
+	c.save(); 
+	c.globalCompositeOperation = 'lighter'; 
+	
+	//c.scale(0.75,0.75); 
+	//c.translate(600,400); 
+	var sessioncount = 0; 
+	c.strokeStyle = 'rgb(20,20,80)';
+	for(var i = 0; i<sessions.length; i++) { 
+	//for(var i = 0; i<1; i++) { 
+		if (sessions[i].update(c, c2, currentTime)) sessioncount++; 
+			
+		
+		
+	}
+	
+
+	
+	c.restore();
+	c2.restore(); 
+	
+	c2.fillStyle = 'white'; 
+	c2.fillText(sessioncount +' / '+sessions.length, 20,20); 
+	c2.fillText(fileNames[currentFileIndex], 20,40); 
+	c2.fillText(new Date(currentTime), 20,60); 
+	
+}
+
+window.addEventListener('mousedown', onMouseDown); 
+
+function onMouseDown(e) { 
+	
+	if((fileNames.length>0) &&(currentFileIndex<fileNames.length-1)) { 
+		c.clearRect(0,0,canvas.width, canvas.height);
+		sessions = []; 
+		loadData(currentFileIndex+1); 
+		
+	}
+	
+	
+	
+}
+
+
+function Session(sessionObject) { 
+	
+	var currentPathIndex = 0; 
+	var currentPositionIndex = 0; 
+	this.finished = false; 
+	console.log(sessionObject);
+	var homepoint = {x : 11240, y:15001};
+	
+	this.update = function(c, c2, time) { 
+		
+		//console.log(new Date(time), new Date(sessionObject.time)); 
+		
+		if((this.finished) || (sessionObject.time>time)) return false; 
+		
+		//console.log(currentPathIndex, sessionObject.paths.length);
+		
+		if(sessionObject.paths.length==0) { 
+			//console.log(sessionObject); 
+			this.finished = true; 
+			return false; 
+		}
+	
+		var positions = sessionObject.paths[currentPathIndex]; 	
+	
+		if((currentPositionIndex+1>=positions.length)||(positions.length==0)) { 
+			currentPathIndex++;
+			//if(currentPathIndex>=sessionObject.paths.length) { 
+			if(true) {
+				this.finished = true; 
+				return false; 
+			} 
+			
+			var p = positions[currentPositionIndex]; 
+			//c.save(); 
+			//c.strokeStyle = 'red'; 
+			//c.strokeRect(p.x/100 -2, p.y/100 -2, 4,4);
+			//c.restore(); 
+			currentPositionIndex = 0; 
+			positions = sessionObject.paths[currentPathIndex]; 
+			
+		}
+		
+		
+		var p1 = positions[currentPositionIndex]; 
+		var p2 = positions[currentPositionIndex+1]; 
+		
+		//var lastpoint = p1; 
+		//var p = p2; 
+	
+		/*if((lastpoint) && (lastpoint.y>p.y) && (!distanceGreaterThan(p, homepoint, 1000)) && (distanceGreaterThan(lastpoint, p, 10000)) ) {
+		
+				c.save(); 
+				c.strokeStyle = 'green'; 
+				c.strokeRect(lastpoint.x/100 -2, lastpoint.y/100 -2, 4,4);
+				c.restore();
+		
+		} else {*/ 
+		if((p1) && (p2) && (p1.x) && (p2.x)) { 
+			c.lineCap = 'square';
+			c.lineWidth = 1.1;
+			c.beginPath(); 
+			c.moveTo(p1.x/100, p1.y/100); 
+			//c.moveTo(p2.x/100 -1, p2.y/100); 
+			c.lineTo(p2.x/100, p2.y/100); 
+			c.stroke(); 
+			
+			c2.save(); 
+			c2.translate(p2.x/100, p2.y/100); 
+			c2.rotate(p2.r*Math.PI/180); 
+			c2.beginPath();
+			c2.moveTo(0,-4); 
+			c2.lineTo(4,4); 
+			c2.lineTo(-4,4); 
+			c2.closePath(); 
+			
+			//c2.strokeStyle = 'black'; 
+			//c2.lineWidth = 2; 
+			//c2.stroke();
+
+			c2.fillStyle = 'white'; 
+			//c2.lineWidth = 1; 
+			c2.fill();
+			
+			c2.restore(); 
+		}
+		
+		currentPositionIndex++; 
+		return true;
+	}
+	
+	
+}
+
+function distanceGreaterThan(p1, p2, distance) {
+
+        var dx = p2.x - p1.x;
+        var dy = p2.y - p1.y;
+        var distanceSquared = (dx*dx) +(dy*dy);
+
+        return(distanceSquared > (distance*distance));
+
+}
+
+
+function TimeBar() { 
+	
+	
+	this.render =
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+	
+	</script>
+	
+</body>
+</html>

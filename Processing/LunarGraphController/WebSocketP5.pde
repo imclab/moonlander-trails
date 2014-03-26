@@ -45,7 +45,7 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
     try {
       String readablemsg = ""; 
 
-      JSONObject msgJson = new JSONObject(msg);
+      JSONObject msgJson = new org.json.JSONObject(msg);
       String type = msgJson.getString("type");
       //println(type+" "+ (type == "update"));
       readablemsg+=type+" "; 
@@ -119,8 +119,8 @@ void drawLandscape() {
 //  }
 
   // draw corners
-  int cornerSize = round(3 * stepsPerMil); 
- 
+//  int cornerSize = round(3 * stepsPerMil); 
+// 
 //  moveToXYPos(0, cornerSize);
 //  lineToXYPos(0, 0);
 //  lineToXYPos(cornerSize, 0);
@@ -162,6 +162,24 @@ void drawLandscape() {
     }
   }
 }
+
+void drawRectangle() { 
+  
+ 
+  moveToXYPos(0, 0);
+  lineToXYPos(pageWidth, 0);
+  
+ 
+  lineToXYPos(pageWidth, pageHeight);
+  
+   lineToXYPos(0, pageHeight);
+
+  lineToXYPos(0, 0);  
+  
+  
+}
+
+
 
 void websocketOnOpen(WebSocketConnection con) {
   println("WebSocket client joined");

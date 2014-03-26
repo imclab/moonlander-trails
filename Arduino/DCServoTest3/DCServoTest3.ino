@@ -5,8 +5,8 @@
 const int dirPin = 12; 
 const int pwmPin = 3; 
 
-const int aPin = A2; 
-const int bPin = A3; 
+const int aPin = 20; 
+const int bPin = 21; 
 
 float counter = 0; 
 

@@ -86,8 +86,13 @@
 	
 		font-size:6pt;
 	
-	}			
+	}		
+	.seblyBox, .linkBox { 
+		font-size:6pt; 
+		
+	}
 
+}
 			
 		</style>
 	</head>
@@ -131,6 +136,7 @@ return $ip;
 		<script src="libs/jsfxlib.js"></script>	
 		<script src="Sounds.js"></script>
 		<script src="Sockets.js"></script>
+		<script src="TouchController.js"></script>
 		<script src="game.js"></script>
 		
 		<div class="linkBox">

@@ -32,7 +32,7 @@ Lander = function() {
 	var shapes = this.shapes = [],
 		shapePos = this.shapePos = [],
 		shapeVels = this.shapeVels = []; 
-	
+	this.thrustLevel=0; 
 	
 	var reset = this.reset = function () { 
 	
@@ -68,6 +68,13 @@ Lander = function() {
 		}
 		
 	};
+	this.setRotation = function(angle) { 
+		
+		targetRotation = Math.round(clamp(angle, -90, 90)/10)*10; 
+		
+		
+	}
+	
 	this.thrust = function (power) { 
 		this.thrusting = power; 
 		
@@ -138,6 +145,8 @@ Lander = function() {
 		}
 		if(this.fuel<0) this.fuel = 0; 
 		setThrustVolume(Math.min(1,thrustBuild)); 
+		
+		this.thrustLevel = thrustBuild;
 		
 	};
 	

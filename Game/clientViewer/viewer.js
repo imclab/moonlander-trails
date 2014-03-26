@@ -20,12 +20,18 @@ var landscape = new Landscape(),
 	actionRectangle, 
 	smoothedRectangle, 
 	viewRectangle, 
-	debug = false; 
+	debug = false, 
+	showCurrentData = false; 
 	
 
 // canvas element and 2D context
 	canvas = document.createElement( 'canvas' ),
 	context = canvas.getContext( '2d' ),
+	trailsCanvas = document.createElement('canvas'), 
+	trailsContext = trailsCanvas.getContext('2d'),
+	trailsCanvasSize = new Vector2(2000,1200), 
+	trailsOffset = new Vector2(500,400), 
+	trailsScale = 4, 
 
 // to store the current x and y mouse position
 	mouseX = 0, mouseY = 0, 
@@ -64,7 +70,13 @@ function init()
 	
 	canvas.width = SCREEN_WIDTH; 
 	canvas.height = SCREEN_HEIGHT;	
-
+	
+	trailsCanvas.width = trailsCanvasSize.x*trailsScale; 
+	trailsCanvas.height = trailsCanvasSize.y*trailsScale; 
+	trailsContext.strokeStyle = 'white'; 
+	trailsContext.globalCompositeOperation = 'lighter'; 
+	trailsContext.scale(trailsScale, trailsScale); 
+	trailsContext.translate(trailsOffset.x,trailsOffset.y); 
 	
 	window.addEventListener('resize', resizeGame);
 	window.addEventListener('orientationchange', resizeGame);
@@ -124,6 +136,7 @@ function loop() {
 	}
 	
 	
+	
 	updatePlayers();
 	
 	while(elapsedFrames > counter) {
@@ -141,6 +154,7 @@ function loop() {
 
 	}
 
+	checkWebSockets();
 	stats.update(); 
 	
 	var speed = 0.01; 
@@ -197,6 +211,7 @@ function render() {
 	
 	c.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
+
 	if(skippedFrames>0) { 
 		c.fillStyle = 'green'; 
 		c.fillRect(0,0,10*skippedFrames,10);
@@ -244,6 +259,16 @@ function render() {
 		c.rect(view.x, view.y, view.width,view.height); 
 		c.stroke();
 	}	
+	
+	c.save(); 
+	c.translate(-trailsOffset.x, -trailsOffset.y); 
+	c.scale(1/trailsScale, 1/trailsScale);
+	//trailsContext.fillStyle = 'cyan';
+	//trailsContext.fillRect(0,0,trailsCanvas.width, trailsCanvas.height);
+	 
+	c.drawImage(trailsCanvas, 0,0);
+	c.restore(); 
+		
 	landscape.render(context, view);
 	
 	playerCount = 0; 
@@ -256,17 +281,17 @@ function render() {
 		player.render(context, view.scale); 
 	}
 	
-	c.globalCompositeOperation = 'lighter';
-	c.lineWidth = 1.5/view.scale; 
-	c.strokeStyle = 'rgb(20,50,200)';
+	//c.globalCompositeOperation = 'lighter';
+	//c.lineWidth = 1.5/view.scale; 
+	//c.strokeStyle = 'rgb(20,50,200)';
 		
-	if(playerCount>MAX_PLAYERS) delete players[firstId]; 
+	/*if(playerCount>MAX_PLAYERS) delete players[firstId]; 
 	
 	for (var id in players) {
 		c.beginPath();
 		players[id].addPositionsToPath(c, view); 
 		c.stroke();
-	}		
+	}*/		
 
 
 	
@@ -316,9 +341,18 @@ function updatePlayers() {
 	
 		var player = players[id]; 
 	
-		player.update(); 
+				
+		player.update(trailsContext); 
+		
+			if ((player.smoothedPos.y<-1000) ||
+				(player.smoothedPos.x<-1000) || 
+				(player.smoothedPos.x>3000)) 
+					continue; 
+		
 		if((player.current) &&(!player.paused)) playerCount++; 
 		else continue; 
+	
+	
 		
 		var landY = getLandscapeY(player.smoothedPos.x); 
 		var altitude = landY - player.smoothedPos.y;
@@ -494,6 +528,7 @@ function resizeGame (event) {
 	
 	SCREEN_WIDTH = canvas.width = newWidth; 
 	SCREEN_HEIGHT = canvas.height = newHeight; 
+	//context.webkitImageSmoothingEnabled = false;
 	
 	setZoom(zoomedIn ) 
 	stats.domElement.style.top = (SCREEN_HEIGHT-45)+'px';

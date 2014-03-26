@@ -8,11 +8,11 @@ Player = function() {
 		exploding = false, 
 	
 		counter = 0, 
-		 positions = [],
+		positions = [],
 	//	currentPositionIndex = 0,  
 		// 	rotations = [], 
 		// 	thrustLevels = [],
-		updates = [],
+		
 		currentUpdateIndex = 0, 
 		
 		smoothedPos = this.smoothedPos = new Vector2(), 
@@ -21,7 +21,7 @@ Player = function() {
 		
 		  
 		
-		
+	var updates = this.updates = []; 	
 	this.paused = false; 
 	this.rotation = 0; 
 	this.thrusting = 0;
@@ -44,9 +44,11 @@ Player = function() {
 		
 		pos.reset(110,150); 
 		smoothedPos.copyFrom(pos); 
+		vel.reset(0,0); 
 		thrustBuild = 0; 
 		bouncing = 0; 
 		//this.active = true; 
+		this.lastUpdate = Date.now();
 		exploding = false; 
 		for(var i=0; i<shapePos.length; i++) { 
 			shapePos[i].reset(0,0); 
@@ -79,34 +81,53 @@ Player = function() {
 	// 	
 	// };
 
-	this.update = function() { 
+	this.update = function(c) { 
 	//	console.log(currentPositionIndex, positions.length);
 		// updates should come through every 100 ms
-		if((currentUpdateIndex<updates.length-1)&&(Date.now()-this.lastUpdate>=80)) { 
+		if((currentUpdateIndex<updates.length-1)&&(Date.now()-this.lastUpdate>=100)) { 
 			currentUpdateIndex++; 
 			//console.log(pos, positions[currentPositionIndex], currentPositionIndex); 
 			//do {
 				var update = updates[currentUpdateIndex]; 
-			
+				if(update.type!='update') console.log(update);
 				if(update.type == 'update') { 
-					pos.reset(update.x/100, update.y/100); 
+					
+					this.updatePos(update.x/100, update.y/100,c); 
+					
 					targetRotation = update.a;
-				
+					this.current = true; 
 					thrustBuild = update.t;
 					this.lastUpdate = Date.now();
 					this.paused = false;
 					positions.push(pos.clone()); 
-				} else if((update.type == 'landed')||(update.type == 'crashed')) { 
+					
+				} else if(update.type == 'crash') { 
+					if(update.x) this.updatePos(update.x/100, update.y/100,c); 
 					this.crash();
 					smoothedPos.copyFrom(pos); 
 					vel.reset(0,0);
 					
-				} 
-			
-				//console.log(update);
-				currentUpdateIndex++; 
+				} else if(update.type == 'land') { 
+					if(update.x) this.updatePos(update.x/100, update.y/100,c); 
+					this.land();
+					vel.reset(0,0);	
+					
+				} else if(update.type=='restart') {
+					this.reset(); 
+				} else if(update.type=='over') { 
+					if(update.x) this.updatePos(update.x/100, update.y/100,c);  
+					this.crash();
+					smoothedPos.copyFrom(pos); 
+					vel.reset(0,0);
+				} else if(update.type=='leave') {
+					this.current = false;
+					
+					
+				}
+				
+			//	currentUpdateIndex++; 
 			//} while ((update.type!='update') || (currentUpdateIndex<updates.length-1)); 
-			this.lastUpdate = Date.now();
+			//this.lastUpdate = Date.now();
 		} else if(Date.now()-this.lastUpdate>10000) { 
 			//console.log("paused"); 
 		  this.paused = true; 	
@@ -132,61 +153,97 @@ Player = function() {
 		setThrustVolume(thrustBuild); 
 		
 	};
-	
+	this.updatePos = function(x, y, c) { 
+		c.strokeStyle = 'rgb(20,50,200)';
+		c.lineWidth = 2/trailsScale; 
+		//c.lineCap = 'round'; 
+		c.beginPath(); 
+		pos.reset(x,y); 
+		c.moveTo(x,y); 
+		c.lineTo(x+(2/trailsScale), y); 
+		c.stroke(); 
+		
+	}
 	this.render = function(c, scale) { 
+		if(!this.current) return; 
+		
 		c.globalCompositeOperation = 'lighter'; 
 		
 	
 		// draw the latest data for the ship
 	//	console.log(positions.length);
-		 if((positions.length>0) && (this.current)) { 
-			c.save(); 
+		 if((showCurrentData) && (updates.length>0) && (this.current)) { 
+			var updateindex = updates.length-1; 
+			while((updateindex>=0) && (updates[updateindex].type!='update')) {
+				updateindex--; 
+			}
+			if(updateindex>=0) {
+				var update = updates[updateindex]; 
+			
+				c.save(); 
 					
-				c.translate(positions[positions.length-1].x, positions[positions.length-1].y); 
+				c.translate(update.x/100, update.y/100); 
 				c.scale(this.scale, this.scale); 
 				c.lineWidth = 1/(this.scale * scale); 
 			//	c.rotate(rotations[rotations.length-1] * TO_RADIANS); 
 				c.strokeStyle = 'green'; 
-			
+		
 				c.beginPath(); 
-			
+		
 				//this.renderShapes(c);
 				c.arc(0,0,5,0,Math.PI*2,true); 
-					
+				
 				c.stroke(); 
-			
+		
 				c.restore(); 
-			 }
-		// draw the smoothed data
-		if(this.current) {
-			c.save(); 
-			//console.log(pos.x, pos.y);
-			c.translate(smoothedPos.x, smoothedPos.y); 
-			c.scale(this.scale, this.scale); 
-			c.lineWidth = 1/(this.scale * scale); 
-			c.rotate(this.rotation * TO_RADIANS); 
-		//	c.strokeStyle = this.colour; 
-			if(this.paused) {
-				c.strokeStyle = '#444'; 
-			} else {
-				c.globalCompositeOperation = 'source-over'; 
-				c.strokeStyle = this.colour; 
 			}
-		
-	
-			c.beginPath(); 
-		
-			 this.renderShapes(c);
-		
-			if((thrustBuild>0) &&(!exploding)) {
-				c.lineTo(0,11+(thrustBuild*20*((((counter>>1)%3)*0.2)+1)));
-				c.closePath(); 
-			}	
-		
-			
-			c.stroke(); 
-			c.restore(); 
 		}
+		// draw the smoothed data
+		
+		c.save(); 
+		//console.log(pos.x, pos.y);
+		c.translate(smoothedPos.x, smoothedPos.y); 
+		c.scale(this.scale, this.scale); 
+		c.rotate(this.rotation * TO_RADIANS); 
+		
+		
+		
+		
+		c.beginPath(); 
+	
+		 this.renderShapes(c);
+		c.globalCompositeOperation = 'source-over'; 
+		c.lineWidth = 5/(this.scale * scale); 
+		c.strokeStyle = 'rgba(0,0,0,0.5)';
+		
+		c.stroke(); 
+		
+		c.lineWidth = 1/(this.scale * scale); 
+		
+		
+		
+	//	c.strokeStyle = this.colour; 
+		if(this.paused) {
+			c.globalCompositeOperation = 'lighter'; 
+			c.strokeStyle = '#444'; 
+		} else {
+			c.globalCompositeOperation = 'source-over'; 
+			c.strokeStyle = this.colour; 
+		}
+	
+		c.beginPath(); 
+	
+		this.renderShapes(c);
+	
+		if((thrustBuild>0) &&(!exploding)) {
+			c.lineTo(0,11+(thrustBuild*20*((((counter>>1)%3)*0.2)+1)));
+			c.closePath(); 
+		}	
+	
+		
+		c.stroke(); 
+		c.restore(); 
+	
 		
 	
 		

@@ -30,8 +30,8 @@ boolean calibrated = false;
 boolean errorEndStopHit = false; 
 boolean errorMotorDrive = false; 
 boolean penIsUp = true; 
-int penMoveDownTime = 500; 
-int penMoveUpTime = 1000; 
+int penMoveDownTime = 300; 
+int penMoveUpTime = 300; 
 
 boolean justCalibrated = false; 
 

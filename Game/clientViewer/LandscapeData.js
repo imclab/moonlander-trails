@@ -9,7 +9,8 @@ function Landscape(){
 		currentCombi = 0, 
 		zoneInfos = [], 
 		landscale = 1.5, 
-		rightedge;
+		rightedge, 
+		flickerProgress = 0;
 		
 	setupData(); 
 
@@ -117,8 +118,19 @@ function Landscape(){
 	
 		}
 			
+		var flickerAmount = 0.01;//Math.sin(counter*0.8)*0.5 + 0.5; 
+		
+		if(flickerAmount>0.5) { 
+					c.lineWidth = 2/view.scale; 
+					var channel = Math.round((flickerAmount-0.5)*(100)); 
+				  	c.strokeStyle = "rgb("+channel+","+channel+","+channel+")";
+					c.stroke(); 
+					
+				}	
 		c.strokeStyle = 'white'; 
-		c.lineWidth = 1/view.scale; 
+		
+		
+		c.lineWidth = 1/view.scale * (flickerAmount*0.2+0.8); 
 		c.lineJoin = 'bevel';
 		c.stroke();	
 		
