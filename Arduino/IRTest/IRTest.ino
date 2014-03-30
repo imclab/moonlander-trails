@@ -7,9 +7,10 @@
  * JVC and Panasonic protocol added by Kristian Lauszus (Thanks to zenwheel and other people at the original blog post)
  */
 
-#include <IRremote.h>
+#include <IRremote2.h>
+#define DEBUG
 
-int RECV_PIN = 49;
+int RECV_PIN = 50;
 
 IRrecv irrecv(RECV_PIN);
 
@@ -18,8 +19,18 @@ decode_results results;
 void setup()
 {
   Serial.begin(9600);
+  
+  pinMode(46,OUTPUT);   
+  pinMode(48,OUTPUT); 
+  digitalWrite(48, LOW); // ground pin
+  digitalWrite(46, HIGH); 
+  
+  
   irrecv.enableIRIn(); // Start the receiver
+  irrecv.blink13(true);
   Serial.println('hi'); 
+
+  
 }
 
 // Dumps out the decode_results structure.
@@ -56,6 +67,7 @@ void dump(decode_results *results) {
   Serial.print(" (");
   Serial.print(results->bits, DEC);
   Serial.println(" bits)");
+  /*
   Serial.print("Raw (");
   Serial.print(count, DEC);
   Serial.print("): ");
@@ -69,7 +81,7 @@ void dump(decode_results *results) {
     }
     Serial.print(" ");
   }
-  Serial.println("");
+  Serial.println("");*/
 }
 
 
@@ -79,4 +91,6 @@ void loop() {
     dump(&results);
     irrecv.resume(); // Receive the next value
   }
+  
+  
 }
