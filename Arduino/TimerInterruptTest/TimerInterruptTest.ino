@@ -22,7 +22,7 @@ void startTimer(Tc *tc, uint32_t channel, IRQn_Type irq, uint32_t frequency) {
 
 void setup(){
         pinMode(13,OUTPUT);
-        startTimer(TC1, 0, TC3_IRQn, 4); //TC1 channel 0, the IRQ for that channel and the desired frequency
+        startTimer(TC1, 0, TC3_IRQn, 10000); //TC1 channel 0, the IRQ for that channel and the desired frequency
 }
 
 void loop(){
