@@ -18,7 +18,7 @@ println(ports);
   for (int i = 0; i< ports.length; i++) { 
 
     if (ports[i].indexOf("tty.usb")!=-1) { 
-      serial = new Serial(this, ports[i], 38400); 
+      serial = new Serial(this, ports[i], 115200); 
       println("joining port : " + ports[i] ); 
       serialCreated = true; 
 
@@ -78,6 +78,7 @@ void processMessage () {
 
   if(beginsWith(serialMessage, "*")) { 
     lastHeartbeat = millis(); 
+    println("HEARTBEAT");
   } else { 
      serialMessages.add(serialMessage); 
   }

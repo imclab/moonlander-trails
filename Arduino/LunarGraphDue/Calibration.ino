@@ -5,6 +5,8 @@ void updateCalibration() {
   // move them both down until they are
   
   
+	//calibrationProgessA and B are states
+	
   if((calibrationProgressA == 0) || (calibrationProgressB == 0)) {
     if((calibrationProgressA == 0) && (calibrationButtonA.isOn())) {
       motorA.setSpeed(3000); 
@@ -89,6 +91,28 @@ void updateCalibration() {
   }
 
 
+#ifdef EMULATION_MODE
+	 motorPosA = calibrationLengthA;
+      motorA.accelStepper.setCurrentPosition(motorPosA);
+
+      Serial.print("MotorA calibration point : "); 
+      Serial.println(motorA.accelStepper.currentPosition()); 
+    
+
+
+      motorA.stop(); 
+      calibrationProgressA = 3;
+
+
+      motorPosB = calibrationLengthB;
+      motorB.accelStepper.setCurrentPosition(motorPosB);
+
+      Serial.print("MotorB calibration point : "); 
+      Serial.println(motorB.accelStepper.currentPosition()); 
+
+      motorB.stop(); 
+      calibrationProgressB = 3; 
+#endif
 
 }
 

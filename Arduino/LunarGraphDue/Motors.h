@@ -3,34 +3,36 @@ DynamicMotor motorA;
 DynamicMotor motorB; 
 
 
-float stepsPerRev = 2000.0f * 36.0f / 19.0f; 
+volatile float stepsPerRev = 2000.0f * 36.0f / 19.0f; 
 // mm : 
-float diameter = 32.0f + 0.6f;
-float circumference = diameter * PI; 
-float stepsPerMil = stepsPerRev/circumference; 
+volatile float diameter = 32.0f + 0.6f;
+volatile float circumference = diameter * PI; 
+volatile float stepsPerMil = stepsPerRev/circumference; 
 
 // dimensions in steps 
-float machineWidth = 2675.0f * stepsPerMil;  
-float pageTop = 350.0f * stepsPerMil; 
-float sideMargin = 450.0f * stepsPerMil; 
-float pageWidth = machineWidth - (sideMargin*2); 
-float pageHeight = pageWidth*0.70; 
+volatile float machineWidth = 2675.0f * stepsPerMil;  
+volatile float pageTop = 350.0f * stepsPerMil; 
+volatile float sideMargin = 450.0f * stepsPerMil; 
+volatile float pageWidth = machineWidth - (sideMargin*2); 
+volatile float pageHeight = pageWidth*0.70; 
 
-float drawSpeed = 280; 
+// draw speed is the number of steps per something? 
+#ifdef EMULATION_MODE 
+volatile float drawSpeed = 280; 
+#else 
+volatile float drawSpeed = 200;// 280; 
+#endif
 
 // caibration point only for actual machine 
 
-long calibrationLengthA = round(1565.0f * stepsPerMil); 
-long calibrationLengthB = round(1545.0f * stepsPerMil); 
+volatile long calibrationLengthA = round(1565.0f * stepsPerMil); 
+volatile long calibrationLengthB = round(1545.0f * stepsPerMil); 
 
-double xPos = pageWidth/2; 
-double yPos = 0; 
+volatile double xPos = pageWidth/2; 
+volatile double yPos = 0; 
 
-long motorPosA = round (sqrt( sq(machineWidth/2) + sq(pageTop))); 
-long motorPosB = round (sqrt( sq(machineWidth/2) + sq(pageTop)));
-
-
-
+volatile long motorPosA = round (sqrt( sq(machineWidth/2) + sq(pageTop))); 
+volatile long motorPosB = round (sqrt( sq(machineWidth/2) + sq(pageTop)));
 
 
 
@@ -91,6 +93,7 @@ void initMotors() {
 
   // reverse motorB so that it turns the same way to increase the length
   motorB.accelStepper.setPinsInverted(true, false); 
+
 
 
 

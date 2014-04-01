@@ -1,5 +1,5 @@
 	var wslocal = null;
-	var host = "sebair.local";
+	var host = "localhost";
 	var port = 8086;
 	var socket = "p5websocket";
 	//console.log('hello'); 

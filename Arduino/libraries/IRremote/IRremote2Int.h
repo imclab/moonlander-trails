@@ -72,8 +72,8 @@
   #define IR_USE_PWM6   // tx = pin 7
   //#define IR_USE_PWM7   // tx = pin 6
   
-  #define IR_USE_TC3    // Use timer clock 3.
-  //#define IR_USE_TC4    // Use timer clock 4.
+  //#define IR_USE_TC3    // Use timer clock 3.
+  #define IR_USE_TC4    // Use timer clock 4.
   //#define IR_USE_TC5    // Use timer clock 5.
   
   #define IR_USE_SAM // Used to correct code where needed to be compatible with the Due.

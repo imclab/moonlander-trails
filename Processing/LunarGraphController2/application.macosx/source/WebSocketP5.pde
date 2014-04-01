@@ -49,48 +49,47 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
       String type = msgJson.getString("type");
       //println(type+" "+ (type == "update"));
       readablemsg+=type+" "; 
-      if((type.equals("land")) || (type.equals("crash")) || (type.equals("over"))) { 
-        
-        commands.add(new Command(COMMAND_FINISH, 0,0)); 
-        
-        if(homePosition!=null) 
-          moveToXYPos(homePosition); 
-      
+      if ((type.equals("land")) || (type.equals("crash")) || (type.equals("over"))) { 
+
+        commands.add(new Command(COMMAND_FINISH, 0, 0)); 
+
+        if (homePosition!=null) 
+          moveToXYPos(homePosition);
       }
-      else if (type.equals("restart"))  { 
+      else if (type.equals("restart")) { 
         move = true;
-        commands.add(new Command(COMMAND_RESTART, 0,0));
+        commands.add(new Command(COMMAND_RESTART, 0, 0));
         messageRestart = true; 
-        firstRestartReceived = true; 
+        firstRestartReceived = true;
       } 
       else if (type.equals("update")) { 
-      
-        if(firstRestartReceived) { 
-          
-         
+
+        if (firstRestartReceived) { 
+
+
           PVector p1 = new PVector(msgJson.getInt("x"), msgJson.getInt("y")); 
 
           p1.div(100);  // messages from the clients are multiplied by 100 to avoid floating points. 
-          
-          
+
+
           readablemsg+=": "+p1.x+", "+p1.y; 
           receivePosition = p1.get(); 
           p1 = convertDataToLunarGraph(p1); 
-          
-          if(messageRestart) {
+
+          if (messageRestart) {
             homePosition = p1.get(); 
-            messageRestart = false; 
+            messageRestart = false;
           }
-          
-          if((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
-            move = true; 
-           
-          } else if (move) {
+
+          if ((p1.x<0) || (p1.x>pageWidth) || (p1.y<0) || (p1.y>pageHeight) ) {
+            move = true;
+          } 
+          else if (move) {
             moveToXYPos(p1);
             move = false;
           } 
           else {  
-            lineToXYPos(p1,true); // add true for non-smooth drawing. 
+            lineToXYPos(p1, true); // add true for non-smooth drawing.
           }
         }
       }
@@ -104,41 +103,41 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
 void drawLandscape() { 
   println("drawing landscape..."); 
 
-//  float gap = pageWidth/20;
-//  float lineheight = pageHeight/4; 
-//  
-//  for (float x = 0; x<pageWidth; x+=gap) { 
-//    lineToXYPos(x, lineheight*0.1); 
-//    lineToXYPos(x, lineheight); 
-//    lineToXYPos(x+(gap/2), lineheight); 
-//    lineToXYPos(x+(gap/2), lineheight*0.1); 
-//    
-//    
-//    
-//    
-//  }
+  //  float gap = pageWidth/20;
+  //  float lineheight = pageHeight/4; 
+  //  
+  //  for (float x = 0; x<pageWidth; x+=gap) { 
+  //    lineToXYPos(x, lineheight*0.1); 
+  //    lineToXYPos(x, lineheight); 
+  //    lineToXYPos(x+(gap/2), lineheight); 
+  //    lineToXYPos(x+(gap/2), lineheight*0.1); 
+  //    
+  //    
+  //    
+  //    
+  //  }
 
   // draw corners
-//  int cornerSize = round(3 * stepsPerMil); 
-// 
-//  moveToXYPos(0, cornerSize);
-//  lineToXYPos(0, 0);
-//  lineToXYPos(cornerSize, 0);
-//
-//  moveToXYPos(pageWidth-cornerSize, 0);
-//  lineToXYPos(pageWidth, 0);
-//  lineToXYPos(pageWidth, cornerSize);
-//  
-//  moveToXYPos(0, pageHeight - cornerSize);
-//  lineToXYPos(0, pageHeight);
-//  lineToXYPos(cornerSize, pageHeight);
-//
-//  moveToXYPos(pageWidth-cornerSize, pageHeight);
-//  lineToXYPos(pageWidth, pageHeight);
-//  lineToXYPos(pageWidth, pageHeight - cornerSize);
+  //  int cornerSize = round(3 * stepsPerMil); 
+  // 
+  //  moveToXYPos(0, cornerSize);
+  //  lineToXYPos(0, 0);
+  //  lineToXYPos(cornerSize, 0);
+  //
+  //  moveToXYPos(pageWidth-cornerSize, 0);
+  //  lineToXYPos(pageWidth, 0);
+  //  lineToXYPos(pageWidth, cornerSize);
+  //  
+  //  moveToXYPos(0, pageHeight - cornerSize);
+  //  lineToXYPos(0, pageHeight);
+  //  lineToXYPos(cornerSize, pageHeight);
+  //
+  //  moveToXYPos(pageWidth-cornerSize, pageHeight);
+  //  lineToXYPos(pageWidth, pageHeight);
+  //  lineToXYPos(pageWidth, pageHeight - cornerSize);
 
   PVector lastPos = new PVector(); 
-  
+
   for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
 
     for (int i = 0; i<landscapePoints.size(); i++) { 
@@ -156,27 +155,25 @@ void drawLandscape() {
         lineToXYPos(p1);
         lineToXYPos(lastPos.x, lastPos.y); 
         lineToXYPos(p1.x, p1.y); 
-        //lineToXYPos(p1); 
+        //lineToXYPos(p1);
       }
-      lastPos = p1.get(); 
+      lastPos = p1.get();
     }
   }
 }
 
 void drawRectangle() { 
-  
- 
+
+
   moveToXYPos(0, 0);
   lineToXYPos(pageWidth, 0);
-  
- 
-  lineToXYPos(pageWidth, pageHeight);
-  
-   lineToXYPos(0, pageHeight);
 
-  lineToXYPos(0, 0);  
-  
-  
+
+  lineToXYPos(pageWidth, pageHeight);
+
+  lineToXYPos(0, pageHeight);
+
+  lineToXYPos(0, 0);
 }
 
 

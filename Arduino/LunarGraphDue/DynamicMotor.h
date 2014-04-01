@@ -22,7 +22,7 @@ public :
     errorPin = errpin; 
     brakePin = brakepin; 
     pinMode(brakePin, OUTPUT); 
-    
+    pinMode(errorPin, INPUT); 
     turnBrakeOn(); 
 
     reset(); 
@@ -32,7 +32,7 @@ public :
   // TODO - make a solenoid object! 
 
   void turnBrakeOff() {
-    analogWrite(brakePin, 100);  
+    analogWrite(brakePin, 64);  
   } 
   void turnBrakeOn() { 
     analogWrite(brakePin, 0);   
@@ -63,7 +63,16 @@ public :
       
         if(digitalRead(errorPin)==LOW) resetPinErrorCount++; 
         else resetPinErrorCount = 0; 
-
+		
+		/*Serial.print("pin : " ); 
+		Serial.print(errorPin);
+		Serial.print(" pin read : "); 
+		Serial.print(digitalRead(errorPin)); 
+		Serial.print(" reset count : ");
+		Serial.print(resetPinErrorCount); 
+		Serial.print(" state : "); 
+		Serial.println(errorState); */
+		
         if(resetPinErrorCount>2) { 
           // if it's been low for 2 "frames" then we need to go into an error state
           errorState = true;  
@@ -106,6 +115,7 @@ public :
         turnBrakeOff(); 
       }
 
+      
       accelStepper.setSpeed(currentSpeed); 
       accelStepper.runSpeed(); 
     }
@@ -173,7 +183,7 @@ public :
 
 
   AccelStepper accelStepper; 
-//  AF_Stepper* afStepper; 
+
 private:
 
 

@@ -1,40 +1,5 @@
-
-
-//#define USE_TEST_MACHINE
-
-#ifdef USE_TEST_MACHINE
-
-// STEPPER MOTOR VERSION ------------------------------------
-//
-//int const A_JOG_UP_PIN   = A0; 
-//int const A_JOG_DOWN_PIN = A1; 
-//int const B_JOG_UP_PIN   = A2; 
-//int const B_JOG_DOWN_PIN = A3; 
-//
-//int const RESET_BUTTON_PIN = A5; 
-//
-//// NOT CONNECTED IN THIS SETUP 
-//
-//int const A_END_STOP_MIN_PIN = 4; // pin 21
-//int const A_END_STOP_MAX_PIN = 2; // pin 20
-//int const B_END_STOP_MIN_PIN = 2; // pin 19
-//int const B_END_STOP_MAX_PIN = 2; // pin 18
-//
-//int const A_CALIBRATION_PIN = 2;
-//int const B_CALIBRATION_PIN = 2;
-//
-//boolean const CALIBRATABLE = false; 
-
-#else
-
-// DC MOTOR VERSION ------------------------------------------
-
-//int const A_JOG_UP_PIN      = A1; 
-//int const A_JOG_DOWN_PIN    = A2; 
-//int const B_JOG_UP_PIN      = 28; 
-//int const B_JOG_DOWN_PIN    = 30; 
-//int const RESET_BUTTON_PIN  = 32;
-//int const SPARE_BUTTON_PIN  = A0;
+//#define EMULATION_MODE
+#define IR_ENABLED
 
 int const A_STEP_PIN        = 34; 
 int const A_DIR_PIN         = 36; 
@@ -42,7 +7,6 @@ int const A_ERROR_PIN       = 24;
 int const B_STEP_PIN        = 44; 
 int const B_DIR_PIN         = 46; 
 int const B_ERROR_PIN       = 26; 
-
 
 int const A_END_STOP_MIN_PIN = 28; 
 int const A_END_STOP_MAX_PIN = 32; 
@@ -54,16 +18,13 @@ int const BOTH_RESET_PIN = 48;
 int const A_CALIBRATION_PIN = 30;
 int const B_CALIBRATION_PIN = 40;
 
-
 boolean const CALIBRATABLE = true; 
 
 int const PEN_DROP_PIN = 2; // or 42? 
 int const A_BRAKE_PIN = 3;
 int const B_BRAKE_PIN = 4;
 
-#endif
-
-
+int const IR_PIN = 50; 
 
 int const STATE_WAITING = 0; 
 int const STATE_ERROR = 1; 
@@ -76,3 +37,5 @@ String const stateStrings[] = {"Waiting", "Error", "Resetting", "Calibrating", "
 int const COMMAND_MOVE = 0; 
 int const COMMAND_DRAW = 1; 
 int const COMMAND_DRAW_DIRECT = 2; 
+
+String const commandStrings[] = {"MOVE", "DRAW", "DRDI"}; 
