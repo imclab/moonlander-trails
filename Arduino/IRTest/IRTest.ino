@@ -22,13 +22,14 @@ decode_results results;
 void setup()
 {
   Serial.begin(115200);
+  Serial.println("Ready!");
   
-  /*
-  pinMode(47,OUTPUT);   
-  pinMode(49,OUTPUT); 
-  digitalWrite(47, LOW); // ground pin
-  digitalWrite(49, HIGH); 
-  */
+
+  pinMode(47, OUTPUT);
+  pinMode(49, OUTPUT);
+  digitalWrite(47, HIGH);
+  digitalWrite(49, LOW); // ground pin
+  
   
   irrecv.enableIRIn(); // Start the receiver
   irrecv.blink13(true);
@@ -88,14 +89,16 @@ void loop() {
     if(results.value != 0xffffffff) { 
       // if it's an apple remote, remove the device ID 
       if(results.decode_type == NEC) { 
-        results.value = results.value & 0x0000f000;
+        //results.value = results.value & 0x0000f000;
       }
       if(currentIRButton != results.value) { 
     //    Serial.print("old "); 
     //   Serial.println(currentIRButton, HEX);
         currentIRButton = results.value; 
         Serial.print("PRESSED : "); 
+        
         Serial.println(currentIRButton, HEX); 
+        dump(&results);
       }    
     }
     lastIRReceived = time; 

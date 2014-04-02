@@ -1,4 +1,7 @@
-//#include <AFMotor.h>
+// NOTE - I've hacked TC_FREQUENCY in 
+// https://github.com/arduino/Arduino/blob/ide-1.5.x/hardware/arduino/sam/variants/arduino_due_x/variant.h#L182 to make
+// the solenoids less ringy. Changed to 15000
+
 
 #include <AccelStepper.h>
 
@@ -26,12 +29,13 @@ int numCommands = 0;
 int currentCommand = 0;
 
 
-float maxJogSpeed = 10000.0f; //3200.0f;
+float maxJogSpeed = 3200.0f;
 
 boolean calibrated = false;
 boolean errorEndStopHit = false;
 boolean errorMotorDrive = false;
 boolean penIsUp = true;
+unsigned long penDownStartTime = 0;
 
 // time (in mils?) to wait before assuming the pen is down.
 int penMoveDownTime = 300;
@@ -78,6 +82,7 @@ boolean leftDownPressed = false;
 boolean rightUpPressed = false;
 boolean rightDownPressed = false;
 boolean resetPressed = false;
+boolean togglePenPressed = false;
 
 
 
@@ -87,9 +92,9 @@ volatile unsigned long ticks; // 10ths of a mil
 void TC3_Handler()
 {
   TC_GetStatus(TC1, 0);
-  ticks ++; 
+  ticks ++;
   //digitalWrite(13, l = !l);
-  //if(state == STATE_DRAWING) updateDrawing(); 
+  //if(state == STATE_DRAWING) updateDrawing();
 }
 
 void startTimer(Tc *tc, uint32_t channel, IRQn_Type irq, uint32_t frequency) {
@@ -168,6 +173,8 @@ void setup()  {
   //digitalWrite(19,LOW);
 
   sendReady();
+  
+ // analogWriteFrequency(A_BRAKE_PIN,  2);
 
 }
 
@@ -180,12 +187,43 @@ void loop() {
 
   // i suspect this could  be taking a bit of time... the bit that parses the data
   checkIncoming();
-  checkIR();
+  //checkIR();
+  if (checkIR())  {
+    // if checkIR returns true then it means that a button has come on or off.
+    if (togglePenPressed) {
+
+      if (!penIsUp) liftPenUp();
+      else pushPenDown();
+
+    }
+  }
+
+
 
   if (timerManager.do10msUpdate) {
     updateButtons();
     checkEndStops();
     checkMotorErrors();
+
+    if (!penIsUp) {
+      int timeSincePenDown = millis() - penDownStartTime;
+      // full strength for 500 mils, then ease in-out to low strength after 2 seconds
+      float strength;
+
+      float minPower = 0.25;
+      float maxPower = 0.9;
+      // ramp up to full strength for the penMoveDownTime/2, then ease in-out to low strength after 2 seconds
+      if (timeSincePenDown < penMoveDownTime) {
+        strength = mapFloat((float)timeSincePenDown, 0.0f, (float)penMoveDownTime, 0.0, maxPower);
+        //Serial.println(strength);
+        analogWrite(PEN_DROP_PIN, int(strength * 255.0f));
+      } else if (timeSincePenDown<4000){
+        strength = constrain(mapEaseInOut(timeSincePenDown, 2000, 4000, maxPower, minPower), minPower, maxPower);
+        analogWrite(PEN_DROP_PIN, int(strength * 255.0f));
+        //Serial.println(strength);
+      }
+            
+    }
 
     if ((state != STATE_RESETTING) & (errorEndStopHit || errorMotorDrive)) {
       //if((state!=STATE_RESETTING) &(errorMotorDrive)) {
@@ -235,8 +273,9 @@ void loop() {
     }
 
     if (errorcount == 0) {
-      if (CALIBRATABLE) changeState(STATE_CALIBRATING);
-      else changeState(STATE_WAITING);
+      //if (CALIBRATABLE) changeState(STATE_CALIBRATING);
+      //else changeState(STATE_WAITING);
+      changeState(STATE_WAITING);
 
     }
   }
@@ -267,7 +306,8 @@ void loop() {
       changeState(STATE_CALIBRATING);
     }
     if (timerManager.do10msUpdate) {
-      if (millis() - stateChangeTime > 5000) liftPenUp();
+      // TODO - stop pen lifting!
+      //if (millis() - stateChangeTime > 5000) liftPenUp();
 
       updateJogButtons();
     }
@@ -279,7 +319,7 @@ void loop() {
 
   }
   else if (state == STATE_DRAWING) {
-    
+
     if (updateDrawing()) {
 
       if (numCommands > 0) nextCommand();
@@ -288,7 +328,7 @@ void loop() {
         sendReady();
       }
     }
-    
+
     /*
     if (progress >= 1) {
 
@@ -299,7 +339,7 @@ void loop() {
       }
 
     }*/
-    
+
 
   }
 
@@ -310,7 +350,7 @@ void loop() {
 
   if (timerManager.do10msUpdate) {
 
-    if (millis() - lastHeartbeatSent > 200) {
+    if (millis() - lastHeartbeatSent > 5000) {
 
       lastHeartbeatSent = millis();
       sendReady();
@@ -361,11 +401,11 @@ boolean updateDrawing() {
 
   // This is the function that handles the drawing of a line.
 
-  unsigned long microsecs = ticks * 100; 
+  unsigned long microsecs = ticks * 100;
   //if (startTime > micros()) return false;
-  if(startTime > microsecs) return false;
+  if (startTime > microsecs) return false;
   boolean finished = false;
- // progress = (float)(micros() - startTime) / (float)duration;
+  // progress = (float)(micros() - startTime) / (float)duration;
   progress = (float)(microsecs - startTime) / (float)duration;
 
   if (progress < 0) progress = 0;
@@ -525,7 +565,8 @@ boolean liftPenUp() {
 
 boolean pushPenDown() {
   if (penIsUp) {
-    analogWrite(PEN_DROP_PIN, 80);
+    //analogWrite(PEN_DROP_PIN, 80);
+    penDownStartTime = millis();
     penIsUp = false;
     return true;
   }
@@ -744,6 +785,12 @@ void updateJogButtons() {
 
 }
 
+
+float mapFloat(float v, float min1, float max1, float min2, float max2) {
+  if (min1 == max1) return v;
+  return ((v - min1) / (max1 - min1) * (max2 - min2)) + min2;
+
+}
 
 
 
