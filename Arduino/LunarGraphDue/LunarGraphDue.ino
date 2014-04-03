@@ -1,7 +1,7 @@
 // NOTE - I've hacked TC_FREQUENCY in 
 // https://github.com/arduino/Arduino/blob/ide-1.5.x/hardware/arduino/sam/variants/arduino_due_x/variant.h#L182 to make
 // the solenoids less ringy. Changed to 15000
-
+//#define EMULATION_MODE // USE WITH CAUTION!!!!!!!
 
 #include <AccelStepper.h>
 
@@ -160,9 +160,9 @@ void setup()  {
 
 #endif
   // auto calibrate on start
-  //  if((!calibrated) && (CALIBRATABLE)) {
-  //    changeState(STATE_CALIBRATING);
-  //  }
+  //if((!calibrated) && (CALIBRATABLE)) {
+  //  changeState(STATE_CALIBRATING);
+  //}
 
   pinMode(PEN_DROP_PIN, OUTPUT);
   digitalWrite(PEN_DROP_PIN, LOW);
@@ -171,11 +171,12 @@ void setup()  {
   // WHAT IS THIS?
   //pinMode(19, OUTPUT);
   //digitalWrite(19,LOW);
-
+  Serial.print("motors : "); 
+  Serial.print(motorPosA); 
+  Serial.print(" " ); 
+  Serial.println(motorPosB); 
   sendReady();
-  
- // analogWriteFrequency(A_BRAKE_PIN,  2);
-
+ 
 }
 
 //-------------------------------------------------LOOP -----------------------------------------
@@ -252,8 +253,11 @@ void loop() {
 
     if (resetPressed) {
       changeState(STATE_RESETTING);
-      if (motorA.errorState) motorA.reset();
-      if (motorB.errorState) motorB.reset();
+      if (motorError) {
+        resetMotors(); 
+        autoResetCount = 0; 
+      }
+     // if  motorB.reset();
     }
 
   }
@@ -273,9 +277,9 @@ void loop() {
     }
 
     if (errorcount == 0) {
-      //if (CALIBRATABLE) changeState(STATE_CALIBRATING);
-      //else changeState(STATE_WAITING);
-      changeState(STATE_WAITING);
+      if (CALIBRATABLE) changeState(STATE_CALIBRATING);
+      else changeState(STATE_WAITING);
+      //changeState(STATE_WAITING);
 
     }
   }
@@ -343,7 +347,7 @@ void loop() {
 
   }
 
-  updateMotors();
+  updateMotors(timerManager.do33msUpdate);
 
   //updateCartesianByLengths();
   // TODO : FIGURE OUT HOW TO STOP THIS UPDATING IF NOTHING IS HAPPENING!
@@ -455,11 +459,6 @@ boolean updateDrawing() {
   return finished;
   //Serial.println(progress);
 
-}
-
-void updateMotors() {
-  motorA.update(timerManager.do33msUpdate);
-  motorB.update(timerManager.do33msUpdate);
 }
 
 
@@ -607,7 +606,7 @@ void checkEndStops() {
 
 void checkMotorErrors() {
 
-  if ((motorA.errorState) || (motorB.errorState)) {
+  if (motorError) { // (motorA.errorState) || (motorB.errorState)) {
     errorMotorDrive = true;
     //changeState(STATE_ERROR);
   }
@@ -785,12 +784,6 @@ void updateJogButtons() {
 
 }
 
-
-float mapFloat(float v, float min1, float max1, float min2, float max2) {
-  if (min1 == max1) return v;
-  return ((v - min1) / (max1 - min1) * (max2 - min2)) + min2;
-
-}
 
 
 

@@ -1,4 +1,4 @@
-//#define EMULATION_MODE // USE WITH CAUTION!!!!!!!
+
 #define IR_ENABLED
 
 int const A_STEP_PIN        = 34; 
