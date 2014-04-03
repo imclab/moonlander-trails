@@ -10,7 +10,7 @@ volatile float circumference = diameter * PI;
 volatile float stepsPerMil = stepsPerRev / circumference;
 
 // dimensions in steps
-volatile float machineWidth = 2675.0f * stepsPerMil;
+volatile float machineWidth = 2740.0f * stepsPerMil; // 2675.0f * stepsPerMil;
 volatile float pageTop = 350.0f * stepsPerMil;
 volatile float sideMargin = 450.0f * stepsPerMil;
 volatile float pageWidth = machineWidth - (sideMargin * 2);
@@ -37,8 +37,8 @@ volatile float drawSpeed = 280;// 280;
 
 // caibration point only for actual machine
 
-volatile long calibrationLengthA = round(1835.0f * stepsPerMil); //round(1565.0f * stepsPerMil);
-volatile long calibrationLengthB = round(1835.0f * stepsPerMil); //round(1545.0f * stepsPerMil);
+volatile long calibrationLengthA = round(1560.0f * stepsPerMil); //round(1565.0f * stepsPerMil);
+volatile long calibrationLengthB = round(1530.0f * stepsPerMil); //round(1545.0f * stepsPerMil);
 
 volatile double xPos = 0;
 volatile double yPos = 0;

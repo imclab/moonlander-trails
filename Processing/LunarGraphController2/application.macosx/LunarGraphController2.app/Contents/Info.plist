@@ -33,7 +33,7 @@
     <!-- End of the set that can be customized -->
 
     <key>JVMRuntime</key>
-    <string>jdk1.7.0_45.jdk</string>
+    <string>jdk1.7.0_51.jdk</string>
 
     <key>JVMMainClassName</key>
     <string>LunarGraphController2</string>
@@ -56,11 +56,13 @@
     </dict>
 
     <key>LSUIPresentationMode</key>
-    <integer>0</integer>
+    <integer>4</integer>
 
     <key>JVMOptions</key>
     <array>
-      
+            <string>-Xms64m</string>
+      <string>-Xmx1024m</string>
+
       <string>-Xdock:icon=Contents/Resources/sketch.icns</string>
       <string>-Dapple.laf.useScreenMenuBar=true</string>
       <string>-Dcom.apple.macos.use-file-dialog-packages=true</string>

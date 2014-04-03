@@ -107,7 +107,7 @@ PFont titleFont;
 void setup() { 
   //size(displayWidth, displayHeight);
 
-  viewScale = 1;//(float)displayWidth/viewWidth;
+  viewScale = 1;// 0.5;//(float)displayWidth/viewWidth;
   size(round(viewWidth*viewScale), round(viewHeight*viewScale), P3D);
 
   //  if (frame != null) {

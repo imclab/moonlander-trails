@@ -2,6 +2,8 @@
 
 WebSocketP5 socket;
 int port = 8087; 
+//int port = 8090; 
+
 
 boolean messageRestart = false;  // so we know where the home position is
 boolean firstRestartReceived = false; // so we don't draw anyone half way through a game
@@ -14,32 +16,7 @@ boolean initWebSocket() {
 }
 
 void websocketOnMessage(WebSocketConnection con, String msg) {
-  //println(msg);
 
-  //  if (beginsWith(msg, "landscapeend")) { 
-  //    drawLandscape();
-  //  } 
-  //  else if (beginsWith(msg, "landscape")) { 
-  //    PVector p = new PVector(0, 0); 
-  //    String numbers[] = getStringAfterChar(msg, ":").split(","); 
-  //
-  //    int index = int(numbers[0]); 
-  //
-  //    p.x = float(numbers[1]); 
-  //    p.y = float(numbers[2]); 
-  //
-  //    println(p);
-  //    //p.mult(0.5f);
-  //    if (landscapePoints.size()<=index) {
-  //      landscapePoints.add(p);
-  //    } 
-  //    else {
-  //      landscapePoints.set(index, p);
-  //    } 
-  //    //p.y-=100;
-  //    //p.mult(0.8);
-  //  } 
-  //  else 
   if (beginsWith(msg, "{")) { 
 
     try {
@@ -48,6 +25,7 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
       JSONObject msgJson = new org.json.JSONObject(msg);
       String type = msgJson.getString("type");
       //println(type+" "+ (type == "update"));
+      println(msg);
       readablemsg+=type+" "; 
       if ((type.equals("land")) || (type.equals("crash")) || (type.equals("over"))) { 
 
@@ -59,6 +37,7 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
       else if (type.equals("restart")) { 
         move = true;
         commands.add(new Command(COMMAND_RESTART, 0, 0));
+        
         messageRestart = true; 
         firstRestartReceived = true;
       } 
@@ -96,7 +75,8 @@ void websocketOnMessage(WebSocketConnection con, String msg) {
       webSocketMessages.add(readablemsg);
     }
     catch(JSONException e) {
-    }
+   }
+
   }
 }
 

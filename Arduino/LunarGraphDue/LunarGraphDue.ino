@@ -211,7 +211,7 @@ void loop() {
       // full strength for 500 mils, then ease in-out to low strength after 2 seconds
       float strength;
 
-      float minPower = 0.25;
+      float minPower = 0.4;
       float maxPower = 0.9;
       // ramp up to full strength for the penMoveDownTime/2, then ease in-out to low strength after 2 seconds
       if (timeSincePenDown < penMoveDownTime) {
