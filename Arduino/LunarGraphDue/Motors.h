@@ -78,8 +78,13 @@ void updateMotors(bool do33msUpdate) {
 
   if (do33msUpdate) {
     if (motorsResetting) {
-      if(millis() - resetStartTime > 2200) {
+      if(millis() - resetStartTime > 3000) {
+         motorA.setSpeedDirect(0);
+        motorB.setSpeedDirect(0); 
         finishResetting();
+      } else if(millis() - resetStartTime > 2200) {
+        motorA.setSpeedDirect(-100);
+        motorB.setSpeedDirect(-100); 
       }
       else if (millis() - resetStartTime > 2000) {
         digitalWrite(BOTH_RESET_PIN, LOW); 

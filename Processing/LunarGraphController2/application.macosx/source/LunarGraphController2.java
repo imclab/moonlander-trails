@@ -153,7 +153,7 @@ public void setup() {
   initLandscape(); 
 
 
-  if (!initSerial()) exit(); 
+  if (!initSerial()); // do nothing exit(); 
   initWebSocket();  
 
 

@@ -10,7 +10,7 @@ class DynamicMotor {
       errorState = true;
       brakeSolenoidOn = false;
       brakeSolenoidOnTime = 0;
-      //restartCountdown = 0;
+      //rewindCountdown = 0;
     }
 
     void initGecko(int steppin, int dirpin, int errpin, int brakepin) {
@@ -23,7 +23,7 @@ class DynamicMotor {
       pinMode(brakePin, OUTPUT);
       pinMode(errorPin, INPUT);
 
-      brakeSolenoidOn = false;
+      brakeSolenoidOn = true; // reset so that releasing the brake solenoid works
       brakeSolenoidOnTime = 0;
       turnBrakeSolenoidOff();
       errorState = false;
@@ -140,9 +140,11 @@ class DynamicMotor {
 
 
         }
-       
-
+        // assumes rewind countdown only happens after an error.
+        
       }
+
+
       accelStepper.setSpeed(currentSpeed);
       accelStepper.runSpeed();
     }
@@ -184,10 +186,11 @@ class DynamicMotor {
     */
     void finishResetting() {
 
-      errorState = false;
+
       //restartCountdown = 10;
-
-
+     // rewindCountdown = 30; // 15 frames - half a second - of rewinding
+      setSpeedDirect(-100);
+      errorState = false;
       //pinMode(resetOutPin, INPUT);
       //digitalWrite(resetOutPin, LOW);
       //Serial.println("MOTOR RESET FINISHED");
@@ -233,6 +236,7 @@ class DynamicMotor {
     float acceleration;
     float accelSpeed;
     int brakePin;
+    //int rewindCountdown; // while >0, rewind the motors a little
 
     int errorPin;
 

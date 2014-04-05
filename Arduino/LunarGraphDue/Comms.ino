@@ -1,3 +1,5 @@
+//#include <stdio.h>      /* printf, NULL */
+//#include <stdlib.h> 
 
 const int maxMessageLength = 256;
 char incoming[256];
@@ -5,7 +7,8 @@ char parseBuffer[15];
 
 String readyString; 
 // stores the last received command details
-int cmdNumber;
+
+long cmdId;
 int cmd;
 float p1;
 float p2;
@@ -57,8 +60,13 @@ boolean nextCommand() {
   Command * c = &(commands[currentCommand]);
 
 
+  Serial.print(c->id);
+
+  Serial.print(" ");
   Serial.print(currentCommand);
 
+  Serial.print(" ");
+  Serial.print(c->cmd);
   Serial.print(" ");
   Serial.print(commandStrings[c->cmd]);
   Serial.print(" ");
@@ -112,13 +120,13 @@ void checkIncoming() {
       incomingParsePos = 0;
 
 
-      cmdNumber = parseIncomingInt();
+      cmdId = parseIncomingUnsignedLong();
       cmd = parseIncomingInt();
       p1  = parseIncomingFloat();
       p2  = parseIncomingFloat();
 
       Serial.print("REC:");
-      Serial.print(cmdNumber);
+      Serial.print(cmdId);
       Serial.print(" ");
       Serial.print(commandStrings[cmd]);
       Serial.print(" ");
@@ -138,7 +146,14 @@ void checkIncoming() {
 int parseIncomingInt() {
 
   insertNextNumberIntoBuffer();
-  return atoi(parseBuffer);
+  return strtol(parseBuffer, 0, 10);
+
+}
+
+unsigned long parseIncomingUnsignedLong() {
+
+  insertNextNumberIntoBuffer();
+  return strtoul(parseBuffer, NULL, 10);
 
 }
 
@@ -146,7 +161,7 @@ int parseIncomingInt() {
 float parseIncomingFloat() {
 
   insertNextNumberIntoBuffer();
-  return atof(parseBuffer);
+  return strtof(parseBuffer, NULL);
 
 }
 

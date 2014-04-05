@@ -3,9 +3,9 @@ Lunar Trails serial port protocol
 
 # From LunarGraph Arduino to Processing App: 
 
-***ready:nn***
+***\****
 
-Informs you that the LunarGraph has completed a command. nn is the number of commands it still has to process. 
+Is the regular heartbeat - it's also used to tell you if the arduino is prepared to take more commands or not. 
 
 When the LunarGraph restarts it sends the following information : 
 
@@ -61,9 +61,15 @@ After the LunarGraph has been running for a while its internal clock will reset 
 
 If a motor error or endstop hit occurs the LunarGraph will report it using this command. Note that you don't have to read this, as the change state command will also occur. This is just extra info. 
 
-***NEXT COMMAND* num cmd p1 p2**
+***EXE:*id cmdnum cmd cmdstr p1 p2 numcommands**
 
-Reporting the command that it's executing
+Reporting that it's about to executing a command. 
+id - the command id sent by the app
+cmdnum - the command number in the Arduino
+cmd - the command type code (0 - move, 1 - draw etc)
+cmdstr - the command type in english 
+p1, p2 - the command parameters
+numcommands - the number of commands still left to process
 
 #From Processing app to LunarGraph Arduino
 

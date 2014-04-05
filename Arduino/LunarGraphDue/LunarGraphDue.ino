@@ -277,9 +277,9 @@ void loop() {
     }
 
     if (errorcount == 0) {
-      if (CALIBRATABLE) changeState(STATE_CALIBRATING);
-      else changeState(STATE_WAITING);
-      //changeState(STATE_WAITING);
+      //if (CALIBRATABLE) changeState(STATE_CALIBRATING);
+      //else changeState(STATE_WAITING);
+      changeState(STATE_WAITING);
 
     }
   }
@@ -310,8 +310,8 @@ void loop() {
       changeState(STATE_CALIBRATING);
     }
     if (timerManager.do10msUpdate) {
-      // TODO - stop pen lifting!
-      //if (millis() - stateChangeTime > 5000) liftPenUp();
+      // lift pen up if it's just been down for a while. 
+      if (millis() - stateChangeTime > 5000) liftPenUp();
 
       updateJogButtons();
     }
