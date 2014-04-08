@@ -27,6 +27,7 @@ class Button {
   boolean update() { 
     
     boolean pinState = digitalRead(pinNum);
+	//TODO - what happens when millis clocks? 
     int now = millis(); 
     
     if(firstTime) { 

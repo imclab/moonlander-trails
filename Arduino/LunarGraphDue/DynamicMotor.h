@@ -32,6 +32,14 @@ class DynamicMotor {
       //reset();
 
     }
+    
+    void switchOffGecko() { 
+       turnBrakeSolenoidOff(); 
+      pinMode(errorPin, OUTPUT); 
+      digitalWrite(errorPin, LOW);  
+      
+      
+    }
 
     // TODO - make a solenoid object!
 

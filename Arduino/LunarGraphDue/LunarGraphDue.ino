@@ -16,10 +16,18 @@
 
 TimerManager timerManager;
 
+#ifdef EMULATION_MODE
+int heartBeatFreq = 50; 
+#else
+int heartBeatFreq = 5000; 
+#endif
 volatile unsigned int state = STATE_WAITING;
 
 unsigned int calibrationProgressA = 0;
 unsigned int calibrationProgressB = 0;
+
+
+
 
 const int numStoredCommands = 200;
 Command commands[numStoredCommands];
@@ -192,9 +200,9 @@ void loop() {
   if (checkIR())  {
     // if checkIR returns true then it means that a button has come on or off.
     if (togglePenPressed) {
-
-      if (!penIsUp) liftPenUp();
+       if (!penIsUp) liftPenUp();
       else pushPenDown();
+    //motorA.switchOffGecko(); 
 
     }
   }
@@ -216,12 +224,12 @@ void loop() {
       // ramp up to full strength for the penMoveDownTime/2, then ease in-out to low strength after 2 seconds
       if (timeSincePenDown < penMoveDownTime) {
         strength = mapFloat((float)timeSincePenDown, 0.0f, (float)penMoveDownTime, 0.0, maxPower);
-        //Serial.println(strength);
+       // Serial.println(strength);
         analogWrite(PEN_DROP_PIN, int(strength * 255.0f));
       } else if (timeSincePenDown<4000){
         strength = constrain(mapEaseInOut(timeSincePenDown, 2000, 4000, maxPower, minPower), minPower, maxPower);
         analogWrite(PEN_DROP_PIN, int(strength * 255.0f));
-        //Serial.println(strength);
+       // Serial.println(strength);
       }
             
     }
@@ -277,9 +285,9 @@ void loop() {
     }
 
     if (errorcount == 0) {
-      //if (CALIBRATABLE) changeState(STATE_CALIBRATING);
-      //else changeState(STATE_WAITING);
-      changeState(STATE_WAITING);
+      if (CALIBRATABLE) changeState(STATE_CALIBRATING);
+      else changeState(STATE_WAITING);
+      //changeState(STATE_WAITING);
 
     }
   }
@@ -311,7 +319,8 @@ void loop() {
     }
     if (timerManager.do10msUpdate) {
       // lift pen up if it's just been down for a while. 
-      if (millis() - stateChangeTime > 5000) liftPenUp();
+      // TODO!!!! Manual pen lift breaks if you implement this... 
+      //if (millis() - stateChangeTime > 5000) liftPenUp();
 
       updateJogButtons();
     }
@@ -354,7 +363,7 @@ void loop() {
 
   if (timerManager.do10msUpdate) {
 
-    if (millis() - lastHeartbeatSent > 5000) {
+    if (millis() - lastHeartbeatSent > heartBeatFreq) {
 
       lastHeartbeatSent = millis();
       sendReady();
@@ -406,10 +415,10 @@ boolean updateDrawing() {
   // This is the function that handles the drawing of a line.
 
   unsigned long microsecs = ticks * 100;
-  //if (startTime > micros()) return false;
+
   if (startTime > microsecs) return false;
   boolean finished = false;
-  // progress = (float)(micros() - startTime) / (float)duration;
+
   progress = (float)(microsecs - startTime) / (float)duration;
 
   if (progress < 0) progress = 0;
@@ -422,8 +431,8 @@ boolean updateDrawing() {
     //}
     xPos = startPosX + vectorX;
     yPos = startPosY + vectorY;
-    //drawLine(xPos, yPos, (xPos>0)? 0 : pageWidth, 0);
-    finished = true;
+    
+	finished = true;
 
   }
   else {
@@ -532,14 +541,15 @@ void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean us
 
   unsigned long delayMicros =  (unsigned long)(delayMils) * 1000;
 
-  unsigned long now = ticks * 100; // micros();
-  startTime = now +  delayMicros;// + delayMicros;
+  unsigned long now = ticks = 0; // Reset the ticks! 
+  startTime = now +  delayMicros;
 
   // if we're going over the maximum value storable in a ulong, best start over
-  if (startTime < now) {
-    startTime = 0;
-    Serial.println("CLOCK RESETTING -----------------------");
-  }
+	// TODO : not sure we need this any more
+//  if (startTime < now) {
+//    startTime = 0;
+//    Serial.println("CLOCK RESETTING -----------------------");
+//  }
 
   //  Serial.print("Now:");
   //  Serial.print(micros());
@@ -551,6 +561,7 @@ void moveStraight(float x2, float y2, int delayMils, float speedMult, boolean us
 
 
 boolean liftPenUp() {
+  
   if (!penIsUp) {
     analogWrite(PEN_DROP_PIN, 0);
     penIsUp = true;

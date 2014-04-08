@@ -58,6 +58,7 @@ float dataWidth = 895.275 * 1.2; // we wanna see the landscape cycle round 1.2 t
 float landscapeWidth; 
 
 ArrayList commands; 
+ArrayList sentCommands; 
 ArrayList landscapePoints; 
 
 ArrayList serialMessages; 
@@ -131,7 +132,7 @@ void setup() {
   initLandscape(); 
 
 
-  if (!initSerial()); // do nothing exit(); 
+  if (!initSerial()) exit(); 
   initWebSocket();  
 
 
@@ -483,13 +484,11 @@ boolean sendCommandToLunarGraph(Command cmd) {
   serialMessageCount++; 
   sentPosition.set(xpos, ypos, 0); 
   println("sentPosition : "+ sentPosition + " "); 
-  //println("sending "+msg); 
-  //serialMessages.add(">"+msg); 
+ 
   sendSerial(msg); 
 
-  // this stops more than one command at a time
-  //numToSend =0;
-  //numToSend--;
+  sentCommands.add(cmd); 
+  
 
   lunargraphReadyForCommand = false;
   return true; 

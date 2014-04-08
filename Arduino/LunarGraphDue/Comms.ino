@@ -1,5 +1,3 @@
-//#include <stdio.h>      /* printf, NULL */
-//#include <stdlib.h> 
 
 const int maxMessageLength = 256;
 char incoming[256];
@@ -9,18 +7,15 @@ String readyString;
 // stores the last received command details
 
 long cmdId;
-int cmd;
-float p1;
-float p2;
+int cmdType;
+float p1,p2;
 
 int incomingCharCount = 0;
 int incomingParsePos = 0;
 
 
 
-
-
-void addCommand(int c, float p1, float p2) {
+void addCommand(int c, float p1, float p2, int id = -1) {
 
   // check numCommands!
   // TODO HOW DOES THIS WORK!? IT SHOULDN'T!!!
@@ -31,6 +26,7 @@ void addCommand(int c, float p1, float p2) {
     cmd->cmd = c;
     cmd->p1 = p1;
     cmd->p2 = p2;
+	cmd->id = id; 
     //currentCommand = (currentCommand+1)%numStoredCommands;
     numCommands++;
   }
@@ -121,19 +117,20 @@ void checkIncoming() {
 
 
       cmdId = parseIncomingUnsignedLong();
-      cmd = parseIncomingInt();
+      cmdType = parseIncomingInt();
       p1  = parseIncomingFloat();
       p2  = parseIncomingFloat();
 
       Serial.print("REC:");
       Serial.print(cmdId);
       Serial.print(" ");
-      Serial.print(commandStrings[cmd]);
+      Serial.print(commandStrings[cmdType]);
       Serial.print(" ");
       Serial.print(p1);
       Serial.print(" ");
       Serial.println(p2);
-      addCommand(cmd, p1, p2);
+      addCommand(cmdType, p1, p2, cmdId);
+
       incoming[0] = '\0';
       incomingCharCount = 0;
 
@@ -190,7 +187,8 @@ void sendReady() {
   
   bool readyForMore = (numCommands < numStoredCommands-1);
   updateCartesianByLengths();
-  readyString = "* " + String(xPos,2) + ' ' + String(yPos,2) + ' ' + readyForMore; 
+  
+  readyString = "* " + String(xPos,2) + ' ' + String(yPos,2) + ' ' + (numStoredCommands-numCommands-1);
   
   
   Serial.println(readyString);

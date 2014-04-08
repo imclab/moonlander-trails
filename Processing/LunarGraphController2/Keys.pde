@@ -8,6 +8,7 @@ void keyPressed() {
     initSerial();
     firstRestartReceived = false; 
     commands.clear();
+    sentCommands.clear();
 //    initWebSocket(8087); 
   }
   if (key == 'f') { 

@@ -55,12 +55,13 @@ void serialEvent(Serial serial) {
     println("Serial Connected !");
   }
 
-// TODO QUEUE UP MESSAGES FOR PROCESSING OUTSIDE OF THIS INTERUPTs
+  // TODO QUEUE UP MESSAGES FOR PROCESSING OUTSIDE OF THIS INTERUPTs
   if ((inByte == 0) || (inByte == 10)) { 
     try {
       processMessage();
-    } finally { 
-     println("ERROR IN processMessage!");  
+    } 
+    finally { 
+      println("ERROR IN processMessage!");
     }
   } 
   else if ((inByte>=32) && (inByte<=126)) { 
@@ -78,44 +79,77 @@ void processMessage () {
 
   println("->" +serialMessage); 
 
-
+  boolean validMessage = false; 
 
   if (beginsWith(serialMessage, "*")) { 
-    lastHeartbeat = millis(); 
+
     println("HEARTBEAT");
 
 
     String data = getStringAfterChar(serialMessage, " "); 
     String[] dataArray = split(data, " "); 
-    
+
     println("MADE DATA ARRAY "+dataArray.length); 
-    
+
     if (dataArray.length>=3) { 
-      
+
       float x = float(dataArray[0]); 
       float y = float(dataArray[1]); 
       boolean readyformore = (int(dataArray[2]) == 1);
-      
+
       lunargraphReadyForCommand = readyformore; 
       actualPosition.x = x; 
       actualPosition.y = y; 
-      
-      
+
+
       println("HEARTBEAT : "+ x+ " " +y+" " + readyformore + " |" + dataArray[2]+"|"); 
+      validMessage = true;
     }
   } 
   else { 
     serialMessages.add(serialMessage);
   }
 
-  if (beginsWith(serialMessage, "ready")) {
-// TODO - check this READY command
-    //numToSend = int(getStringAfterChar(serialMessage, ":"));   
-lunargraphReadyForCommand = int(getStringAfterChar(serialMessage, ":"))>0; 
-    println("ready to send "+lunargraphReadyForCommand); 
+  /*if (beginsWith(serialMessage, "ready")) {
+   // TODO - check this READY command
+   //numToSend = int(getStringAfterChar(serialMessage, ":"));   
+   lunargraphReadyForCommand = int(getStringAfterChar(serialMessage, ":"))>0; 
+   println("ready to send "+lunargraphReadyForCommand); 
+   validMessage = true; 
+   // format = <cmdnum>,<cmd>,<p1>,<p2> 
+   //serial.write(++counter + ",1,"+random(0,1000)+","+random(0,1000)+"\0");
+   } 
+   else */
+  if (beginsWith(serialMessage, "EXE:")) {
 
-    // format = <cmdnum>,<cmd>,<p1>,<p2> 
-    //serial.write(++counter + ",1,"+random(0,1000)+","+random(0,1000)+"\0");
+    String data = getStringAfterChar(serialMessage, ":"); 
+    String[] dataArray = split(data, " "); 
+
+    // println("MADE DATA ARRAY "+dataArray.length); 
+
+    if (dataArray.length>=7) { 
+
+      int cmdid, type;
+      float p1, p2; 
+      try {
+        cmdid = Integer.parseInt(dataArray[0]);
+        type = Integer.parseInt(dataArray[2]); 
+        p1 = Float.parseFloat(dataArray[4]);
+        p2 = Float.parseFloat(dataArray[5]);
+        // TODO - match it up with a command in the send commands array.
+        
+      } 
+      catch (NumberFormatException e) {
+        //Will Throw exception!
+        //do something! anything to handle the exception.
+        validMessage = false; 
+      }
+
+
+    }
+
+
+    validMessage = true;
   } 
   else if (beginsWith(serialMessage, "pagewidth")) { 
     pageWidth = float(getStringAfterChar(serialMessage, ":"));   
@@ -137,6 +171,7 @@ lunargraphReadyForCommand = int(getStringAfterChar(serialMessage, ":"))>0;
   else if (beginsWith(serialMessage, "CHANGE STATE")) { 
     String statemessage = (getStringAfterChar(serialMessage, ":"));
     lunargraphState = int(statemessage.split(",")[0]);
+    validMessage = true;
   } 
   else if (beginsWith(serialMessage, "buttons")) { 
     String buttonstatesstring = (getStringAfterChar(serialMessage, ":"));
@@ -144,8 +179,12 @@ lunargraphReadyForCommand = int(getStringAfterChar(serialMessage, ":"))>0;
     for (int i = 0; i<buttonStates.length; i++) { 
       buttonStates[i] = buttonstatesstring.charAt(i)=='1' ? true : false;
     }
+    // count the buttons? 
+    validMessage = true;
   }
   serialMessage = "";  
   println("------");
+
+  if (validMessage) lastHeartbeat = millis();
 }
 
