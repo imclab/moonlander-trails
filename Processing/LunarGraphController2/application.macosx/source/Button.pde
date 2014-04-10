@@ -45,6 +45,8 @@ void renderButtons() {
 }
 
 void checkButtons() { 
+  
+  
    if(pauseButton.isMouseOver()) { 
      //togglePause();
    } else if(clearButton.isMouseOver()) { 

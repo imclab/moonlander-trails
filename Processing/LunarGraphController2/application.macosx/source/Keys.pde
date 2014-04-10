@@ -35,7 +35,7 @@ void keyPressed() {
     drawRectangle();
   } 
   else if (key == 'k') {  
-    plotText("Lunar Trails - Bozar Night Brussels "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
+    plotText("Lunar Trails - Lighthouse "+day()+"/"+month()+"/"+year(), 300,pageHeight-900,80);  
     plotText("seb.ly", pageWidth - 3300 ,pageHeight-900,85);   
   }
   else if (key == 'p')  { 

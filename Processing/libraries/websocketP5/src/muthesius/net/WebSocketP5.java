@@ -2,7 +2,7 @@
  * A WebSocket Bridge to the Webbit WebScocket for easy use. Processing is non
  * evented, so we nee to make some adjustements ;)
  * 
- * (c) 2011 jens alexander ewald, muthesius kunsthochschule kiel, 2011
+ * (c) 2011-2013 jens alexander ewald, muthesius kunsthochschule kiel, 2011
  * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,14 +18,14 @@
  * along with this library; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  * 
- * @author jens alexander ewald http://twelvebytes.net | http://www.muthesius.de
- * @modified 11/08/2011
- * @version 0.1.3
+ * @author jens alexander ewald http://lea.io | http://www.muthesius.de
+ * @modified 02/05/2013
+ * @version 0.1.4
  */
 
 package muthesius.net;
 
-import java.io.*;
+// import java.io.*;
 import java.util.ArrayList;
 import java.lang.reflect.Method;
 import processing.core.*;
@@ -38,6 +38,7 @@ import org.webbitserver.handler.*;
  * @example SimpleWebSocketServer
  */
 
+
 public class WebSocketP5 implements WebSocketHandler {
   // Reference to the sketch
   PApplet                    parent;
@@ -46,14 +47,13 @@ public class WebSocketP5 implements WebSocketHandler {
   Method                     newMessageEvent;
   Method                     newConnectionOpenedEvent;
   Method                     newConnectionClosedEvent;
-
   
   // The internal Server
   WebServer                  server         = null;
   int                        port;
   String                     socketname;
 
-  public final static String VERSION        = "0.1.3";
+  public final static String VERSION        = "0.1.4";
   public final static String DEFAULT_SOCKET = "p5websocket";
 
   /**
@@ -83,11 +83,18 @@ public class WebSocketP5 implements WebSocketHandler {
     this.socketname = socketname;
 
     server = WebServers.createWebServer(this.port);
+    
     server.add("/" + this.socketname, this);
-    server.add(new StaticFileHandler(parent.sketchPath("html")));
+    
+    StaticFileHandler files = new StaticFileHandler(parent.sketchPath("html"));
+    files.addMimeType("mp4", "video/mp4");
+    files.addMimeType("ogg", "video/ogg");
+    files.addMimeType("webm", "video/webm");
+    files.addMimeType("mp3", "audio/mp3");
+    server.add(files);
 
-    server.add("/js/jquery.js",
-        new JSStringServer(parent.loadStrings("js/jquery-1.6.min.js")));
+    server.add("/scripts/jquery.js",
+        new JSStringServer(parent.loadStrings("js/jquery.js")));
 
     try {
       server.start();
@@ -96,6 +103,7 @@ public class WebSocketP5 implements WebSocketHandler {
     }
     catch (Exception e) {
       // just catch it and do nothing
+      System.out.println("Could not start the server: "+e.toString());
       server = null;
     }
 
@@ -215,7 +223,7 @@ public class WebSocketP5 implements WebSocketHandler {
 
   // ///////// BEGINN SOCKETHANDLING
   int                            connectionCount;
-  ArrayList<WebSocketConnection> connections = new ArrayList();
+  ArrayList<WebSocketConnection> connections = new ArrayList<WebSocketConnection>();
 
   public void onOpen(WebSocketConnection conn) {
     WebSocketConnection connection = (WebSocketConnection) conn;
@@ -266,7 +274,16 @@ public class WebSocketP5 implements WebSocketHandler {
   public void onMessage(WebSocketConnection connection, byte[] message) {
   }
   
+  public void onPing(WebSocketConnection connection, String message) {
+  }
+
   public void onPong(WebSocketConnection connection, String message) {
+  }
+
+  public void onPing(WebSocketConnection connection, byte[] message) {
+  }
+
+  public void onPong(WebSocketConnection connection, byte[] message) {
   }
 
   // ///////// END SOCKETHANDLING

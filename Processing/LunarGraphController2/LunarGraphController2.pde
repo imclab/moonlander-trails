@@ -3,7 +3,7 @@ import processing.serial.*;
 import org.json.JSONObject;
 import org.json.JSONException;
 //import wsp5.*;
-import java.awt.Toolkit;
+//import java.awt.Toolkit;
 
 import muthesius.net.*;
 import org.webbitserver.*;
@@ -46,57 +46,59 @@ int lastPenChange = 0;
 int penChangeFrequency = 120 * 60 * 1000; 
 
 // reasonable defaults but nothing should happen until they're set by the LunarGraph Arduino
-float pageWidth = 10000;  
+float pageWidth = 10000;	
 float pageHeight = 6000;
 float stepsPerMil = 20; 
 float machineWidth = 14000; 
 float pageTop = 2000; 
 float pageSideMargin = 0; 
 
-float dataWidth = 895.275 * 1.2; // we wanna see the landscape cycle round 1.2 times.  
+float dataWidth = 895.275 * 1.2; // we wanna see the landscape cycle round 1.2 times.	
 //float dataHeight = 500; 
 float landscapeWidth; 
 
 ArrayList commands; 
+ArrayList sentCommands; 
 ArrayList landscapePoints; 
 
-ArrayList serialMessages; 
+ArrayList queuedSerialMessages; 
+ArrayList sentSerialMessages; 
 ArrayList webSocketMessages; 
 
 PVector receivePosition; 
 PVector sentPosition; 
-PVector drawnPosition; 
+PVector actualPosition; 
 
 
 String switchNames[] = { 
-  "jogUpButtonA", 
-  "jogDownButtonA", 
-  "jogUpButtonB", 
-  "jogDownButtonB", 
+  //	"jogUpButtonA", 
+  //	"jogDownButtonA", 
+  //	"jogUpButtonB", 
+  //	"jogDownButtonB", 
   "endStopMinButtonA", 
   "endStopMaxButtonA", 
   "endStopMinButtonB", 
   "endStopMaxButtonB", 
   "calibrationButtonA", 
   "calibrationButtonB", 
-  "resetButton",
-   "spareButton"
+  //	"resetButton",
+  //	 "spareButton"
 }; 
 
-int jogUpButtonA = 0;
-int jogDownButtonA = 1;
-int jogUpButtonB = 2;
-int jogDownButtonB = 3;
-int endStopMinButtonA = 4;
-int endStopMaxButtonA = 5;
-int endStopMinButtonB = 6;
-int endStopMaxButtonB = 7;
-int calibrationButtonA =8 ;
-int calibrationButtonB= 9;
-int resetButtonSwitch = 10;
-int spareButtonSwitch = 11;
+//int jogUpButtonA = 0;
+//int jogDownButtonA = 1;
+//int jogUpButtonB = 2;
+//int jogDownButtonB = 3;
+int endStopMinButtonA = 0;
+int endStopMaxButtonA = 1;
+int endStopMinButtonB = 2;
+int endStopMaxButtonB = 3;
+int calibrationButtonA =4 ;
+int calibrationButtonB= 5;
+//int resetButtonSwitch = 10;
+//int spareButtonSwitch = 11;
 
-boolean buttonStates[] = new boolean[11]; 
+boolean buttonStates[] = new boolean[6]; 
 
 boolean move = true; 
 PFont consoleFont; 
@@ -107,27 +109,36 @@ PFont titleFont;
 void setup() { 
   //size(displayWidth, displayHeight);
 
-  viewScale = (float)displayWidth/viewWidth;
-  size(round(viewWidth*viewScale), round(viewHeight*viewScale), OPENGL);
+  viewScale = (float)1440/viewWidth;//(float)displayWidth/viewWidth;
+  size(round(viewWidth*viewScale), round(viewHeight*viewScale), P2D);
 
-  //  if (frame != null) {
-  //    frame.setResizable(true);
-  //  }
+  //	if (frame != null) {
+  //		frame.setResizable(true);
+  //	}
 
   consoleFont = loadFont("BitstreamVeraSansMono-Bold-12.vlw");
   titleFont = loadFont("FuturaLTPro-Bold-48.vlw");
+  // consoleFont = loadFont("Monaco-11.vlw");
+  // titleFont = loadFont("Monaco-11.vlw");
+
   frameRate(60);
   commands = new ArrayList();
+  sentCommands = new ArrayList();
   receivePosition = new PVector(0, 0); 
   sentPosition = new PVector(0, 0); 
-  drawnPosition = new PVector(0, 0); 
-  landscapePoints = new ArrayList();  
-  serialMessages = new ArrayList(); 
+  actualPosition = new PVector(0, 0); 
+  landscapePoints = new ArrayList();	
+  sentSerialMessages = new ArrayList(); 
   webSocketMessages = new ArrayList(); 
+  queuedSerialMessages = new ArrayList(); 
+
   initLandscape(); 
 
-  initSerial(); 
-  initWebSocket();  
+
+  if (!initSerial()) ;//exit(); 
+  initWebSocket();	
+
+
   //frame.setResizable(true);
 
   //frameRate(10); 
@@ -139,8 +150,8 @@ void setup() {
 
   background(0); 
   stroke(255);
-  
-  changePen(); 
+
+  changePen();
 }
 
 
@@ -150,7 +161,7 @@ void mousePressed() {
   //socket.sendToAll("sendlandscape");
 }
 void draw() { 
-
+  //if(true) return; 
   if (frameCount - mouseLastMoved>60) noCursor(); 
 
   background(0); 
@@ -175,23 +186,24 @@ void draw() {
   if (!focused) { 
     text ("PRESS MOUSE TO START", viewWidth/2, 75);
   } 
-  else if(state == STATE_PEN_CHANGE) { 
+  else if (state == STATE_PEN_CHANGE) { 
     text ("CHANGE PEN AND HIT SPACE", viewWidth/2, 75);
-  }  else  { 
+  }	
+  else { 
     text ("LUNAR TRAILS", viewWidth/2, 75);
-  }  
-  
-  float penchangemillis =  (millis() - lastPenChange); 
- 
-  if(penchangemillis>penChangeFrequency) { 
-    if(frameCount%60>20) { 
+  }	
+
+  float penchangemillis =	(millis() - lastPenChange); 
+
+  if (penchangemillis>penChangeFrequency) { 
+    if (frameCount%60>20) { 
       //changePen(); 
       text ("INK DRY - CHANGE PEN", viewWidth/2, 180);
-    }  
-    if(frameCount%120 == 20) { 
-      Toolkit.getDefaultToolkit().beep();
+    }	
+    if (frameCount%120 == 20) { 
+      //	Toolkit.getDefaultToolkit().beep();
     }
-   // penchangemillis = 0; 
+    // penchangemillis = 0;
   }
 
   textFont(buttonFont); 
@@ -219,7 +231,7 @@ void draw() {
 
   //translate(0,80); 
   scale(viewWidth/dataWidth * pageWidth/machineWidth); 
-  translate(map(pageSideMargin, 0, pageWidth, 0, dataWidth), 165);  // not sure about the magic number there... :/ 
+  translate(map(pageSideMargin, 0, pageWidth, 0, dataWidth), 165);	// not sure about the magic number there... :/ 
 
   for (float offset = 0; offset<=landscapeWidth; offset+=landscapeWidth) { 
     for (int i = 1; i<landscapePoints.size(); i++) { 
@@ -237,7 +249,7 @@ void draw() {
         PVector v = p2.get(); 
         v.sub(p1); 
         v.mult((dataWidth-p1.x) / v.x); 
-        line(p1.x, p1.y, p1.x + v.x, p1.y + v.y);  
+        line(p1.x, p1.y, p1.x + v.x, p1.y + v.y);	
         break;
       }
     }
@@ -266,63 +278,79 @@ void draw() {
   stroke(50); 
   rect(0, 0, pageWidth*scalefactor, pageHeight*scalefactor); 
 
-  //scale(scalefactor);  
+  //scale(scalefactor);	
   //println("scaling : "+((float)viewWidth/pageWidth/1.2)); 
   // strokeWeight(1/scalefactor);
 
   stroke(50); 
   strokeWeight(4); 
-  line(-pageSideMargin*scalefactor, -pageTop*scalefactor, sentPosition.x*scalefactor, sentPosition.y*scalefactor); 
-  line(sentPosition.x*scalefactor, sentPosition.y*scalefactor, (pageWidth + pageSideMargin)*scalefactor, -pageTop*scalefactor); 
+  line(-pageSideMargin*scalefactor, -pageTop*scalefactor, actualPosition.x*scalefactor, actualPosition.y*scalefactor); 
+  line(actualPosition.x*scalefactor, actualPosition.y*scalefactor, (pageWidth + pageSideMargin)*scalefactor, -pageTop*scalefactor); 
   stroke(100);
   strokeWeight(2);
   fill(0);
-  ellipse(sentPosition.x*scalefactor, sentPosition.y*scalefactor, 20, 20); 
+  ellipse(actualPosition.x*scalefactor, actualPosition.y*scalefactor, 20, 20); 
 
   textAlign(LEFT, CENTER);
   textFont(consoleFont);
   fill(125); 
   stroke(10); 
-  text("PEN POSITION", sentPosition.x*scalefactor+30, sentPosition.y*scalefactor); 
+  text("PEN POSITION", actualPosition.x*scalefactor+30, actualPosition.y*scalefactor); 
 
   //println(sentPosition.x*scalefactor +" "+sentPosition.y*scalefactor);
   // strokeWeight(1);
 
-  stroke(10, 20, 120);
+
   PVector lastpoint = new PVector(); 
+
+  // draw all the sent commands in green
+  stroke(10, 120, 20);
+  for (int i = 0; i< sentCommands.size(); i++) { 
+    Command c = (Command) sentCommands.get(i); 
+    point(c.p1*scalefactor, c.p2*scalefactor);
+    if ((c.c == COMMAND_MOVE)||(i==0)) {
+      lastpoint.set(c.p1, c.p2, 0) ;
+    } 
+    else if ((c.c == COMMAND_DRAW)||(c.c == COMMAND_DRAW_DIRECT)) { 
+      line(lastpoint.x*scalefactor, lastpoint.y*scalefactor, c.p1*scalefactor, c.p2*scalefactor); 
+      lastpoint.set(c.p1, c.p2, 0);
+    }
+  }
+  // draw buffered commands in blue
+  stroke(10, 20, 120);
   for (int i = 0; i< commands.size(); i++) { 
     Command c = (Command) commands.get(i); 
     point(c.p1*scalefactor, c.p2*scalefactor);
-    if(c.c == COMMAND_MOVE) {
+    if ((c.c == COMMAND_MOVE)||(i==0)) {
       lastpoint.set(c.p1, c.p2, 0) ;
-    } else if((c.c == COMMAND_DRAW)||(c.c == COMMAND_DRAW_DIRECT)) { 
+    } 
+    else if ((c.c == COMMAND_DRAW)||(c.c == COMMAND_DRAW_DIRECT)) { 
       line(lastpoint.x*scalefactor, lastpoint.y*scalefactor, c.p1*scalefactor, c.p2*scalefactor); 
-      lastpoint.set(c.p1, c.p2, 0); 
-      
+      lastpoint.set(c.p1, c.p2, 0);
     }
   }
 
   popMatrix();
 
 
-  renderConsoles();  
+  renderConsoles();	
   renderButtons(); 
 
-  //  float heartbeatcolour = millis() - lastHeartbeat)
+  //	float heartbeatcolour = millis() - lastHeartbeat)
   noStroke();
   fill(255, (1-float(millis() - lastHeartbeat)/10000.0f) * 255, (1-float(millis() - lastHeartbeat)/10000.0f) * 255);
-  ellipse(65, 25, 10, 10);  
+  ellipse(65, 25, 10, 10);	
   textFont(consoleFont); 
   textAlign(LEFT, TOP);
   fill(255); 
   text("LUNARGRAPH HEALTH", 75, 20); 
-  
-  
-    String secs = floor((penchangemillis/1000) % 60)+""; 
-    if(secs.length()<2) secs = "0"+secs;
-   text("LAST PEN CHANGE "+floor(penchangemillis/1000/60) + ":"+secs, 60,60); 
 
-  
+
+  String secs = floor((penchangemillis/1000) % 60)+""; 
+  if (secs.length()<2) secs = "0"+secs;
+  text("LAST PEN CHANGE "+floor(penchangemillis/1000/60) + ":"+secs, 60, 60); 
+
+
   processQueue();
 
   popMatrix();
@@ -332,26 +360,26 @@ void renderConsoles() {
 
   textFont(consoleFont); 
   textAlign(LEFT, TOP); 
-  while (serialMessages.size ()>70) serialMessages.remove(0); 
+  while (sentSerialMessages.size ()>70) sentSerialMessages.remove(0); 
   int leading = 14; 
 
   int textX = 100; 
-  int textY =  ((viewHeight- (serialMessages.size()) * leading)) - 50; 
+  int textY =	((viewHeight- (sentSerialMessages.size()) * leading)) - 50; 
 
 
 
-  for (int i = 0; i<serialMessages.size(); i++) { 
+  for (int i = 0; i<sentSerialMessages.size(); i++) { 
     fill(100); 
-    if (i==serialMessages.size()-1) fill(255); 
+    if (i==sentSerialMessages.size()-1) fill(255); 
 
-    String msg = (String)serialMessages.get(i); 
+    String msg = (String)sentSerialMessages.get(i); 
     if (msg!=null) text(msg, textX, textY); 
     textY+=leading;
   } 
 
   while (webSocketMessages.size ()>70) webSocketMessages.remove(0); 
   textX = viewWidth-250; 
-  textY =  (viewHeight-(webSocketMessages.size() * leading)) - 50; 
+  textY =	(viewHeight-(webSocketMessages.size() * leading)) - 50; 
 
 
   for (int i = 0; i<webSocketMessages.size(); i++) { 
@@ -391,7 +419,7 @@ PVector convertDataToScreen(PVector p) {
  
  PVector returnVector = p.get(); 
  returnVector.y-=100; 
- returnVector.mult(viewWidth/dataWidth);  
+ returnVector.mult(viewWidth/dataWidth);	
  return returnVector;
  }*/
 
@@ -399,7 +427,7 @@ PVector convertDataToLunarGraph(PVector p) {
 
   PVector returnVector = p.get(); 
   returnVector.y+=100; 
-  returnVector.mult(pageWidth/dataWidth);  
+  returnVector.mult(pageWidth/dataWidth);	
   return returnVector;
 }
 
@@ -432,9 +460,18 @@ void lineToXYPos(PVector pos) {
 
 void processQueue() { 
 
+
+  // Process the queue of messages from the LunarGraph
+
+  while (queuedSerialMessages.size ()>0) { 
+    String msg = (String) queuedSerialMessages.remove(0);
+    processIncomingSerialMessage(msg);
+  }
+  // Process the queue of commands from the websockets
+
   if ((state == STATE_PAUSED) || (state == STATE_PEN_CHANGE)) return; 
 
-  if ((numToSend>0) && (commands.size()>0)) { 
+  if ((lunargraphCommandsToSend>0) && (commands.size()>0)) { 
 
     Command cmd = (Command) commands.remove(0);
     //float xpos = map(cmd.p1, 0.0f, viewWidth, 0.0f, pageWidth); 
@@ -448,28 +485,46 @@ void processQueue() {
         cmd.c = COMMAND_MOVE; 
         cmd.p1 = pageWidth/2; 
         cmd.p2 = pageHeight*0.8; 
-        state = STATE_PEN_CHANGE; 
+        state = STATE_PEN_CHANGE;
       }
     } 
-    
-    if(cmd.c!=COMMAND_FINISH) { 
+    // TODO - this is a bit nasty! Why do we need to know about restarts? 
+    if ((cmd.c!=COMMAND_FINISH) && (cmd.c!=COMMAND_RESTART)) { 
 
-      float xpos = round(cmd.p1*100)/100.0f; 
-      float ypos = round(cmd.p2*100)/100.0f;
-
-
-      String msg = serialMessageCount+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
-      serialMessageCount++; 
-      sentPosition.set(xpos, ypos, 0); 
-      println("sentPosition : "+ sentPosition); 
-      //println("sending "+msg); 
-      //serialMessages.add(">"+msg); 
-      sendSerial(msg); 
-
-      numToSend =0;
+      sendCommandToLunarGraph(cmd);
     }
   }
+
+  // TODO we should probably do something if the buffer of commands gets too big.
 }
+
+boolean sendCommandToLunarGraph(Command cmd) { 
+
+  //valid commands are 0 1 or 2
+  if ((cmd.c>2) || (cmd.c<0)) return false; 
+
+  if ((Float.isNaN(cmd.p1)) || (Float.isNaN(cmd.p2))) return false; 
+
+  float xpos = round(cmd.p1*100)/100.0f; 
+  float ypos = round(cmd.p2*100)/100.0f;
+
+  cmd.id = serialMessageCount; 
+  String msg = cmd.id+ ","+cmd.c+","+xpos+","+ypos+"\0"; 
+  serialMessageCount++; 
+
+  if (serialMessageCount > 100000) serialMessageCount = 0; 
+
+  sentPosition.set(xpos, ypos, 0); 
+  println("sentPosition : "+ sentPosition + " "); 
+
+  sendSerial(msg); 
+
+  sentCommands.add(cmd); 
+
+  lunargraphCommandsToSend--;
+  return true;
+}
+
 
 
 boolean beginsWith(String source, String matchString) { 
@@ -496,6 +551,7 @@ void stop() {
     if (socket!=null) {
       println("TRYING SHUT DOWN"); 
       socket.stop();
+      //socket.dispose();
       println("SHUT DOWN DONE");
     }
   } 
@@ -503,6 +559,12 @@ void stop() {
     println("SERVER SHUT DOWN ERROR");
   }
   println("DONE");
-  if (firstContact) serial.stop();
+
+  try { 
+    closeSerial();
+  } 
+  finally { 
+    println("Serial shutdown error");
+  }
 }
 

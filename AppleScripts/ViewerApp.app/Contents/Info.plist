@@ -32,7 +32,7 @@
 	<key>WindowState</key>
 	<dict>
 		<key>dividerCollapsed</key>
-		<false/>
+		<true/>
 		<key>eventLogLevel</key>
 		<integer>-1</integer>
 		<key>name</key>
@@ -40,7 +40,7 @@
 		<key>positionOfDivider</key>
 		<real>333</real>
 		<key>savedFrame</key>
-		<string>24 438 602 597 0 0 1920 1058 </string>
+		<string>364 333 684 725 0 0 1920 1058 </string>
 		<key>selectedTabView</key>
 		<string>result</string>
 	</dict>

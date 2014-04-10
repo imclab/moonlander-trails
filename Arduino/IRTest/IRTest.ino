@@ -12,24 +12,29 @@
 
 int RECV_PIN = 50;
 
+long currentIRButton = -1; 
+long lastIRReceived = 0; 
+
 IRrecv irrecv(RECV_PIN);
 
 decode_results results;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  Serial.println("Ready!");
   
-  pinMode(46,OUTPUT);   
-  pinMode(48,OUTPUT); 
-  digitalWrite(48, LOW); // ground pin
-  digitalWrite(46, HIGH); 
+
+  pinMode(47, OUTPUT);
+  pinMode(49, OUTPUT);
+  digitalWrite(47, HIGH);
+  digitalWrite(49, LOW); // ground pin
   
   
   irrecv.enableIRIn(); // Start the receiver
   irrecv.blink13(true);
-  Serial.println('hi'); 
-
+  
+  
   
 }
 
@@ -67,29 +72,40 @@ void dump(decode_results *results) {
   Serial.print(" (");
   Serial.print(results->bits, DEC);
   Serial.println(" bits)");
-  /*
-  Serial.print("Raw (");
-  Serial.print(count, DEC);
-  Serial.print("): ");
 
-  for (int i = 0; i < count; i++) {
-    if ((i % 2) == 1) {
-      Serial.print(results->rawbuf[i]*USECPERTICK, DEC);
-    } 
-    else {
-      Serial.print(-(int)results->rawbuf[i]*USECPERTICK, DEC);
-    }
-    Serial.print(" ");
-  }
-  Serial.println("");*/
 }
 
 
 void loop() {
+  
+  long time = millis(); 
+  int timeout = 150; 
   if (irrecv.decode(&results)) {
-    Serial.println(results.value, HEX);
-    dump(&results);
+    //Serial.print("READ : " ); 
+    //Serial.println(results.value, HEX);
+    //dump(&results);
     irrecv.resume(); // Receive the next value
+    
+    if(results.value != 0xffffffff) { 
+      // if it's an apple remote, remove the device ID 
+      if(results.decode_type == NEC) { 
+        //results.value = results.value & 0x0000f000;
+      }
+      if(currentIRButton != results.value) { 
+    //    Serial.print("old "); 
+    //   Serial.println(currentIRButton, HEX);
+        currentIRButton = results.value; 
+        Serial.print("PRESSED : "); 
+        
+        Serial.println(currentIRButton, HEX); 
+        dump(&results);
+      }    
+    }
+    lastIRReceived = time; 
+  } else if ((currentIRButton!=-1) && (time - lastIRReceived > timeout)) { 
+    currentIRButton = -1; 
+    Serial.println("RELEASED"); 
+    
   }
   
   

@@ -14,6 +14,7 @@ class Command {
 //  
   Command (int _c, float _p1, float _p2) { 
     
+	id = 0;
     c = _c; 
     p1 = _p1; 
     p2 = _p2; 
@@ -24,7 +25,7 @@ class Command {
   
   
   
-  int c; 
+  int c, id; 
   float p1, p2;
   
   

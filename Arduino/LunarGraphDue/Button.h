@@ -2,15 +2,16 @@ class Button {
   
   public:
   
-  Button(int pinnum, boolean usePullUp = true, boolean onstate = LOW){
+  Button(int pinnum, boolean usepullup = true, boolean onstate = LOW){
     
     onState = onstate;
     pinNum = pinnum; 
-    if(usePullUp) 
-      pinMode(pinNum, INPUT_PULLUP);
-    else 
-      pinMode(pinNum, INPUT);
-    
+   // if(usePullUp) {
+    //  pinMode(pinNum, INPUT_PULLUP);
+    //} else { 
+    //  pinMode(pinNum, INPUT);
+    //}
+    usePullUp = usepullup; 
     onCount = 0; 
     offCount = 0; 
     
@@ -26,8 +27,18 @@ class Button {
   boolean update() { 
     
     boolean pinState = digitalRead(pinNum);
+	//TODO - what happens when millis clocks? 
     int now = millis(); 
-    boolean changed = false; 
+    
+    if(firstTime) { 
+      if(usePullUp) {
+        pinMode(pinNum, INPUT_PULLUP);
+      } else { 
+        pinMode(pinNum, INPUT);
+      }
+    }
+    
+    boolean changed = firstTime; 
     // should probably add some debouncing
     
     if((pinState == onState) && (!on) ) { 
@@ -74,6 +85,7 @@ class Button {
   boolean on; 
   boolean firstTime; 
   boolean onState; 
+  boolean usePullUp; 
   unsigned long timeChanged;
   unsigned long timeSinceChange; 
   unsigned int onCount; 

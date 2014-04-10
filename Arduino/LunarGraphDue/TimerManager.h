@@ -22,8 +22,14 @@ public:
   };
 
   void update() { 
-    now = micros(); 
+ 	now = micros(); 
 
+	// note that micros resets every 70 minutes. So we have to check that 
+	// if we have clocked that we still get updates. That's what the second part of all the 
+        // if statements do. 
+
+// could possibly avoid the conditionals by using : (unsigned long)(currentMillis - previousMillis) >= interval) 
+	
     if((now - lastUpdate100ms > 100000) || (now<lastUpdate100ms)){
       do100msUpdate = true; 
       lastUpdate100ms = now; 

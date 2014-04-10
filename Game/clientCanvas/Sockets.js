@@ -66,6 +66,7 @@ var ws,
 
 	function sendObject(obj) { 
 		sendSocket(JSON.stringify(obj)); 
+		console.log(JSON.stringify(obj));
 		
 	}
 
